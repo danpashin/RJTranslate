@@ -1,0 +1,418 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A53533FF217A57ED00E08881 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A53533FE217A57ED00E08881 /* Foundation.framework */; };
+		A5353402217A57ED00E08881 /* RJTranslate.m in Sources */ = {isa = PBXBuildFile; fileRef = A5353401217A57ED00E08881 /* RJTranslate.m */; };
+		A5353411217A584500E08881 /* RJTranslate.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A535340F217A584500E08881 /* RJTranslate.xcdatamodeld */; };
+		A5353417217A595200E08881 /* RJTTranslationEntity.h in Headers */ = {isa = PBXBuildFile; fileRef = A5353413217A595200E08881 /* RJTTranslationEntity.h */; };
+		A5353418217A595200E08881 /* RJTTranslationEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = A5353414217A595200E08881 /* RJTTranslationEntity.m */; };
+		A535341C217A5A2800E08881 /* RJTDatabase.h in Headers */ = {isa = PBXBuildFile; fileRef = A535341A217A5A2800E08881 /* RJTDatabase.h */; };
+		A535341D217A5A2800E08881 /* RJTDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = A535341B217A5A2800E08881 /* RJTDatabase.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		A53533FB217A57ED00E08881 /* RJTranslate.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = RJTranslate.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		A53533FE217A57ED00E08881 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		A5353401217A57ED00E08881 /* RJTranslate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RJTranslate.m; sourceTree = "<group>"; };
+		A5353405217A57ED00E08881 /* control */ = {isa = PBXFileReference; lastKnownFileType = text; name = control; path = Package/DEBIAN/control; sourceTree = "<group>"; };
+		A5353409217A57ED00E08881 /* RJTranslate.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = RJTranslate.plist; path = Package/Library/MobileSubstrate/DynamicLibraries/RJTranslate.plist; sourceTree = "<group>"; };
+		A5353410217A584500E08881 /* RJTranslate.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = RJTranslate.xcdatamodel; sourceTree = "<group>"; };
+		A5353413217A595200E08881 /* RJTTranslationEntity.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RJTTranslationEntity.h; sourceTree = "<group>"; };
+		A5353414217A595200E08881 /* RJTTranslationEntity.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RJTTranslationEntity.m; sourceTree = "<group>"; };
+		A535341A217A5A2800E08881 /* RJTDatabase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RJTDatabase.h; sourceTree = "<group>"; };
+		A535341B217A5A2800E08881 /* RJTDatabase.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RJTDatabase.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A53533F7217A57ED00E08881 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A53533FF217A57ED00E08881 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		A53533F1217A57ED00E08881 = {
+			isa = PBXGroup;
+			children = (
+				A5353400217A57ED00E08881 /* RJTranslate */,
+				A53533FD217A57ED00E08881 /* Frameworks */,
+				A53533FC217A57ED00E08881 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		A53533FC217A57ED00E08881 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A53533FB217A57ED00E08881 /* RJTranslate.dylib */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A53533FD217A57ED00E08881 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A53533FE217A57ED00E08881 /* Foundation.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A5353400217A57ED00E08881 /* RJTranslate */ = {
+			isa = PBXGroup;
+			children = (
+				A5353413217A595200E08881 /* RJTTranslationEntity.h */,
+				A5353414217A595200E08881 /* RJTTranslationEntity.m */,
+				A535341A217A5A2800E08881 /* RJTDatabase.h */,
+				A535341B217A5A2800E08881 /* RJTDatabase.m */,
+				A5353401217A57ED00E08881 /* RJTranslate.m */,
+				A535340F217A584500E08881 /* RJTranslate.xcdatamodeld */,
+				A5353403217A57ED00E08881 /* Package */,
+			);
+			path = RJTranslate;
+			sourceTree = "<group>";
+		};
+		A5353403217A57ED00E08881 /* Package */ = {
+			isa = PBXGroup;
+			children = (
+				A5353404217A57ED00E08881 /* DEBIAN */,
+				A5353406217A57ED00E08881 /* Library */,
+			);
+			name = Package;
+			sourceTree = "<group>";
+		};
+		A5353404217A57ED00E08881 /* DEBIAN */ = {
+			isa = PBXGroup;
+			children = (
+				A5353405217A57ED00E08881 /* control */,
+			);
+			name = DEBIAN;
+			sourceTree = "<group>";
+		};
+		A5353406217A57ED00E08881 /* Library */ = {
+			isa = PBXGroup;
+			children = (
+				A5353407217A57ED00E08881 /* MobileSubstrate */,
+			);
+			name = Library;
+			sourceTree = "<group>";
+		};
+		A5353407217A57ED00E08881 /* MobileSubstrate */ = {
+			isa = PBXGroup;
+			children = (
+				A5353408217A57ED00E08881 /* DynamicLibraries */,
+			);
+			name = MobileSubstrate;
+			sourceTree = "<group>";
+		};
+		A5353408217A57ED00E08881 /* DynamicLibraries */ = {
+			isa = PBXGroup;
+			children = (
+				A5353409217A57ED00E08881 /* RJTranslate.plist */,
+			);
+			name = DynamicLibraries;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		A53533F8217A57ED00E08881 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A535341C217A5A2800E08881 /* RJTDatabase.h in Headers */,
+				A5353417217A595200E08881 /* RJTTranslationEntity.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		A53533FA217A57ED00E08881 /* RJTranslate */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A535340C217A57ED00E08881 /* Build configuration list for PBXNativeTarget "RJTranslate" */;
+			buildPhases = (
+				A53533F6217A57ED00E08881 /* Sources */,
+				A53533F7217A57ED00E08881 /* Frameworks */,
+				A53533F8217A57ED00E08881 /* Headers */,
+				A53533F9217A57ED00E08881 /* Copy files and build deb */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = RJTranslate;
+			productName = RJTranslate;
+			productReference = A53533FB217A57ED00E08881 /* RJTranslate.dylib */;
+			productType = "com.apple.product-type.library.dynamic";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A53533F2217A57ED00E08881 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = RJT;
+				LastUpgradeCheck = 1000;
+				ORGANIZATIONNAME = "Даниил";
+				TargetAttributes = {
+					A53533FA217A57ED00E08881 = {
+						CreatedOnToolsVersion = 10.0;
+					};
+				};
+			};
+			buildConfigurationList = A53533F5217A57ED00E08881 /* Build configuration list for PBXProject "RJTranslate" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = A53533F1217A57ED00E08881;
+			productRefGroup = A53533FC217A57ED00E08881 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A53533FA217A57ED00E08881 /* RJTranslate */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		A53533F9217A57ED00E08881 /* Copy files and build deb */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Copy files and build deb";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if [[ \"ls -1 ${BUILT_PRODUCTS_DIR}/*.dylib 2>/dev/null | wc -l\" == 0 ]]; then\necho \"${BUILT_PRODUCTS_DIR} does not contain any dylib file.\";\nexit 1;\nfi\n\nPACKAGE_PROJECT_FOLDER=\"${PROJECT_DIR}/${PROJECT_NAME}/Package\";\nif [ ! -d $PACKAGE_PROJECT_FOLDER ]; then\necho \"${PROJECT_DIR}/Package does not exits.\";\nexit 2;\nfi\n\n\nPACKAGE_TEMP_FOLDER=\"${BUILT_PRODUCTS_DIR}/Package\";\nif [ -d $PACKAGE_TEMP_FOLDER ]; then\nrm -rf $PACKAGE_TEMP_FOLDER;\nfi\n\necho \"[->] Copying binaries...\";\ncp -r $PACKAGE_PROJECT_FOLDER $PACKAGE_TEMP_FOLDER;\nfind ${BUILT_PRODUCTS_DIR} -type f -iname '*.dylib' -exec cp \"{}\" \"$PACKAGE_TEMP_FOLDER/Library/MobileSubstrate/DynamicLibraries\" 2> /dev/null \\;\n\necho \"[->] Cleaning (stage 1)...\"\nfind $PACKAGE_PROJECT_FOLDER -name \".DS_Store\" -exec rm -f {} \\;\n\necho \"[->] Updating control...\";\nsed -i '' \"s/CURRENT_PROJECT_VERSION/${CURRENT_PROJECT_VERSION}/g\" \"$PACKAGE_TEMP_FOLDER/DEBIAN/control\";\n\necho \"[->] Counting size...\";\nFOLDER_SIZE=$(du -sk $PACKAGE_TEMP_FOLDER);\nINSTALLED_SIZE=$(echo $FOLDER_SIZE | tr -dc '0-9' );\nsed -i '' \"s/PACKAGE_SIZE/${INSTALLED_SIZE}/g\" \"$PACKAGE_TEMP_FOLDER/DEBIAN/control\";\n\n\necho \"[->] Packaging...\";\nDEBS_FOLDER=\"${PROJECT_DIR}/debs\";\nif [ ! -d $DEBS_FOLDER ]; then\nmkdir $DEBS_FOLDER\nfi\n\nDEB_NAME=\"${PRODUCT_BUNDLE_IDENTIFIER}_${CURRENT_PROJECT_VERSION}_${PLATFORM_NAME}-arm.deb\";\ndpkg-deb -b -Zlzma $PACKAGE_TEMP_FOLDER $DEBS_FOLDER/$DEB_NAME 2> /dev/null;\n\necho \"[->] Cleaning (stage 2)...\";\nrm -rf $PACKAGE_TEMP_FOLDER;\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A53533F6217A57ED00E08881 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A5353411217A584500E08881 /* RJTranslate.xcdatamodeld in Sources */,
+				A535341D217A5A2800E08881 /* RJTDatabase.m in Sources */,
+				A5353418217A595200E08881 /* RJTTranslationEntity.m in Sources */,
+				A5353402217A57ED00E08881 /* RJTranslate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		A535340A217A57ED00E08881 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = 1;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1.0;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				EXCLUDED_RECURSIVE_SEARCH_PATH_SUBDIRECTORIES = "*.nib *.lproj *.gch (*) .DS_Store CVS .svn .git .hg *.xcodeproj *.xcode *.pbproj *.pbxproj";
+				FRAMEWORK_SEARCH_PATHS = "$(iOSOpenDevPath)/frameworks/**";
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "$(iOSOpenDevPath)/include/**";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LIBRARY_SEARCH_PATHS = "$(iOSOpenDevPath)/lib/**";
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = ru.danpashin.RJTranslate;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				iOSOpenDevPath = /opt/iOSOpenDev;
+			};
+			name = Debug;
+		};
+		A535340B217A57ED00E08881 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = 1;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1.0;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				EXCLUDED_RECURSIVE_SEARCH_PATH_SUBDIRECTORIES = "*.nib *.lproj *.gch (*) .DS_Store CVS .svn .git .hg *.xcodeproj *.xcode *.pbproj *.pbxproj";
+				FRAMEWORK_SEARCH_PATHS = "$(iOSOpenDevPath)/frameworks/**";
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "$(iOSOpenDevPath)/include/**";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LIBRARY_SEARCH_PATHS = "$(iOSOpenDevPath)/lib/**";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = ru.danpashin.RJTranslate;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				iOSOpenDevPath = /opt/iOSOpenDev;
+			};
+			name = Release;
+		};
+		A535340D217A57ED00E08881 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = VW97WHTS78;
+				GCC_WARN_UNDECLARED_SELECTOR = 0;
+				INSTALL_PATH = /Library/MobileSubstrate/DynamicLibraries;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		A535340E217A57ED00E08881 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = VW97WHTS78;
+				GCC_WARN_UNDECLARED_SELECTOR = 0;
+				INSTALL_PATH = /Library/MobileSubstrate/DynamicLibraries;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A53533F5217A57ED00E08881 /* Build configuration list for PBXProject "RJTranslate" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A535340A217A57ED00E08881 /* Debug */,
+				A535340B217A57ED00E08881 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A535340C217A57ED00E08881 /* Build configuration list for PBXNativeTarget "RJTranslate" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A535340D217A57ED00E08881 /* Debug */,
+				A535340E217A57ED00E08881 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		A535340F217A584500E08881 /* RJTranslate.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				A5353410217A584500E08881 /* RJTranslate.xcdatamodel */,
+			);
+			currentVersion = A5353410217A584500E08881 /* RJTranslate.xcdatamodel */;
+			path = RJTranslate.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = A53533F2217A57ED00E08881 /* Project object */;
+}

@@ -1,0 +1,18 @@
+Package: ru.danpashin.RJTranslate
+Name: RJTranslate
+Version: CURRENT_PROJECT_VERSION
+Description: 
+Conflicts: 
+Replaces: 
+Priority: optional
+Architecture: iphoneos-arm
+Author: Даниил
+Maintainer:  Даниил
+dev: 
+Homepage: 
+Depiction: 
+Icon: 
+Tag:
+Section: 
+Installed-size: PACKAGE_SIZE
+
