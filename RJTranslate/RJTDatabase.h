@@ -7,11 +7,16 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <CoreData/NSPersistentContainer.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface RJTDatabase : NSObject
+@interface RJTDatabase : NSPersistentContainer
 
++ (instancetype)defaultDatabase;
+
+- (void)save;
+- (void)saveContext:(NSManagedObjectContext *)context;
 @end
 
 NS_ASSUME_NONNULL_END

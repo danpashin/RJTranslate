@@ -12,8 +12,10 @@
 @implementation RJTTranslationEntity
 @dynamic bundle_identifier;
 @dynamic translation;
+@dynamic enableTranslation;
 
-+ (NSFetchRequest<RJTTranslationEntity *> *)fetchRequest {
++ (NSFetchRequest<RJTTranslationEntity *> *)fetchRequest
+{
     return [NSFetchRequest fetchRequestWithEntityName:@"RJTTranslationEntity"];
 }
 

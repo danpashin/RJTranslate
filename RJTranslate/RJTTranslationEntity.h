@@ -20,9 +20,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nullable, nonatomic, copy) NSString *bundle_identifier;
 @property (nullable, nonatomic, retain) NSDictionary *translation;
+@property (assign, nonatomic) BOOL enableTranslation;
 
 @end
 
 NS_ASSUME_NONNULL_END
-
-#import "Translation+CoreDataProperties.h"
