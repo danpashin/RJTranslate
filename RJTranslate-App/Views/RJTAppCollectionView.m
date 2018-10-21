@@ -10,8 +10,9 @@
 #import "RJTApplicationModel.h"
 
 #import "RJTAppCell.h"
+#import <DZNEmptyDataSet/UIScrollView+EmptyDataSet.h>
 
-@interface RJTAppCollectionView () <UICollectionViewDelegateFlowLayout, UICollectionViewDataSource>
+@interface RJTAppCollectionView () <UICollectionViewDelegateFlowLayout, UICollectionViewDataSource, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>
 @end
 
 @implementation RJTAppCollectionView
@@ -25,6 +26,8 @@
     
     self.dataSource = self;
     self.delegate = self;
+    self.emptyDataSetSource = self;
+    self.emptyDataSetDelegate = self;
     self.alwaysBounceVertical = YES;
     
     UICollectionViewFlowLayout *collectionLayout = (UICollectionViewFlowLayout *)self.collectionViewLayout;
@@ -71,6 +74,61 @@
        willDisplayCell:(nonnull RJTAppCell *)cell forItemAtIndexPath:(nonnull NSIndexPath *)indexPath
 {
     cell.model = self.performingSearch ? self.searchResults[indexPath.row] : self.availableApps[indexPath.row];
+}
+
+
+#pragma mark -
+#pragma mark DZNEmptyDataSetSource
+#pragma mark -
+
+- (UIImage *)imageForEmptyDataSet:(UIScrollView *)scrollView
+{
+    if (!self.performingSearch)
+        return [UIImage imageNamed:@"translationIcon"];
+    else if (self.performingSearch && self.searchText.length > 0)
+        return [UIImage imageNamed:@"sad-face"];
+    
+    return nil;
+}
+
+- (UIColor *)imageTintColorForEmptyDataSet:(UIScrollView *)scrollView
+{
+    return [UIColor colorWithRed:82.0f/255.0f green:104.0f/255.0f blue:118.0f/255.0f alpha:1.0f];
+}
+
+- (NSAttributedString *)titleForEmptyDataSet:(UIScrollView *)scrollView
+{
+    NSString *titleString = @"";
+    
+    if (self.performingSearch && self.searchText.length > 0)
+        titleString = @"К сожалению, по вашему запросу ничего не найдено.";
+    else if (!self.performingSearch)
+        titleString = @"Нет установленных переводов. Загрузить доступные?";
+    
+    return [[NSAttributedString alloc] initWithString:titleString
+                                           attributes:@{NSFontAttributeName:[UIFont preferredFontForTextStyle:UIFontTextStyleTitle2]}];
+}
+
+- (NSAttributedString *)buttonTitleForEmptyDataSet:(UIScrollView *)scrollView forState:(UIControlState)state
+{
+    if (self.performingSearch)
+        return nil;
+    
+    NSDictionary *attributes = @{NSFontAttributeName: [UIFont preferredFontForTextStyle:UIFontTextStyleTitle2],
+                                 NSForegroundColorAttributeName: [UIColor colorWithWhite:0.2f alpha:1.0f]};
+    
+    return [[NSAttributedString alloc] initWithString:@"Скачать" attributes:attributes];
+}
+
+- (CGFloat)verticalOffsetForEmptyDataSet:(UIScrollView *)scrollView
+{
+    return -50.0f;
+}
+
+- (void)emptyDataSet:(UIScrollView *)scrollView didTapButton:(UIButton *)button
+{
+    if (!self.performingSearch)
+        [self.customDelegate collectionViewRequestedDownloadingTranslations:self];
 }
 
 @end

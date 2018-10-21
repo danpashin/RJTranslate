@@ -25,7 +25,6 @@
         self.dimsBackgroundDuringPresentation = NO;
         self.hidesNavigationBarDuringPresentation = NO;
         self.searchBar.searchBarStyle = UISearchBarStyleMinimal;
-        self.dimsBackgroundDuringPresentation = NO;
         
         self.searchBar.searchField.layer.cornerRadius = 18.0f;
         self.searchBar.searchField.layer.masksToBounds = YES;

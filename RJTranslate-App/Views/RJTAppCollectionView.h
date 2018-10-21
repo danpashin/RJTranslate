@@ -11,12 +11,24 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@class RJTAppCollectionView;
+@protocol RJTAppCollectionViewDelegate <NSObject>
+
+- (void)collectionViewRequestedDownloadingTranslations:(RJTAppCollectionView *)collectionView;
+
+@end
+
+
+
 @interface RJTAppCollectionView : UICollectionView
 
 @property (assign, nonatomic) BOOL performingSearch;
 
 @property (strong, nonatomic) NSMutableArray <RJTApplicationModel *> *availableApps;
 @property (strong, nonatomic) NSMutableArray <RJTApplicationModel *> *searchResults;
+@property (weak, nonatomic) NSString *searchText;
+
+@property (weak, nonatomic) id <RJTAppCollectionViewDelegate> customDelegate;
 
 - (void)reloadData;
 

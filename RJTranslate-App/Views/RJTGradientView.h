@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface RJTGradientView : UIView
 
+@property (nonatomic, readonly, class) RJTGradientView *defaultGradientView;
+
 @property (nonatomic, readonly, strong) CAGradientLayer *layer;
 
 @end

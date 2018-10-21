@@ -100,7 +100,7 @@
                                 </cells>
                             </collectionView>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="RvJ-yb-fTx" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="2uw-hv-agY"/>
                             <constraint firstItem="RvJ-yb-fTx" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="gyo-qJ-azs"/>

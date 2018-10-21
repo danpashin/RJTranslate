@@ -15,7 +15,7 @@
 #import "RJTAppCollectionView.h"
 #import "RJTSearchController.h"
 
-@interface RJTranslateController () <UISearchResultsUpdating, UISearchControllerDelegate>
+@interface RJTranslateController () <UISearchResultsUpdating, UISearchControllerDelegate, RJTAppCollectionViewDelegate>
 
 @property (strong, nonatomic) RJTDatabase *localDatabase;
 
@@ -30,6 +30,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.collectionView.customDelegate = self;
     
     self.localDatabase = [RJTDatabase defaultDatabase];
     [self.localDatabase performBackgroundTask:^(NSManagedObjectContext * _Nonnull context) {
@@ -49,6 +51,24 @@
     self.navigationItem.titleView = self.searchController.searchBar;
 }
 
+- (void)showLargeTitle:(BOOL)show
+{
+    if (@available(iOS 11.0, *)) {
+        self.navigationItem.largeTitleDisplayMode = show ? UINavigationItemLargeTitleDisplayModeAlways : UINavigationItemLargeTitleDisplayModeNever;
+        [self.navigationController.navigationBar setNeedsLayout];
+        [self.view setNeedsLayout];
+        [UIView animateWithDuration:0.25f delay:0.0f options:UIViewAnimationOptionAllowUserInteraction animations:^{
+            [self.navigationController.navigationBar layoutIfNeeded];
+            [self.view layoutIfNeeded];
+        } completion:nil];
+    }
+}
+
+
+#pragma mark -
+#pragma mark UISearchResultsUpdating, UISearchControllerDelegate 
+#pragma mark -
+
 - (void)updateSearchResultsForSearchController:(RJTSearchController *)searchController
 {
     searchController.dimBackground = (searchController.searchBar.text.length == 0);
@@ -59,6 +79,7 @@
     NSString *searchText = searchController.searchBar.text;
     self.searchOperation = [NSBlockOperation blockOperationWithBlock:^{
         self.collectionView.performingSearch = YES;
+        self.collectionView.searchText = searchText;
         [self.collectionView.searchResults removeAllObjects];
         
         [self.localDatabase performBackgroundTask:^(NSManagedObjectContext * _Nonnull context) {
@@ -73,9 +94,6 @@
         }];
     }];
     [self.searchOperation start];
-    
-    
-//    NSLog(@"%@", searchController.searchBar.text);
 }
 
 - (void)willPresentSearchController:(RJTSearchController *)searchController
@@ -93,17 +111,14 @@
     [self.collectionView reloadData];
 }
 
-- (void)showLargeTitle:(BOOL)show
+
+#pragma mark -
+#pragma mark RJTAppCollectionViewDelegate 
+#pragma mark -
+
+- (void)collectionViewRequestedDownloadingTranslations:(RJTAppCollectionView *)collectionView
 {
-    if (@available(iOS 11.0, *)) {
-        self.navigationItem.largeTitleDisplayMode = show ? UINavigationItemLargeTitleDisplayModeAlways : UINavigationItemLargeTitleDisplayModeNever;
-        [self.navigationController.navigationBar setNeedsLayout];
-        [self.view setNeedsLayout];
-        [UIView animateWithDuration:0.25f delay:0.0f options:UIViewAnimationOptionAllowUserInteraction animations:^{
-            [self.navigationController.navigationBar layoutIfNeeded];
-            [self.view layoutIfNeeded];
-        } completion:nil];
-    }
+    NSLog(@"Should start downloading translations");
 }
 
 @end
