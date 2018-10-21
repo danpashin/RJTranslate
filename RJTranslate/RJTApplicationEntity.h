@@ -1,5 +1,5 @@
 //
-//  RJTTranslationEntity.h
+//  RJTApplicationEntity.h
 //  RJTranslate
 //
 //  Created by Даниил on 19/10/2018.
@@ -7,17 +7,18 @@
 //
 //
 
-#import <Foundation/Foundation.h>
-#import <CoreData/CoreData.h>
+#import <CoreData/NSManagedObject.h>
+#import <CoreData/NSFetchRequest.h>
 
 @class NSObject;
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface RJTTranslationEntity : NSManagedObject
+@interface RJTApplicationEntity : NSManagedObject
 
-+ (NSFetchRequest<RJTTranslationEntity *> *)fetchRequest;
++ (NSFetchRequest<RJTApplicationEntity *> *)fetchRequest;
 
+@property (nullable, nonatomic, copy) NSString *app_name;
 @property (nullable, nonatomic, copy) NSString *bundle_identifier;
 @property (nullable, nonatomic, retain) NSDictionary *translation;
 @property (assign, nonatomic) BOOL enableTranslation;

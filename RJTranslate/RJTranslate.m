@@ -14,11 +14,12 @@
 
 #import <UIKit/UIKit.h>
 #import "RJTDatabase.h"
-#import "RJTTranslationEntity.h"
+#import "RJTApplicationEntity.h"
 
 
 __strong NSDictionary <NSString *, NSString *> *translation;
-RJTTranslationEntity *databaseTranslationEntity(void);
+RJTApplicationEntity *databaseTranslationEntity(void);
+NSString *localizedString(NSString *origString);
 
 CHDeclareClass(UILabel);
 CHOptimizedMethod(1, self, void, UILabel, setText, NSString *, text)
@@ -27,6 +28,17 @@ CHOptimizedMethod(1, self, void, UILabel, setText, NSString *, text)
     CHSuper(1, UILabel, setText, text);
 }
 
+
+CHConstructor
+{
+    RJTApplicationEntity *translationEntity = databaseTranslationEntity();
+    if (translationEntity) {
+        translation = [translationEntity.translation copy];
+        
+        CHLoadClass(UILabel);
+        CHHook(1, UILabel, setText);
+    }
+}
 
 NSString *localizedString(NSString *origString)
 {
@@ -37,21 +49,9 @@ NSString *localizedString(NSString *origString)
     return origString;
 }
 
-
-CHConstructor
+RJTApplicationEntity *databaseTranslationEntity(void)
 {
-    RJTTranslationEntity *databaseTranslationEntity = databaseTranslationEntity();
-    if (databaseTranslationEntity) {
-        translation = databaseTranslationEntity.translation;
-        
-        CHLoadClass(UILabel);
-        CHHook(1, UILabel, setText);
-    }
-}
-
-RJTTranslationEntity *databaseTranslationEntity(void)
-{
-    NSFetchRequest *fetchRequest = [RJTTranslationEntity fetchRequest];
+    NSFetchRequest *fetchRequest = [RJTApplicationEntity fetchRequest];
     
     NSString *bundleIdentifier = [NSBundle mainBundle].bundleIdentifier;
     fetchRequest.predicate = [NSPredicate predicateWithFormat:@"bundle_identifier == %@ AND enableTranslation == 1", bundleIdentifier];
@@ -59,7 +59,7 @@ RJTTranslationEntity *databaseTranslationEntity(void)
     NSError *executeError = nil;
     
     RJTDatabase *localDatabase = [RJTDatabase defaultDatabase];
-    NSArray <RJTTranslationEntity *> *executeResult = [localDatabase.viewContext executeFetchRequest:fetchRequest error:&executeError];
+    NSArray <RJTApplicationEntity *> *executeResult = [localDatabase.viewContext executeFetchRequest:fetchRequest error:&executeError];
     if (executeResult.count == 1 && !executeError)
         return executeResult.firstObject;
     

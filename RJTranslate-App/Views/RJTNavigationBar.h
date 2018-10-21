@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  RJTNavigationBar.h
 //  RJTranslate-App
 //
 //  Created by Даниил on 20/10/2018.
@@ -8,8 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
+NS_ASSUME_NONNULL_BEGIN
 
+@interface RJTNavigationBar : UINavigationBar
 
 @end
 
+NS_ASSUME_NONNULL_END

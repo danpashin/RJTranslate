@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		A522F1CD217AFC300085A5E4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A522F1CC217AFC300085A5E4 /* AppDelegate.m */; };
-		A522F1D0217AFC300085A5E4 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A522F1CF217AFC300085A5E4 /* ViewController.m */; };
+		A522F1D0217AFC300085A5E4 /* RJTranslateController.m in Sources */ = {isa = PBXBuildFile; fileRef = A522F1CF217AFC300085A5E4 /* RJTranslateController.m */; };
 		A522F1D3217AFC300085A5E4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A522F1D1217AFC300085A5E4 /* Main.storyboard */; };
 		A522F1D5217AFC310085A5E4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A522F1D4217AFC310085A5E4 /* Assets.xcassets */; };
 		A522F1D8217AFC310085A5E4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A522F1D6217AFC310085A5E4 /* LaunchScreen.storyboard */; };
@@ -16,20 +16,25 @@
 		A53533FF217A57ED00E08881 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A53533FE217A57ED00E08881 /* Foundation.framework */; };
 		A5353402217A57ED00E08881 /* RJTranslate.m in Sources */ = {isa = PBXBuildFile; fileRef = A5353401217A57ED00E08881 /* RJTranslate.m */; };
 		A5353411217A584500E08881 /* RJTranslate.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A535340F217A584500E08881 /* RJTranslate.xcdatamodeld */; };
-		A5353417217A595200E08881 /* RJTTranslationEntity.h in Headers */ = {isa = PBXBuildFile; fileRef = A5353413217A595200E08881 /* RJTTranslationEntity.h */; };
-		A5353418217A595200E08881 /* RJTTranslationEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = A5353414217A595200E08881 /* RJTTranslationEntity.m */; };
+		A5353417217A595200E08881 /* RJTApplicationEntity.h in Headers */ = {isa = PBXBuildFile; fileRef = A5353413217A595200E08881 /* RJTApplicationEntity.h */; };
+		A5353418217A595200E08881 /* RJTApplicationEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = A5353414217A595200E08881 /* RJTApplicationEntity.m */; };
 		A535341C217A5A2800E08881 /* RJTDatabase.h in Headers */ = {isa = PBXBuildFile; fileRef = A535341A217A5A2800E08881 /* RJTDatabase.h */; };
 		A535341D217A5A2800E08881 /* RJTDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = A535341B217A5A2800E08881 /* RJTDatabase.m */; };
+		A54ADB1E217BB0CF00D32EB7 /* RJTApplicationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A54ADB1D217BB0CF00D32EB7 /* RJTApplicationModel.m */; };
 		A57CF73A217AFFC8004A71F8 /* RJTDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = A535341B217A5A2800E08881 /* RJTDatabase.m */; };
-		A57CF73B217AFFD0004A71F8 /* RJTTranslationEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = A5353414217A595200E08881 /* RJTTranslationEntity.m */; };
+		A57CF73B217AFFD0004A71F8 /* RJTApplicationEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = A5353414217A595200E08881 /* RJTApplicationEntity.m */; };
+		A57CF73E217B50B9004A71F8 /* RJTNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = A57CF73D217B50B9004A71F8 /* RJTNavigationBar.m */; };
+		A5DB9ABE217B74DB0061A810 /* RJTGradientView.m in Sources */ = {isa = PBXBuildFile; fileRef = A5DB9ABB217B74DB0061A810 /* RJTGradientView.m */; };
+		A5DB9AC5217B80150061A810 /* RJTNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = A5DB9AC2217B80150061A810 /* RJTNavigationController.m */; };
+		A5DB9ACF217B8A260061A810 /* RJTAppCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A5DB9ACE217B8A260061A810 /* RJTAppCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		A522F1C9217AFC300085A5E4 /* RJTranslate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RJTranslate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A522F1CB217AFC300085A5E4 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		A522F1CC217AFC300085A5E4 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		A522F1CE217AFC300085A5E4 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		A522F1CF217AFC300085A5E4 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		A522F1CE217AFC300085A5E4 /* RJTranslateController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RJTranslateController.h; sourceTree = "<group>"; };
+		A522F1CF217AFC300085A5E4 /* RJTranslateController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RJTranslateController.m; sourceTree = "<group>"; };
 		A522F1D2217AFC300085A5E4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A522F1D4217AFC310085A5E4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A522F1D7217AFC310085A5E4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -41,10 +46,20 @@
 		A5353405217A57ED00E08881 /* control */ = {isa = PBXFileReference; lastKnownFileType = text; name = control; path = Package/DEBIAN/control; sourceTree = "<group>"; };
 		A5353409217A57ED00E08881 /* RJTranslate.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = RJTranslate.plist; path = Package/Library/MobileSubstrate/DynamicLibraries/RJTranslate.plist; sourceTree = "<group>"; };
 		A5353410217A584500E08881 /* RJTranslate.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = RJTranslate.xcdatamodel; sourceTree = "<group>"; };
-		A5353413217A595200E08881 /* RJTTranslationEntity.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RJTTranslationEntity.h; sourceTree = "<group>"; };
-		A5353414217A595200E08881 /* RJTTranslationEntity.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RJTTranslationEntity.m; sourceTree = "<group>"; };
+		A5353413217A595200E08881 /* RJTApplicationEntity.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RJTApplicationEntity.h; sourceTree = "<group>"; };
+		A5353414217A595200E08881 /* RJTApplicationEntity.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RJTApplicationEntity.m; sourceTree = "<group>"; };
 		A535341A217A5A2800E08881 /* RJTDatabase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RJTDatabase.h; sourceTree = "<group>"; };
 		A535341B217A5A2800E08881 /* RJTDatabase.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RJTDatabase.m; sourceTree = "<group>"; };
+		A54ADB1C217BB0CF00D32EB7 /* RJTApplicationModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RJTApplicationModel.h; sourceTree = "<group>"; };
+		A54ADB1D217BB0CF00D32EB7 /* RJTApplicationModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RJTApplicationModel.m; sourceTree = "<group>"; };
+		A57CF73C217B50B9004A71F8 /* RJTNavigationBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RJTNavigationBar.h; sourceTree = "<group>"; };
+		A57CF73D217B50B9004A71F8 /* RJTNavigationBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RJTNavigationBar.m; sourceTree = "<group>"; };
+		A5DB9ABA217B74DB0061A810 /* RJTGradientView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RJTGradientView.h; sourceTree = "<group>"; };
+		A5DB9ABB217B74DB0061A810 /* RJTGradientView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RJTGradientView.m; sourceTree = "<group>"; };
+		A5DB9AC1217B80150061A810 /* RJTNavigationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RJTNavigationController.h; sourceTree = "<group>"; };
+		A5DB9AC2217B80150061A810 /* RJTNavigationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RJTNavigationController.m; sourceTree = "<group>"; };
+		A5DB9ACD217B8A260061A810 /* RJTAppCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RJTAppCell.h; sourceTree = "<group>"; };
+		A5DB9ACE217B8A260061A810 /* RJTAppCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RJTAppCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,8 +86,10 @@
 			children = (
 				A522F1CB217AFC300085A5E4 /* AppDelegate.h */,
 				A522F1CC217AFC300085A5E4 /* AppDelegate.m */,
-				A522F1CE217AFC300085A5E4 /* ViewController.h */,
-				A522F1CF217AFC300085A5E4 /* ViewController.m */,
+				A5DB9AC0217B7FF50061A810 /* Controllers */,
+				A5DB9ABF217B75DF0061A810 /* Views */,
+				A54ADB20217BB6EB00D32EB7 /* Cells */,
+				A54ADB1F217BB6E500D32EB7 /* Models */,
 				A522F1D1217AFC300085A5E4 /* Main.storyboard */,
 				A522F1D4217AFC310085A5E4 /* Assets.xcassets */,
 				A522F1D6217AFC310085A5E4 /* LaunchScreen.storyboard */,
@@ -112,8 +129,8 @@
 		A5353400217A57ED00E08881 /* RJTranslate */ = {
 			isa = PBXGroup;
 			children = (
-				A5353413217A595200E08881 /* RJTTranslationEntity.h */,
-				A5353414217A595200E08881 /* RJTTranslationEntity.m */,
+				A5353413217A595200E08881 /* RJTApplicationEntity.h */,
+				A5353414217A595200E08881 /* RJTApplicationEntity.m */,
 				A535341A217A5A2800E08881 /* RJTDatabase.h */,
 				A535341B217A5A2800E08881 /* RJTDatabase.m */,
 				A5353401217A57ED00E08881 /* RJTranslate.m */,
@@ -164,6 +181,46 @@
 			name = DynamicLibraries;
 			sourceTree = "<group>";
 		};
+		A54ADB1F217BB6E500D32EB7 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				A54ADB1C217BB0CF00D32EB7 /* RJTApplicationModel.h */,
+				A54ADB1D217BB0CF00D32EB7 /* RJTApplicationModel.m */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		A54ADB20217BB6EB00D32EB7 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				A5DB9ACD217B8A260061A810 /* RJTAppCell.h */,
+				A5DB9ACE217B8A260061A810 /* RJTAppCell.m */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		A5DB9ABF217B75DF0061A810 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				A57CF73C217B50B9004A71F8 /* RJTNavigationBar.h */,
+				A57CF73D217B50B9004A71F8 /* RJTNavigationBar.m */,
+				A5DB9ABA217B74DB0061A810 /* RJTGradientView.h */,
+				A5DB9ABB217B74DB0061A810 /* RJTGradientView.m */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		A5DB9AC0217B7FF50061A810 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				A5DB9AC1217B80150061A810 /* RJTNavigationController.h */,
+				A5DB9AC2217B80150061A810 /* RJTNavigationController.m */,
+				A522F1CE217AFC300085A5E4 /* RJTranslateController.h */,
+				A522F1CF217AFC300085A5E4 /* RJTranslateController.m */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -172,7 +229,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A535341C217A5A2800E08881 /* RJTDatabase.h in Headers */,
-				A5353417217A595200E08881 /* RJTTranslationEntity.h in Headers */,
+				A5353417217A595200E08881 /* RJTApplicationEntity.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -290,11 +347,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A522F1D0217AFC300085A5E4 /* ViewController.m in Sources */,
+				A5DB9AC5217B80150061A810 /* RJTNavigationController.m in Sources */,
+				A522F1D0217AFC300085A5E4 /* RJTranslateController.m in Sources */,
 				A57CF73A217AFFC8004A71F8 /* RJTDatabase.m in Sources */,
+				A5DB9ABE217B74DB0061A810 /* RJTGradientView.m in Sources */,
+				A5DB9ACF217B8A260061A810 /* RJTAppCell.m in Sources */,
 				A522F1DB217AFC310085A5E4 /* main.m in Sources */,
 				A522F1CD217AFC300085A5E4 /* AppDelegate.m in Sources */,
-				A57CF73B217AFFD0004A71F8 /* RJTTranslationEntity.m in Sources */,
+				A57CF73E217B50B9004A71F8 /* RJTNavigationBar.m in Sources */,
+				A57CF73B217AFFD0004A71F8 /* RJTApplicationEntity.m in Sources */,
+				A54ADB1E217BB0CF00D32EB7 /* RJTApplicationModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -304,7 +366,7 @@
 			files = (
 				A5353411217A584500E08881 /* RJTranslate.xcdatamodeld in Sources */,
 				A535341D217A5A2800E08881 /* RJTDatabase.m in Sources */,
-				A5353418217A595200E08881 /* RJTTranslationEntity.m in Sources */,
+				A5353418217A595200E08881 /* RJTApplicationEntity.m in Sources */,
 				A5353402217A57ED00E08881 /* RJTranslate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -342,6 +404,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -356,6 +419,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -415,7 +479,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "$(iOSOpenDevPath)/include/**";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LIBRARY_SEARCH_PATHS = "$(iOSOpenDevPath)/lib/**";
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -478,7 +542,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "$(iOSOpenDevPath)/include/**";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LIBRARY_SEARCH_PATHS = "$(iOSOpenDevPath)/lib/**";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;

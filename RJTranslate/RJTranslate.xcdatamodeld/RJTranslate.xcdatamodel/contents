@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14315.18" systemVersion="18A389" minimumToolsVersion="Automatic" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
-    <entity name="RJTTranslationEntity" representedClassName="RJTTranslationEntity" syncable="YES">
+    <entity name="RJTApplicationEntity" representedClassName="RJTApplicationEntity" syncable="YES">
+        <attribute name="app_name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="bundle_identifier" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="enableTranslation" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="translation" optional="YES" attributeType="Transformable" syncable="YES"/>
     </entity>
     <elements>
-        <element name="RJTTranslationEntity" positionX="-63" positionY="-27" width="128" height="88"/>
+        <element name="RJTApplicationEntity" positionX="-63" positionY="-27" width="128" height="103"/>
     </elements>
 </model>
