@@ -24,7 +24,7 @@
 
     [self setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
     [self setShadowImage:[UIImage new]];
-    
+    self.tintColor = [UIColor whiteColor];
     
     self.gradientView = [RJTGradientView new];
     self.gradientView.layer.colors = @[(id)secondaryColor.CGColor, (id)mainColor.CGColor];

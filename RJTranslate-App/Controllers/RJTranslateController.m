@@ -12,82 +12,98 @@
 #import "RJTApplicationEntity.h"
 #import "RJTApplicationModel.h"
 
-#import "RJTAppCell.h"
+#import "RJTAppCollectionView.h"
+#import "RJTSearchController.h"
 
-@interface RJTranslateController () <UICollectionViewDelegateFlowLayout, UICollectionViewDataSource>
+@interface RJTranslateController () <UISearchResultsUpdating, UISearchControllerDelegate>
 
 @property (strong, nonatomic) RJTDatabase *localDatabase;
 
-@property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
-@property (strong, nonatomic) NSMutableArray <RJTApplicationModel *> *availableApps;
+@property (weak, nonatomic) IBOutlet RJTAppCollectionView *collectionView;
+@property (strong, nonatomic) RJTSearchController *searchController;
+@property (strong, nonatomic) NSOperation *searchOperation;
+
 @end
 
 @implementation RJTranslateController
-
-- (void)awakeFromNib
-{
-    [super awakeFromNib];
-    
-    self.availableApps = [NSMutableArray array];
-}
-
-UISearchController *searchController;
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
-    UICollectionViewFlowLayout *collectionLayout = (UICollectionViewFlowLayout *)self.collectionView.collectionViewLayout;
-    collectionLayout.itemSize = CGSizeMake(CGRectGetWidth(self.view.frame) - 48.0f, 72.0f);
-    collectionLayout.sectionInset = UIEdgeInsetsMake(20.0f, 0.0f, 20.0f, 0.0f);
-    
-    self.collectionView.delegate = self;
-    self.collectionView.dataSource = self;
-    
     self.localDatabase = [RJTDatabase defaultDatabase];
     [self.localDatabase performBackgroundTask:^(NSManagedObjectContext * _Nonnull context) {
-        context.retainsRegisteredObjects = YES;
         
         NSFetchRequest *fetchAvailable = [RJTApplicationEntity fetchRequest];
         NSArray <RJTApplicationEntity *> *result = [context executeFetchRequest:fetchAvailable error:nil];
         for (RJTApplicationEntity *appEntity in result) {
-            [self.availableApps addObject:[RJTApplicationModel from:appEntity]];
+            [self.collectionView.availableApps addObject:[RJTApplicationModel from:appEntity]];
         }
+        [self.collectionView reloadData];
     }];
     
-    searchController = [[UISearchController alloc] initWithSearchResultsController:nil];
-//    self.navigationItem.searchController = searchController;
+    self.searchController = [[RJTSearchController alloc] initWithSearchResultsController:nil];
+    self.searchController.searchResultsUpdater = self;
+    self.searchController.delegate = self;
     
-    self.navigationItem.titleView = searchController.searchBar;
+    self.navigationItem.titleView = self.searchController.searchBar;
+}
+
+- (void)updateSearchResultsForSearchController:(RJTSearchController *)searchController
+{
+    searchController.dimBackground = (searchController.searchBar.text.length == 0);
     
-    searchController.hidesNavigationBarDuringPresentation = NO;
-    searchController.searchBar.searchBarStyle = UISearchBarStyleMinimal;
-}
-
-
-#pragma mark -
-#pragma mark UICollectionViewDataSource
-#pragma mark -
-
-- (NSInteger)collectionView:(nonnull UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
-{
-    return self.availableApps.count;
-}
-
-- (nonnull __kindof UICollectionViewCell *)collectionView:(nonnull UICollectionView *)collectionView
-                                   cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath
-{
-    RJTAppCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cell"
-                                                                 forIndexPath:indexPath];
+    if (self.searchOperation)
+        [self.searchOperation cancel];
     
-    return cell;
+    NSString *searchText = searchController.searchBar.text;
+    self.searchOperation = [NSBlockOperation blockOperationWithBlock:^{
+        self.collectionView.performingSearch = YES;
+        [self.collectionView.searchResults removeAllObjects];
+        
+        [self.localDatabase performBackgroundTask:^(NSManagedObjectContext * _Nonnull context) {
+            NSFetchRequest *fetchRequest = [RJTApplicationEntity fetchRequest];
+            fetchRequest.predicate = [NSPredicate predicateWithFormat:@"bundle_identifier CONTAINS[cd] %@ OR app_name CONTAINS[cd] %@", searchText, searchText];
+            
+            NSArray <RJTApplicationEntity *> *result = [context executeFetchRequest:fetchRequest error:nil];
+            for (RJTApplicationEntity *appEntity in result) {
+                [self.collectionView.searchResults addObject:[RJTApplicationModel from:appEntity]];
+            }
+            [self.collectionView reloadData];
+        }];
+    }];
+    [self.searchOperation start];
+    
+    
+//    NSLog(@"%@", searchController.searchBar.text);
 }
 
-- (void)collectionView:(UICollectionView *)collectionView
-       willDisplayCell:(nonnull RJTAppCell *)cell forItemAtIndexPath:(nonnull NSIndexPath *)indexPath
+- (void)willPresentSearchController:(RJTSearchController *)searchController
 {
-    cell.model = self.availableApps[indexPath.row];
+    [self showLargeTitle:NO];
+    searchController.dimBackground = YES;
 }
 
+- (void)didDismissSearchController:(RJTSearchController *)searchController
+{
+    [self showLargeTitle:YES];
+    searchController.dimBackground = NO;
+    
+    self.collectionView.performingSearch = NO;
+    [self.collectionView reloadData];
+}
+
+- (void)showLargeTitle:(BOOL)show
+{
+    if (@available(iOS 11.0, *)) {
+        self.navigationItem.largeTitleDisplayMode = show ? UINavigationItemLargeTitleDisplayModeAlways : UINavigationItemLargeTitleDisplayModeNever;
+        [self.navigationController.navigationBar setNeedsLayout];
+        [self.view setNeedsLayout];
+        [UIView animateWithDuration:0.25f delay:0.0f options:UIViewAnimationOptionAllowUserInteraction animations:^{
+            [self.navigationController.navigationBar layoutIfNeeded];
+            [self.view layoutIfNeeded];
+        } completion:nil];
+    }
+}
 
 @end

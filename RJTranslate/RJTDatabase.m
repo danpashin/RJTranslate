@@ -18,7 +18,11 @@
 
 + (NSURL *)defaultDirectoryURL
 {
+#if !defined(BUILD_TWEAK) && (defined(__arm__) || defined(__arm64__))
+    return [super defaultDirectoryURL];
+#else
     return [NSURL fileURLWithPath:@"/var/mobile/Library/Preferences/"];
+#endif
 }
 
 + (NSURL *)defaultModelURL
@@ -36,12 +40,13 @@
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0);
     dispatch_sync(queue, ^{
         NSManagedObjectModel *model = [[NSManagedObjectModel alloc] initWithContentsOfURL:self.defaultModelURL];
+        if (!model)
+            return;
         defaultDatabase = [[RJTDatabase alloc] initWithName:@"RJTranslate"
                                          managedObjectModel:model];
 
         [defaultDatabase loadPersistentStoresWithCompletionHandler:^(NSPersistentStoreDescription * _Nonnull description, NSError * _Nullable error) {}];
     });
-    
     
     return defaultDatabase;
 }
