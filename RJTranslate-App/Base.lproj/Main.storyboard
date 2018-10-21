@@ -53,8 +53,10 @@
                                             <rect key="frame" x="0.0" y="0.0" width="312" height="72"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Jad-Kf-djK">
+                                                <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="app" translatesAutoresizingMaskIntoConstraints="NO" id="Jad-Kf-djK">
                                                     <rect key="frame" x="12" y="11" width="50" height="50"/>
+                                                    <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                                    <color key="tintColor" white="0.82645726312785384" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="Jad-Kf-djK" secondAttribute="height" multiplier="1:1" id="jSi-xY-0LT"/>
                                                         <constraint firstAttribute="height" constant="50" id="piZ-WY-Xrf"/>
@@ -75,11 +77,12 @@
                                                         <constraint firstAttribute="height" constant="16" id="Muz-nR-eaZ"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="textColor" white="0.5" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                         </view>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="Jad-Kf-djK" firstAttribute="centerY" secondItem="RgZ-da-Q3a" secondAttribute="centerY" id="69X-wT-t5w"/>
                                             <constraint firstItem="Jad-Kf-djK" firstAttribute="leading" secondItem="RgZ-da-Q3a" secondAttribute="leading" constant="12" id="W2w-va-JGC"/>
@@ -120,4 +123,7 @@
             <point key="canvasLocation" x="16.800000000000001" y="25.637181409295355"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="app" width="48" height="48"/>
+    </resources>
 </document>

@@ -9,8 +9,11 @@
 #import "RJTDatabase.h"
 #import <CoreData/CoreData.h>
 
-@interface RJTDatabase ()
+#import "RJTApplicationEntity.h"
+#import "RJTApplicationModel.h"
 
+@interface RJTDatabase ()
+@property (strong, nonatomic) dispatch_queue_t serialBackgroundQueue;
 @end
 
 @implementation RJTDatabase
@@ -42,13 +45,23 @@
         NSManagedObjectModel *model = [[NSManagedObjectModel alloc] initWithContentsOfURL:self.defaultModelURL];
         if (!model)
             return;
-        defaultDatabase = [[RJTDatabase alloc] initWithName:@"RJTranslate"
-                                         managedObjectModel:model];
-
-        [defaultDatabase loadPersistentStoresWithCompletionHandler:^(NSPersistentStoreDescription * _Nonnull description, NSError * _Nullable error) {}];
+        
+        defaultDatabase = [[RJTDatabase alloc] initWithName:@"RJTranslate" managedObjectModel:model];
     });
     
     return defaultDatabase;
+}
+
+- (instancetype)initWithName:(NSString *)name managedObjectModel:(NSManagedObjectModel *)model
+{
+    self = [super initWithName:name managedObjectModel:model];
+    if (self) {
+        self.serialBackgroundQueue = dispatch_queue_create("ru.danpashin.rjtranslate.database", DISPATCH_QUEUE_SERIAL);
+        dispatch_sync(self.serialBackgroundQueue, ^{
+            [self loadPersistentStoresWithCompletionHandler:^(NSPersistentStoreDescription * _Nonnull description, NSError * _Nullable error) {}];
+        });
+    }
+    return self;
 }
 
 - (void)save
@@ -64,9 +77,50 @@
         NSLog(@"Unresolved error while saving context: %@, %@", error, error.userInfo);
         abort();
     } else {
-        NSLog(@"SAVED!!!");
+        NSLog(@"Context was saved successfully!");
     }
 }
 
+- (void)fetchAllAppModelsWithCompletion:(void(^)(NSArray <RJTApplicationModel *>  * _Nonnull allModels))completion
+{
+    [self fetchAllAppEntitiesWithCompletion:^(NSArray<RJTApplicationEntity *> *allEntities) {
+        NSMutableArray <RJTApplicationModel *> *allModels = [NSMutableArray array];
+        for (RJTApplicationEntity *entity in allEntities) {
+            [allModels addObject:[RJTApplicationModel from:entity]];
+        }
+        
+        completion(allModels);
+    }];
+}
+
+- (void)fetchAllAppEntitiesWithCompletion:(void(^)(NSArray <RJTApplicationEntity *> *allEntities))completion
+{
+    dispatch_sync(self.serialBackgroundQueue, ^{
+        [self performBackgroundTask:^(NSManagedObjectContext * _Nonnull context) {
+            NSFetchRequest *fetchRequest = [RJTApplicationEntity fetchRequest];
+            NSArray <RJTApplicationEntity *> *result = [context executeFetchRequest:fetchRequest error:nil];
+            
+            completion(result ?: @[]);
+        }];
+    });
+}
+
+- (void)fetchAppModelsWithPredicate:(NSPredicate *)predicate completion:(void(^)(NSArray <RJTApplicationModel *>  * _Nonnull models))completion
+{
+    dispatch_sync(self.serialBackgroundQueue, ^{
+        [self performBackgroundTask:^(NSManagedObjectContext * _Nonnull context) {
+            NSFetchRequest *fetchRequest = [RJTApplicationEntity fetchRequest];
+            fetchRequest.predicate = predicate;
+            
+            NSMutableArray <RJTApplicationModel *> *models = [NSMutableArray array];
+            NSArray <RJTApplicationEntity *> *result = [context executeFetchRequest:fetchRequest error:nil];
+            for (RJTApplicationEntity *entity in result) {
+                [models addObject:[RJTApplicationModel from:entity]];
+            }
+            
+            completion(models);
+        }];
+    });
+}
 
 @end

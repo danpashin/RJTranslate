@@ -22,11 +22,9 @@
 {
     [super awakeFromNib];
     
-    self.backgroundColor = [UIColor whiteColor];
     self.layer.cornerRadius = 10.0f;
-    
-    self.iconView.backgroundColor = [UIColor groupTableViewBackgroundColor];
     self.iconView.layer.cornerRadius = 12.0f;
+    self.iconView.tintColor = [UIColor colorWithWhite:0.83f alpha:1.0f];
 }
 
 - (void)setModel:(RJTApplicationModel *)model

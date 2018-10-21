@@ -21,8 +21,8 @@
 {
     [super awakeFromNib];
     
-    self.availableApps = [NSMutableArray array];
-    self.searchResults = [NSMutableArray array];
+    self.availableApps = [NSArray array];
+    self.searchResults = [NSArray array];
     
     self.dataSource = self;
     self.delegate = self;
@@ -42,16 +42,6 @@
     });
 }
 
-//- (void)reloadDataAnimated
-//{
-//    dispatch_async(dispatch_get_main_queue(), ^{
-//        NSArray *dataSource = self.performingSearch ? self.searchResults : self.availableApps;
-//        for (id object in <#collection#>) {
-//            <#statements#>
-//        }
-//    });
-//}
-
 #pragma mark -
 #pragma mark UICollectionViewDataSource
 #pragma mark -
@@ -66,14 +56,9 @@
 {
     RJTAppCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cell"
                                                                  forIndexPath:indexPath];
+    cell.model = self.performingSearch ? self.searchResults[indexPath.row] : self.availableApps[indexPath.row];
     
     return cell;
-}
-
-- (void)collectionView:(UICollectionView *)collectionView
-       willDisplayCell:(nonnull RJTAppCell *)cell forItemAtIndexPath:(nonnull NSIndexPath *)indexPath
-{
-    cell.model = self.performingSearch ? self.searchResults[indexPath.row] : self.availableApps[indexPath.row];
 }
 
 

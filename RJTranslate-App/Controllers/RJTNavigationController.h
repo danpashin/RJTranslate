@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface RJTNavigationController : UINavigationController
 
+- (void)showNavigationLargeTitle:(BOOL)show;
+
 @end
 
 NS_ASSUME_NONNULL_END

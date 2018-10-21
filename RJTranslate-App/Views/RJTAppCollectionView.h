@@ -24,8 +24,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (assign, nonatomic) BOOL performingSearch;
 
-@property (strong, nonatomic) NSMutableArray <RJTApplicationModel *> *availableApps;
-@property (strong, nonatomic) NSMutableArray <RJTApplicationModel *> *searchResults;
+@property (strong, nonatomic) NSArray <RJTApplicationModel *> *availableApps;
+@property (strong, nonatomic, nullable) NSArray <RJTApplicationModel *> *searchResults;
 @property (weak, nonatomic) NSString *searchText;
 
 @property (weak, nonatomic) id <RJTAppCollectionViewDelegate> customDelegate;

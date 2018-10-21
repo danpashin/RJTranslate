@@ -7,25 +7,26 @@
 //
 
 #import "RJTranslateController.h"
+#import "RJTSearchController.h"
+#import "RJTNavigationController.h"
 
 #import "RJTDatabase.h"
-#import "RJTApplicationEntity.h"
-#import "RJTApplicationModel.h"
 
 #import "RJTAppCollectionView.h"
-#import "RJTSearchController.h"
 
 @interface RJTranslateController () <UISearchResultsUpdating, UISearchControllerDelegate, RJTAppCollectionViewDelegate>
 
 @property (strong, nonatomic) RJTDatabase *localDatabase;
+@property (strong, nonatomic) NSOperation *searchOperation;
 
 @property (weak, nonatomic) IBOutlet RJTAppCollectionView *collectionView;
 @property (strong, nonatomic) RJTSearchController *searchController;
-@property (strong, nonatomic) NSOperation *searchOperation;
+@property (nullable, nonatomic,readonly,strong) RJTNavigationController *navigationController;
 
 @end
 
 @implementation RJTranslateController
+@dynamic navigationController;
 
 - (void)viewDidLoad
 {
@@ -34,13 +35,8 @@
     self.collectionView.customDelegate = self;
     
     self.localDatabase = [RJTDatabase defaultDatabase];
-    [self.localDatabase performBackgroundTask:^(NSManagedObjectContext * _Nonnull context) {
-        
-        NSFetchRequest *fetchAvailable = [RJTApplicationEntity fetchRequest];
-        NSArray <RJTApplicationEntity *> *result = [context executeFetchRequest:fetchAvailable error:nil];
-        for (RJTApplicationEntity *appEntity in result) {
-            [self.collectionView.availableApps addObject:[RJTApplicationModel from:appEntity]];
-        }
+    [self.localDatabase fetchAllAppModelsWithCompletion:^(NSArray<RJTApplicationModel *> * _Nonnull allModels) {
+        self.collectionView.availableApps = allModels;
         [self.collectionView reloadData];
     }];
     
@@ -49,19 +45,6 @@
     self.searchController.delegate = self;
     
     self.navigationItem.titleView = self.searchController.searchBar;
-}
-
-- (void)showLargeTitle:(BOOL)show
-{
-    if (@available(iOS 11.0, *)) {
-        self.navigationItem.largeTitleDisplayMode = show ? UINavigationItemLargeTitleDisplayModeAlways : UINavigationItemLargeTitleDisplayModeNever;
-        [self.navigationController.navigationBar setNeedsLayout];
-        [self.view setNeedsLayout];
-        [UIView animateWithDuration:0.25f delay:0.0f options:UIViewAnimationOptionAllowUserInteraction animations:^{
-            [self.navigationController.navigationBar layoutIfNeeded];
-            [self.view layoutIfNeeded];
-        } completion:nil];
-    }
 }
 
 
@@ -80,16 +63,11 @@
     self.searchOperation = [NSBlockOperation blockOperationWithBlock:^{
         self.collectionView.performingSearch = YES;
         self.collectionView.searchText = searchText;
-        [self.collectionView.searchResults removeAllObjects];
+        self.collectionView.searchResults = nil;
         
-        [self.localDatabase performBackgroundTask:^(NSManagedObjectContext * _Nonnull context) {
-            NSFetchRequest *fetchRequest = [RJTApplicationEntity fetchRequest];
-            fetchRequest.predicate = [NSPredicate predicateWithFormat:@"bundle_identifier CONTAINS[cd] %@ OR app_name CONTAINS[cd] %@", searchText, searchText];
-            
-            NSArray <RJTApplicationEntity *> *result = [context executeFetchRequest:fetchRequest error:nil];
-            for (RJTApplicationEntity *appEntity in result) {
-                [self.collectionView.searchResults addObject:[RJTApplicationModel from:appEntity]];
-            }
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"bundle_identifier CONTAINS[cd] %@ OR app_name CONTAINS[cd] %@", searchText, searchText];
+        [self.localDatabase fetchAppModelsWithPredicate:predicate completion:^(NSArray<RJTApplicationModel *> * _Nonnull models) {
+            self.collectionView.searchResults = models;
             [self.collectionView reloadData];
         }];
     }];
@@ -98,13 +76,13 @@
 
 - (void)willPresentSearchController:(RJTSearchController *)searchController
 {
-    [self showLargeTitle:NO];
+    [self.navigationController showNavigationLargeTitle:NO];
     searchController.dimBackground = YES;
 }
 
 - (void)didDismissSearchController:(RJTSearchController *)searchController
 {
-    [self showLargeTitle:YES];
+    [self.navigationController showNavigationLargeTitle:YES];
     searchController.dimBackground = NO;
     
     self.collectionView.performingSearch = NO;

@@ -23,7 +23,7 @@
 {
     [super awakeFromNib];
 
-    self.tintColor = [UIColor whiteColor];    
+    self.tintColor = [UIColor whiteColor];
     [UIVisualEffectView appearanceWhenContainedInInstancesOfClasses:@[self.class]].hidden = YES;
     
     self.gradientView = [RJTGradientView defaultGradientView];
