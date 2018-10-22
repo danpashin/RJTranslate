@@ -21,12 +21,8 @@
 
 + (NSURL *)defaultDirectoryURL
 {
-//#if !defined(BUILD_TWEAK) && (defined(__arm__) || defined(__arm64__))
-//    return [super defaultDirectoryURL];
-//#else
     NSString *documentsPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSLocalDomainMask, YES).firstObject;
-    return [NSURL fileURLWithPath:documentsPath];
-//#endif
+    return [NSURL fileURLWithPath:[documentsPath stringByAppendingString:@"/RJTranslate/"]];
 }
 
 + (NSURL *)defaultModelURL

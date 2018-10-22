@@ -1,0 +1,25 @@
+#!/bin/sh
+
+DOCUMENTS_DIR="/var/mobile/Documents/RJTranslate";
+
+if [ ! -d "$DOCUMENTS_DIR" ]; then
+    echo "Creating documents directory..."
+    mkdir $DOCUMENTS_DIR
+else
+    echo "Documents directory exist. Skipping..."
+fi
+chmod 0777 $DOCUMENTS_DIR
+
+echo "Cleaning caches..."
+uicache
+
+declare -a cydia
+cydia=($CYDIA)
+
+if [[ ${CYDIA+@} ]]; then
+  eval "echo 'finish:restart' >&${cydia[0]}"
+fi
+
+echo "Please, respring your device!"
+
+exit 0
