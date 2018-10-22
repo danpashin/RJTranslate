@@ -1,18 +1,14 @@
 Package: ru.danpashin.RJTranslate
 Name: RJTranslate
 Version: CURRENT_PROJECT_VERSION
-Description: 
-Conflicts: 
-Replaces: 
+Description: Перевод твиков от ReJail
 Priority: optional
 Architecture: iphoneos-arm
 Author: Даниил
 Maintainer:  Даниил
-dev: 
-Homepage: 
-Depiction: 
-Icon: 
-Tag:
-Section: 
+dev: danpashin
+Icon: file:///Applications/RJTranslate.app/AppIcon60x60@2x.png
+Tag: purpose::extension, compatible::ios10, compatible::ios11
+Section: Utilities
 Installed-size: PACKAGE_SIZE
-
+Depends: firmware (>= 9.0), mobilesubstrate (>= 0.9.5000)

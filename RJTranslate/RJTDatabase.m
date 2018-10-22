@@ -21,11 +21,12 @@
 
 + (NSURL *)defaultDirectoryURL
 {
-#if !defined(BUILD_TWEAK) && (defined(__arm__) || defined(__arm64__))
-    return [super defaultDirectoryURL];
-#else
-    return [NSURL fileURLWithPath:@"/var/mobile/Library/Preferences/"];
-#endif
+//#if !defined(BUILD_TWEAK) && (defined(__arm__) || defined(__arm64__))
+//    return [super defaultDirectoryURL];
+//#else
+    NSString *documentsPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSLocalDomainMask, YES).firstObject;
+    return [NSURL fileURLWithPath:documentsPath];
+//#endif
 }
 
 + (NSURL *)defaultModelURL
@@ -57,7 +58,7 @@
     self = [super initWithName:name managedObjectModel:model];
     if (self) {
         self.serialBackgroundQueue = dispatch_queue_create("ru.danpashin.rjtranslate.database", DISPATCH_QUEUE_SERIAL);
-        dispatch_sync(self.serialBackgroundQueue, ^{
+        dispatch_async(self.serialBackgroundQueue, ^{
             [self loadPersistentStoresWithCompletionHandler:^(NSPersistentStoreDescription * _Nonnull description, NSError * _Nullable error) {}];
         });
     }
@@ -95,7 +96,7 @@
 
 - (void)fetchAllAppEntitiesWithCompletion:(void(^)(NSArray <RJTApplicationEntity *> *allEntities))completion
 {
-    dispatch_sync(self.serialBackgroundQueue, ^{
+    dispatch_async(self.serialBackgroundQueue, ^{
         [self performBackgroundTask:^(NSManagedObjectContext * _Nonnull context) {
             NSFetchRequest *fetchRequest = [RJTApplicationEntity fetchRequest];
             NSArray <RJTApplicationEntity *> *result = [context executeFetchRequest:fetchRequest error:nil];
@@ -107,7 +108,7 @@
 
 - (void)fetchAppModelsWithPredicate:(NSPredicate *)predicate completion:(void(^)(NSArray <RJTApplicationModel *>  * _Nonnull models))completion
 {
-    dispatch_sync(self.serialBackgroundQueue, ^{
+    dispatch_async(self.serialBackgroundQueue, ^{
         [self performBackgroundTask:^(NSManagedObjectContext * _Nonnull context) {
             NSFetchRequest *fetchRequest = [RJTApplicationEntity fetchRequest];
             fetchRequest.predicate = predicate;

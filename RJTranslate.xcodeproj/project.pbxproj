@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		824291967BD5B420001E0BE4 /* libPods-RJTranslate-App.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A11C91C73D036CDD161FC33A /* libPods-RJTranslate-App.a */; };
+		A517965E217D1A9200B87596 /* RJTApplicationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A54ADB1D217BB0CF00D32EB7 /* RJTApplicationModel.m */; };
+		A517965F217D1A9400B87596 /* RJTApplicationModel.h in Headers */ = {isa = PBXBuildFile; fileRef = A54ADB1C217BB0CF00D32EB7 /* RJTApplicationModel.h */; };
 		A522F1CD217AFC300085A5E4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A522F1CC217AFC300085A5E4 /* AppDelegate.m */; };
 		A522F1D0217AFC300085A5E4 /* RJTranslateController.m in Sources */ = {isa = PBXBuildFile; fileRef = A522F1CF217AFC300085A5E4 /* RJTranslateController.m */; };
 		A522F1D3217AFC300085A5E4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A522F1D1217AFC300085A5E4 /* Main.storyboard */; };
@@ -41,6 +43,9 @@
 		2FFC9589E6E7BF4F00A854B1 /* Pods-RJTranslate-App.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RJTranslate-App.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RJTranslate-App/Pods-RJTranslate-App.debug.xcconfig"; sourceTree = "<group>"; };
 		A11C91C73D036CDD161FC33A /* libPods-RJTranslate-App.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RJTranslate-App.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A268DBE45997EDFBCB289694 /* Pods-RJTranslate.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RJTranslate.release.xcconfig"; path = "Pods/Target Support Files/Pods-RJTranslate/Pods-RJTranslate.release.xcconfig"; sourceTree = "<group>"; };
+		A5179662217D1FEC00B87596 /* control */ = {isa = PBXFileReference; lastKnownFileType = text; path = control; sourceTree = "<group>"; };
+		A5179665217D1FEC00B87596 /* RJTranslate.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = RJTranslate.bundle; sourceTree = "<group>"; };
+		A5179668217D1FEC00B87596 /* RJTranslate.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = RJTranslate.plist; sourceTree = "<group>"; };
 		A522F1C9217AFC300085A5E4 /* RJTranslate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RJTranslate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A522F1CB217AFC300085A5E4 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		A522F1CC217AFC300085A5E4 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -54,8 +59,6 @@
 		A53533FB217A57ED00E08881 /* RJTranslate.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = RJTranslate.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		A53533FE217A57ED00E08881 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		A5353401217A57ED00E08881 /* RJTranslate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RJTranslate.m; sourceTree = "<group>"; };
-		A5353405217A57ED00E08881 /* control */ = {isa = PBXFileReference; lastKnownFileType = text; name = control; path = Package/DEBIAN/control; sourceTree = "<group>"; };
-		A5353409217A57ED00E08881 /* RJTranslate.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = RJTranslate.plist; path = Package/Library/MobileSubstrate/DynamicLibraries/RJTranslate.plist; sourceTree = "<group>"; };
 		A5353410217A584500E08881 /* RJTranslate.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = RJTranslate.xcdatamodel; sourceTree = "<group>"; };
 		A5353413217A595200E08881 /* RJTApplicationEntity.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RJTApplicationEntity.h; sourceTree = "<group>"; };
 		A5353414217A595200E08881 /* RJTApplicationEntity.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RJTApplicationEntity.m; sourceTree = "<group>"; };
@@ -100,6 +103,64 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A5179660217D1FEC00B87596 /* Package */ = {
+			isa = PBXGroup;
+			children = (
+				A5179661217D1FEC00B87596 /* DEBIAN */,
+				A5179663217D1FEC00B87596 /* Library */,
+				A5179669217D1FEC00B87596 /* Applications */,
+			);
+			path = Package;
+			sourceTree = "<group>";
+		};
+		A5179661217D1FEC00B87596 /* DEBIAN */ = {
+			isa = PBXGroup;
+			children = (
+				A5179662217D1FEC00B87596 /* control */,
+			);
+			path = DEBIAN;
+			sourceTree = "<group>";
+		};
+		A5179663217D1FEC00B87596 /* Library */ = {
+			isa = PBXGroup;
+			children = (
+				A5179664217D1FEC00B87596 /* Application Support */,
+				A5179666217D1FEC00B87596 /* MobileSubstrate */,
+			);
+			path = Library;
+			sourceTree = "<group>";
+		};
+		A5179664217D1FEC00B87596 /* Application Support */ = {
+			isa = PBXGroup;
+			children = (
+				A5179665217D1FEC00B87596 /* RJTranslate.bundle */,
+			);
+			path = "Application Support";
+			sourceTree = "<group>";
+		};
+		A5179666217D1FEC00B87596 /* MobileSubstrate */ = {
+			isa = PBXGroup;
+			children = (
+				A5179667217D1FEC00B87596 /* DynamicLibraries */,
+			);
+			path = MobileSubstrate;
+			sourceTree = "<group>";
+		};
+		A5179667217D1FEC00B87596 /* DynamicLibraries */ = {
+			isa = PBXGroup;
+			children = (
+				A5179668217D1FEC00B87596 /* RJTranslate.plist */,
+			);
+			path = DynamicLibraries;
+			sourceTree = "<group>";
+		};
+		A5179669217D1FEC00B87596 /* Applications */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Applications;
+			sourceTree = "<group>";
+		};
 		A522F1CA217AFC300085A5E4 /* RJTranslate-App */ = {
 			isa = PBXGroup;
 			children = (
@@ -157,50 +218,9 @@
 				A535341B217A5A2800E08881 /* RJTDatabase.m */,
 				A5353401217A57ED00E08881 /* RJTranslate.m */,
 				A535340F217A584500E08881 /* RJTranslate.xcdatamodeld */,
-				A5353403217A57ED00E08881 /* Package */,
+				A5179660217D1FEC00B87596 /* Package */,
 			);
 			path = RJTranslate;
-			sourceTree = "<group>";
-		};
-		A5353403217A57ED00E08881 /* Package */ = {
-			isa = PBXGroup;
-			children = (
-				A5353404217A57ED00E08881 /* DEBIAN */,
-				A5353406217A57ED00E08881 /* Library */,
-			);
-			name = Package;
-			sourceTree = "<group>";
-		};
-		A5353404217A57ED00E08881 /* DEBIAN */ = {
-			isa = PBXGroup;
-			children = (
-				A5353405217A57ED00E08881 /* control */,
-			);
-			name = DEBIAN;
-			sourceTree = "<group>";
-		};
-		A5353406217A57ED00E08881 /* Library */ = {
-			isa = PBXGroup;
-			children = (
-				A5353407217A57ED00E08881 /* MobileSubstrate */,
-			);
-			name = Library;
-			sourceTree = "<group>";
-		};
-		A5353407217A57ED00E08881 /* MobileSubstrate */ = {
-			isa = PBXGroup;
-			children = (
-				A5353408217A57ED00E08881 /* DynamicLibraries */,
-			);
-			name = MobileSubstrate;
-			sourceTree = "<group>";
-		};
-		A5353408217A57ED00E08881 /* DynamicLibraries */ = {
-			isa = PBXGroup;
-			children = (
-				A5353409217A57ED00E08881 /* RJTranslate.plist */,
-			);
-			name = DynamicLibraries;
 			sourceTree = "<group>";
 		};
 		A54ADB1F217BB6E500D32EB7 /* Models */ = {
@@ -269,6 +289,7 @@
 			files = (
 				A535341C217A5A2800E08881 /* RJTDatabase.h in Headers */,
 				A5353417217A595200E08881 /* RJTApplicationEntity.h in Headers */,
+				A517965F217D1A9400B87596 /* RJTApplicationModel.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -423,7 +444,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [[ \"ls -1 ${BUILT_PRODUCTS_DIR}/*.dylib 2>/dev/null | wc -l\" == 0 ]]; then\necho \"${BUILT_PRODUCTS_DIR} does not contain any dylib file.\";\nexit 1;\nfi\n\nPACKAGE_PROJECT_FOLDER=\"${PROJECT_DIR}/${PROJECT_NAME}/Package\";\nif [ ! -d $PACKAGE_PROJECT_FOLDER ]; then\necho \"${PROJECT_DIR}/Package does not exits.\";\nexit 2;\nfi\n\n\nPACKAGE_TEMP_FOLDER=\"${BUILT_PRODUCTS_DIR}/Package\";\nif [ -d $PACKAGE_TEMP_FOLDER ]; then\nrm -rf $PACKAGE_TEMP_FOLDER;\nfi\n\necho \"[->] Copying binaries...\";\ncp -r $PACKAGE_PROJECT_FOLDER $PACKAGE_TEMP_FOLDER;\nfind ${BUILT_PRODUCTS_DIR} -type f -iname '*.dylib' -exec cp \"{}\" \"$PACKAGE_TEMP_FOLDER/Library/MobileSubstrate/DynamicLibraries\" 2> /dev/null \\;\n\necho \"[->] Cleaning (stage 1)...\"\nfind $PACKAGE_PROJECT_FOLDER -name \".DS_Store\" -exec rm -f {} \\;\n\necho \"[->] Updating control...\";\nsed -i '' \"s/CURRENT_PROJECT_VERSION/${CURRENT_PROJECT_VERSION}/g\" \"$PACKAGE_TEMP_FOLDER/DEBIAN/control\";\n\necho \"[->] Counting size...\";\nFOLDER_SIZE=$(du -sk $PACKAGE_TEMP_FOLDER);\nINSTALLED_SIZE=$(echo $FOLDER_SIZE | tr -dc '0-9' );\nsed -i '' \"s/PACKAGE_SIZE/${INSTALLED_SIZE}/g\" \"$PACKAGE_TEMP_FOLDER/DEBIAN/control\";\n\n\necho \"[->] Packaging...\";\nDEBS_FOLDER=\"${PROJECT_DIR}/debs\";\nif [ ! -d $DEBS_FOLDER ]; then\nmkdir $DEBS_FOLDER\nfi\n\nDEB_NAME=\"${PRODUCT_BUNDLE_IDENTIFIER}_${CURRENT_PROJECT_VERSION}_${PLATFORM_NAME}-arm.deb\";\ndpkg-deb -b -Zlzma $PACKAGE_TEMP_FOLDER $DEBS_FOLDER/$DEB_NAME 2> /dev/null;\n\necho \"[->] Cleaning (stage 2)...\";\nrm -rf $PACKAGE_TEMP_FOLDER;\n";
+			shellScript = "if [[ \"ls -1 ${BUILT_PRODUCTS_DIR}/*.dylib 2>/dev/null | wc -l\" == 0 ]]; then\necho \"${BUILT_PRODUCTS_DIR} does not contain any dylib file.\";\nexit 1;\nfi\n\nPACKAGE_PROJECT_FOLDER=\"${PROJECT_DIR}/${PROJECT_NAME}/Package\";\nif [ ! -d $PACKAGE_PROJECT_FOLDER ]; then\necho \"${PROJECT_DIR}/Package does not exits.\";\nexit 2;\nfi\n\n\nPACKAGE_TEMP_FOLDER=\"${BUILT_PRODUCTS_DIR}/Package\";\nif [ -d $PACKAGE_TEMP_FOLDER ]; then\nrm -rf $PACKAGE_TEMP_FOLDER;\nfi\n\necho \"[->] Copying binaries...\";\ncp -r $PACKAGE_PROJECT_FOLDER $PACKAGE_TEMP_FOLDER;\nfind ${BUILT_PRODUCTS_DIR} -type f -iname '*.dylib' -exec cp \"{}\" \"$PACKAGE_TEMP_FOLDER/Library/MobileSubstrate/DynamicLibraries/\" 2> /dev/null \\;\nfind ${BUILT_PRODUCTS_DIR} -iname '*.app' -exec cp -R \"{}\" \"$PACKAGE_TEMP_FOLDER/Applications/\" \\;\nfind ${BUILT_PRODUCTS_DIR} -iname '*.momd' -exec cp -R \"{}\" \"$PACKAGE_TEMP_FOLDER/Library/Application Support/RJTranslate.bundle/\" \\;\n\ncodesign --remove-sign \"$PACKAGE_TEMP_FOLDER/Applications/RJTranslate.app\";\nrm -rf \"$PACKAGE_TEMP_FOLDER/Applications/RJTranslate.app/embedded.mobileprovision\"\nldid -S\"${PROJECT_DIR}/sign.entitlements\" \"$PACKAGE_TEMP_FOLDER/Applications/RJTranslate.app/RJTranslate\";\nfind \"$PACKAGE_TEMP_FOLDER\" -type d -exec chmod +rx \"{}\" \\;\n\necho \"[->] Cleaning (stage 1)...\"\nfind $PACKAGE_PROJECT_FOLDER -name \".DS_Store\" -exec rm -f {} \\;\n\necho \"[->] Updating control...\";\nsed -i '' \"s/CURRENT_PROJECT_VERSION/${CURRENT_PROJECT_VERSION}/g\" \"$PACKAGE_TEMP_FOLDER/DEBIAN/control\";\n\necho \"[->] Counting size...\";\nFOLDER_SIZE=$(du -sk $PACKAGE_TEMP_FOLDER);\nINSTALLED_SIZE=$(echo $FOLDER_SIZE | tr -dc '0-9' );\nsed -i '' \"s/PACKAGE_SIZE/${INSTALLED_SIZE}/g\" \"$PACKAGE_TEMP_FOLDER/DEBIAN/control\";\n\n\necho \"[->] Packaging...\";\nDEBS_FOLDER=\"${PROJECT_DIR}/debs\";\nif [ ! -d $DEBS_FOLDER ]; then\nmkdir $DEBS_FOLDER\nfi\n\nDEB_NAME=\"${PRODUCT_BUNDLE_IDENTIFIER}_${CURRENT_PROJECT_VERSION}_${PLATFORM_NAME}-arm.deb\";\ndpkg-deb -b -Zlzma $PACKAGE_TEMP_FOLDER $DEBS_FOLDER/$DEB_NAME 2> /dev/null;\n\necho \"[->] Cleaning (stage 2)...\";\nrm -rf $PACKAGE_TEMP_FOLDER;\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -456,6 +477,7 @@
 				A535341D217A5A2800E08881 /* RJTDatabase.m in Sources */,
 				A5353418217A595200E08881 /* RJTApplicationEntity.m in Sources */,
 				A5353402217A57ED00E08881 /* RJTranslate.m in Sources */,
+				A517965E217D1A9200B87596 /* RJTApplicationModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -486,6 +508,7 @@
 			baseConfigurationReference = 2FFC9589E6E7BF4F00A854B1 /* Pods-RJTranslate-App.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = VW97WHTS78;
 				INFOPLIST_FILE = "RJTranslate-App/Info.plist";
@@ -493,6 +516,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = ru.danpashin.RJTranslate;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -502,6 +527,7 @@
 			baseConfigurationReference = 2A49C4E3F577416461A4F39B /* Pods-RJTranslate-App.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = VW97WHTS78;
 				INFOPLIST_FILE = "RJTranslate-App/Info.plist";
@@ -509,6 +535,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = ru.danpashin.RJTranslate;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
