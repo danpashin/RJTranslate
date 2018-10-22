@@ -88,7 +88,7 @@
     if (self.performingSearch && self.searchText.length > 0)
         titleString = @"К сожалению, по вашему запросу ничего не найдено.";
     else if (!self.performingSearch)
-        titleString = @"Нет установленных переводов. Загрузить доступные?";
+        titleString = @"Нет установленных переводов. Нажмите на кнопку ниже, чтобы загрузить доступные.";
     
     return [[NSAttributedString alloc] initWithString:titleString
                                            attributes:@{NSFontAttributeName:[UIFont preferredFontForTextStyle:UIFontTextStyleTitle2]}];

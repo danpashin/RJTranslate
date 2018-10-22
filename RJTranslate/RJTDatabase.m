@@ -21,7 +21,7 @@
 
 + (NSURL *)defaultDirectoryURL
 {
-    NSString *documentsPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSLocalDomainMask, YES).firstObject;
+    NSString *documentsPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject;
     return [NSURL fileURLWithPath:[documentsPath stringByAppendingString:@"/RJTranslate/"]];
 }
 
@@ -44,10 +44,6 @@
             return;
         
         defaultDatabase = [[RJTDatabase alloc] initWithName:@"RJTranslate" managedObjectModel:model];
-        NSLog(@"[RJTranslate] %@", defaultDatabase.persistentStoreDescriptions);
-//        [defaultDatabase loadPersistentStoresWithCompletionHandler:^(NSPersistentStoreDescription * _Nonnull description, NSError * _Nullable error) {
-//            NSLog(@"[RJTranslate] Loaded persistent store with error: %@", error);
-//        }];
     });
     
     return defaultDatabase;
@@ -58,11 +54,9 @@
     self = [super initWithName:name managedObjectModel:model];
     if (self) {
         self.serialBackgroundQueue = dispatch_queue_create("ru.danpashin.rjtranslate.database", DISPATCH_QUEUE_SERIAL);
-//        dispatch_async(self.serialBackgroundQueue, ^{
-//            [self loadPersistentStoresWithCompletionHandler:^(NSPersistentStoreDescription * _Nonnull description, NSError * _Nullable error) {
-//                NSLog(@"Loaded persistent store");
-//            }];
-//        });
+        dispatch_async(self.serialBackgroundQueue, ^{
+            [self loadPersistentStoresWithCompletionHandler:^(NSPersistentStoreDescription * _Nonnull description, NSError * _Nullable error) {}];
+        });
     }
     return self;
 }
@@ -99,13 +93,12 @@
 - (void)fetchAllAppEntitiesWithCompletion:(void(^)(NSArray <RJTApplicationEntity *> *allEntities))completion
 {
     dispatch_async(self.serialBackgroundQueue, ^{
-        NSLog(@"Executing fetch request");
-//        [self performBackgroundTask:^(NSManagedObjectContext * _Nonnull context) {
-//            NSFetchRequest *fetchRequest = [RJTApplicationEntity fetchRequest];
-//            NSArray <RJTApplicationEntity *> *result = [context executeFetchRequest:fetchRequest error:nil];
-//
-//            completion(result ?: @[]);
-//        }];
+        [self performBackgroundTask:^(NSManagedObjectContext * _Nonnull context) {
+            NSFetchRequest *fetchRequest = [RJTApplicationEntity fetchRequest];
+            NSArray <RJTApplicationEntity *> *result = [context executeFetchRequest:fetchRequest error:nil];
+
+            completion(result ?: @[]);
+        }];
     });
 }
 
