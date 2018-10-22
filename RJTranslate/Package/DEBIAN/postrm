@@ -1,15 +1,21 @@
 #!/bin/sh
 
-echo "Cleaning caches..."
-uicache
-
-declare -a cydia
-cydia=($CYDIA)
-
-if [[ ${CYDIA+@} ]]; then
-  eval "echo 'finish:restart' >&${cydia[0]}"
+#   clean caches if package is removing
+if [[ $1 == remove ]]; then
+    echo "Cleaning caches..."
+    uicache;
 fi
 
-echo "Please, respring your device!"
+#   tell Cydia to respring
+declare -a cydia;
+cydia=($CYDIA);
+
+if [[ ${CYDIA+@} ]]; then
+    eval "echo 'finish:restart' >&${cydia[0]}";
+fi
+
+if [[ $1 == remove ]]; then
+    echo "Please, respring your device!";
+fi
 
 exit 0

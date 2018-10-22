@@ -7,7 +7,6 @@ end
 
 target 'RJTranslate-App' do
   pod 'DZNEmptyDataSet'
-
 end
 
 post_install do |installer|

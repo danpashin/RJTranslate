@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		824291967BD5B420001E0BE4 /* libPods-RJTranslate-App.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A11C91C73D036CDD161FC33A /* libPods-RJTranslate-App.a */; };
+		8C4A0ED3822A5490301B7140 /* libPods-RJTranslate-App.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E6014036F0F43D5810132C82 /* libPods-RJTranslate-App.a */; };
 		A517965E217D1A9200B87596 /* RJTApplicationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A54ADB1D217BB0CF00D32EB7 /* RJTApplicationModel.m */; };
 		A517965F217D1A9400B87596 /* RJTApplicationModel.h in Headers */ = {isa = PBXBuildFile; fileRef = A54ADB1C217BB0CF00D32EB7 /* RJTApplicationModel.h */; };
 		A522F1CD217AFC300085A5E4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A522F1CC217AFC300085A5E4 /* AppDelegate.m */; };
@@ -33,16 +33,21 @@
 		A5DB9ABE217B74DB0061A810 /* RJTGradientView.m in Sources */ = {isa = PBXBuildFile; fileRef = A5DB9ABB217B74DB0061A810 /* RJTGradientView.m */; };
 		A5DB9AC5217B80150061A810 /* RJTNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = A5DB9AC2217B80150061A810 /* RJTNavigationController.m */; };
 		A5DB9ACF217B8A260061A810 /* RJTAppCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A5DB9ACE217B8A260061A810 /* RJTAppCell.m */; };
-		ECD113B84927C158C4614892 /* libPods-RJTranslate.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 05A5807AF33997C23C07950F /* libPods-RJTranslate.a */; };
+		B9547F1B8B42C09F1AAAB596 /* libPods-RJTranslate.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 18933699E1CEE06A405D344F /* libPods-RJTranslate.a */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		A58AFD73217E023A008A900C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A53533F2217A57ED00E08881 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A522F1C8217AFC300085A5E4;
+			remoteInfo = "RJTranslate-App";
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
-		05A5807AF33997C23C07950F /* libPods-RJTranslate.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RJTranslate.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		2A49C4E3F577416461A4F39B /* Pods-RJTranslate-App.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RJTranslate-App.release.xcconfig"; path = "Pods/Target Support Files/Pods-RJTranslate-App/Pods-RJTranslate-App.release.xcconfig"; sourceTree = "<group>"; };
-		2E7219EE7E5CA9D8D8534A1C /* Pods-RJTranslate.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RJTranslate.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RJTranslate/Pods-RJTranslate.debug.xcconfig"; sourceTree = "<group>"; };
-		2FFC9589E6E7BF4F00A854B1 /* Pods-RJTranslate-App.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RJTranslate-App.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RJTranslate-App/Pods-RJTranslate-App.debug.xcconfig"; sourceTree = "<group>"; };
-		A11C91C73D036CDD161FC33A /* libPods-RJTranslate-App.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RJTranslate-App.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		A268DBE45997EDFBCB289694 /* Pods-RJTranslate.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RJTranslate.release.xcconfig"; path = "Pods/Target Support Files/Pods-RJTranslate/Pods-RJTranslate.release.xcconfig"; sourceTree = "<group>"; };
+		18933699E1CEE06A405D344F /* libPods-RJTranslate.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RJTranslate.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A522F1C9217AFC300085A5E4 /* RJTranslate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RJTranslate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A522F1CB217AFC300085A5E4 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		A522F1CC217AFC300085A5E4 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -61,15 +66,12 @@
 		A5353414217A595200E08881 /* RJTApplicationEntity.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RJTApplicationEntity.m; sourceTree = "<group>"; };
 		A535341A217A5A2800E08881 /* RJTDatabase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RJTDatabase.h; sourceTree = "<group>"; };
 		A535341B217A5A2800E08881 /* RJTDatabase.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RJTDatabase.m; sourceTree = "<group>"; };
-		A53AD823217DB6CB0001B094 /* postinst */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = postinst; sourceTree = "<group>"; };
-		A53AD824217DB6CB0001B094 /* postrm */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = postrm; sourceTree = "<group>"; };
-		A53AD825217DB6CB0001B094 /* control */ = {isa = PBXFileReference; lastKnownFileType = text; path = control; sourceTree = "<group>"; };
-		A53AD828217DB6CB0001B094 /* RJTranslate.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = RJTranslate.bundle; sourceTree = "<group>"; };
-		A53AD82B217DB6CB0001B094 /* RJTranslate.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = RJTranslate.plist; sourceTree = "<group>"; };
 		A54ADB1C217BB0CF00D32EB7 /* RJTApplicationModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RJTApplicationModel.h; sourceTree = "<group>"; };
 		A54ADB1D217BB0CF00D32EB7 /* RJTApplicationModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RJTApplicationModel.m; sourceTree = "<group>"; };
 		A57CF73C217B50B9004A71F8 /* RJTNavigationBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RJTNavigationBar.h; sourceTree = "<group>"; };
 		A57CF73D217B50B9004A71F8 /* RJTNavigationBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RJTNavigationBar.m; sourceTree = "<group>"; };
+		A58AFD71217DF60C008A900C /* Package */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Package; sourceTree = "<group>"; };
+		A58AFD72217DF975008A900C /* sign.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = sign.entitlements; sourceTree = SOURCE_ROOT; };
 		A5A09546217C4696009743DF /* RJTAppCollectionView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RJTAppCollectionView.h; sourceTree = "<group>"; };
 		A5A09547217C4696009743DF /* RJTAppCollectionView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RJTAppCollectionView.m; sourceTree = "<group>"; };
 		A5A09549217C4D3A009743DF /* RJTSearchController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RJTSearchController.h; sourceTree = "<group>"; };
@@ -82,6 +84,11 @@
 		A5DB9AC2217B80150061A810 /* RJTNavigationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RJTNavigationController.m; sourceTree = "<group>"; };
 		A5DB9ACD217B8A260061A810 /* RJTAppCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RJTAppCell.h; sourceTree = "<group>"; };
 		A5DB9ACE217B8A260061A810 /* RJTAppCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RJTAppCell.m; sourceTree = "<group>"; };
+		A7448D1A9FAB2BCD471A34BC /* Pods-RJTranslate.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RJTranslate.release.xcconfig"; path = "Pods/Target Support Files/Pods-RJTranslate/Pods-RJTranslate.release.xcconfig"; sourceTree = "<group>"; };
+		C442FAAA903384EF3A1DF395 /* Pods-RJTranslate.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RJTranslate.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RJTranslate/Pods-RJTranslate.debug.xcconfig"; sourceTree = "<group>"; };
+		D6FE48C60EC713FBE57420E8 /* Pods-RJTranslate-App.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RJTranslate-App.release.xcconfig"; path = "Pods/Target Support Files/Pods-RJTranslate-App/Pods-RJTranslate-App.release.xcconfig"; sourceTree = "<group>"; };
+		DB57EBDFB696BF1BE2E20A93 /* Pods-RJTranslate-App.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RJTranslate-App.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RJTranslate-App/Pods-RJTranslate-App.debug.xcconfig"; sourceTree = "<group>"; };
+		E6014036F0F43D5810132C82 /* libPods-RJTranslate-App.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RJTranslate-App.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,7 +96,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				824291967BD5B420001E0BE4 /* libPods-RJTranslate-App.a in Frameworks */,
+				8C4A0ED3822A5490301B7140 /* libPods-RJTranslate-App.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -98,13 +105,24 @@
 			buildActionMask = 2147483647;
 			files = (
 				A53533FF217A57ED00E08881 /* Foundation.framework in Frameworks */,
-				ECD113B84927C158C4614892 /* libPods-RJTranslate.a in Frameworks */,
+				B9547F1B8B42C09F1AAAB596 /* libPods-RJTranslate.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6C7DE644F822C805A3698E2B /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				C442FAAA903384EF3A1DF395 /* Pods-RJTranslate.debug.xcconfig */,
+				A7448D1A9FAB2BCD471A34BC /* Pods-RJTranslate.release.xcconfig */,
+				DB57EBDFB696BF1BE2E20A93 /* Pods-RJTranslate-App.debug.xcconfig */,
+				D6FE48C60EC713FBE57420E8 /* Pods-RJTranslate-App.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		A522F1CA217AFC300085A5E4 /* RJTranslate-App */ = {
 			isa = PBXGroup;
 			children = (
@@ -127,11 +145,10 @@
 			isa = PBXGroup;
 			children = (
 				A5353400217A57ED00E08881 /* RJTranslate */,
-				A53AD821217DB6CB0001B094 /* Package */,
 				A522F1CA217AFC300085A5E4 /* RJTranslate-App */,
 				A53533FD217A57ED00E08881 /* Frameworks */,
 				A53533FC217A57ED00E08881 /* Products */,
-				D8A2F14F7A96E152E8D23F85 /* Pods */,
+				6C7DE644F822C805A3698E2B /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -148,8 +165,8 @@
 			isa = PBXGroup;
 			children = (
 				A53533FE217A57ED00E08881 /* Foundation.framework */,
-				05A5807AF33997C23C07950F /* libPods-RJTranslate.a */,
-				A11C91C73D036CDD161FC33A /* libPods-RJTranslate-App.a */,
+				18933699E1CEE06A405D344F /* libPods-RJTranslate.a */,
+				E6014036F0F43D5810132C82 /* libPods-RJTranslate-App.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -163,61 +180,10 @@
 				A535341B217A5A2800E08881 /* RJTDatabase.m */,
 				A5353401217A57ED00E08881 /* RJTranslate.m */,
 				A535340F217A584500E08881 /* RJTranslate.xcdatamodeld */,
+				A58AFD71217DF60C008A900C /* Package */,
+				A58AFD72217DF975008A900C /* sign.entitlements */,
 			);
 			path = RJTranslate;
-			sourceTree = "<group>";
-		};
-		A53AD821217DB6CB0001B094 /* Package */ = {
-			isa = PBXGroup;
-			children = (
-				A53AD822217DB6CB0001B094 /* DEBIAN */,
-				A53AD826217DB6CB0001B094 /* Library */,
-			);
-			name = Package;
-			path = RJTranslate/Package;
-			sourceTree = "<group>";
-		};
-		A53AD822217DB6CB0001B094 /* DEBIAN */ = {
-			isa = PBXGroup;
-			children = (
-				A53AD823217DB6CB0001B094 /* postinst */,
-				A53AD824217DB6CB0001B094 /* postrm */,
-				A53AD825217DB6CB0001B094 /* control */,
-			);
-			path = DEBIAN;
-			sourceTree = "<group>";
-		};
-		A53AD826217DB6CB0001B094 /* Library */ = {
-			isa = PBXGroup;
-			children = (
-				A53AD827217DB6CB0001B094 /* Application Support */,
-				A53AD829217DB6CB0001B094 /* MobileSubstrate */,
-			);
-			path = Library;
-			sourceTree = "<group>";
-		};
-		A53AD827217DB6CB0001B094 /* Application Support */ = {
-			isa = PBXGroup;
-			children = (
-				A53AD828217DB6CB0001B094 /* RJTranslate.bundle */,
-			);
-			path = "Application Support";
-			sourceTree = "<group>";
-		};
-		A53AD829217DB6CB0001B094 /* MobileSubstrate */ = {
-			isa = PBXGroup;
-			children = (
-				A53AD82A217DB6CB0001B094 /* DynamicLibraries */,
-			);
-			path = MobileSubstrate;
-			sourceTree = "<group>";
-		};
-		A53AD82A217DB6CB0001B094 /* DynamicLibraries */ = {
-			isa = PBXGroup;
-			children = (
-				A53AD82B217DB6CB0001B094 /* RJTranslate.plist */,
-			);
-			path = DynamicLibraries;
 			sourceTree = "<group>";
 		};
 		A54ADB1F217BB6E500D32EB7 /* Models */ = {
@@ -266,17 +232,6 @@
 			path = Controllers;
 			sourceTree = "<group>";
 		};
-		D8A2F14F7A96E152E8D23F85 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				2E7219EE7E5CA9D8D8534A1C /* Pods-RJTranslate.debug.xcconfig */,
-				A268DBE45997EDFBCB289694 /* Pods-RJTranslate.release.xcconfig */,
-				2FFC9589E6E7BF4F00A854B1 /* Pods-RJTranslate-App.debug.xcconfig */,
-				2A49C4E3F577416461A4F39B /* Pods-RJTranslate-App.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -297,7 +252,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A522F1DC217AFC310085A5E4 /* Build configuration list for PBXNativeTarget "RJTranslate-App" */;
 			buildPhases = (
-				24ED4656ED7FF73A5504BA65 /* [CP] Check Pods Manifest.lock */,
+				53D40B3F808F3B3D7B09B65B /* [CP] Check Pods Manifest.lock */,
 				A522F1C5217AFC300085A5E4 /* Sources */,
 				A522F1C6217AFC300085A5E4 /* Frameworks */,
 				A522F1C7217AFC300085A5E4 /* Resources */,
@@ -315,7 +270,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A535340C217A57ED00E08881 /* Build configuration list for PBXNativeTarget "RJTranslate" */;
 			buildPhases = (
-				58150D70C174F25C35305613 /* [CP] Check Pods Manifest.lock */,
+				C3DD5B6F1981D58C637D5F78 /* [CP] Check Pods Manifest.lock */,
 				A53533F6217A57ED00E08881 /* Sources */,
 				A53533F7217A57ED00E08881 /* Frameworks */,
 				A53533F8217A57ED00E08881 /* Headers */,
@@ -324,6 +279,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				A58AFD74217E023A008A900C /* PBXTargetDependency */,
 			);
 			name = RJTranslate;
 			productName = RJTranslate;
@@ -381,7 +337,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		24ED4656ED7FF73A5504BA65 /* [CP] Check Pods Manifest.lock */ = {
+		53D40B3F808F3B3D7B09B65B /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -397,28 +353,6 @@
 			);
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-RJTranslate-App-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		58150D70C174F25C35305613 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-RJTranslate-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -441,7 +375,29 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [[ \"ls -1 ${BUILT_PRODUCTS_DIR}/*.dylib 2>/dev/null | wc -l\" == 0 ]]; then\necho \"${BUILT_PRODUCTS_DIR} does not contain any dylib file.\";\nexit 1;\nfi\n\nPACKAGE_PROJECT_FOLDER=\"${PROJECT_DIR}/${PROJECT_NAME}/Package\";\nif [ ! -d $PACKAGE_PROJECT_FOLDER ]; then\necho \"${PROJECT_DIR}/Package does not exits.\";\nexit 2;\nfi\n\n\nPACKAGE_TEMP_FOLDER=\"${BUILT_PRODUCTS_DIR}/Package\";\nif [ -d $PACKAGE_TEMP_FOLDER ]; then\nrm -rf $PACKAGE_TEMP_FOLDER;\nfi\n\necho \"[->] Copying binaries...\";\ncp -r $PACKAGE_PROJECT_FOLDER $PACKAGE_TEMP_FOLDER;\nfind ${BUILT_PRODUCTS_DIR} -type f -iname '*.dylib' -exec cp \"{}\" \"$PACKAGE_TEMP_FOLDER/Library/MobileSubstrate/DynamicLibraries/\" 2> /dev/null \\;\nfind ${BUILT_PRODUCTS_DIR} -iname '*.app' -exec cp -R \"{}\" \"$PACKAGE_TEMP_FOLDER/Applications/\" \\;\nfind ${BUILT_PRODUCTS_DIR} -iname '*.momd' -exec cp -R \"{}\" \"$PACKAGE_TEMP_FOLDER/Library/Application Support/RJTranslate.bundle/\" \\;\ncp \"${BUILT_PRODUCTS_DIR}/postrm\" \"$PACKAGE_TEMP_FOLDER/DEBIAN/\";\ncp \"${BUILT_PRODUCTS_DIR}/postinst\" \"$PACKAGE_TEMP_FOLDER/DEBIAN/\";\nldid -S \"${BUILT_PRODUCTS_DIR}/postrm\";\nldid -S \"${BUILT_PRODUCTS_DIR}/postinst\";\n\ncodesign --remove-sign \"$PACKAGE_TEMP_FOLDER/Applications/RJTranslate.app\";\nrm -rf \"$PACKAGE_TEMP_FOLDER/Applications/RJTranslate.app/embedded.mobileprovision\";\nldid -S\"${PROJECT_DIR}/sign.entitlements\" \"$PACKAGE_TEMP_FOLDER/Applications/RJTranslate.app/RJTranslate\";\nfind \"$PACKAGE_TEMP_FOLDER\" -type d -exec chmod +rx \"{}\" \\;\n\necho \"[->] Cleaning (stage 1)...\"\nfind $PACKAGE_PROJECT_FOLDER -name \".DS_Store\" -exec rm -f {} \\;\n\necho \"[->] Updating control...\";\nsed -i '' \"s/CURRENT_PROJECT_VERSION/${CURRENT_PROJECT_VERSION}/g\" \"$PACKAGE_TEMP_FOLDER/DEBIAN/control\";\n\necho \"[->] Counting size...\";\nFOLDER_SIZE=$(du -sk $PACKAGE_TEMP_FOLDER);\nINSTALLED_SIZE=$(echo $FOLDER_SIZE | tr -dc '0-9' );\nsed -i '' \"s/PACKAGE_SIZE/${INSTALLED_SIZE}/g\" \"$PACKAGE_TEMP_FOLDER/DEBIAN/control\";\n\n\necho \"[->] Packaging...\";\nDEBS_FOLDER=\"${PROJECT_DIR}/debs\";\nif [ ! -d $DEBS_FOLDER ]; then\nmkdir $DEBS_FOLDER\nfi\n\nDEB_NAME=\"${PRODUCT_BUNDLE_IDENTIFIER}_${CURRENT_PROJECT_VERSION}_${PLATFORM_NAME}-arm.deb\";\ndpkg-deb -b -Zlzma $PACKAGE_TEMP_FOLDER $DEBS_FOLDER/$DEB_NAME 2> /dev/null;\n\necho \"[->] Cleaning (stage 2)...\";\nrm -rf $PACKAGE_TEMP_FOLDER;\n";
+			shellScript = "if [[ \"ls -1 ${BUILT_PRODUCTS_DIR}/*.dylib 2>/dev/null | wc -l\" == 0 ]]; then\necho \"${BUILT_PRODUCTS_DIR} does not contain any dylib file.\";\nexit 1;\nfi\n\nPACKAGE_PROJECT_FOLDER=\"${PROJECT_DIR}/${PROJECT_NAME}/Package\";\nif [ ! -d $PACKAGE_PROJECT_FOLDER ]; then\necho \"${PROJECT_DIR}/Package does not exits.\";\nexit 2;\nfi\n\n\nPACKAGE_TEMP_FOLDER=\"${BUILT_PRODUCTS_DIR}/Package\";\nif [ -d $PACKAGE_TEMP_FOLDER ]; then\nrm -rf $PACKAGE_TEMP_FOLDER;\nfi\n\necho \"[->] Copying binaries...\";\ncp -r $PACKAGE_PROJECT_FOLDER $PACKAGE_TEMP_FOLDER;\nfind ${BUILT_PRODUCTS_DIR} -type f -iname '*.dylib' -exec cp \"{}\" \"$PACKAGE_TEMP_FOLDER/Library/MobileSubstrate/DynamicLibraries/\" 2> /dev/null \\;\n#find ${BUILT_PRODUCTS_DIR} -iname '*.app' -exec cp -R \"{}\" \"$PACKAGE_TEMP_FOLDER/Applications/\" \\;\nfind ${BUILT_PRODUCTS_DIR} -iname '*.momd' -exec cp -R \"{}\" \"$PACKAGE_TEMP_FOLDER/Library/Application Support/RJTranslate.bundle/\" \\;\ncp -R \"${BUILT_PRODUCTS_DIR}/RJTranslate.app\" \"$PACKAGE_TEMP_FOLDER/Applications/RJTranslate.app\";\n\ncodesign --remove-sign \"$PACKAGE_TEMP_FOLDER/Applications/RJTranslate.app\";\nrm -rf \"$PACKAGE_TEMP_FOLDER/Applications/RJTranslate.app/embedded.mobileprovision\";\nldid -S\"${PROJECT_DIR}/sign.entitlements\" \"$PACKAGE_TEMP_FOLDER/Applications/RJTranslate.app/RJTranslate\";\nfind \"$PACKAGE_TEMP_FOLDER\" -type d -exec chmod +rx \"{}\" \\;\n\necho \"[->] Cleaning (stage 1)...\"\nfind $PACKAGE_PROJECT_FOLDER -name \".DS_Store\" -exec rm -f {} \\;\n\necho \"[->] Updating control...\";\nsed -i '' \"s/CURRENT_PROJECT_VERSION/${CURRENT_PROJECT_VERSION}/g\" \"$PACKAGE_TEMP_FOLDER/DEBIAN/control\";\n\necho \"[->] Counting size...\";\nFOLDER_SIZE=$(du -sk $PACKAGE_TEMP_FOLDER);\nINSTALLED_SIZE=$(echo $FOLDER_SIZE | tr -dc '0-9' );\nsed -i '' \"s/PACKAGE_SIZE/${INSTALLED_SIZE}/g\" \"$PACKAGE_TEMP_FOLDER/DEBIAN/control\";\n\necho \"[->] Packaging...\";\nDEBS_FOLDER=\"${PROJECT_DIR}/debs\";\nif [ ! -d $DEBS_FOLDER ]; then\nmkdir $DEBS_FOLDER\nfi\n\nDEB_NAME=\"${PRODUCT_BUNDLE_IDENTIFIER}_${CURRENT_PROJECT_VERSION}_${PLATFORM_NAME}-arm.deb\";\ndpkg-deb -b -Zlzma $PACKAGE_TEMP_FOLDER $DEBS_FOLDER/$DEB_NAME 2> /dev/null;\n\necho \"[->] Cleaning (stage 2)...\";\nrm -rf $PACKAGE_TEMP_FOLDER;\n";
+		};
+		C3DD5B6F1981D58C637D5F78 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-RJTranslate-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -480,6 +436,14 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		A58AFD74217E023A008A900C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A522F1C8217AFC300085A5E4 /* RJTranslate-App */;
+			targetProxy = A58AFD73217E023A008A900C /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
 		A522F1D1217AFC300085A5E4 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
@@ -502,38 +466,28 @@
 /* Begin XCBuildConfiguration section */
 		A522F1DD217AFC310085A5E4 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2FFC9589E6E7BF4F00A854B1 /* Pods-RJTranslate-App.debug.xcconfig */;
+			baseConfigurationReference = DB57EBDFB696BF1BE2E20A93 /* Pods-RJTranslate-App.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = VW97WHTS78;
 				INFOPLIST_FILE = "RJTranslate-App/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
 				PRODUCT_BUNDLE_IDENTIFIER = ru.danpashin.RJTranslate;
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
 		A522F1DE217AFC310085A5E4 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2A49C4E3F577416461A4F39B /* Pods-RJTranslate-App.release.xcconfig */;
+			baseConfigurationReference = D6FE48C60EC713FBE57420E8 /* Pods-RJTranslate-App.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = VW97WHTS78;
 				INFOPLIST_FILE = "RJTranslate-App/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
 				PRODUCT_BUNDLE_IDENTIFIER = ru.danpashin.RJTranslate;
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
@@ -611,7 +565,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = ru.danpashin.RJTranslate;
 				PRODUCT_NAME = RJTranslate;
 				SDKROOT = iphoneos;
-				SUPPORTED_PLATFORMS = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALID_ARCHS = "arm64 armv7";
 				iOSOpenDevPath = /opt/iOSOpenDev;
@@ -685,7 +638,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = ru.danpashin.RJTranslate;
 				PRODUCT_NAME = RJTranslate;
 				SDKROOT = iphoneos;
-				SUPPORTED_PLATFORMS = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VALID_ARCHS = "arm64 armv7";
@@ -695,7 +647,7 @@
 		};
 		A535340D217A57ED00E08881 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2E7219EE7E5CA9D8D8534A1C /* Pods-RJTranslate.debug.xcconfig */;
+			baseConfigurationReference = C442FAAA903384EF3A1DF395 /* Pods-RJTranslate.debug.xcconfig */;
 			buildSettings = {
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
@@ -703,13 +655,14 @@
 				);
 				INSTALL_PATH = /Library/MobileSubstrate/DynamicLibraries;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
 		A535340E217A57ED00E08881 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A268DBE45997EDFBCB289694 /* Pods-RJTranslate.release.xcconfig */;
+			baseConfigurationReference = A7448D1A9FAB2BCD471A34BC /* Pods-RJTranslate.release.xcconfig */;
 			buildSettings = {
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
@@ -717,6 +670,7 @@
 				);
 				INSTALL_PATH = /Library/MobileSubstrate/DynamicLibraries;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

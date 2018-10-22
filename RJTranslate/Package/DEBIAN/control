@@ -11,4 +11,4 @@ Icon: file:///Applications/RJTranslate.app/AppIcon60x60@2x.png
 Tag: purpose::extension, compatible::ios10, compatible::ios11
 Section: Utilities
 Installed-size: PACKAGE_SIZE
-Depends: firmware (>= 9.0), mobilesubstrate (>= 0.9.5000)
+Depends: firmware (>= 10.0), mobilesubstrate (>= 0.9.5000)

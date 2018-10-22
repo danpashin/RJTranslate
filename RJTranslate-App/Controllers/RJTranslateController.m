@@ -34,7 +34,7 @@
     
     self.collectionView.customDelegate = self;
     
-//    self.localDatabase = [RJTDatabase defaultDatabase];
+    self.localDatabase = [RJTDatabase defaultDatabase];
     [self.localDatabase fetchAllAppModelsWithCompletion:^(NSArray<RJTApplicationModel *> * _Nonnull allModels) {
         self.collectionView.availableApps = allModels;
         [self.collectionView reloadData];

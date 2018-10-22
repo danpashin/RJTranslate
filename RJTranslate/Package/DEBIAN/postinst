@@ -1,6 +1,10 @@
 #!/bin/sh
 
 DOCUMENTS_DIR="/var/mobile/Documents/RJTranslate";
+APP_DIR="/Applications/RJTranslate.app";
+
+#   Setting permissiong for writing and executing
+chmod 0775 $APP_DIR;
 
 if [ ! -d "$DOCUMENTS_DIR" ]; then
     echo "Creating documents directory..."
@@ -8,11 +12,13 @@ if [ ! -d "$DOCUMENTS_DIR" ]; then
 else
     echo "Documents directory exist. Skipping..."
 fi
-chmod 0777 $DOCUMENTS_DIR
+
+chmod 0777 $DOCUMENTS_DIR;
 
 echo "Cleaning caches..."
 uicache
 
+#   tell Cydia to respring
 declare -a cydia
 cydia=($CYDIA)
 
