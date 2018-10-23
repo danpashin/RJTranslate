@@ -10,13 +10,14 @@
 #import <CoreData/NSManagedObject.h>
 #import <CoreData/NSFetchRequest.h>
 
-@class NSObject;
+@class NSObject, RJTApplicationModel;
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface RJTApplicationEntity : NSManagedObject
 
 + (NSFetchRequest<RJTApplicationEntity *> *)fetchRequest;
++ (RJTApplicationEntity *)insertIntoContext:(NSManagedObjectContext *)context;
 
 @property (nullable, nonatomic, copy) NSString *displayedName;
 @property (nullable, nonatomic, copy) NSString *bundleIdentifier;
@@ -24,6 +25,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nullable, nonatomic, retain) NSDictionary *translation;
 @property (assign, nonatomic) BOOL enableTranslation;
+
+- (void)copyPropertiesFrom:(RJTApplicationModel *)appModel;
 
 @end
 

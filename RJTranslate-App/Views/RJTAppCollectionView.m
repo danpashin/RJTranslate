@@ -29,16 +29,18 @@
     self.emptyDataSetSource = self;
     self.emptyDataSetDelegate = self;
     self.alwaysBounceVertical = YES;
+    self.allowsMultipleSelection = YES;
     
     UICollectionViewFlowLayout *collectionLayout = (UICollectionViewFlowLayout *)self.collectionViewLayout;
     collectionLayout.itemSize = CGSizeMake(CGRectGetWidth(self.frame) - 48.0f, 72.0f);
     collectionLayout.sectionInset = UIEdgeInsetsMake(20.0f, 0.0f, 20.0f, 0.0f);
 }
 
-- (void)reloadData
+- (void)reload
 {
     dispatch_async(dispatch_get_main_queue(), ^{
-        [super reloadData];
+        [self reloadSections:[NSIndexSet indexSetWithIndex:0]];
+        [self reloadEmptyDataSet];
     });
 }
 
@@ -60,6 +62,28 @@
     
     return cell;
 }
+
+- (void)collectionView:(UICollectionView *)collectionView willDisplayCell:(RJTAppCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (cell.model.enableTranslation) {
+        [collectionView selectItemAtIndexPath:indexPath animated:NO scrollPosition:UICollectionViewScrollPositionNone];
+        [cell updateSelection:YES animated:NO];
+        cell.selected = YES;
+    }
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    RJTAppCell *cell = (RJTAppCell *)[collectionView cellForItemAtIndexPath:indexPath];
+    [cell updateSelection:YES animated:YES];
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    RJTAppCell *cell = (RJTAppCell *)[collectionView cellForItemAtIndexPath:indexPath];
+    [cell updateSelection:NO animated:YES];
+}
+
 
 
 #pragma mark -

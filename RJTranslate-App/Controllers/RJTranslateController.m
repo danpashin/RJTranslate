@@ -37,16 +37,21 @@
     self.collectionView.customDelegate = self;
     
     self.localDatabase = [RJTDatabase defaultDatabase];
-    [self.localDatabase fetchAllAppModelsWithCompletion:^(NSArray<RJTApplicationModel *> * _Nonnull allModels) {
-        self.collectionView.availableApps = allModels;
-        [self.collectionView reloadData];
-    }];
+    [self updateAllModels];
     
     self.searchController = [[RJTSearchController alloc] initWithSearchResultsController:nil];
     self.searchController.searchResultsUpdater = self;
     self.searchController.delegate = self;
     
     self.navigationItem.titleView = self.searchController.searchBar;
+}
+
+- (void)updateAllModels
+{
+    [self.localDatabase fetchAllAppModelsWithCompletion:^(NSArray<RJTApplicationModel *> * _Nonnull allModels) {
+        self.collectionView.availableApps = allModels;
+        [self.collectionView reload];
+    }];
 }
 
 
@@ -110,7 +115,9 @@
 
 - (void)databaseUpdater:(RJTDatabaseUpdater *)databaseUpdater finishedWithModelsArray:(NSArray <RJTApplicationModel *> *)modelsArray
 {
-    NSLog(@"Finished updating with models: %@", modelsArray);
+    [self.localDatabase insertAppModels:modelsArray completion:^{
+        [self updateAllModels];
+    }];
 }
 
 - (void)databaseUpdater:(RJTDatabaseUpdater *)databaseUpdater failedWithError:(NSError *)error
@@ -121,7 +128,7 @@
 - (void)databaseUpdater:(RJTDatabaseUpdater *)databaseUpdater updateProgress:(double)progress
 {
     double percent = ceil(progress * 100.0f);
-    NSLog(@"Updating... %.0f\%%", percent);
+    NSLog(@"Updating... %.0f%%", percent);
 }
 
 @end

@@ -8,6 +8,8 @@
 //
 
 #import "RJTApplicationEntity.h"
+#import <CoreData/NSEntityDescription.h>
+#import "RJTApplicationModel.h"
 
 @implementation RJTApplicationEntity
 @dynamic bundleIdentifier;
@@ -19,6 +21,20 @@
 + (NSFetchRequest<RJTApplicationEntity *> *)fetchRequest
 {
     return [NSFetchRequest fetchRequestWithEntityName:@"RJTApplicationEntity"];
+}
+
++ (RJTApplicationEntity *)insertIntoContext:(NSManagedObjectContext *)context
+{
+    return [NSEntityDescription insertNewObjectForEntityForName:@"RJTApplicationEntity" inManagedObjectContext:context];
+}
+
+- (void)copyPropertiesFrom:(RJTApplicationModel *)appModel
+{
+    self.bundleIdentifier = [appModel.bundleIdentifier copy];
+    self.displayedName = [appModel.displayedName copy];
+    self.executableName = [appModel.executableName copy];
+    self.translation = [appModel.translation copy];
+    self.enableTranslation = appModel.enableTranslation;
 }
 
 @end

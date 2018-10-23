@@ -30,7 +30,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (weak, nonatomic) id <RJTAppCollectionViewDelegate> customDelegate;
 
-- (void)reloadData;
+- (void)reload;
 
 @end
 

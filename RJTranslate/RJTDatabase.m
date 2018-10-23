@@ -26,6 +26,8 @@
     if ([[NSFileManager defaultManager] fileExistsAtPath:documentsPath])
         [[NSFileManager defaultManager] createDirectoryAtPath:documentsPath withIntermediateDirectories:NO attributes:nil error:nil];
     
+    NSLog(@"Database directory URL is: %@", documentsPath);
+    
     return [NSURL fileURLWithPath:documentsPath];
 }
 
@@ -120,6 +122,23 @@
             }
             
             completion(models);
+        }];
+    });
+}
+
+- (void)insertAppModels:(NSArray <RJTApplicationModel *> *)appModels completion:(void(^)(void))completion
+{
+    dispatch_async(self.serialBackgroundQueue, ^{
+        [self performBackgroundTask:^(NSManagedObjectContext * _Nonnull context) {
+            for (RJTApplicationModel *appModel in appModels) {
+                RJTApplicationEntity *appObject = [RJTApplicationEntity insertIntoContext:context];
+                [appObject copyPropertiesFrom:appModel];
+            }
+            
+            [self saveContext:context];
+            
+            if (completion)
+                completion();
         }];
     });
 }

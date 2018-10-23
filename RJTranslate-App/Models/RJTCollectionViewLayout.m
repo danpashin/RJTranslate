@@ -13,16 +13,17 @@
 - (nullable UICollectionViewLayoutAttributes *)initialLayoutAttributesForAppearingItemAtIndexPath:(NSIndexPath *)itemIndexPath
 {
     UICollectionViewLayoutAttributes *attributes = [super initialLayoutAttributesForAppearingItemAtIndexPath:itemIndexPath];
-    attributes.alpha = 1.0f;
-    
+    attributes.transform = CGAffineTransformMakeScale(0.2f, 0.2f);
+
     return attributes;
 }
 
 - (nullable UICollectionViewLayoutAttributes *)finalLayoutAttributesForDisappearingItemAtIndexPath:(NSIndexPath *)itemIndexPath
 {
     UICollectionViewLayoutAttributes *attributes = [super finalLayoutAttributesForDisappearingItemAtIndexPath:itemIndexPath];
-    attributes.alpha = 0.0f;
-    
+    attributes.transform = CGAffineTransformMakeScale(0.2f, 0.2f);
+
     return attributes;
 }
+
 @end
