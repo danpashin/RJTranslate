@@ -1,16 +1,20 @@
 PODS:
   - DZNEmptyDataSet (1.8.1)
+  - SSZipArchive (2.1.4)
 
 DEPENDENCIES:
   - DZNEmptyDataSet
+  - SSZipArchive
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - DZNEmptyDataSet
+    - SSZipArchive
 
 SPEC CHECKSUMS:
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
+  SSZipArchive: 41455d4b8d2b6ab93990820b50dc697c2554a322
 
-PODFILE CHECKSUM: dd84e9b25872f3a43fea11a42d59d8a11fce1205
+PODFILE CHECKSUM: 139ae2604b58e3df40b391e661056e657feb7c4c
 
 COCOAPODS: 1.5.3

@@ -22,7 +22,11 @@
 + (NSURL *)defaultDirectoryURL
 {
     NSString *documentsPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject;
-    return [NSURL fileURLWithPath:[documentsPath stringByAppendingString:@"/RJTranslate/"]];
+    documentsPath = [documentsPath stringByAppendingString:@"/RJTranslate/"];
+    if ([[NSFileManager defaultManager] fileExistsAtPath:documentsPath])
+        [[NSFileManager defaultManager] createDirectoryAtPath:documentsPath withIntermediateDirectories:NO attributes:nil error:nil];
+    
+    return [NSURL fileURLWithPath:documentsPath];
 }
 
 + (NSURL *)defaultModelURL

@@ -10,10 +10,11 @@
 #import "RJTApplicationEntity.h"
 
 @implementation RJTApplicationEntity
-@dynamic bundle_identifier;
+@dynamic bundleIdentifier;
 @dynamic translation;
 @dynamic enableTranslation;
-@dynamic app_name;
+@dynamic displayedName;
+@dynamic executableName;
 
 + (NSFetchRequest<RJTApplicationEntity *> *)fetchRequest
 {

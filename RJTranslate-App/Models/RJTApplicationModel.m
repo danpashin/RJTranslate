@@ -11,8 +11,9 @@
 
 @interface RJTApplicationModel ()
 
-@property (strong, nonatomic, readwrite, nullable) NSString *app_name;
-@property (strong, nonatomic, readwrite, nullable) NSString *bundle_identifier;
+@property (strong, nonatomic, readwrite, nullable) NSString *displayedName;
+@property (strong, nonatomic, readwrite, nullable) NSString *bundleIdentifier;
+@property (strong, nonatomic, readwrite, nullable) NSString *executableName;
 @property (strong, nonatomic, readwrite, nullable) NSDictionary *translation;
 @property (assign, nonatomic, readwrite) BOOL enableTranslation;
 
@@ -20,21 +21,57 @@
 
 @implementation RJTApplicationModel
 
+static NSString *const kRJTDisplayedNameKey = @"Displayed Name";
+static NSString *const kRJTBundleIdentifierKey = @"Bundle Identifier";
+static NSString *const kRJTExecutableNameKey = @"Executable Name";
+static NSString *const kRJTTranslationsKey = @"Translations";
+
 + (instancetype)from:(RJTApplicationEntity *)entity
 {
     RJTApplicationModel *model = [RJTApplicationModel new];
-    model.app_name = [entity.app_name copy];
-    model.bundle_identifier = [entity.bundle_identifier copy];
+    model.displayedName = [entity.displayedName copy];
+    model.bundleIdentifier = [entity.bundleIdentifier copy];
+    model.executableName = [entity.executableName copy];
     model.translation = [entity.translation copy];
     model.enableTranslation = entity.enableTranslation;
     
     return model;
 }
 
++ (instancetype)parseDict:(NSDictionary *)dictionary
+{
+    if (![dictionary[kRJTDisplayedNameKey] isKindOfClass:[NSString class]] ||
+        ![dictionary[kRJTBundleIdentifierKey] isKindOfClass:[NSString class]] ||
+        ![dictionary[kRJTBundleIdentifierKey] isKindOfClass:[NSString class]])
+        return nil;
+    
+    RJTApplicationModel *model = [RJTApplicationModel new];
+    model.displayedName = dictionary[kRJTDisplayedNameKey];
+    model.bundleIdentifier = dictionary[kRJTBundleIdentifierKey];
+    model.executableName = dictionary[kRJTExecutableNameKey];
+    model.translation = dictionary[kRJTTranslationsKey];
+    
+    return model;
+}
+
 - (NSString *)description
 {
-    return [NSString stringWithFormat:@"<%@: %p> name: '%@' (%@), enable translation: %@",
-            NSStringFromClass([self class]), self, self.app_name, self.bundle_identifier, @(self.enableTranslation)];
+    return [NSString stringWithFormat:@"<%@: %p> name: '%@' (%@ - %@), enable translation: %@",
+            NSStringFromClass([self class]), self, self.displayedName, self.executableName,
+            self.bundleIdentifier, @(self.enableTranslation)];
+}
+
+- (BOOL)isEqual:(id)object
+{
+    if (![object isKindOfClass:[self class]])
+        return NO;
+    
+    RJTApplicationModel *model = object;
+    if (![model.bundleIdentifier isEqualToString:self.bundleIdentifier] ||
+        ![model.executableName isEqual:self.executableName])
+        return NO;
+    
+    return YES;
 }
 
 @end

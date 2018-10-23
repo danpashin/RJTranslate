@@ -13,10 +13,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface RJTApplicationModel : NSObject
 
-+ (instancetype)from:(RJTApplicationEntity *)entity;
++ (RJTApplicationModel *)from:(RJTApplicationEntity *)entity;
 
-@property (strong, nonatomic, readonly, nullable) NSString *app_name;
-@property (strong, nonatomic, readonly, nullable) NSString *bundle_identifier;
++ (RJTApplicationModel * _Nullable)parseDict:(NSDictionary *)dictionary;
+
+@property (strong, nonatomic, readonly, nullable) NSString *displayedName;
+@property (strong, nonatomic, readonly, nullable) NSString *bundleIdentifier;
+@property (strong, nonatomic, readonly, nullable) NSString *executableName;
 @property (strong, nonatomic, readonly, nullable) NSDictionary *translation;
 @property (assign, nonatomic, readonly) BOOL enableTranslation;
 

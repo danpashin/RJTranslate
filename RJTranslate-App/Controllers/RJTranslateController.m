@@ -11,13 +11,15 @@
 #import "RJTNavigationController.h"
 
 #import "RJTDatabase.h"
+#import "RJTDatabaseUpdater.h"
 
 #import "RJTAppCollectionView.h"
 
-@interface RJTranslateController () <UISearchResultsUpdating, UISearchControllerDelegate, RJTAppCollectionViewDelegate>
+@interface RJTranslateController () <UISearchResultsUpdating, UISearchControllerDelegate, RJTAppCollectionViewDelegate, RJTDatabaseUpdaterDelegate>
 
 @property (strong, nonatomic) RJTDatabase *localDatabase;
 @property (strong, nonatomic) NSOperation *searchOperation;
+@property (strong, nonatomic) RJTDatabaseUpdater *databaseUpdater;
 
 @property (weak, nonatomic) IBOutlet RJTAppCollectionView *collectionView;
 @property (strong, nonatomic) RJTSearchController *searchController;
@@ -96,7 +98,30 @@
 
 - (void)collectionViewRequestedDownloadingTranslations:(RJTAppCollectionView *)collectionView
 {
-    NSLog(@"Should start downloading translations");
+    self.databaseUpdater = [RJTDatabaseUpdater new];
+    self.databaseUpdater.delegate = self;
+    [self.databaseUpdater updateDatabase];
+}
+
+
+#pragma mark -
+#pragma mark RJTDatabaseUpdaterDelegate
+#pragma mark -
+
+- (void)databaseUpdater:(RJTDatabaseUpdater *)databaseUpdater finishedWithModelsArray:(NSArray <RJTApplicationModel *> *)modelsArray
+{
+    NSLog(@"Finished updating with models: %@", modelsArray);
+}
+
+- (void)databaseUpdater:(RJTDatabaseUpdater *)databaseUpdater failedWithError:(NSError *)error
+{
+    NSLog(@"Failed to update with error: %@", error);
+}
+
+- (void)databaseUpdater:(RJTDatabaseUpdater *)databaseUpdater updateProgress:(double)progress
+{
+    double percent = ceil(progress * 100.0f);
+    NSLog(@"Updating... %.0f\%%", percent);
 }
 
 @end

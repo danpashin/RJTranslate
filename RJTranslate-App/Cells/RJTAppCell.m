@@ -31,8 +31,8 @@
 {
     _model = model;
     
-    self.nameLabel.text = model.app_name;
-    self.identifierLabel.text = model.bundle_identifier;
+    self.nameLabel.text = model.displayedName;
+    self.identifierLabel.text = model.bundleIdentifier;
 }
 
 - (void)prepareForReuse

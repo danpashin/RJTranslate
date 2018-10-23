@@ -18,8 +18,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (NSFetchRequest<RJTApplicationEntity *> *)fetchRequest;
 
-@property (nullable, nonatomic, copy) NSString *app_name;
-@property (nullable, nonatomic, copy) NSString *bundle_identifier;
+@property (nullable, nonatomic, copy) NSString *displayedName;
+@property (nullable, nonatomic, copy) NSString *bundleIdentifier;
+@property (nullable, nonatomic, copy) NSString *executableName;
+
 @property (nullable, nonatomic, retain) NSDictionary *translation;
 @property (assign, nonatomic) BOOL enableTranslation;
 
