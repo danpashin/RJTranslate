@@ -72,10 +72,10 @@
         self.collectionView.searchText = searchText;
         self.collectionView.searchResults = nil;
         
-        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"bundle_identifier CONTAINS[cd] %@ OR app_name CONTAINS[cd] %@", searchText, searchText];
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"bundleIdentifier CONTAINS[cd] %@ OR displayedName CONTAINS[cd] %@", searchText, searchText];
         [self.localDatabase fetchAppModelsWithPredicate:predicate completion:^(NSArray<RJTApplicationModel *> * _Nonnull models) {
             self.collectionView.searchResults = models;
-            [self.collectionView reloadData];
+            [self.collectionView reload];
         }];
     }];
     [self.searchOperation start];
@@ -93,7 +93,7 @@
     searchController.dimBackground = NO;
     
     self.collectionView.performingSearch = NO;
-    [self.collectionView reloadData];
+    [self.collectionView reload];
 }
 
 
@@ -129,13 +129,13 @@
 
 - (void)databaseUpdater:(RJTDatabaseUpdater *)databaseUpdater failedWithError:(NSError *)error
 {
-    NSLog(@"Failed to update with error: %@", error);
+    RJTErrorLog(@"Failed to update with error: %@", error);
 }
 
 - (void)databaseUpdater:(RJTDatabaseUpdater *)databaseUpdater updateProgress:(double)progress
 {
     double percent = ceil(progress * 100.0f);
-    NSLog(@"Updating... %.0f%%", percent);
+    RJTLog(@"Updating... %.0f%%", percent);
 }
 
 @end

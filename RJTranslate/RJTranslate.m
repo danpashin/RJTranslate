@@ -17,7 +17,7 @@
 #import "RJTApplicationEntity.h"
 
 
-__strong NSDictionary <NSString *, NSString *> *translation;
+__strong NSMutableDictionary <NSString *, NSString *> *localizations;
 NSString *localizedString(NSString *origString);
 
 CHDeclareClass(UILabel);
@@ -30,36 +30,40 @@ CHOptimizedMethod(1, self, void, UILabel, setText, NSString *, text)
 
 CHConstructor
 {
-    NSString *bundleIdentifier = [NSBundle mainBundle].bundleIdentifier;
+    NSBundle *mainBundle = [NSBundle mainBundle];
+    NSString *bundleIdentifier = mainBundle.bundleIdentifier;
     if (bundleIdentifier.length == 0 ||
         [bundleIdentifier isEqualToString:@"ru.danpashin.RJTranslate"] ||
         [bundleIdentifier isEqualToString:@"com.apple.accessibility.AccessibilityUIServer"] ||
-        [bundleIdentifier isEqualToString:@"com.apple.springboard"] ||
+//        [bundleIdentifier isEqualToString:@"com.apple.springboard"] ||
         [bundleIdentifier isEqualToString:@"com.apple.PassbookUIService"])
         return;
     
+    localizations = [NSMutableDictionary dictionary];
     
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"bundleIdentifier == %@ AND enableTranslation == 1", bundleIdentifier];
+    NSString *executableName = mainBundle.executablePath.lastPathComponent;
+    
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(bundleIdentifier == %@ OR executableName == %@) AND enableTranslation == 1", bundleIdentifier, executableName];
     
     RJTDatabase *localDatabase = [RJTDatabase defaultDatabase];
     [localDatabase fetchAppEntitiesWithPredicate:predicate completion:^(NSArray<RJTApplicationEntity *> * _Nonnull entities) {
-        NSLog(@"[RJTranslate] loaded localizations with result: %@", entities);
-        if (entities.count == 1) {
-            translation = [entities.firstObject.translation copy];
+        RJTLog(@"Loaded localizations with result: %@", entities);
+        if (entities.count >= 1) {
+            for(RJTApplicationEntity *entity in entities) {
+                [localizations addEntriesFromDictionary:entity.translation];
+            }
             
             CHLoadClass(UILabel);
             CHHook(1, UILabel, setText);
-        } else if (entities.count > 1) {
-            NSLog(@"[RJTranslate] Localization found, but can not load hooks because number of entities more than one.");
         } else {
-            NSLog(@"[RJTranslate] Localization was not found.");
+            RJTLog(@"Localizations were not found.");
         }
     }];
 }
 
 NSString *localizedString(NSString *origString)
 {
-    NSString *translatedString = translation[origString];
+    NSString *translatedString = localizations[origString];
     if (translatedString)
         return translatedString;
     

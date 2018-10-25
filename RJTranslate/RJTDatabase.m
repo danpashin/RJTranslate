@@ -15,6 +15,7 @@
 @interface RJTDatabase ()
 @property (strong, nonatomic) dispatch_queue_t serialBackgroundQueue;
 @property (assign, nonatomic) BOOL readOnly;
+@property (assign, nonatomic) BOOL storeWasReadSuccessfully;
 @end
 
 @implementation RJTDatabase
@@ -22,13 +23,9 @@
 
 + (NSURL *)defaultDirectoryURL
 {
-//    NSString *documentsPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject;
-//    documentsPath = [documentsPath stringByAppendingString:@"/RJTranslate/"];
     NSString *documentsPath = @"/var/mobile/Library/Preferences/RJTranslate/";
-    if ([[NSFileManager defaultManager] fileExistsAtPath:documentsPath])
+    if (![[NSFileManager defaultManager] fileExistsAtPath:documentsPath])
         [[NSFileManager defaultManager] createDirectoryAtPath:documentsPath withIntermediateDirectories:NO attributes:nil error:nil];
-    
-    NSLog(@"Database directory URL is: %@", documentsPath);
     
     return [NSURL fileURLWithPath:documentsPath];
 }
@@ -63,25 +60,17 @@
     if (self) {
         self.serialBackgroundQueue = dispatch_queue_create("ru.danpashin.rjtranslate.database", DISPATCH_QUEUE_SERIAL);
         dispatch_async(self.serialBackgroundQueue, ^{
-//            @try {
-//                [self loadPersistentStoresWithCompletionHandler:^(NSPersistentStoreDescription * _Nonnull description, NSError * _Nullable error) {}];
-//            } @catch (NSException *exception) {
-//                NSLog(@"[RJTranslate] Handled exception while trying to load database: %@", exception);
-//            } @finally {
-//
-//            }
             NSString *databaseName = [name stringByAppendingString:@".sqlite"];
             NSString *bundleIdentfier = [NSBundle mainBundle].bundleIdentifier;
             self.readOnly = ![bundleIdentfier isEqualToString:@"ru.danpashin.RJTranslate"];
-//
+
             NSError *loadingError = nil;
             NSURL *databaseURL = [[self.class defaultDirectoryURL] URLByAppendingPathComponent:databaseName];
             [self.persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:databaseURL options:@{NSReadOnlyPersistentStoreOption:@(self.readOnly)} error:&loadingError];
+            if (!loadingError)
+                self.storeWasReadSuccessfully = YES;
             
-            NSLog(@"[RJTranslate] Loaded persisten store readOnly: %@; with error: %@", @(self.readOnly), loadingError);
-            
-//            NSError *error = nil;
-//            NSLog(@"[RJTranslate] Contents of database directory: %@; error: %@;", [[NSFileManager defaultManager] contentsOfDirectoryAtPath:@"/var/mobile/Library/Preferences/" error:&error], error);
+            RJTLog(@"Loaded persistent store read-only: %@; with error: %@", @(self.readOnly), loadingError);
         });
     }
     return self;
@@ -89,8 +78,12 @@
 
 - (void)performBackgroundTask:(void (^)(NSManagedObjectContext * _Nonnull))block
 {
-    if (self.persistentStoreDescriptions.count != 0)
-        [super performBackgroundTask:block];
+    if (!self.storeWasReadSuccessfully) {
+        RJTErrorLog(@"Can not start background task because of error while reading/creating persistent store.");
+        return;
+    }
+    
+    [super performBackgroundTask:block];
 }
 
 - (void)save
@@ -101,22 +94,22 @@
 - (void)saveContext:(NSManagedObjectContext *)context
 {
     if (self.readOnly) {
-        NSLog(@"[RJTranslate] Database is readOnly. Skipping saving.");
+        RJTErrorLog(@"Persistent store is read-only. Skipping saving.");
         return;
     }
     
     BOOL hasChanges = context.hasChanges;
     if (!hasChanges) {
-        NSLog(@"Context has no changes. Skipping saving.");
+        RJTLog(@"Context has no changes. Skipping saving.");
         return;
     }
     
     NSError *error = nil;
     if (![context save:&error]) {
-        NSLog(@"Unresolved error while saving context: %@, %@", error, error.userInfo);
+        RJTErrorLog(@"Unresolved error while saving context: %@, %@", error, error.userInfo);
         abort();
     } else {
-        NSLog(@"Context was saved successfully!");
+        RJTLog(@"Context was saved successfully!");
     }
 }
 
@@ -172,7 +165,7 @@
 - (void)insertAppModels:(NSArray <RJTApplicationModel *> *)appModels completion:(void(^_Nullable)(void))completion
 {
     if (self.readOnly) {
-        NSLog(@"[RJTranslate] Database is readOnly. Skipping inserting.");
+        RJTErrorLog(@"Persistent store is read-only. Skipping inserting.");
         return;
     }
     
@@ -194,7 +187,7 @@
 - (void)updateModel:(RJTApplicationModel *)appModel
 {
     if (self.readOnly) {
-        NSLog(@"[RJTranslate] Database is readOnly. Skipping updating.");
+        RJTErrorLog(@"Persistent store is read-only. Skipping updating.");
         return;
     }
     

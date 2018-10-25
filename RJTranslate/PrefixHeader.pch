@@ -1,0 +1,21 @@
+//
+//  PrefixHeader.pch
+//  RJTranslate
+//
+//  Created by Даниил on 25/10/2018.
+//  Copyright © 2018 Даниил. All rights reserved.
+//
+
+#import <os/log.h>
+
+#ifdef DEBUG
+#define RJT_LOG_TEMPLATE    "[RJTranslate] %@:%d %s "
+#define RJT_LOG_ARGUMENTS   @(__FILE__).lastPathComponent, __LINE__, __FUNCTION__
+
+#define RJTLog(format, ...)             os_log_debug  (OS_LOG_DEFAULT, RJT_LOG_TEMPLATE # format, RJT_LOG_ARGUMENTS, ##__VA_ARGS__)
+#define RJTErrorLog(format, ...)        os_log_error  (OS_LOG_DEFAULT, RJT_LOG_TEMPLATE # format, RJT_LOG_ARGUMENTS, ##__VA_ARGS__)
+
+#else
+#define RJTLog(...)
+#define RJTErrorLog(...)
+#endif
