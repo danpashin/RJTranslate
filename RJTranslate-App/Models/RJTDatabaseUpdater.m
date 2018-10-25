@@ -39,7 +39,8 @@ static NSString *const kRJTDatabaseUpdaterServerErrorDomain = @"ru.danpashin.RJT
     
     NSURLSession *session = [NSURLSession sessionWithConfiguration:configuration delegate:self delegateQueue:self.downloadDelegateQueue];
     
-    NSURL *url = [NSURL URLWithString:@"http://127.0.0.1/translations.zip"];
+//    NSURL *url = [NSURL URLWithString:@"http://127.0.0.1/translations.zip"];
+    NSURL *url = [NSURL URLWithString:@"https://danpashin.ru/dl/translations.zip"];
     NSURLRequest *request = [NSURLRequest requestWithURL:url
                                              cachePolicy:configuration.requestCachePolicy
                                          timeoutInterval:configuration.timeoutIntervalForRequest];

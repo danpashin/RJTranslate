@@ -11,7 +11,9 @@
 		<key>Executables</key>
 		<array/>
 		<key>Bundles</key>
-		<array/>
+		<array>
+			<string>com.apple.UIKit</string>
+		</array>
 	</dict>
 </dict>
 </plist>

@@ -80,17 +80,27 @@
                                                     <color key="textColor" white="0.5" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2d6-Kj-Mgb" customClass="RJTTickView">
+                                                    <rect key="frame" x="264" y="26" width="40" height="20"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="40" id="MNg-hB-tdB"/>
+                                                        <constraint firstAttribute="height" constant="20" id="We9-Cv-K9G"/>
+                                                    </constraints>
+                                                </view>
                                             </subviews>
                                         </view>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="Jad-Kf-djK" firstAttribute="centerY" secondItem="RgZ-da-Q3a" secondAttribute="centerY" id="69X-wT-t5w"/>
+                                            <constraint firstItem="2d6-Kj-Mgb" firstAttribute="centerY" secondItem="RgZ-da-Q3a" secondAttribute="centerY" id="8lq-8F-0Tb"/>
                                             <constraint firstItem="Jad-Kf-djK" firstAttribute="leading" secondItem="RgZ-da-Q3a" secondAttribute="leading" constant="12" id="W2w-va-JGC"/>
                                             <constraint firstItem="APX-LU-3EC" firstAttribute="top" secondItem="yEu-8f-E3T" secondAttribute="bottom" id="XJH-e0-7Ml"/>
                                             <constraint firstAttribute="trailingMargin" secondItem="APX-LU-3EC" secondAttribute="trailing" id="de5-Fl-K9r"/>
                                             <constraint firstAttribute="trailing" secondItem="yEu-8f-E3T" secondAttribute="trailing" id="i1E-V1-Thp"/>
                                             <constraint firstItem="yEu-8f-E3T" firstAttribute="top" secondItem="Jad-Kf-djK" secondAttribute="top" id="rrb-9o-wQC"/>
                                             <constraint firstItem="yEu-8f-E3T" firstAttribute="leading" secondItem="Jad-Kf-djK" secondAttribute="trailing" constant="8" id="vDu-iY-EXd"/>
+                                            <constraint firstAttribute="trailing" secondItem="2d6-Kj-Mgb" secondAttribute="trailing" constant="8" id="vjE-cF-Xfd"/>
                                             <constraint firstItem="APX-LU-3EC" firstAttribute="leading" secondItem="Jad-Kf-djK" secondAttribute="trailing" constant="8" id="z2I-Oy-OLq"/>
                                         </constraints>
                                         <size key="customSize" width="312" height="72"/>
@@ -98,6 +108,7 @@
                                             <outlet property="iconView" destination="Jad-Kf-djK" id="2Ow-7T-e9H"/>
                                             <outlet property="identifierLabel" destination="APX-LU-3EC" id="70Z-NA-EPe"/>
                                             <outlet property="nameLabel" destination="yEu-8f-E3T" id="AfR-RM-Pdv"/>
+                                            <outlet property="tickView" destination="2d6-Kj-Mgb" id="v3k-tH-I1l"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>

@@ -76,12 +76,18 @@
 {
     RJTAppCell *cell = (RJTAppCell *)[collectionView cellForItemAtIndexPath:indexPath];
     [cell updateSelection:YES animated:YES];
+    
+    cell.model.enableTranslation = YES;
+    [self.customDelegate collectionView:self didSelectedModel:cell.model];
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     RJTAppCell *cell = (RJTAppCell *)[collectionView cellForItemAtIndexPath:indexPath];
     [cell updateSelection:NO animated:YES];
+    
+    cell.model.enableTranslation = NO;
+    [self.customDelegate collectionView:self didSelectedModel:cell.model];
 }
 
 

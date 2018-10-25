@@ -108,6 +108,11 @@
     [self.databaseUpdater updateDatabase];
 }
 
+- (void)collectionView:(RJTAppCollectionView *)collectionView didSelectedModel:(RJTApplicationModel *)appModel
+{
+    [self.localDatabase updateModel:appModel];
+}
+
 
 #pragma mark -
 #pragma mark RJTDatabaseUpdaterDelegate
@@ -115,6 +120,8 @@
 
 - (void)databaseUpdater:(RJTDatabaseUpdater *)databaseUpdater finishedWithModelsArray:(NSArray <RJTApplicationModel *> *)modelsArray
 {
+    self.databaseUpdater = nil;
+    
     [self.localDatabase insertAppModels:modelsArray completion:^{
         [self updateAllModels];
     }];

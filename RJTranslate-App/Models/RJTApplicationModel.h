@@ -21,7 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic, readonly, nullable) NSString *bundleIdentifier;
 @property (strong, nonatomic, readonly, nullable) NSString *executableName;
 @property (strong, nonatomic, readonly, nullable) NSDictionary *translation;
-@property (assign, nonatomic, readonly) BOOL enableTranslation;
+@property (assign, nonatomic) BOOL enableTranslation;
 
 @end
 

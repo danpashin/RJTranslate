@@ -25,6 +25,8 @@
 		A535341D217A5A2800E08881 /* RJTDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = A535341B217A5A2800E08881 /* RJTDatabase.m */; };
 		A54ADB1E217BB0CF00D32EB7 /* RJTApplicationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A54ADB1D217BB0CF00D32EB7 /* RJTApplicationModel.m */; };
 		A56C0167217F25D000027DB3 /* RJTDatabaseUpdater.m in Sources */ = {isa = PBXBuildFile; fileRef = A56C0166217F25D000027DB3 /* RJTDatabaseUpdater.m */; };
+		A56FB1C12180ADA0002F4175 /* RJTColors.m in Sources */ = {isa = PBXBuildFile; fileRef = A56FB1C02180ADA0002F4175 /* RJTColors.m */; };
+		A56FB1C42180B17B002F4175 /* RJTTickView.m in Sources */ = {isa = PBXBuildFile; fileRef = A56FB1C32180B17B002F4175 /* RJTTickView.m */; };
 		A57CF73A217AFFC8004A71F8 /* RJTDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = A535341B217A5A2800E08881 /* RJTDatabase.m */; };
 		A57CF73B217AFFD0004A71F8 /* RJTApplicationEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = A5353414217A595200E08881 /* RJTApplicationEntity.m */; };
 		A57CF73E217B50B9004A71F8 /* RJTNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = A57CF73D217B50B9004A71F8 /* RJTNavigationBar.m */; };
@@ -71,6 +73,10 @@
 		A54ADB1D217BB0CF00D32EB7 /* RJTApplicationModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RJTApplicationModel.m; sourceTree = "<group>"; };
 		A56C0165217F25D000027DB3 /* RJTDatabaseUpdater.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RJTDatabaseUpdater.h; sourceTree = "<group>"; };
 		A56C0166217F25D000027DB3 /* RJTDatabaseUpdater.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RJTDatabaseUpdater.m; sourceTree = "<group>"; };
+		A56FB1BF2180ADA0002F4175 /* RJTColors.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RJTColors.h; sourceTree = "<group>"; };
+		A56FB1C02180ADA0002F4175 /* RJTColors.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RJTColors.m; sourceTree = "<group>"; };
+		A56FB1C22180B17B002F4175 /* RJTTickView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RJTTickView.h; sourceTree = "<group>"; };
+		A56FB1C32180B17B002F4175 /* RJTTickView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RJTTickView.m; sourceTree = "<group>"; };
 		A57CF73C217B50B9004A71F8 /* RJTNavigationBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RJTNavigationBar.h; sourceTree = "<group>"; };
 		A57CF73D217B50B9004A71F8 /* RJTNavigationBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RJTNavigationBar.m; sourceTree = "<group>"; };
 		A58AFD72217DF975008A900C /* sign.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = sign.entitlements; sourceTree = SOURCE_ROOT; };
@@ -196,6 +202,8 @@
 		A54ADB1F217BB6E500D32EB7 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				A56FB1BF2180ADA0002F4175 /* RJTColors.h */,
+				A56FB1C02180ADA0002F4175 /* RJTColors.m */,
 				A54ADB1C217BB0CF00D32EB7 /* RJTApplicationModel.h */,
 				A54ADB1D217BB0CF00D32EB7 /* RJTApplicationModel.m */,
 				A5A0954C217C73E8009743DF /* RJTCollectionViewLayout.h */,
@@ -284,6 +292,8 @@
 				A5DB9ABB217B74DB0061A810 /* RJTGradientView.m */,
 				A5A09546217C4696009743DF /* RJTAppCollectionView.h */,
 				A5A09547217C4696009743DF /* RJTAppCollectionView.m */,
+				A56FB1C22180B17B002F4175 /* RJTTickView.h */,
+				A56FB1C32180B17B002F4175 /* RJTTickView.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -444,7 +454,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [[ \"ls -1 ${BUILT_PRODUCTS_DIR}/*.dylib 2>/dev/null | wc -l\" == 0 ]]; then\necho \"${BUILT_PRODUCTS_DIR} does not contain any dylib file.\";\nexit 1;\nfi\n\nPACKAGE_PROJECT_FOLDER=\"${PROJECT_DIR}/${PROJECT_NAME}/Package\";\nif [ ! -d $PACKAGE_PROJECT_FOLDER ]; then\necho \"${PROJECT_DIR}/Package does not exits.\";\nexit 2;\nfi\n\n\nPACKAGE_TEMP_FOLDER=\"${BUILT_PRODUCTS_DIR}/Package\";\nif [ -d $PACKAGE_TEMP_FOLDER ]; then\nrm -rf $PACKAGE_TEMP_FOLDER;\nfi\n\necho \"[->] Copying binaries...\";\ncp -r $PACKAGE_PROJECT_FOLDER $PACKAGE_TEMP_FOLDER;\nfind ${BUILT_PRODUCTS_DIR} -type f -iname '*.dylib' -exec cp \"{}\" \"$PACKAGE_TEMP_FOLDER/Library/MobileSubstrate/DynamicLibraries/\" 2> /dev/null \\;\n#find ${BUILT_PRODUCTS_DIR} -iname '*.app' -exec cp -R \"{}\" \"$PACKAGE_TEMP_FOLDER/Applications/\" \\;\nfind ${BUILT_PRODUCTS_DIR} -iname '*.momd' -exec cp -R \"{}\" \"$PACKAGE_TEMP_FOLDER/Library/Application Support/RJTranslate.bundle/\" \\;\ncp -R \"${BUILT_PRODUCTS_DIR}/RJTranslate.app\" \"$PACKAGE_TEMP_FOLDER/Applications/RJTranslate.app\";\n\ncodesign --remove-sign \"$PACKAGE_TEMP_FOLDER/Applications/RJTranslate.app\";\nrm -rf \"$PACKAGE_TEMP_FOLDER/Applications/RJTranslate.app/embedded.mobileprovision\";\nldid -S\"${PROJECT_DIR}/sign.entitlements\" \"$PACKAGE_TEMP_FOLDER/Applications/RJTranslate.app/RJTranslate\";\nfind \"$PACKAGE_TEMP_FOLDER\" -type d -exec chmod +rx \"{}\" \\;\n\necho \"[->] Cleaning (stage 1)...\"\nfind $PACKAGE_PROJECT_FOLDER -name \".DS_Store\" -exec rm -f {} \\;\n\necho \"[->] Updating control...\";\nsed -i '' \"s/CURRENT_PROJECT_VERSION/${CURRENT_PROJECT_VERSION}/g\" \"$PACKAGE_TEMP_FOLDER/DEBIAN/control\";\n\necho \"[->] Counting size...\";\nFOLDER_SIZE=$(du -sk $PACKAGE_TEMP_FOLDER);\nINSTALLED_SIZE=$(echo $FOLDER_SIZE | tr -dc '0-9' );\nsed -i '' \"s/PACKAGE_SIZE/${INSTALLED_SIZE}/g\" \"$PACKAGE_TEMP_FOLDER/DEBIAN/control\";\n\necho \"[->] Packaging...\";\nDEBS_FOLDER=\"${PROJECT_DIR}/debs\";\nif [ ! -d $DEBS_FOLDER ]; then\nmkdir $DEBS_FOLDER\nfi\n\nDEB_NAME=\"${PRODUCT_BUNDLE_IDENTIFIER}_${CURRENT_PROJECT_VERSION}_${PLATFORM_NAME}-arm.deb\";\ndpkg-deb -b -Zlzma $PACKAGE_TEMP_FOLDER $DEBS_FOLDER/$DEB_NAME 2> /dev/null;\n\necho \"[->] Cleaning (stage 2)...\";\nrm -rf $PACKAGE_TEMP_FOLDER;\n";
+			shellScript = "if [[ \"ls -1 ${BUILT_PRODUCTS_DIR}/*.dylib 2>/dev/null | wc -l\" == 0 ]]; then\necho \"${BUILT_PRODUCTS_DIR} does not contain any dylib file.\";\nexit 1;\nfi\n\nPACKAGE_PROJECT_FOLDER=\"${PROJECT_DIR}/${PROJECT_NAME}/Package\";\nif [ ! -d $PACKAGE_PROJECT_FOLDER ]; then\necho \"${PROJECT_DIR}/Package does not exits.\";\nexit 2;\nfi\n\n\nPACKAGE_TEMP_FOLDER=\"${BUILT_PRODUCTS_DIR}/Package\";\nif [ -d $PACKAGE_TEMP_FOLDER ]; then\nrm -rf $PACKAGE_TEMP_FOLDER;\nfi\n\necho \"[->] Copying binaries...\";\ncp -r $PACKAGE_PROJECT_FOLDER $PACKAGE_TEMP_FOLDER;\nfind ${BUILT_PRODUCTS_DIR} -type f -iname '*.dylib' \\( -exec ldid -S\"${PROJECT_DIR}/sign.entitlements\" \"{}\" \\; -exec cp \"{}\" \"$PACKAGE_TEMP_FOLDER/Library/MobileSubstrate/DynamicLibraries/\" 2> /dev/null \\; \\)\n#find ${BUILT_PRODUCTS_DIR} -iname '*.app' -exec cp -R \"{}\" \"$PACKAGE_TEMP_FOLDER/Applications/\" \\;\nfind ${BUILT_PRODUCTS_DIR} -iname '*.momd' -exec cp -R \"{}\" \"$PACKAGE_TEMP_FOLDER/Library/Application Support/RJTranslate.bundle/\" \\;\ncp -R \"${BUILT_PRODUCTS_DIR}/RJTranslate.app\" \"$PACKAGE_TEMP_FOLDER/Applications/RJTranslate.app\";\n\ncodesign --remove-sign \"$PACKAGE_TEMP_FOLDER/Applications/RJTranslate.app\";\nrm -rf \"$PACKAGE_TEMP_FOLDER/Applications/RJTranslate.app/embedded.mobileprovision\";\nldid -S\"${PROJECT_DIR}/sign.entitlements\" \"$PACKAGE_TEMP_FOLDER/Applications/RJTranslate.app/RJTranslate\";\nfind \"$PACKAGE_TEMP_FOLDER\" -type d -exec chmod +rx \"{}\" \\;\n\necho \"[->] Cleaning (stage 1)...\"\nfind $PACKAGE_PROJECT_FOLDER -name \".DS_Store\" -exec rm -f {} \\;\n\necho \"[->] Updating control...\";\nsed -i '' \"s/CURRENT_PROJECT_VERSION/${CURRENT_PROJECT_VERSION}/g\" \"$PACKAGE_TEMP_FOLDER/DEBIAN/control\";\n\necho \"[->] Counting size...\";\nFOLDER_SIZE=$(du -sk $PACKAGE_TEMP_FOLDER);\nINSTALLED_SIZE=$(echo $FOLDER_SIZE | tr -dc '0-9' );\nsed -i '' \"s/PACKAGE_SIZE/${INSTALLED_SIZE}/g\" \"$PACKAGE_TEMP_FOLDER/DEBIAN/control\";\n\necho \"[->] Packaging...\";\nDEBS_FOLDER=\"${PROJECT_DIR}/debs\";\nif [ ! -d $DEBS_FOLDER ]; then\nmkdir $DEBS_FOLDER\nfi\n\nDEB_NAME=\"${PRODUCT_BUNDLE_IDENTIFIER}_${CURRENT_PROJECT_VERSION}_${PLATFORM_NAME}-arm.deb\";\ndpkg-deb -b -Zlzma $PACKAGE_TEMP_FOLDER $DEBS_FOLDER/$DEB_NAME 2> /dev/null;\n\necho \"[->] Cleaning (stage 2)...\";\nrm -rf $PACKAGE_TEMP_FOLDER;\n";
 		};
 		C3DD5B6F1981D58C637D5F78 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -482,12 +492,14 @@
 				A5A09548217C4696009743DF /* RJTAppCollectionView.m in Sources */,
 				A5DB9ABE217B74DB0061A810 /* RJTGradientView.m in Sources */,
 				A5DB9ACF217B8A260061A810 /* RJTAppCell.m in Sources */,
+				A56FB1C12180ADA0002F4175 /* RJTColors.m in Sources */,
 				A522F1DB217AFC310085A5E4 /* main.m in Sources */,
 				A522F1CD217AFC300085A5E4 /* AppDelegate.m in Sources */,
 				A57CF73E217B50B9004A71F8 /* RJTNavigationBar.m in Sources */,
 				A57CF73B217AFFD0004A71F8 /* RJTApplicationEntity.m in Sources */,
 				A5A0954B217C4D3A009743DF /* RJTSearchController.m in Sources */,
 				A54ADB1E217BB0CF00D32EB7 /* RJTApplicationModel.m in Sources */,
+				A56FB1C42180B17B002F4175 /* RJTTickView.m in Sources */,
 				A5A0954E217C73E8009743DF /* RJTCollectionViewLayout.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

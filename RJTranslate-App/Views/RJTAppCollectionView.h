@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol RJTAppCollectionViewDelegate <NSObject>
 
 - (void)collectionViewRequestedDownloadingTranslations:(RJTAppCollectionView *)collectionView;
+- (void)collectionView:(RJTAppCollectionView *)collectionView didSelectedModel:(RJTApplicationModel *)appModel;
 
 @end
 

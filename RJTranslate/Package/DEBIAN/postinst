@@ -1,6 +1,6 @@
 #!/bin/sh
 
-DOCUMENTS_DIR="/var/mobile/Documents/RJTranslate";
+DOCUMENTS_DIR="/var/mobile/Library/Preferences/RJTranslate";
 APP_DIR="/Applications/RJTranslate.app";
 
 #   Setting permissiong for writing and executing

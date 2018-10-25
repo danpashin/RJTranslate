@@ -15,7 +15,6 @@
 @property (strong, nonatomic, readwrite, nullable) NSString *bundleIdentifier;
 @property (strong, nonatomic, readwrite, nullable) NSString *executableName;
 @property (strong, nonatomic, readwrite, nullable) NSDictionary *translation;
-@property (assign, nonatomic, readwrite) BOOL enableTranslation;
 
 @end
 

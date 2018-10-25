@@ -23,9 +23,12 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)fetchAllAppModelsWithCompletion:(void(^)(NSArray <RJTApplicationModel *> *allModels))completion;
 - (void)fetchAllAppEntitiesWithCompletion:(void(^)(NSArray <RJTApplicationEntity *> *allEntities))completion;
 
-- (void)fetchAppModelsWithPredicate:(NSPredicate *)predicate completion:(void(^)(NSArray <RJTApplicationModel *>  * _Nonnull models))completion;
+- (void)fetchAppModelsWithPredicate:(NSPredicate *)predicate completion:(void(^)(NSArray <RJTApplicationModel *> *models))completion;
+- (void)fetchAppEntitiesWithPredicate:(NSPredicate *)predicate completion:(void (^)(NSArray<RJTApplicationEntity *> *entities))completion;
 
 - (void)insertAppModels:(NSArray <RJTApplicationModel *> *)appModels completion:(void(^ _Nullable)(void))completion;
+
+- (void)updateModel:(RJTApplicationModel *)appModel;
 @end
 
 NS_ASSUME_NONNULL_END
