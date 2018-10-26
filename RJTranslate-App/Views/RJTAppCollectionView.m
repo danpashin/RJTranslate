@@ -8,14 +8,17 @@
 
 #import "RJTAppCollectionView.h"
 #import "RJTApplicationModel.h"
+#import "RJTCollectionViewLayout.h"
 
 #import "RJTAppCell.h"
 #import <DZNEmptyDataSet/UIScrollView+EmptyDataSet.h>
 
 @interface RJTAppCollectionView () <UICollectionViewDelegateFlowLayout, UICollectionViewDataSource, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>
+@property (nonatomic, strong) RJTCollectionViewLayout *collectionViewLayout;
 @end
 
 @implementation RJTAppCollectionView
+@dynamic collectionViewLayout;
 
 - (void)awakeFromNib
 {
@@ -31,9 +34,8 @@
     self.alwaysBounceVertical = YES;
     self.allowsMultipleSelection = YES;
     
-    UICollectionViewFlowLayout *collectionLayout = (UICollectionViewFlowLayout *)self.collectionViewLayout;
-    collectionLayout.itemSize = CGSizeMake(CGRectGetWidth(self.frame) - 48.0f, 72.0f);
-    collectionLayout.sectionInset = UIEdgeInsetsMake(20.0f, 0.0f, 20.0f, 0.0f);
+    self.collectionViewLayout.itemSize = CGSizeMake(CGRectGetWidth(self.frame) - 24.0f, 72.0f);
+    self.collectionViewLayout.sectionInset = UIEdgeInsetsMake(0.0f, 0.0f, 20.0f, 0.0f);
 }
 
 - (void)reload

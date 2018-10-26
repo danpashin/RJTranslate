@@ -15,6 +15,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (instancetype)sharedAPI;
 
+@property (strong, nonatomic, class, readonly) NSURL *apiURL;
+
 @property (strong, nonatomic, readonly) NSURLSessionConfiguration *configuration;
 
 - (void)addRequest:(RJTAPIRequest *)request;

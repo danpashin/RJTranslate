@@ -8,6 +8,7 @@ end
 target 'RJTranslate-App' do
   pod 'DZNEmptyDataSet'
   pod 'SSZipArchive'
+  pod 'MBProgressHUD'
 end
 
 post_install do |installer|

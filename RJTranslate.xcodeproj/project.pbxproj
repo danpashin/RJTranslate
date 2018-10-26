@@ -16,6 +16,7 @@
 		A522F1D5217AFC310085A5E4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A522F1D4217AFC310085A5E4 /* Assets.xcassets */; };
 		A522F1D8217AFC310085A5E4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A522F1D6217AFC310085A5E4 /* LaunchScreen.storyboard */; };
 		A522F1DB217AFC310085A5E4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A522F1DA217AFC310085A5E4 /* main.m */; };
+		A523DAE221836750002E0149 /* RJTCollectionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = A523DAE121836750002E0149 /* RJTCollectionHeaderView.m */; };
 		A53533FF217A57ED00E08881 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A53533FE217A57ED00E08881 /* Foundation.framework */; };
 		A5353402217A57ED00E08881 /* RJTranslate.m in Sources */ = {isa = PBXBuildFile; fileRef = A5353401217A57ED00E08881 /* RJTranslate.m */; };
 		A5353411217A584500E08881 /* RJTranslate.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A535340F217A584500E08881 /* RJTranslate.xcdatamodeld */; };
@@ -64,6 +65,8 @@
 		A522F1D7217AFC310085A5E4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A522F1D9217AFC310085A5E4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A522F1DA217AFC310085A5E4 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		A523DAE021836750002E0149 /* RJTCollectionHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RJTCollectionHeaderView.h; sourceTree = "<group>"; };
+		A523DAE121836750002E0149 /* RJTCollectionHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RJTCollectionHeaderView.m; sourceTree = "<group>"; };
 		A53533FB217A57ED00E08881 /* RJTranslate.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = RJTranslate.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		A53533FE217A57ED00E08881 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		A5353401217A57ED00E08881 /* RJTranslate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RJTranslate.m; sourceTree = "<group>"; };
@@ -307,6 +310,8 @@
 				A5A09547217C4696009743DF /* RJTAppCollectionView.m */,
 				A56FB1C22180B17B002F4175 /* RJTTickView.h */,
 				A56FB1C32180B17B002F4175 /* RJTTickView.m */,
+				A523DAE021836750002E0149 /* RJTCollectionHeaderView.h */,
+				A523DAE121836750002E0149 /* RJTCollectionHeaderView.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -505,6 +510,7 @@
 				A5ACD6F22182DA510009DB9C /* RJTAPI.m in Sources */,
 				A57CF73A217AFFC8004A71F8 /* RJTDatabase.m in Sources */,
 				A5A09548217C4696009743DF /* RJTAppCollectionView.m in Sources */,
+				A523DAE221836750002E0149 /* RJTCollectionHeaderView.m in Sources */,
 				A5DB9ABE217B74DB0061A810 /* RJTGradientView.m in Sources */,
 				A5DB9ACF217B8A260061A810 /* RJTAppCell.m in Sources */,
 				A56FB1C12180ADA0002F4175 /* RJTColors.m in Sources */,
@@ -633,7 +639,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 0.1;
+				CURRENT_PROJECT_VERSION = 0.2;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = VW97WHTS78;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -714,7 +720,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 0.1;
+				CURRENT_PROJECT_VERSION = 0.2;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = VW97WHTS78;
 				ENABLE_NS_ASSERTIONS = NO;

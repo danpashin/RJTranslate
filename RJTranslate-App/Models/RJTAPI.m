@@ -27,12 +27,22 @@
     return sharedAPI;
 }
 
++ (NSURL *)apiURL
+{
+//#if (defined(__arm__) || defined(__arm64__))
+    return [NSURL URLWithString:@"https://danpashin.ru/dl/"];
+//#else
+//    return [NSURL URLWithString:@"http://127.0.0.1/"];
+//#endif
+}
+
 - (instancetype)init
 {
     self = [super init];
     if (self) {
         _configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
         self.configuration.allowsCellularAccess = YES;
+        self.configuration.requestCachePolicy = NSURLRequestReloadIgnoringCacheData;
 //        self.configuration.waitsForConnectivity = YES;
         
         self.sessionDelegateQueue = [NSOperationQueue new];

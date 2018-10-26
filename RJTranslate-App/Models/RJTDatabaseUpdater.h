@@ -13,8 +13,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol RJTDatabaseUpdaterDelegate <NSObject>
 
-- (void)databaseUpdater:(RJTDatabaseUpdater *)databaseUpdater finishedWithModelsArray:(NSArray <RJTApplicationModel *> *)modelsArray;
-- (void)databaseUpdater:(RJTDatabaseUpdater *)databaseUpdater failedWithError:(NSError *)error;
+- (void)databaseUpdater:(RJTDatabaseUpdater *)databaseUpdater finishedUpdateWithModels:(NSArray <RJTApplicationModel *> *)models;
+- (void)databaseUpdater:(RJTDatabaseUpdater *)databaseUpdater failedUpdateWithError:(NSError *)error;
 
 @optional
 - (void)databaseUpdater:(RJTDatabaseUpdater *)databaseUpdater updateProgress:(double)progress;
@@ -25,7 +25,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (weak, nonatomic, nullable) id <RJTDatabaseUpdaterDelegate> delegate;
 
-- (void)updateDatabase;
+- (void)downloadTranslations;
+- (void)checkTranslationsVersion:(void(^)(NSString *newVersion))completion;
 
 @end
 

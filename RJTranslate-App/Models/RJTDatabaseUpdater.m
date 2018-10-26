@@ -12,33 +12,58 @@
 #import "RJTAPIRequest.h"
 #import "RJTAPI.h"
 
-@interface RJTDatabaseUpdater () <NSURLSessionDownloadDelegate, SSZipArchiveDelegate>
+@interface RJTDatabaseUpdater () <SSZipArchiveDelegate>
 @property (strong, nonatomic) dispatch_queue_t backgroundQueue;
 
 @property (assign, nonatomic) double downloadProgress;
 @property (assign, nonatomic) double unzipProgress;
 
+@property (strong, nonatomic) NSString *translationUpdateVersion;
+
 @end
 
 @implementation RJTDatabaseUpdater
 
-- (void)updateDatabase
+- (instancetype)init
 {
-    if (!self.delegate)
-        return;
-    
-    self.backgroundQueue = dispatch_queue_create("ru.danpashin.rjtranslate.database.update", DISPATCH_QUEUE_CONCURRENT);
-    
-    NSURL *url = [NSURL URLWithString:@"http://127.0.0.1/RJTranslate_translations.zip"];
-//    NSURL *url = [NSURL URLWithString:@"https://danpashin.ru/dl/translations.zip"];
-    
+    self = [super init];
+    if (self) {
+        self.backgroundQueue = dispatch_queue_create("ru.danpashin.rjtranslate.database.update", DISPATCH_QUEUE_CONCURRENT);
+    }
+    return self;
+}
+
+- (void)downloadTranslations
+{
+    NSURL *url = [RJTAPI.apiURL URLByAppendingPathComponent:@"RJTranslate_translations.zip"];
     RJTAPIRequest *translationsDownloadRequest = [RJTAPIRequest downloadRequestWithURL:url progressHandler:^(double progress) {
         self.downloadProgress = progress;
     } completion:^(NSURL * _Nullable downloadedDataURL, NSError * _Nullable downloadError) {
         if (downloadError)
-            [self.delegate databaseUpdater:self failedWithError:downloadError];
+            [self.delegate databaseUpdater:self failedUpdateWithError:downloadError];
         else {
+            [[NSUserDefaults standardUserDefaults] setObject:self.translationUpdateVersion forKey:@"translationsCurrentVersion"];
             [SSZipArchive unzipFileAtPath:downloadedDataURL.path toDestination:NSTemporaryDirectory() delegate:self];
+        }
+    }];
+    [[RJTAPI sharedAPI] addRequest:translationsDownloadRequest];
+}
+
+- (void)checkTranslationsVersion:(void(^)(NSString *newVersion))completion
+{
+    NSURL *url = [RJTAPI.apiURL URLByAppendingPathComponent:@"RJTranslate_translations_version"];
+    RJTAPIRequest *translationsDownloadRequest = [RJTAPIRequest requestWithURL:url completion:^(NSData * _Nullable responseData, NSError * _Nullable error) {
+        if (error)
+            return;
+        
+        NSString *updatedVersion = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
+        NSString *currentVersion = [[NSUserDefaults standardUserDefaults] objectForKey:@"translationsCurrentVersion"];
+        if (!currentVersion)
+            currentVersion = @"0.0";
+        
+        if ([updatedVersion compare:currentVersion options:NSNumericSearch] == NSOrderedDescending) {
+            self.translationUpdateVersion = updatedVersion;
+            completion(updatedVersion);
         }
     }];
     [[RJTAPI sharedAPI] addRequest:translationsDownloadRequest];
@@ -76,7 +101,7 @@
             [modelsArray addObject:model];
     }
     
-    [self.delegate databaseUpdater:self finishedWithModelsArray:modelsArray];
+    [self.delegate databaseUpdater:self finishedUpdateWithModels:modelsArray];
 }
 
 

@@ -12,8 +12,12 @@
 
 #import "RJTDatabase.h"
 #import "RJTDatabaseUpdater.h"
+#import "RJTApplicationModel.h"
+#import "RJTApplicationEntity.h"
 
 #import "RJTAppCollectionView.h"
+#import "RJTCollectionHeaderView.h"
+#import <MBProgressHUD.h>
 
 @interface RJTranslateController () <UISearchResultsUpdating, UISearchControllerDelegate, RJTAppCollectionViewDelegate, RJTDatabaseUpdaterDelegate>
 
@@ -25,6 +29,9 @@
 @property (strong, nonatomic) RJTSearchController *searchController;
 @property (nullable, nonatomic,readonly,strong) RJTNavigationController *navigationController;
 
+@property (strong, nonatomic) IBOutlet RJTCollectionHeaderView *headerView;
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *headerHeightConstraint;
+@property (weak, nonatomic) MBProgressHUD *hud;
 @end
 
 @implementation RJTranslateController
@@ -35,6 +42,9 @@
     [super viewDidLoad];
     
     self.collectionView.customDelegate = self;
+    self.headerView.heightConstraint = self.headerHeightConstraint;
+    [self.headerView hide:NO];
+    [self.headerView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(actionUpdateDatabase)]];
     
     self.localDatabase = [RJTDatabase defaultDatabase];
     [self updateAllModels];
@@ -42,8 +52,13 @@
     self.searchController = [[RJTSearchController alloc] initWithSearchResultsController:nil];
     self.searchController.searchResultsUpdater = self;
     self.searchController.delegate = self;
-    
     self.navigationItem.titleView = self.searchController.searchBar;
+    
+    self.databaseUpdater = [RJTDatabaseUpdater new];
+    self.databaseUpdater.delegate = self;
+    [self.databaseUpdater checkTranslationsVersion:^(NSString * _Nonnull newVersion) {
+        [self.headerView show:YES];
+    }];
 }
 
 - (void)updateAllModels
@@ -52,6 +67,17 @@
         self.collectionView.availableApps = allModels;
         [self.collectionView reload];
     }];
+}
+
+- (void)actionUpdateDatabase
+{
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.mode = MBProgressHUDModeAnnularDeterminate;
+    hud.label.text = @"Пожалуйста, подождите";
+    hud.detailsLabel.text = @"Выполняем обновление базы данных...";
+    self.hud = hud;
+    
+    [self.databaseUpdater downloadTranslations];
 }
 
 
@@ -103,9 +129,7 @@
 
 - (void)collectionViewRequestedDownloadingTranslations:(RJTAppCollectionView *)collectionView
 {
-    self.databaseUpdater = [RJTDatabaseUpdater new];
-    self.databaseUpdater.delegate = self;
-    [self.databaseUpdater updateDatabase];
+    [self.databaseUpdater downloadTranslations];
 }
 
 - (void)collectionView:(RJTAppCollectionView *)collectionView didSelectedModel:(RJTApplicationModel *)appModel
@@ -118,16 +142,40 @@
 #pragma mark RJTDatabaseUpdaterDelegate
 #pragma mark -
 
-- (void)databaseUpdater:(RJTDatabaseUpdater *)databaseUpdater finishedWithModelsArray:(NSArray <RJTApplicationModel *> *)modelsArray
+- (void)databaseUpdater:(RJTDatabaseUpdater *)databaseUpdater finishedUpdateWithModels:(NSArray <RJTApplicationModel *> *)models
 {
-    self.databaseUpdater = nil;
+    for (RJTApplicationModel *model in models) {
+        @autoreleasepool {
+            dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
+            NSPredicate *predicate = [NSPredicate predicateWithFormat:@"bundleIdentifier == %@", model.bundleIdentifier];
+            [self.localDatabase fetchAppEntitiesWithPredicate:predicate completion:^(NSArray<RJTApplicationEntity *> * _Nonnull entities) {
+                NSInteger entitiesCount = entities.count;
+                if (entitiesCount == 0) {
+                    [self.localDatabase insertAppModels:@[model] completion:^{
+                        dispatch_semaphore_signal(semaphore);
+                    }];
+                } else if (entitiesCount == 1) {
+                    model.enableTranslation = entities.firstObject.enableTranslation;
+                    [self.localDatabase updateModel:model];
+                    dispatch_semaphore_signal(semaphore);
+                } else {
+                    RJTErrorLog(@"Can not update localization. Number of localizations with identifier '%@' is more than one.", model.bundleIdentifier);
+                    dispatch_semaphore_signal(semaphore);
+                }
+            }];
+            dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+        }
+    }
     
-    [self.localDatabase insertAppModels:modelsArray completion:^{
-        [self updateAllModels];
-    }];
+    [self updateAllModels];
+    self.databaseUpdater = nil;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.hud hideAnimated:YES];
+        [self.headerView hide:YES];
+    });
 }
 
-- (void)databaseUpdater:(RJTDatabaseUpdater *)databaseUpdater failedWithError:(NSError *)error
+- (void)databaseUpdater:(RJTDatabaseUpdater *)databaseUpdater failedUpdateWithError:(NSError *)error
 {
     RJTErrorLog(@"Failed to update database with error: %@", error);
 }
@@ -135,6 +183,9 @@
 - (void)databaseUpdater:(RJTDatabaseUpdater *)databaseUpdater updateProgress:(double)progress
 {
     double percent = ceil(progress * 100.0f);
+    dispatch_async(dispatch_get_main_queue(), ^{
+        self.hud.progress = (float)progress;
+    });
     RJTLog(@"Updating... %.0f%%", percent);
 }
 

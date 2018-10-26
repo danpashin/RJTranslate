@@ -16,6 +16,7 @@
 @property (copy, nonatomic, readwrite, nullable) RJTAPIRequestDownloadCompletionBlock downloadCompletion;
 
 @property (copy, nonatomic, readwrite, nullable) RJTAPIRequestCompletionBlock completion;
+@property (strong, nonatomic, readwrite) NSMutableData *responseData;
 
 @end
 
@@ -45,6 +46,7 @@
                                                 timeoutInterval:config.timeoutIntervalForRequest];
     request.completion = completion;
     request.isDownloadRequest = NO;
+    request.responseData = [NSMutableData data];
     
     return request;
 }
