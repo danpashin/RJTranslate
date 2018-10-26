@@ -34,6 +34,8 @@
 		A5A09548217C4696009743DF /* RJTAppCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = A5A09547217C4696009743DF /* RJTAppCollectionView.m */; };
 		A5A0954B217C4D3A009743DF /* RJTSearchController.m in Sources */ = {isa = PBXBuildFile; fileRef = A5A0954A217C4D3A009743DF /* RJTSearchController.m */; };
 		A5A0954E217C73E8009743DF /* RJTCollectionViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = A5A0954D217C73E8009743DF /* RJTCollectionViewLayout.m */; };
+		A5ACD6F22182DA510009DB9C /* RJTAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = A5ACD6F12182DA510009DB9C /* RJTAPI.m */; };
+		A5ACD6F52182DB7C0009DB9C /* RJTAPIRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = A5ACD6F42182DB7C0009DB9C /* RJTAPIRequest.m */; };
 		A5DB9ABE217B74DB0061A810 /* RJTGradientView.m in Sources */ = {isa = PBXBuildFile; fileRef = A5DB9ABB217B74DB0061A810 /* RJTGradientView.m */; };
 		A5DB9AC5217B80150061A810 /* RJTNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = A5DB9AC2217B80150061A810 /* RJTNavigationController.m */; };
 		A5DB9ACF217B8A260061A810 /* RJTAppCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A5DB9ACE217B8A260061A810 /* RJTAppCell.m */; };
@@ -88,6 +90,10 @@
 		A5A0954A217C4D3A009743DF /* RJTSearchController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RJTSearchController.m; sourceTree = "<group>"; };
 		A5A0954C217C73E8009743DF /* RJTCollectionViewLayout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RJTCollectionViewLayout.h; sourceTree = "<group>"; };
 		A5A0954D217C73E8009743DF /* RJTCollectionViewLayout.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RJTCollectionViewLayout.m; sourceTree = "<group>"; };
+		A5ACD6F02182DA510009DB9C /* RJTAPI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RJTAPI.h; sourceTree = "<group>"; };
+		A5ACD6F12182DA510009DB9C /* RJTAPI.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RJTAPI.m; sourceTree = "<group>"; };
+		A5ACD6F32182DB7C0009DB9C /* RJTAPIRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RJTAPIRequest.h; sourceTree = "<group>"; };
+		A5ACD6F42182DB7C0009DB9C /* RJTAPIRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RJTAPIRequest.m; sourceTree = "<group>"; };
 		A5C107D5217E56F900989BDB /* postinst */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = postinst; sourceTree = "<group>"; };
 		A5C107D6217E56F900989BDB /* postrm */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = postrm; sourceTree = "<group>"; };
 		A5C107D7217E56F900989BDB /* control */ = {isa = PBXFileReference; lastKnownFileType = text; path = control; sourceTree = "<group>"; };
@@ -213,6 +219,10 @@
 				A5A0954D217C73E8009743DF /* RJTCollectionViewLayout.m */,
 				A56C0165217F25D000027DB3 /* RJTDatabaseUpdater.h */,
 				A56C0166217F25D000027DB3 /* RJTDatabaseUpdater.m */,
+				A5ACD6F02182DA510009DB9C /* RJTAPI.h */,
+				A5ACD6F12182DA510009DB9C /* RJTAPI.m */,
+				A5ACD6F32182DB7C0009DB9C /* RJTAPIRequest.h */,
+				A5ACD6F42182DB7C0009DB9C /* RJTAPIRequest.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -492,6 +502,7 @@
 				A5DB9AC5217B80150061A810 /* RJTNavigationController.m in Sources */,
 				A56C0167217F25D000027DB3 /* RJTDatabaseUpdater.m in Sources */,
 				A522F1D0217AFC300085A5E4 /* RJTranslateController.m in Sources */,
+				A5ACD6F22182DA510009DB9C /* RJTAPI.m in Sources */,
 				A57CF73A217AFFC8004A71F8 /* RJTDatabase.m in Sources */,
 				A5A09548217C4696009743DF /* RJTAppCollectionView.m in Sources */,
 				A5DB9ABE217B74DB0061A810 /* RJTGradientView.m in Sources */,
@@ -501,6 +512,7 @@
 				A522F1CD217AFC300085A5E4 /* AppDelegate.m in Sources */,
 				A57CF73E217B50B9004A71F8 /* RJTNavigationBar.m in Sources */,
 				A57CF73B217AFFD0004A71F8 /* RJTApplicationEntity.m in Sources */,
+				A5ACD6F52182DB7C0009DB9C /* RJTAPIRequest.m in Sources */,
 				A5A0954B217C4D3A009743DF /* RJTSearchController.m in Sources */,
 				A54ADB1E217BB0CF00D32EB7 /* RJTApplicationModel.m in Sources */,
 				A56FB1C42180B17B002F4175 /* RJTTickView.m in Sources */,

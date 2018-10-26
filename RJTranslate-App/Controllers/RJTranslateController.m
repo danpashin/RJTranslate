@@ -129,7 +129,7 @@
 
 - (void)databaseUpdater:(RJTDatabaseUpdater *)databaseUpdater failedWithError:(NSError *)error
 {
-    RJTErrorLog(@"Failed to update with error: %@", error);
+    RJTErrorLog(@"Failed to update database with error: %@", error);
 }
 
 - (void)databaseUpdater:(RJTDatabaseUpdater *)databaseUpdater updateProgress:(double)progress
