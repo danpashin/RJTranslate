@@ -19,7 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (strong, nonatomic, readonly) NSURLSessionConfiguration *configuration;
 
-- (void)addRequest:(RJTAPIRequest *)request;
+- (void)addRequest:(__kindof RJTAPIRequest *)request;
 
 @end
 

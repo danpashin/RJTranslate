@@ -124,8 +124,7 @@
     NSDictionary *attributes = @{NSFontAttributeName: [UIFont preferredFontForTextStyle:UIFontTextStyleTitle2],
                                  NSForegroundColorAttributeName: [UIColor grayColor]};
     
-    return [[NSAttributedString alloc] initWithString:titleString
-                                           attributes:attributes];
+    return [[NSAttributedString alloc] initWithString:titleString attributes:attributes];
 }
 
 - (NSAttributedString *)descriptionForEmptyDataSet:(UIScrollView *)scrollView
@@ -145,8 +144,7 @@
     if (self.performingSearch)
         return nil;
     
-    NSDictionary *attributes = @{
-                                 NSFontAttributeName: [UIFont preferredFontForTextStyle:UIFontTextStyleTitle3],
+    NSDictionary *attributes = @{NSFontAttributeName: [UIFont preferredFontForTextStyle:UIFontTextStyleTitle3],
                                  NSForegroundColorAttributeName: [UIColor colorWithWhite:0.2f alpha:1.0f]};
     
     return [[NSAttributedString alloc] initWithString:NSLocalizedString(@"download", @"") attributes:attributes];

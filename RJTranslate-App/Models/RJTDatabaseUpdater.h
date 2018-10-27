@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-@class RJTDatabaseUpdater, RJTApplicationModel;
+@class RJTDatabaseUpdater, RJTApplicationModel, RJTDatabaseUpdate;
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -26,7 +26,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic, nullable) id <RJTDatabaseUpdaterDelegate> delegate;
 
 - (void)downloadTranslations;
-- (void)checkTranslationsVersion:(void(^)(NSString *newVersion))completion;
+- (void)checkTranslationsVersion:(void(^)(RJTDatabaseUpdate * _Nullable updateModel, NSError * _Nullable error))completion;
 
 @end
 

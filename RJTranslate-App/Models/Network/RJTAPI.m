@@ -7,7 +7,10 @@
 //
 
 #import "RJTAPI.h"
-#import "RJTAPIRequest.h"
+#import "RJTAPIDownloadRequest.h"
+
+#import <UIKit/UIKit.h>
+#import <sys/utsname.h>
 
 @interface RJTAPI () <NSURLSessionDownloadDelegate>
 @property (strong, nonatomic) NSURLSession *session;
@@ -29,11 +32,11 @@
 
 + (NSURL *)apiURL
 {
-#if (defined(__arm__) || defined(__arm64__))
-    return [NSURL URLWithString:@"https://danpashin.ru/dl/"];
-#else
-    return [NSURL URLWithString:@"http://127.0.0.1/"];
-#endif
+//#if (defined(__arm__) || defined(__arm64__))
+    return [NSURL URLWithString:@"https://api.rejail.ru/translation.php"];
+//#else
+//    return [NSURL URLWithString:@"https://127.0.0.1/"];
+//#endif
 }
 
 - (instancetype)init
@@ -44,9 +47,23 @@
         self.configuration.allowsCellularAccess = YES;
         self.configuration.requestCachePolicy = NSURLRequestReloadIgnoringCacheData;
         
-        if (@available(iOS 11.0, *)) {
-            self.configuration.waitsForConnectivity = YES;
-        }
+//        if (@available(iOS 11.0, *)) {
+//            self.configuration.waitsForConnectivity = YES;
+//        }
+        
+        UIDevice *currentDevice = [UIDevice currentDevice];
+        NSString *systemName = currentDevice.systemName;
+        NSString *systemVersion = currentDevice.systemVersion;
+        
+        CGFloat scale = [UIScreen mainScreen].scale;
+        
+        struct utsname deviceInfo;
+        uname(&deviceInfo);
+        
+        NSString *appVersion = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"];
+        NSString *userAgent = [NSString stringWithFormat:@"RJTranslate/%@ (%s; %@/%@; Scale/%.1f)", appVersion, deviceInfo.machine, systemName, systemVersion, scale];
+        self.configuration.HTTPAdditionalHeaders = @{@"User-Agent":userAgent};
+        
         
         self.sessionDelegateQueue = [NSOperationQueue new];
         self.sessionDelegateQueue.qualityOfService = NSQualityOfServiceBackground;
@@ -70,7 +87,11 @@
 {
     RJTAPIRequest *request = (RJTAPIRequest *)task.originalRequest;
     if (error) {
-        request.isDownloadRequest ? request.downloadCompletion(nil, error) : request.completion(nil, error);
+        if ([request isKindOfClass:[RJTAPIDownloadRequest class]]) {
+            ((RJTAPIDownloadRequest *)request).downloadCompletion(nil, error);
+        } else {
+            request.completion(nil, error);
+        }
     } else {
         if (request.completion)
             request.completion(request.responseData, error);
@@ -87,11 +108,14 @@
     NSInteger statusCode = response.statusCode;
     if (statusCode >= 400) {
         completionHandler(NSURLSessionResponseCancel);
-    } else if (((RJTAPIRequest *)dataTask.originalRequest).isDownloadRequest) {
-        completionHandler(NSURLSessionResponseBecomeDownload);
-    }
+        return;
+    } 
     
-    completionHandler(NSURLSessionResponseAllow);
+    if ([dataTask.originalRequest isKindOfClass:[RJTAPIDownloadRequest class]]) {
+        completionHandler(NSURLSessionResponseBecomeDownload);
+    } else {
+        completionHandler(NSURLSessionResponseAllow);
+    }
 }
 
 - (void)URLSession:(NSURLSession *)session dataTask:(NSURLSessionDataTask *)dataTask didBecomeDownloadTask:(NSURLSessionDownloadTask *)downloadTask
@@ -114,13 +138,13 @@
 {
     double downloadProgress = ((double)totalBytesWritten / (double)totalBytesExpectedToWrite);
     
-    RJTAPIRequest *request = (RJTAPIRequest *)downloadTask.originalRequest;
-    request.downloadProgressHandler(downloadProgress);
+    RJTAPIDownloadRequest *request = (RJTAPIDownloadRequest *)downloadTask.originalRequest;
+    request.progressHandler(downloadProgress);
 }
 
 - (void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask didFinishDownloadingToURL:(NSURL *)location
 {
-    RJTAPIRequest *request = (RJTAPIRequest *)downloadTask.originalRequest;
+    RJTAPIDownloadRequest *request = (RJTAPIDownloadRequest *)downloadTask.originalRequest;
     request.downloadCompletion(location, nil);
 }
 

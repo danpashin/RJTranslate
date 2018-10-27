@@ -8,8 +8,12 @@
 
 #import "RJTDatabaseUpdater.h"
 #import "SSZipArchive.h"
+
 #import "RJTApplicationModel.h"
-#import "RJTAPIRequest.h"
+#import "RJTDatabaseUpdate.h"
+
+#import "RJTAPIDownloadRequest.h"
+#import "RJTAPIJSONRequest.h"
 #import "RJTAPI.h"
 
 @interface RJTDatabaseUpdater () <SSZipArchiveDelegate>
@@ -18,7 +22,7 @@
 @property (assign, nonatomic) double downloadProgress;
 @property (assign, nonatomic) double unzipProgress;
 
-@property (strong, nonatomic) NSString *translationUpdateVersion;
+@property (strong, nonatomic) RJTDatabaseUpdate *currentUpdate;
 
 @end
 
@@ -35,38 +39,58 @@
 
 - (void)downloadTranslations
 {
-    NSURL *url = [RJTAPI.apiURL URLByAppendingPathComponent:@"RJTranslate_translations.zip"];
-    RJTAPIRequest *translationsDownloadRequest = [RJTAPIRequest downloadRequestWithURL:url progressHandler:^(double progress) {
-        self.downloadProgress = progress;
-    } completion:^(NSURL * _Nullable downloadedDataURL, NSError * _Nullable downloadError) {
-        if (downloadError)
-            [self.delegate databaseUpdater:self failedUpdateWithError:downloadError];
-        else {
-            [[NSUserDefaults standardUserDefaults] setObject:self.translationUpdateVersion forKey:@"translationsCurrentVersion"];
-            [SSZipArchive unzipFileAtPath:downloadedDataURL.path toDestination:NSTemporaryDirectory() delegate:self];
-        }
-    }];
-    [[RJTAPI sharedAPI] addRequest:translationsDownloadRequest];
+    void (^downloadBlock)(void) = ^{
+        NSURL *url = [NSURL URLWithString:self.currentUpdate.archiveURL];
+        RJTAPIDownloadRequest *translationsDownloadRequest = [RJTAPIDownloadRequest downloadRequestWithURL:url progressHandler:^(double progress) {
+            self.downloadProgress = progress;
+        } completion:^(NSURL * _Nullable downloadedDataURL, NSError * _Nullable downloadError) {
+            if (downloadError)
+                [self.delegate databaseUpdater:self failedUpdateWithError:downloadError];
+            else {
+                [self.currentUpdate saveUpdate];
+                NSString *destinationPath = [NSTemporaryDirectory() stringByAppendingString:@"translations"];
+                [[NSFileManager defaultManager] createDirectoryAtPath:destinationPath withIntermediateDirectories:NO attributes:nil error:nil];
+                
+                [SSZipArchive unzipFileAtPath:downloadedDataURL.path toDestination:destinationPath delegate:self];
+            }
+        }];
+        [[RJTAPI sharedAPI] addRequest:translationsDownloadRequest];
+    };
+    
+    if (self.currentUpdate.archiveURL.length > 0) {
+        downloadBlock();
+    } else {
+        [self checkTranslationsVersion:^(RJTDatabaseUpdate * _Nullable updateModel, NSError * _Nullable error) {
+            if (error) {
+                [self.delegate databaseUpdater:self failedUpdateWithError:error];
+                return;
+            }
+            downloadBlock();
+        }];
+    }
 }
 
-- (void)checkTranslationsVersion:(void(^)(NSString *newVersion))completion
+- (void)checkTranslationsVersion:(void(^)(RJTDatabaseUpdate * _Nullable updateModel, NSError * _Nullable error))completion
 {
-    NSURL *url = [RJTAPI.apiURL URLByAppendingPathComponent:@"RJTranslate_translations_version"];
-    RJTAPIRequest *translationsDownloadRequest = [RJTAPIRequest requestWithURL:url completion:^(NSData * _Nullable responseData, NSError * _Nullable error) {
-        if (error)
+    NSURL *url = [RJTAPI apiURL];
+    RJTAPIJSONRequest *versionRequest = [RJTAPIJSONRequest jsonRequestWithURL:url completion:^(NSDictionary * _Nullable json, NSError * _Nullable error) {
+        if (error) {
+            completion(nil, error);
             return;
+        }
         
-        NSString *updatedVersion = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
-        NSString *currentVersion = [[NSUserDefaults standardUserDefaults] objectForKey:@"translationsCurrentVersion"];
-        if (!currentVersion)
-            currentVersion = @"0.0";
-        
-        if ([updatedVersion compare:currentVersion options:NSNumericSearch] == NSOrderedDescending) {
-            self.translationUpdateVersion = updatedVersion;
-            completion(updatedVersion);
+        NSDictionary *errorDict = json[@"error"];
+        if (errorDict) {
+            NSInteger errorCode = [errorDict[@"code"] integerValue];
+            NSString *errorDescription = errorDict[@"description"] ?: @"";
+            NSError *serverError = [NSError errorWithDomain:@"ru.danpashin.rjtranslate.serverError" code:errorCode userInfo:@{NSLocalizedDescriptionKey:errorDescription}];
+            completion(nil, serverError);
+        } else {
+            self.currentUpdate = [RJTDatabaseUpdate from:json[@"translation"]];
+            completion(self.currentUpdate, nil);
         }
     }];
-    [[RJTAPI sharedAPI] addRequest:translationsDownloadRequest];
+    [[RJTAPI sharedAPI] addRequest:versionRequest];
 }
 
 - (void)setDownloadProgress:(double)downloadProgress
@@ -100,6 +124,7 @@
         if (![modelsArray containsObject:model])
             [modelsArray addObject:model];
     }
+    [fileManager removeItemAtPath:path error:nil];
     
     [self.delegate databaseUpdater:self finishedUpdateWithModels:modelsArray];
 }
@@ -117,7 +142,7 @@
 - (void)zipArchiveDidUnzipArchiveAtPath:(NSString *)path zipInfo:(unz_global_info)zipInfo unzippedPath:(NSString *)unzippedPath
 {
     dispatch_async(self.backgroundQueue, ^{
-        [self processFolderAtPath:[unzippedPath stringByAppendingString:@"RJTranslate_translations/"]];
+        [self processFolderAtPath:unzippedPath];
     });
 }
 

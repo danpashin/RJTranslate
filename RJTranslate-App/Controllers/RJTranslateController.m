@@ -13,6 +13,7 @@
 #import <spawn.h>
 #import "RJTDatabase.h"
 #import "RJTDatabaseUpdater.h"
+#import "RJTDatabaseUpdate.h"
 #import "RJTApplicationModel.h"
 #import "RJTApplicationEntity.h"
 
@@ -43,11 +44,6 @@
 
 - (void)viewDidLoad
 {
-    
-    NSBundle *bundle = [NSBundle bundleWithIdentifier:@"com.apple.Preferences"];
-    RJTLog(@"preferencebundle: %@", bundle);
-    
-    
     [super viewDidLoad];
     self.title = NSLocalizedString(@"available_translations", @"");
     
@@ -68,9 +64,11 @@
     
     self.databaseUpdater = [RJTDatabaseUpdater new];
     self.databaseUpdater.delegate = self;
-    [self.databaseUpdater checkTranslationsVersion:^(NSString * _Nonnull newVersion) {
-        [self.headerView show:YES];
+    [self.databaseUpdater checkTranslationsVersion:^(RJTDatabaseUpdate * _Nullable updateModel, NSError * _Nullable error) {
+        if (!error && updateModel.canUpdate)
+            [self.headerView show:YES];
     }];
+    
 }
 
 - (void)updateAllModels
@@ -87,6 +85,7 @@
     hud.mode = MBProgressHUDModeAnnularDeterminate;
     hud.label.text = NSLocalizedString(@"please_wait", @"");
     hud.detailsLabel.text = NSLocalizedString(@"updating_database...", @"");
+    hud.removeFromSuperViewOnHide = YES;
     self.hud = hud;
     
     [self.databaseUpdater downloadTranslations];
@@ -99,12 +98,12 @@
 
 - (void)updateSearchResultsForSearchController:(RJTSearchController *)searchController
 {
-    searchController.dimBackground = (searchController.searchBar.text.length == 0);
+    NSString *searchText = searchController.searchBar.text;
+    searchController.dimBackground = (searchText.length == 0);
     
     if (self.searchOperation)
         [self.searchOperation cancel];
     
-    NSString *searchText = searchController.searchBar.text;
     self.searchOperation = [NSBlockOperation blockOperationWithBlock:^{
         self.collectionView.performingSearch = YES;
         self.collectionView.searchText = searchText;
@@ -142,7 +141,7 @@
 
 - (void)collectionViewRequestedDownloadingTranslations:(RJTAppCollectionView *)collectionView
 {
-    [self.databaseUpdater downloadTranslations];
+    [self actionUpdateDatabase];
 }
 
 - (void)collectionView:(RJTAppCollectionView *)collectionView didSelectedModel:(RJTApplicationModel *)appModel
@@ -197,6 +196,15 @@
 - (void)databaseUpdater:(RJTDatabaseUpdater *)databaseUpdater failedUpdateWithError:(NSError *)error
 {
     RJTErrorLog(@"Failed to update database with error: %@", error);
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if (self.hud.superview) {
+            self.hud.mode = MBProgressHUDModeText;
+            self.hud.label.text = @"Не удалось выполнить обновление.";
+            self.hud.detailsLabel.text = error.localizedDescription;
+            [self.hud hideAnimated:YES afterDelay:2.0f];
+        }
+    });
 }
 
 - (void)databaseUpdater:(RJTDatabaseUpdater *)databaseUpdater updateProgress:(double)progress
