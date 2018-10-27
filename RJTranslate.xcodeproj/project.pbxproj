@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8C4A0ED3822A5490301B7140 /* libPods-RJTranslate-App.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E6014036F0F43D5810132C82 /* libPods-RJTranslate-App.a */; };
+		7132177810DEAFA6855E5C09 /* Pods_RJTranslate_App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3D79D1D15E39035D827829D /* Pods_RJTranslate_App.framework */; };
 		A517965E217D1A9200B87596 /* RJTApplicationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A54ADB1D217BB0CF00D32EB7 /* RJTApplicationModel.m */; };
 		A517965F217D1A9400B87596 /* RJTApplicationModel.h in Headers */ = {isa = PBXBuildFile; fileRef = A54ADB1C217BB0CF00D32EB7 /* RJTApplicationModel.h */; };
 		A522F1CD217AFC300085A5E4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A522F1CC217AFC300085A5E4 /* AppDelegate.m */; };
@@ -24,6 +24,7 @@
 		A5353418217A595200E08881 /* RJTApplicationEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = A5353414217A595200E08881 /* RJTApplicationEntity.m */; };
 		A535341C217A5A2800E08881 /* RJTDatabase.h in Headers */ = {isa = PBXBuildFile; fileRef = A535341A217A5A2800E08881 /* RJTDatabase.h */; };
 		A535341D217A5A2800E08881 /* RJTDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = A535341B217A5A2800E08881 /* RJTDatabase.m */; };
+		A545D85E21847AE90072674C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A545D86021847AE90072674C /* Localizable.strings */; };
 		A54ADB1E217BB0CF00D32EB7 /* RJTApplicationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A54ADB1D217BB0CF00D32EB7 /* RJTApplicationModel.m */; };
 		A56C0167217F25D000027DB3 /* RJTDatabaseUpdater.m in Sources */ = {isa = PBXBuildFile; fileRef = A56C0166217F25D000027DB3 /* RJTDatabaseUpdater.m */; };
 		A56FB1C12180ADA0002F4175 /* RJTColors.m in Sources */ = {isa = PBXBuildFile; fileRef = A56FB1C02180ADA0002F4175 /* RJTColors.m */; };
@@ -37,6 +38,7 @@
 		A5A0954E217C73E8009743DF /* RJTCollectionViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = A5A0954D217C73E8009743DF /* RJTCollectionViewLayout.m */; };
 		A5ACD6F22182DA510009DB9C /* RJTAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = A5ACD6F12182DA510009DB9C /* RJTAPI.m */; };
 		A5ACD6F52182DB7C0009DB9C /* RJTAPIRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = A5ACD6F42182DB7C0009DB9C /* RJTAPIRequest.m */; };
+		A5CC12EA2184A2A600A607E3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A5CC12E92184A2A600A607E3 /* GoogleService-Info.plist */; };
 		A5DB9ABE217B74DB0061A810 /* RJTGradientView.m in Sources */ = {isa = PBXBuildFile; fileRef = A5DB9ABB217B74DB0061A810 /* RJTGradientView.m */; };
 		A5DB9AC5217B80150061A810 /* RJTNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = A5DB9AC2217B80150061A810 /* RJTNavigationController.m */; };
 		A5DB9ACF217B8A260061A810 /* RJTAppCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A5DB9ACE217B8A260061A810 /* RJTAppCell.m */; };
@@ -55,6 +57,7 @@
 
 /* Begin PBXFileReference section */
 		18933699E1CEE06A405D344F /* libPods-RJTranslate.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RJTranslate.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A3D79D1D15E39035D827829D /* Pods_RJTranslate_App.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RJTranslate_App.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A522F1C9217AFC300085A5E4 /* RJTranslate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RJTranslate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A522F1CB217AFC300085A5E4 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		A522F1CC217AFC300085A5E4 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -75,6 +78,7 @@
 		A5353414217A595200E08881 /* RJTApplicationEntity.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RJTApplicationEntity.m; sourceTree = "<group>"; };
 		A535341A217A5A2800E08881 /* RJTDatabase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RJTDatabase.h; sourceTree = "<group>"; };
 		A535341B217A5A2800E08881 /* RJTDatabase.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RJTDatabase.m; sourceTree = "<group>"; };
+		A545D86321847B120072674C /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A54ADB1C217BB0CF00D32EB7 /* RJTApplicationModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RJTApplicationModel.h; sourceTree = "<group>"; };
 		A54ADB1D217BB0CF00D32EB7 /* RJTApplicationModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RJTApplicationModel.m; sourceTree = "<group>"; };
 		A56C0165217F25D000027DB3 /* RJTDatabaseUpdater.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RJTDatabaseUpdater.h; sourceTree = "<group>"; };
@@ -102,6 +106,7 @@
 		A5C107D7217E56F900989BDB /* control */ = {isa = PBXFileReference; lastKnownFileType = text; path = control; sourceTree = "<group>"; };
 		A5C107DA217E56F900989BDB /* RJTranslate.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = RJTranslate.bundle; sourceTree = "<group>"; };
 		A5C107DD217E56F900989BDB /* RJTranslate.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = RJTranslate.plist; sourceTree = "<group>"; };
+		A5CC12E92184A2A600A607E3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A5DB9ABA217B74DB0061A810 /* RJTGradientView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RJTGradientView.h; sourceTree = "<group>"; };
 		A5DB9ABB217B74DB0061A810 /* RJTGradientView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RJTGradientView.m; sourceTree = "<group>"; };
 		A5DB9AC1217B80150061A810 /* RJTNavigationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RJTNavigationController.h; sourceTree = "<group>"; };
@@ -112,7 +117,6 @@
 		C442FAAA903384EF3A1DF395 /* Pods-RJTranslate.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RJTranslate.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RJTranslate/Pods-RJTranslate.debug.xcconfig"; sourceTree = "<group>"; };
 		D6FE48C60EC713FBE57420E8 /* Pods-RJTranslate-App.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RJTranslate-App.release.xcconfig"; path = "Pods/Target Support Files/Pods-RJTranslate-App/Pods-RJTranslate-App.release.xcconfig"; sourceTree = "<group>"; };
 		DB57EBDFB696BF1BE2E20A93 /* Pods-RJTranslate-App.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RJTranslate-App.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RJTranslate-App/Pods-RJTranslate-App.debug.xcconfig"; sourceTree = "<group>"; };
-		E6014036F0F43D5810132C82 /* libPods-RJTranslate-App.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RJTranslate-App.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,7 +124,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8C4A0ED3822A5490301B7140 /* libPods-RJTranslate-App.a in Frameworks */,
+				7132177810DEAFA6855E5C09 /* Pods_RJTranslate_App.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -161,6 +165,7 @@
 				A522F1D6217AFC310085A5E4 /* LaunchScreen.storyboard */,
 				A522F1D9217AFC310085A5E4 /* Info.plist */,
 				A522F1DA217AFC310085A5E4 /* main.m */,
+				A545D86021847AE90072674C /* Localizable.strings */,
 			);
 			path = "RJTranslate-App";
 			sourceTree = "<group>";
@@ -190,7 +195,7 @@
 			children = (
 				A53533FE217A57ED00E08881 /* Foundation.framework */,
 				18933699E1CEE06A405D344F /* libPods-RJTranslate.a */,
-				E6014036F0F43D5810132C82 /* libPods-RJTranslate-App.a */,
+				A3D79D1D15E39035D827829D /* Pods_RJTranslate_App.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -207,6 +212,7 @@
 				A535340F217A584500E08881 /* RJTranslate.xcdatamodeld */,
 				A5C107D3217E56F900989BDB /* Package */,
 				A58AFD72217DF975008A900C /* sign.entitlements */,
+				A5CC12E92184A2A600A607E3 /* GoogleService-Info.plist */,
 			);
 			path = RJTranslate;
 			sourceTree = "<group>";
@@ -354,6 +360,8 @@
 				A522F1C5217AFC300085A5E4 /* Sources */,
 				A522F1C6217AFC300085A5E4 /* Frameworks */,
 				A522F1C7217AFC300085A5E4 /* Resources */,
+				CD2ED053E04E72801AB23A6B /* [CP] Embed Pods Frameworks */,
+				A5CC12EB2184A52F00A607E3 /* Setup Crashlytics */,
 			);
 			buildRules = (
 			);
@@ -409,6 +417,7 @@
 			knownRegions = (
 				en,
 				Base,
+				ru,
 			);
 			mainGroup = A53533F1217A57ED00E08881;
 			productRefGroup = A53533FC217A57ED00E08881 /* Products */;
@@ -427,6 +436,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				A522F1D8217AFC310085A5E4 /* LaunchScreen.storyboard in Resources */,
+				A545D85E21847AE90072674C /* Localizable.strings in Resources */,
+				A5CC12EA2184A2A600A607E3 /* GoogleService-Info.plist in Resources */,
 				A522F1D5217AFC310085A5E4 /* Assets.xcassets in Resources */,
 				A522F1D3217AFC300085A5E4 /* Main.storyboard in Resources */,
 			);
@@ -475,6 +486,26 @@
 			shellPath = /bin/sh;
 			shellScript = "if [[ \"ls -1 ${BUILT_PRODUCTS_DIR}/*.dylib 2>/dev/null | wc -l\" == 0 ]]; then\necho \"${BUILT_PRODUCTS_DIR} does not contain any dylib file.\";\nexit 1;\nfi\n\nPACKAGE_PROJECT_FOLDER=\"${PROJECT_DIR}/${PROJECT_NAME}/Package\";\nif [ ! -d $PACKAGE_PROJECT_FOLDER ]; then\necho \"${PROJECT_DIR}/Package does not exits.\";\nexit 2;\nfi\n\n\nPACKAGE_TEMP_FOLDER=\"${BUILT_PRODUCTS_DIR}/Package\";\nif [ -d $PACKAGE_TEMP_FOLDER ]; then\nrm -rf $PACKAGE_TEMP_FOLDER;\nfi\n\necho \"[->] Copying binaries...\";\ncp -r $PACKAGE_PROJECT_FOLDER $PACKAGE_TEMP_FOLDER;\nfind ${BUILT_PRODUCTS_DIR} -type f -iname '*.dylib' \\( -exec ldid -S\"${PROJECT_DIR}/sign.entitlements\" \"{}\" \\; -exec cp \"{}\" \"$PACKAGE_TEMP_FOLDER/Library/MobileSubstrate/DynamicLibraries/\" 2> /dev/null \\; \\)\n#find ${BUILT_PRODUCTS_DIR} -iname '*.app' -exec cp -R \"{}\" \"$PACKAGE_TEMP_FOLDER/Applications/\" \\;\nfind ${BUILT_PRODUCTS_DIR} -iname '*.momd' -exec cp -R \"{}\" \"$PACKAGE_TEMP_FOLDER/Library/Application Support/RJTranslate.bundle/\" \\;\ncp -R \"${BUILT_PRODUCTS_DIR}/RJTranslate.app\" \"$PACKAGE_TEMP_FOLDER/Applications/RJTranslate.app\";\n\ncodesign --remove-sign \"$PACKAGE_TEMP_FOLDER/Applications/RJTranslate.app\";\nrm -rf \"$PACKAGE_TEMP_FOLDER/Applications/RJTranslate.app/embedded.mobileprovision\";\nldid -S\"${PROJECT_DIR}/sign.entitlements\" \"$PACKAGE_TEMP_FOLDER/Applications/RJTranslate.app/RJTranslate\";\nfind \"$PACKAGE_TEMP_FOLDER\" -type d -exec chmod +rx \"{}\" \\;\n\necho \"[->] Cleaning (stage 1)...\"\nfind $PACKAGE_PROJECT_FOLDER -name \".DS_Store\" -exec rm -f {} \\;\n\necho \"[->] Updating control...\";\nsed -i '' \"s/CURRENT_PROJECT_VERSION/${CURRENT_PROJECT_VERSION}/g\" \"$PACKAGE_TEMP_FOLDER/DEBIAN/control\";\n\necho \"[->] Counting size...\";\nFOLDER_SIZE=$(du -sk $PACKAGE_TEMP_FOLDER);\nINSTALLED_SIZE=$(echo $FOLDER_SIZE | tr -dc '0-9' );\nsed -i '' \"s/PACKAGE_SIZE/${INSTALLED_SIZE}/g\" \"$PACKAGE_TEMP_FOLDER/DEBIAN/control\";\n\necho \"[->] Packaging...\";\nDEBS_FOLDER=\"${PROJECT_DIR}/debs\";\nif [ ! -d $DEBS_FOLDER ]; then\nmkdir $DEBS_FOLDER\nfi\n\nDEB_NAME=\"${PRODUCT_BUNDLE_IDENTIFIER}_${CURRENT_PROJECT_VERSION}_${PLATFORM_NAME}-arm.deb\";\ndpkg-deb -b -Zlzma $PACKAGE_TEMP_FOLDER $DEBS_FOLDER/$DEB_NAME 2> /dev/null;\n\necho \"[->] Cleaning (stage 2)...\";\nrm -rf $PACKAGE_TEMP_FOLDER;\n";
 		};
+		A5CC12EB2184A52F00A607E3 /* Setup Crashlytics */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)",
+			);
+			name = "Setup Crashlytics";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Fabric/run\"\n";
+			showEnvVarsInLog = 0;
+		};
 		C3DD5B6F1981D58C637D5F78 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -495,6 +526,36 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CD2ED053E04E72801AB23A6B /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-RJTranslate-App/Pods-RJTranslate-App-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/DZNEmptyDataSet/DZNEmptyDataSet.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/SSZipArchive/SSZipArchive.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DZNEmptyDataSet.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SSZipArchive.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RJTranslate-App/Pods-RJTranslate-App-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -565,6 +626,14 @@
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
+		A545D86021847AE90072674C /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A545D86321847B120072674C /* ru */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
@@ -607,6 +676,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				APPLY_RULES_IN_COPY_FILES = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -639,8 +709,8 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 0.2;
-				DEBUG_INFORMATION_FORMAT = dwarf;
+				CURRENT_PROJECT_VERSION = 0.3;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = VW97WHTS78;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -688,6 +758,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				APPLY_RULES_IN_COPY_FILES = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -720,7 +791,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 0.2;
+				CURRENT_PROJECT_VERSION = 0.3;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = VW97WHTS78;
 				ENABLE_NS_ASSERTIONS = NO;

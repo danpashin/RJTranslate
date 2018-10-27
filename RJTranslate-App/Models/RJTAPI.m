@@ -29,11 +29,11 @@
 
 + (NSURL *)apiURL
 {
-//#if (defined(__arm__) || defined(__arm64__))
+#if (defined(__arm__) || defined(__arm64__))
     return [NSURL URLWithString:@"https://danpashin.ru/dl/"];
-//#else
-//    return [NSURL URLWithString:@"http://127.0.0.1/"];
-//#endif
+#else
+    return [NSURL URLWithString:@"http://127.0.0.1/"];
+#endif
 }
 
 - (instancetype)init
@@ -43,7 +43,10 @@
         _configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
         self.configuration.allowsCellularAccess = YES;
         self.configuration.requestCachePolicy = NSURLRequestReloadIgnoringCacheData;
-//        self.configuration.waitsForConnectivity = YES;
+        
+        if (@available(iOS 11.0, *)) {
+            self.configuration.waitsForConnectivity = YES;
+        }
         
         self.sessionDelegateQueue = [NSOperationQueue new];
         self.sessionDelegateQueue.qualityOfService = NSQualityOfServiceBackground;

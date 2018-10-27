@@ -12,8 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface RJTCollectionHeaderView : UIView
 
-@property (strong, nonatomic) NSString *text;
-@property (strong, nonatomic) NSString *detailedText;
+@property (strong, nonatomic, readonly) UILabel *textLabel;
+@property (strong, nonatomic, readonly) UILabel *detailedTextLabel;
 
 @property (strong, nonatomic) NSLayoutConstraint *heightConstraint;
 

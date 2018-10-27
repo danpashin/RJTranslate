@@ -1,0 +1,22 @@
+/* 
+  Localizable.strings
+  RJTranslate
+
+  Created by Даниил on 27/10/2018.
+  Copyright © 2018 Даниил. All rights reserved.
+*/
+
+"available_translations" = "Доступные переводы";
+"translations_update_is_available" = "Доступно обновление переводов";
+"tap_to_download" = "Нажмите, чтобы загрузить";
+
+"please_wait" = "Пожалуйста, подождите";
+"updating_database..." = "Выполняем обновление базы данных";
+
+// Поиск
+"cannot_find_any_results" = "К сожалению, по вашему запросу ничего не найдено.";
+"change_search_request_and_try_again" = "Измените поисковой запрос и попробуйте снова.";
+
+"no_translations_downloaded" = "Нет установленных переводов.";
+"tap_button_to_download_available" = "Нажмите на кнопку ниже, чтобы выполнить установку доступных.";
+"download" = "Загрузить";

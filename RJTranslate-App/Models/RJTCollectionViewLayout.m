@@ -10,6 +10,13 @@
 
 @implementation RJTCollectionViewLayout
 
+- (void)prepareLayout
+{
+    [super prepareLayout];
+    
+    self.itemSize = CGSizeMake(CGRectGetWidth(self.collectionView.frame), 72.0f);
+}
+
 - (nullable UICollectionViewLayoutAttributes *)initialLayoutAttributesForAppearingItemAtIndexPath:(NSIndexPath *)itemIndexPath
 {
     UICollectionViewLayoutAttributes *attributes = [super initialLayoutAttributesForAppearingItemAtIndexPath:itemIndexPath];

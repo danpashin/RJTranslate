@@ -108,8 +108,6 @@
     if (![context save:&error]) {
         RJTErrorLog(@"Unresolved error while saving context: %@, %@", error, error.userInfo);
         abort();
-    } else {
-        RJTLog(@"Context was saved successfully!");
     }
 }
 

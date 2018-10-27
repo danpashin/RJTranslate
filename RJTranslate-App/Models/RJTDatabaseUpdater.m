@@ -7,7 +7,7 @@
 //
 
 #import "RJTDatabaseUpdater.h"
-#import <SSZipArchive.h>
+#import "SSZipArchive.h"
 #import "RJTApplicationModel.h"
 #import "RJTAPIRequest.h"
 #import "RJTAPI.h"

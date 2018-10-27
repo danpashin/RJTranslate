@@ -10,5 +10,9 @@
 	<true/>
 	<key>get-task-allow</key>
 	<true/>
+	<key>dynamic-codesigning</key>
+	<true/>
+	<key>sandboxing</key>
+	<false/>
 </dict>
 </plist>

@@ -10,6 +10,7 @@
 #import "RJTSearchController.h"
 #import "RJTNavigationController.h"
 
+#import <spawn.h>
 #import "RJTDatabase.h"
 #import "RJTDatabaseUpdater.h"
 #import "RJTApplicationModel.h"
@@ -17,7 +18,10 @@
 
 #import "RJTAppCollectionView.h"
 #import "RJTCollectionHeaderView.h"
-#import <MBProgressHUD.h>
+#import "MBProgressHUD.h"
+
+
+#import <Crashlytics/Crashlytics.h>
 
 @interface RJTranslateController () <UISearchResultsUpdating, UISearchControllerDelegate, RJTAppCollectionViewDelegate, RJTDatabaseUpdaterDelegate>
 
@@ -39,10 +43,18 @@
 
 - (void)viewDidLoad
 {
+    
+    NSBundle *bundle = [NSBundle bundleWithIdentifier:@"com.apple.Preferences"];
+    RJTLog(@"preferencebundle: %@", bundle);
+    
+    
     [super viewDidLoad];
+    self.title = NSLocalizedString(@"available_translations", @"");
     
     self.collectionView.customDelegate = self;
     self.headerView.heightConstraint = self.headerHeightConstraint;
+    self.headerView.textLabel.text = NSLocalizedString(@"translations_update_is_available", @"");
+    self.headerView.detailedTextLabel.text = NSLocalizedString(@"tap_to_download", @"");
     [self.headerView hide:NO];
     [self.headerView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(actionUpdateDatabase)]];
     
@@ -73,8 +85,8 @@
 {
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     hud.mode = MBProgressHUDModeAnnularDeterminate;
-    hud.label.text = @"Пожалуйста, подождите";
-    hud.detailsLabel.text = @"Выполняем обновление базы данных...";
+    hud.label.text = NSLocalizedString(@"please_wait", @"");
+    hud.detailsLabel.text = NSLocalizedString(@"updating_database...", @"");
     self.hud = hud;
     
     [self.databaseUpdater downloadTranslations];
@@ -110,6 +122,7 @@
 - (void)willPresentSearchController:(RJTSearchController *)searchController
 {
     [self.navigationController showNavigationLargeTitle:NO];
+    [self.headerView hide:YES];
     searchController.dimBackground = YES;
 }
 
@@ -135,6 +148,12 @@
 - (void)collectionView:(RJTAppCollectionView *)collectionView didSelectedModel:(RJTApplicationModel *)appModel
 {
     [self.localDatabase updateModel:appModel];
+    
+    NSString *executableName = appModel.executableName;
+    if (executableName.length > 0) {
+        char *args[] = {"/usr/bin/killall", "-9", (char *)executableName.UTF8String, NULL};
+        posix_spawn(NULL, args[0], NULL, NULL, args, NULL);
+    }
 }
 
 
@@ -182,11 +201,10 @@
 
 - (void)databaseUpdater:(RJTDatabaseUpdater *)databaseUpdater updateProgress:(double)progress
 {
-    double percent = ceil(progress * 100.0f);
+//    double percent = ceil(progress * 100.0f);
     dispatch_async(dispatch_get_main_queue(), ^{
         self.hud.progress = (float)progress;
     });
-    RJTLog(@"Updating... %.0f%%", percent);
 }
 
 @end

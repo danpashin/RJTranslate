@@ -34,8 +34,7 @@
     self.alwaysBounceVertical = YES;
     self.allowsMultipleSelection = YES;
     
-    self.collectionViewLayout.itemSize = CGSizeMake(CGRectGetWidth(self.frame) - 24.0f, 72.0f);
-    self.collectionViewLayout.sectionInset = UIEdgeInsetsMake(0.0f, 0.0f, 20.0f, 0.0f);
+    self.layer.cornerRadius = 8.0f;
 }
 
 - (void)reload
@@ -118,12 +117,27 @@
     NSString *titleString = @"";
     
     if (self.performingSearch && self.searchText.length > 0)
-        titleString = @"К сожалению, по вашему запросу ничего не найдено.";
+        titleString = NSLocalizedString(@"cannot_find_any_results", @"");
     else if (!self.performingSearch)
-        titleString = @"Нет установленных переводов. Нажмите на кнопку ниже, чтобы загрузить доступные.";
+        titleString = NSLocalizedString(@"no_translations_downloaded", @"");
+    
+    NSDictionary *attributes = @{NSFontAttributeName: [UIFont preferredFontForTextStyle:UIFontTextStyleTitle2],
+                                 NSForegroundColorAttributeName: [UIColor grayColor]};
     
     return [[NSAttributedString alloc] initWithString:titleString
-                                           attributes:@{NSFontAttributeName:[UIFont preferredFontForTextStyle:UIFontTextStyleTitle2]}];
+                                           attributes:attributes];
+}
+
+- (NSAttributedString *)descriptionForEmptyDataSet:(UIScrollView *)scrollView
+{
+    NSString *titleString = @"";
+    
+    if (self.performingSearch && self.searchText.length > 0)
+        titleString = NSLocalizedString(@"change_search_request_and_try_again", @"");
+    else if (!self.performingSearch)
+        titleString = NSLocalizedString(@"tap_button_to_download_available", @"");
+    
+    return [[NSAttributedString alloc] initWithString:titleString];
 }
 
 - (NSAttributedString *)buttonTitleForEmptyDataSet:(UIScrollView *)scrollView forState:(UIControlState)state
@@ -131,10 +145,11 @@
     if (self.performingSearch)
         return nil;
     
-    NSDictionary *attributes = @{NSFontAttributeName: [UIFont preferredFontForTextStyle:UIFontTextStyleTitle2],
+    NSDictionary *attributes = @{
+                                 NSFontAttributeName: [UIFont preferredFontForTextStyle:UIFontTextStyleTitle3],
                                  NSForegroundColorAttributeName: [UIColor colorWithWhite:0.2f alpha:1.0f]};
     
-    return [[NSAttributedString alloc] initWithString:@"Скачать" attributes:attributes];
+    return [[NSAttributedString alloc] initWithString:NSLocalizedString(@"download", @"") attributes:attributes];
 }
 
 - (CGFloat)verticalOffsetForEmptyDataSet:(UIScrollView *)scrollView
