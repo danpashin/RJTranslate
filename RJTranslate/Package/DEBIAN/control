@@ -7,7 +7,7 @@ Architecture: iphoneos-arm
 Author: Даниил
 Maintainer:  Даниил
 dev: danpashin
-Icon: file:///Applications/RJTranslate.app/AppIcon60x60@2x.png
+Icon: file:///Applications/RJTranslate.app/Cydia_icon.png
 Tag: purpose::extension, compatible::ios10, compatible::ios11
 Section: Utilities
 Installed-size: PACKAGE_SIZE

@@ -41,6 +41,7 @@
 		A5ADC0262184D3A400C33863 /* RJTDatabaseUpdate.m in Sources */ = {isa = PBXBuildFile; fileRef = A5ADC0252184D3A400C33863 /* RJTDatabaseUpdate.m */; };
 		A5ADC0292184DB3100C33863 /* RJTAPIDownloadRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = A5ADC0282184DB3100C33863 /* RJTAPIDownloadRequest.m */; };
 		A5ADC02C2184DDCE00C33863 /* RJTAPIJSONRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = A5ADC02B2184DDCE00C33863 /* RJTAPIJSONRequest.m */; };
+		A5ADC030218508A400C33863 /* Cydia_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = A5ADC02F218508A400C33863 /* Cydia_icon.png */; };
 		A5CC12EA2184A2A600A607E3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A5CC12E92184A2A600A607E3 /* GoogleService-Info.plist */; };
 		A5DB9ABE217B74DB0061A810 /* RJTGradientView.m in Sources */ = {isa = PBXBuildFile; fileRef = A5DB9ABB217B74DB0061A810 /* RJTGradientView.m */; };
 		A5DB9AC5217B80150061A810 /* RJTNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = A5DB9AC2217B80150061A810 /* RJTNavigationController.m */; };
@@ -110,6 +111,7 @@
 		A5ADC0282184DB3100C33863 /* RJTAPIDownloadRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RJTAPIDownloadRequest.m; sourceTree = "<group>"; };
 		A5ADC02A2184DDCE00C33863 /* RJTAPIJSONRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RJTAPIJSONRequest.h; sourceTree = "<group>"; };
 		A5ADC02B2184DDCE00C33863 /* RJTAPIJSONRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RJTAPIJSONRequest.m; sourceTree = "<group>"; };
+		A5ADC02F218508A400C33863 /* Cydia_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Cydia_icon.png; sourceTree = "<group>"; };
 		A5C107D5217E56F900989BDB /* postinst */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = postinst; sourceTree = "<group>"; };
 		A5C107D6217E56F900989BDB /* postrm */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = postrm; sourceTree = "<group>"; };
 		A5C107D7217E56F900989BDB /* control */ = {isa = PBXFileReference; lastKnownFileType = text; path = control; sourceTree = "<group>"; };
@@ -222,6 +224,7 @@
 				A5C107D3217E56F900989BDB /* Package */,
 				A58AFD72217DF975008A900C /* sign.entitlements */,
 				A5CC12E92184A2A600A607E3 /* GoogleService-Info.plist */,
+				A5ADC02F218508A400C33863 /* Cydia_icon.png */,
 			);
 			path = RJTranslate;
 			sourceTree = "<group>";
@@ -471,6 +474,7 @@
 				A5CC12EA2184A2A600A607E3 /* GoogleService-Info.plist in Resources */,
 				A522F1D5217AFC310085A5E4 /* Assets.xcassets in Resources */,
 				A522F1D3217AFC300085A5E4 /* Main.storyboard in Resources */,
+				A5ADC030218508A400C33863 /* Cydia_icon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
