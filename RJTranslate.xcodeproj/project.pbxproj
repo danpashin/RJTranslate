@@ -10,7 +10,7 @@
 		7132177810DEAFA6855E5C09 /* Pods_RJTranslate_App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3D79D1D15E39035D827829D /* Pods_RJTranslate_App.framework */; };
 		A517965E217D1A9200B87596 /* RJTApplicationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A54ADB1D217BB0CF00D32EB7 /* RJTApplicationModel.m */; };
 		A517965F217D1A9400B87596 /* RJTApplicationModel.h in Headers */ = {isa = PBXBuildFile; fileRef = A54ADB1C217BB0CF00D32EB7 /* RJTApplicationModel.h */; };
-		A522F1CD217AFC300085A5E4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A522F1CC217AFC300085A5E4 /* AppDelegate.m */; };
+		A522F1CD217AFC300085A5E4 /* RJTAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A522F1CC217AFC300085A5E4 /* RJTAppDelegate.m */; };
 		A522F1D0217AFC300085A5E4 /* RJTranslateController.m in Sources */ = {isa = PBXBuildFile; fileRef = A522F1CF217AFC300085A5E4 /* RJTranslateController.m */; };
 		A522F1D3217AFC300085A5E4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A522F1D1217AFC300085A5E4 /* Main.storyboard */; };
 		A522F1D5217AFC310085A5E4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A522F1D4217AFC310085A5E4 /* Assets.xcassets */; };
@@ -46,6 +46,8 @@
 		A5DB9ABE217B74DB0061A810 /* RJTGradientView.m in Sources */ = {isa = PBXBuildFile; fileRef = A5DB9ABB217B74DB0061A810 /* RJTGradientView.m */; };
 		A5DB9AC5217B80150061A810 /* RJTNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = A5DB9AC2217B80150061A810 /* RJTNavigationController.m */; };
 		A5DB9ACF217B8A260061A810 /* RJTAppCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A5DB9ACE217B8A260061A810 /* RJTAppCell.m */; };
+		A5E0BBB2218646A10094ECBC /* RJTHudProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = A5E0BBB0218646A10094ECBC /* RJTHudProgressView.m */; };
+		A5E0BBB3218646A10094ECBC /* RJTHud.m in Sources */ = {isa = PBXBuildFile; fileRef = A5E0BBB1218646A10094ECBC /* RJTHud.m */; };
 		B9547F1B8B42C09F1AAAB596 /* libPods-RJTranslate.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 18933699E1CEE06A405D344F /* libPods-RJTranslate.a */; };
 /* End PBXBuildFile section */
 
@@ -63,8 +65,8 @@
 		18933699E1CEE06A405D344F /* libPods-RJTranslate.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RJTranslate.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A3D79D1D15E39035D827829D /* Pods_RJTranslate_App.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RJTranslate_App.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A522F1C9217AFC300085A5E4 /* RJTranslate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RJTranslate.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		A522F1CB217AFC300085A5E4 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		A522F1CC217AFC300085A5E4 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		A522F1CB217AFC300085A5E4 /* RJTAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RJTAppDelegate.h; sourceTree = "<group>"; };
+		A522F1CC217AFC300085A5E4 /* RJTAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RJTAppDelegate.m; sourceTree = "<group>"; };
 		A522F1CE217AFC300085A5E4 /* RJTranslateController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RJTranslateController.h; sourceTree = "<group>"; };
 		A522F1CF217AFC300085A5E4 /* RJTranslateController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RJTranslateController.m; sourceTree = "<group>"; };
 		A522F1D2217AFC300085A5E4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -124,6 +126,10 @@
 		A5DB9AC2217B80150061A810 /* RJTNavigationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RJTNavigationController.m; sourceTree = "<group>"; };
 		A5DB9ACD217B8A260061A810 /* RJTAppCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RJTAppCell.h; sourceTree = "<group>"; };
 		A5DB9ACE217B8A260061A810 /* RJTAppCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RJTAppCell.m; sourceTree = "<group>"; };
+		A5E0BBAE218646A10094ECBC /* RJTHud.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RJTHud.h; sourceTree = "<group>"; };
+		A5E0BBAF218646A10094ECBC /* RJTHudProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RJTHudProgressView.h; sourceTree = "<group>"; };
+		A5E0BBB0218646A10094ECBC /* RJTHudProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RJTHudProgressView.m; sourceTree = "<group>"; };
+		A5E0BBB1218646A10094ECBC /* RJTHud.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RJTHud.m; sourceTree = "<group>"; };
 		A7448D1A9FAB2BCD471A34BC /* Pods-RJTranslate.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RJTranslate.release.xcconfig"; path = "Pods/Target Support Files/Pods-RJTranslate/Pods-RJTranslate.release.xcconfig"; sourceTree = "<group>"; };
 		C442FAAA903384EF3A1DF395 /* Pods-RJTranslate.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RJTranslate.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RJTranslate/Pods-RJTranslate.debug.xcconfig"; sourceTree = "<group>"; };
 		D6FE48C60EC713FBE57420E8 /* Pods-RJTranslate-App.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RJTranslate-App.release.xcconfig"; path = "Pods/Target Support Files/Pods-RJTranslate-App/Pods-RJTranslate-App.release.xcconfig"; sourceTree = "<group>"; };
@@ -165,8 +171,8 @@
 		A522F1CA217AFC300085A5E4 /* RJTranslate-App */ = {
 			isa = PBXGroup;
 			children = (
-				A522F1CB217AFC300085A5E4 /* AppDelegate.h */,
-				A522F1CC217AFC300085A5E4 /* AppDelegate.m */,
+				A522F1CB217AFC300085A5E4 /* RJTAppDelegate.h */,
+				A522F1CC217AFC300085A5E4 /* RJTAppDelegate.m */,
 				A5DB9AC0217B7FF50061A810 /* Controllers */,
 				A5DB9ABF217B75DF0061A810 /* Views */,
 				A54ADB20217BB6EB00D32EB7 /* Cells */,
@@ -352,6 +358,10 @@
 				A5DB9ABB217B74DB0061A810 /* RJTGradientView.m */,
 				A56FB1C22180B17B002F4175 /* RJTTickView.h */,
 				A56FB1C32180B17B002F4175 /* RJTTickView.m */,
+				A5E0BBAE218646A10094ECBC /* RJTHud.h */,
+				A5E0BBB1218646A10094ECBC /* RJTHud.m */,
+				A5E0BBAF218646A10094ECBC /* RJTHudProgressView.h */,
+				A5E0BBB0218646A10094ECBC /* RJTHudProgressView.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -574,7 +584,6 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-RJTranslate-App/Pods-RJTranslate-App-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/DZNEmptyDataSet/DZNEmptyDataSet.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
-				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/SSZipArchive/SSZipArchive.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
@@ -584,7 +593,6 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DZNEmptyDataSet.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SSZipArchive.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
@@ -604,6 +612,7 @@
 				A5ADC0292184DB3100C33863 /* RJTAPIDownloadRequest.m in Sources */,
 				A56C0167217F25D000027DB3 /* RJTDatabaseUpdater.m in Sources */,
 				A522F1D0217AFC300085A5E4 /* RJTranslateController.m in Sources */,
+				A5E0BBB3218646A10094ECBC /* RJTHud.m in Sources */,
 				A5ACD6F22182DA510009DB9C /* RJTAPI.m in Sources */,
 				A5ADC02C2184DDCE00C33863 /* RJTAPIJSONRequest.m in Sources */,
 				A57CF73A217AFFC8004A71F8 /* RJTDatabase.m in Sources */,
@@ -614,9 +623,10 @@
 				A56FB1C12180ADA0002F4175 /* RJTColors.m in Sources */,
 				A5ADC0262184D3A400C33863 /* RJTDatabaseUpdate.m in Sources */,
 				A522F1DB217AFC310085A5E4 /* main.m in Sources */,
-				A522F1CD217AFC300085A5E4 /* AppDelegate.m in Sources */,
+				A522F1CD217AFC300085A5E4 /* RJTAppDelegate.m in Sources */,
 				A57CF73E217B50B9004A71F8 /* RJTNavigationBar.m in Sources */,
 				A57CF73B217AFFD0004A71F8 /* RJTApplicationEntity.m in Sources */,
+				A5E0BBB2218646A10094ECBC /* RJTHudProgressView.m in Sources */,
 				A5ACD6F52182DB7C0009DB9C /* RJTAPIRequest.m in Sources */,
 				A5A0954B217C4D3A009743DF /* RJTSearchController.m in Sources */,
 				A54ADB1E217BB0CF00D32EB7 /* RJTApplicationModel.m in Sources */,
@@ -688,7 +698,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = ru.danpashin.RJTranslate;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				"VALID_ARCHS[sdk=iphonesimulator*]" = "x86_64 i386";
 			};
 			name = Debug;
@@ -706,7 +716,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = ru.danpashin.RJTranslate;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

@@ -1,6 +1,6 @@
 //
 //  RJTTickView.h
-//  RJTTools
+//  RJTranslate
 //
 //  Created by Даниил on 24/10/2018.
 //  Copyright © 2018 Даниил. All rights reserved.

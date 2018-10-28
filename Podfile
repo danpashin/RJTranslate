@@ -10,7 +10,6 @@ target 'RJTranslate-App' do
 
   pod 'DZNEmptyDataSet'
   pod 'SSZipArchive'
-  pod 'MBProgressHUD'
   pod 'Firebase/Core'
 
   pod 'Fabric', '~> 1.7.11'

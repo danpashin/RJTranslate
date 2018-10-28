@@ -1,5 +1,5 @@
 //
-//  AppDelegate.h
+//  RJTAppDelegate.h
 //  RJTranslate-App
 //
 //  Created by Даниил on 20/10/2018.
@@ -8,10 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
+@interface RJTAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
-
 
 @end
 

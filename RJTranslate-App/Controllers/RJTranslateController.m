@@ -20,9 +20,8 @@
 #import "RJTAppCollectionView.h"
 #import "RJTCollectionHeaderView.h"
 #import "MBProgressHUD.h"
+#import "RJTHud.h"
 
-
-#import <Crashlytics/Crashlytics.h>
 
 @interface RJTranslateController () <UISearchResultsUpdating, UISearchControllerDelegate, RJTAppCollectionViewDelegate, RJTDatabaseUpdaterDelegate>
 
@@ -36,7 +35,7 @@
 
 @property (strong, nonatomic) IBOutlet RJTCollectionHeaderView *headerView;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *headerHeightConstraint;
-@property (weak, nonatomic) MBProgressHUD *hud;
+@property (weak, nonatomic) RJTHud *hud;
 @end
 
 @implementation RJTranslateController
@@ -81,11 +80,9 @@
 
 - (void)actionUpdateDatabase
 {
-    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    hud.mode = MBProgressHUDModeAnnularDeterminate;
-    hud.label.text = NSLocalizedString(@"please_wait", @"");
-    hud.detailsLabel.text = NSLocalizedString(@"updating_database...", @"");
-    hud.removeFromSuperViewOnHide = YES;
+    RJTHud *hud = [RJTHud show];
+    hud.text = NSLocalizedString(@"please_wait", @"");
+    hud.detailText = NSLocalizedString(@"updating_database...", @"");
     self.hud = hud;
     
     [self.databaseUpdater downloadTranslations];
@@ -199,10 +196,11 @@
     
     dispatch_async(dispatch_get_main_queue(), ^{
         if (self.hud.superview) {
-            self.hud.mode = MBProgressHUDModeText;
-            self.hud.label.text = @"Не удалось выполнить обновление.";
-            self.hud.detailsLabel.text = error.localizedDescription;
-            [self.hud hideAnimated:YES afterDelay:2.0f];
+            self.hud.progress = 1.0f;
+//            self.hud.mode = MBProgressHUDModeText;
+            self.hud.text = @"Не удалось выполнить обновление.";
+            self.hud.detailText = error.localizedDescription;
+            [self.hud hideAfterDelay:2.0f];
         }
     });
 }

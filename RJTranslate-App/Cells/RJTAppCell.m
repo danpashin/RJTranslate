@@ -48,6 +48,7 @@ typedef NS_ENUM(NSUInteger, MIIconVariant) {
     [super awakeFromNib];
     
     self.layer.cornerRadius = 10.0f;
+    self.iconView.layer.masksToBounds = YES;
     self.iconView.layer.cornerRadius = 12.0f;
     self.iconView.tintColor = [UIColor colorWithWhite:0.83f alpha:1.0f];
     
@@ -61,9 +62,10 @@ typedef NS_ENUM(NSUInteger, MIIconVariant) {
     self.nameLabel.text = model.displayedName;
     self.identifierLabel.text = model.bundleIdentifier;
     
-    self.iconView.image = [UIImage _applicationIconImageForBundleIdentifier:model.bundleIdentifier 
-                                                                     format:MIIconVariantDefault 
-                                                                      scale:[UIScreen mainScreen].scale];
+    if (model)
+        self.iconView.image = [UIImage _applicationIconImageForBundleIdentifier:model.bundleIdentifier 
+                                                                         format:MIIconVariantDefault 
+                                                                          scale:[UIScreen mainScreen].scale];
 }
 
 - (void)prepareForReuse
@@ -71,6 +73,7 @@ typedef NS_ENUM(NSUInteger, MIIconVariant) {
     [super prepareForReuse];
 
     self.model = nil;
+    self.iconView.image = nil;
     [self updateSelection:NO animated:NO];
 }
 
