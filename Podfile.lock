@@ -55,9 +55,9 @@ PODS:
   - SSZipArchive (2.1.4)
 
 DEPENDENCIES:
-  - Crashlytics (~> 3.10.7)
+  - Crashlytics
   - DZNEmptyDataSet
-  - Fabric (~> 1.7.11)
+  - Fabric
   - Firebase/Core
   - SSZipArchive
 
@@ -88,6 +88,6 @@ SPEC CHECKSUMS:
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
   SSZipArchive: 41455d4b8d2b6ab93990820b50dc697c2554a322
 
-PODFILE CHECKSUM: 391f4e918c9f10fa9db2b16f8251c3e4107224e0
+PODFILE CHECKSUM: 53b47cd4568ca8a7bd84d94f81310eb5f6c69c83
 
 COCOAPODS: 1.5.3

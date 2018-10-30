@@ -41,7 +41,6 @@
 
 - (void)commonInit
 {
-//    self.backgroundColor = [[UIColor greenColor] colorWithAlphaComponent:0.3f];
     self.layer.strokeColor = [RJTColors secondaryColor].CGColor;
     self.layer.fillColor = [UIColor clearColor].CGColor;
     self.layer.strokeEnd = 0.0f;

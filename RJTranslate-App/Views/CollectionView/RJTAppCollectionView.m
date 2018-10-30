@@ -45,6 +45,13 @@
     });
 }
 
+- (void)sendSelectionFeedback
+{
+    UISelectionFeedbackGenerator *selectionGenerator = [UISelectionFeedbackGenerator new];
+    [selectionGenerator prepare];
+    [selectionGenerator selectionChanged];
+}
+
 #pragma mark -
 #pragma mark UICollectionViewDataSource
 #pragma mark -
@@ -79,7 +86,8 @@
     [cell updateSelection:YES animated:YES];
     
     cell.model.enableTranslation = YES;
-    [self.customDelegate collectionView:self didSelectedModel:cell.model];
+    [self.customDelegate collectionView:self didUpdateModel:cell.model];
+    [self sendSelectionFeedback];
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath
@@ -88,7 +96,8 @@
     [cell updateSelection:NO animated:YES];
     
     cell.model.enableTranslation = NO;
-    [self.customDelegate collectionView:self didSelectedModel:cell.model];
+    [self.customDelegate collectionView:self didUpdateModel:cell.model];
+    [self sendSelectionFeedback];
 }
 
 

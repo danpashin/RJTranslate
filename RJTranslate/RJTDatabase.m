@@ -83,7 +83,10 @@
         return;
     }
     
-    [super performBackgroundTask:block];
+    [super performBackgroundTask:^(NSManagedObjectContext * _Nonnull context) {
+        context.stalenessInterval = 0.0f;
+        block(context);
+    }];
 }
 
 - (void)save
@@ -116,7 +119,9 @@
     [self fetchAllAppEntitiesWithCompletion:^(NSArray<RJTApplicationEntity *> *allEntities) {
         NSMutableArray <RJTApplicationModel *> *allModels = [NSMutableArray array];
         for (RJTApplicationEntity *entity in allEntities) {
-            [allModels addObject:[RJTApplicationModel from:entity]];
+            RJTApplicationModel *model = [RJTApplicationModel copyFromEntity:entity];
+            if (model)
+                [allModels addObject:model];
         }
         
         completion(allModels);
@@ -140,7 +145,9 @@
     [self fetchAppEntitiesWithPredicate:predicate completion:^(NSArray<RJTApplicationEntity *> * _Nonnull appEntities) {
         NSMutableArray <RJTApplicationModel *> *models = [NSMutableArray array];
         for (RJTApplicationEntity *entity in appEntities) {
-            [models addObject:[RJTApplicationModel from:entity]];
+            RJTApplicationModel *model = [RJTApplicationModel copyFromEntity:entity];
+            if (model)
+                [models addObject:model];
         }
         
         completion(models);

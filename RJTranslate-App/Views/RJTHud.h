@@ -86,9 +86,7 @@ typedef NS_ENUM(NSInteger, RJTHudStyle) {
 /**
  Выполняет анимированное скрытие индикатора с задержкой.
 
- @param delay Задержка скрытия.
- 
- @see '-hideAnimated:'
+ @param delay Время перед скрытием индикатора.
  */
 - (void)hideAfterDelay:(CGFloat)delay;
 

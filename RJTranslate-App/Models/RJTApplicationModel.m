@@ -25,7 +25,7 @@ static NSString *const kRJTBundleIdentifierKey = @"Bundle Identifier";
 static NSString *const kRJTExecutableNameKey = @"Executable Name";
 static NSString *const kRJTTranslationsKey = @"Translations";
 
-+ (instancetype)from:(RJTApplicationEntity *)entity
++ (instancetype)copyFromEntity:(RJTApplicationEntity *)entity
 {
     RJTApplicationModel *model = [RJTApplicationModel new];
     model.displayedName = [entity.displayedName copy];
@@ -37,11 +37,9 @@ static NSString *const kRJTTranslationsKey = @"Translations";
     return model;
 }
 
-+ (instancetype)parseDict:(NSDictionary *)dictionary
++ (instancetype)from:(NSDictionary *)dictionary
 {
-    if (![dictionary[kRJTDisplayedNameKey] isKindOfClass:[NSString class]] ||
-        ![dictionary[kRJTBundleIdentifierKey] isKindOfClass:[NSString class]] ||
-        ![dictionary[kRJTBundleIdentifierKey] isKindOfClass:[NSString class]])
+    if (![dictionary[kRJTDisplayedNameKey] isKindOfClass:[NSString class]])
         return nil;
     
     RJTApplicationModel *model = [RJTApplicationModel new];
@@ -66,8 +64,7 @@ static NSString *const kRJTTranslationsKey = @"Translations";
         return NO;
     
     RJTApplicationModel *model = object;
-    if (![model.bundleIdentifier isEqualToString:self.bundleIdentifier] ||
-        ![model.executableName isEqual:self.executableName])
+    if (![model.displayedName isEqualToString:self.displayedName])
         return NO;
     
     return YES;

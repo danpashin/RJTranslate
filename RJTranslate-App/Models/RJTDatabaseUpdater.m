@@ -119,9 +119,9 @@
     for (NSString *fileName in folderContents) {
         NSString *fullPath = [NSString stringWithFormat:@"%@/%@", path, fileName];
         NSDictionary *translationDict = [NSDictionary dictionaryWithContentsOfFile:fullPath];
-        RJTApplicationModel *model = [RJTApplicationModel parseDict:translationDict];
+        RJTApplicationModel *model = [RJTApplicationModel from:translationDict];
         
-        if (![modelsArray containsObject:model])
+        if (![modelsArray containsObject:model] && model)
             [modelsArray addObject:model];
     }
     [fileManager removeItemAtPath:path error:nil];

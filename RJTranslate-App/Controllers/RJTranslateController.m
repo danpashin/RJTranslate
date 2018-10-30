@@ -127,7 +127,7 @@
     searchController.dimBackground = NO;
     
     self.collectionView.performingSearch = NO;
-    [self.collectionView reload];
+    [self updateAllModels];
 }
 
 
@@ -140,7 +140,7 @@
     [self actionUpdateDatabase];
 }
 
-- (void)collectionView:(RJTAppCollectionView *)collectionView didSelectedModel:(RJTApplicationModel *)appModel
+- (void)collectionView:(RJTAppCollectionView *)collectionView didUpdateModel:(RJTApplicationModel *)appModel
 {
     [self.localDatabase updateModel:appModel];
     
@@ -183,33 +183,24 @@
     
     [self updateAllModels];
     self.databaseUpdater = nil;
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [self.hud hideAnimated:YES];
-        [self.headerView hide:YES];
-    });
+    
+    [self.hud hideAnimated:YES];
+    [self.headerView hide:YES];
 }
 
 - (void)databaseUpdater:(RJTDatabaseUpdater *)databaseUpdater failedUpdateWithError:(NSError *)error
 {
     RJTErrorLog(@"Failed to update database with error: %@", error);
     
-    dispatch_async(dispatch_get_main_queue(), ^{
-        if (self.hud.superview) {
-            self.hud.progress = 1.0f;
-            self.hud.style = RJTHudStyleTextOnly;
-            self.hud.text = @"Не удалось выполнить обновление.";
-            self.hud.detailText = error.localizedDescription;
-            [self.hud hideAfterDelay:2.0f];
-        }
-    });
+    self.hud.style = RJTHudStyleTextOnly;
+    self.hud.text = NSLocalizedString(@"failed_to_update", @"");
+    self.hud.detailText = error.localizedDescription;
+    [self.hud hideAfterDelay:2.0f];
 }
 
 - (void)databaseUpdater:(RJTDatabaseUpdater *)databaseUpdater updateProgress:(double)progress
 {
-//    double percent = ceil(progress * 100.0f);
-    dispatch_async(dispatch_get_main_queue(), ^{
-        self.hud.progress = (float)progress;
-    });
+    self.hud.progress = (CGFloat)progress;
 }
 
 @end

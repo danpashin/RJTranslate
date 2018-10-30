@@ -24,6 +24,7 @@
     RJTDatabaseUpdate *update = [RJTDatabaseUpdate new];
     update.hashSum = response[@"hash_sum"];
     update.archiveURL = response[@"archive"];
+    update.canUpdate = YES;
     
     return update;
 }
@@ -32,11 +33,11 @@
 {
     _hashSum = hashSum;
     
-    NSString *savedHash = [[NSUserDefaults standardUserDefaults] stringForKey:@"latestDatabaseUpdateHash"];
-    if (hashSum.length > 0 && savedHash.length > 0)
-        self.canUpdate = ![hashSum isEqualToString:savedHash];
-    else
-        self.canUpdate = NO;
+//    NSString *savedHash = [[NSUserDefaults standardUserDefaults] stringForKey:@"latestDatabaseUpdateHash"];
+//    if (hashSum.length > 0 && savedHash.length > 0)
+//        self.canUpdate = ![hashSum isEqualToString:savedHash];
+//    else
+//        self.canUpdate = NO;
 }
 
 - (void)saveUpdate

@@ -64,6 +64,7 @@
 /* Begin PBXFileReference section */
 		18933699E1CEE06A405D344F /* libPods-RJTranslate.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RJTranslate.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A3D79D1D15E39035D827829D /* Pods_RJTranslate_App.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RJTranslate_App.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A5089FA12188C8580073E83C /* UIImage+Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+Private.h"; sourceTree = "<group>"; };
 		A522F1C9217AFC300085A5E4 /* RJTranslate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RJTranslate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A522F1CB217AFC300085A5E4 /* RJTAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RJTAppDelegate.h; sourceTree = "<group>"; };
 		A522F1CC217AFC300085A5E4 /* RJTAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RJTAppDelegate.m; sourceTree = "<group>"; };
@@ -168,6 +169,16 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		A5089FA02188C80D0073E83C /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				A545D86021847AE90072674C /* Localizable.strings */,
+				A5ADC02F218508A400C33863 /* Cydia_icon.png */,
+				A5089FA12188C8580073E83C /* UIImage+Private.h */,
+			);
+			path = Support;
+			sourceTree = "<group>";
+		};
 		A522F1CA217AFC300085A5E4 /* RJTranslate-App */ = {
 			isa = PBXGroup;
 			children = (
@@ -177,12 +188,12 @@
 				A5DB9ABF217B75DF0061A810 /* Views */,
 				A54ADB20217BB6EB00D32EB7 /* Cells */,
 				A54ADB1F217BB6E500D32EB7 /* Models */,
+				A5089FA02188C80D0073E83C /* Support */,
 				A522F1D1217AFC300085A5E4 /* Main.storyboard */,
 				A522F1D4217AFC310085A5E4 /* Assets.xcassets */,
 				A522F1D6217AFC310085A5E4 /* LaunchScreen.storyboard */,
 				A522F1D9217AFC310085A5E4 /* Info.plist */,
 				A522F1DA217AFC310085A5E4 /* main.m */,
-				A545D86021847AE90072674C /* Localizable.strings */,
 			);
 			path = "RJTranslate-App";
 			sourceTree = "<group>";
@@ -230,7 +241,6 @@
 				A5C107D3217E56F900989BDB /* Package */,
 				A58AFD72217DF975008A900C /* sign.entitlements */,
 				A5CC12E92184A2A600A607E3 /* GoogleService-Info.plist */,
-				A5ADC02F218508A400C33863 /* Cydia_icon.png */,
 			);
 			path = RJTranslate;
 			sourceTree = "<group>";

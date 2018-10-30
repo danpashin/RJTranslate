@@ -13,9 +13,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface RJTApplicationModel : NSObject
 
-+ (RJTApplicationModel *)from:(RJTApplicationEntity *)entity;
++ (RJTApplicationModel *)copyFromEntity:(RJTApplicationEntity *)entity;
 
-+ (RJTApplicationModel * _Nullable)parseDict:(NSDictionary *)dictionary;
++ (RJTApplicationModel * _Nullable)from:(NSDictionary *)dictionary;
 
 @property (strong, nonatomic, readonly, nullable) NSString *displayedName;
 @property (strong, nonatomic, readonly, nullable) NSString *bundleIdentifier;
