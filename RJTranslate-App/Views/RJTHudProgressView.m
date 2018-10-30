@@ -67,7 +67,7 @@
     CABasicAnimation *rotateAnimation = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
     rotateAnimation.fromValue = @0.0f;
     rotateAnimation.toValue = @(M_PI * 2.0f);
-    rotateAnimation.duration = 2.0f;
+    rotateAnimation.duration = 1.75f;
     rotateAnimation.repeatCount = INFINITY;
     [self.layer addAnimation:rotateAnimation forKey:@"rotate"];
 }
@@ -109,7 +109,10 @@
     [super didMoveToSuperview];
     
     [self.widthAnchor constraintEqualToConstant:CGRectGetWidth(self.frame)].active = YES;
-    [self.heightAnchor constraintEqualToConstant:CGRectGetHeight(self.frame)].active = YES;
+    
+    _cachedHeight = CGRectGetHeight(self.frame);
+    _heightConstraint = [self.heightAnchor constraintEqualToConstant:self.cachedHeight];
+    self.heightConstraint.active = YES;
 }
 
 

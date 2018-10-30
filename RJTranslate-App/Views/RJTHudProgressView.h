@@ -20,6 +20,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (assign, nonatomic, readonly) BOOL animating;
 
+@property (strong, nonatomic, readonly) NSLayoutConstraint *heightConstraint;
+@property (assign, nonatomic, readonly) CGFloat cachedHeight;
+
 - (void)startAnimating;
 - (void)stopAnimating;
 

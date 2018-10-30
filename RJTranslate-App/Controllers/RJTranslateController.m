@@ -19,7 +19,6 @@
 
 #import "RJTAppCollectionView.h"
 #import "RJTCollectionHeaderView.h"
-#import "MBProgressHUD.h"
 #import "RJTHud.h"
 
 
@@ -31,7 +30,7 @@
 
 @property (weak, nonatomic) IBOutlet RJTAppCollectionView *collectionView;
 @property (strong, nonatomic) RJTSearchController *searchController;
-@property (nullable, nonatomic,readonly,strong) RJTNavigationController *navigationController;
+@property (nullable, nonatomic, readonly, strong) RJTNavigationController *navigationController;
 
 @property (strong, nonatomic) IBOutlet RJTCollectionHeaderView *headerView;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *headerHeightConstraint;
@@ -197,7 +196,7 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         if (self.hud.superview) {
             self.hud.progress = 1.0f;
-//            self.hud.mode = MBProgressHUDModeText;
+            self.hud.style = RJTHudStyleTextOnly;
             self.hud.text = @"Не удалось выполнить обновление.";
             self.hud.detailText = error.localizedDescription;
             [self.hud hideAfterDelay:2.0f];
