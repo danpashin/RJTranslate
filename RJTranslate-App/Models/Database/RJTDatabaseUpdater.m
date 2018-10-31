@@ -28,10 +28,11 @@
 
 @implementation RJTDatabaseUpdater
 
-- (instancetype)init
+- (instancetype)initWithDelegate:(id<RJTDatabaseUpdaterDelegate>)delegate
 {
     self = [super init];
     if (self) {
+        self.delegate = delegate;
         self.backgroundQueue = dispatch_queue_create("ru.danpashin.rjtranslate.database.update", DISPATCH_QUEUE_CONCURRENT);
     }
     return self;

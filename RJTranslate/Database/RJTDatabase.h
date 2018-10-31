@@ -65,6 +65,26 @@ NS_ASSUME_NONNULL_BEGIN
  @param completion Блок, который вызывается по завершении операции. Если операция неудачна, содержит ошибку с детальной информацией.
  */
 - (void)removeModel:(RJTApplicationModel *)appModel completion:(void(^ _Nullable)(NSError * _Nullable error))completion;
+
+
+
+/**
+ Выполняет поиск модел(и/ей) по базе.
+
+ @param text Текст, по которому необходимо искать
+ @param completion  Блок, который вызывается по завершении операции. Содержит массив найденных моделей.
+ */
+- (void)performModelsSearchWithText:(NSString *)text
+                         completion:(void(^)(NSArray<RJTApplicationModel *> * _Nonnull models))completion;
+
+/**
+ Выполняет полное обновление моделей в базе.
+
+ @param models Массив актуальных моделей. Если модель есть в базе, но нет в массиве, выполняет удаление модели из базы.
+ @param completion Блок, который вызывается по завершении операции.
+ */
+- (void)performFullDatabaseUpdateWithModels:(NSArray <RJTApplicationModel *> *)models
+                                 completion:(void(^ _Nullable)(void))completion;
 @end
 
 NS_ASSUME_NONNULL_END

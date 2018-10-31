@@ -63,6 +63,9 @@
     self = [super initWithName:name managedObjectModel:model];
     if (self) {
         self.operationsQueue = [RJTOperationQueue new];
+        self.operationsQueue.name = @"ru.danpashin.rjtranslate.queue";
+        self.operationsQueue.qualityOfService = NSQualityOfServiceBackground;
+        
         self.serialBackgroundQueue = dispatch_queue_create("ru.danpashin.rjtranslate.database", DISPATCH_QUEUE_SERIAL);
         
         [self loadPersistentStore];
@@ -243,6 +246,44 @@
         
         if (completion)
             completion(error);
+    }];
+}
+
+
+- (void)performModelsSearchWithText:(NSString *)text
+                         completion:(void(^)(NSArray <RJTApplicationModel *> * _Nonnull models))completion
+{
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"bundleIdentifier CONTAINS[cd] %@ OR displayedName CONTAINS[cd] %@", text, text];
+    [self fetchAppModelsWithPredicate:predicate completion:completion];
+}
+
+- (void)performFullDatabaseUpdateWithModels:(NSArray <RJTApplicationModel *> *)models
+                                 completion:(void(^ _Nullable)(void))completion
+{
+    [self fetchAllAppModelsWithCompletion:^(NSArray<RJTApplicationModel *> * _Nonnull allModels) {
+        dispatch_semaphore_t internalSemaphore = dispatch_semaphore_create(0);
+        for (RJTApplicationModel *model in models) {
+            if ([allModels containsObject:model]) {
+                [self updateModel:model];
+            } else {
+                [self insertAppModels:@[model] completion:^{
+                    dispatch_semaphore_signal(internalSemaphore);
+                }];
+                dispatch_semaphore_wait(internalSemaphore, DISPATCH_TIME_FOREVER);
+            }
+        }
+        
+        for (RJTApplicationModel *model in allModels) {
+            if (![models containsObject:model]) {
+                [self removeModel:model completion:^(NSError * _Nullable error) {
+                    dispatch_semaphore_signal(internalSemaphore);
+                }];
+                dispatch_semaphore_wait(internalSemaphore, DISPATCH_TIME_FOREVER);
+            }
+        }
+        
+        if (completion)
+            completion();
     }];
 }
 

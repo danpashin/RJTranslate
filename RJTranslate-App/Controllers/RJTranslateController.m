@@ -15,7 +15,6 @@
 #import "RJTDatabaseUpdater.h"
 #import "RJTDatabaseUpdate.h"
 #import "RJTApplicationModel.h"
-#import "RJTApplicationEntity.h"
 
 #import "RJTAppCollectionView.h"
 #import "RJTCollectionHeaderView.h"
@@ -25,7 +24,6 @@
 @interface RJTranslateController () <UISearchResultsUpdating, UISearchControllerDelegate, RJTAppCollectionViewDelegate, RJTDatabaseUpdaterDelegate>
 
 @property (strong, nonatomic) RJTDatabase *localDatabase;
-@property (strong, nonatomic) NSOperation *searchOperation;
 @property (strong, nonatomic) RJTDatabaseUpdater *databaseUpdater;
 
 @property (weak, nonatomic) IBOutlet RJTAppCollectionView *collectionView;
@@ -40,6 +38,15 @@
 @implementation RJTranslateController
 @dynamic navigationController;
 
+- (instancetype)initWithCoder:(NSCoder *)coder
+{
+    self = [super initWithCoder:coder];
+    if (self) {
+        self.localDatabase = [RJTDatabase defaultDatabase];
+    }
+    return self;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -52,21 +59,16 @@
     [self.headerView hide:NO];
     [self.headerView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(actionUpdateDatabase)]];
     
-    self.localDatabase = [RJTDatabase defaultDatabase];
     [self updateAllModels];
     
-    self.searchController = [[RJTSearchController alloc] initWithSearchResultsController:nil];
-    self.searchController.searchResultsUpdater = self;
-    self.searchController.delegate = self;
+    self.searchController = [[RJTSearchController alloc] initWithDelegate:self searchResultsUpdater:self];
     self.navigationItem.titleView = self.searchController.searchBar;
     
-    self.databaseUpdater = [RJTDatabaseUpdater new];
-    self.databaseUpdater.delegate = self;
+    self.databaseUpdater = [[RJTDatabaseUpdater alloc] initWithDelegate:self];
     [self.databaseUpdater checkTranslationsVersion:^(RJTDatabaseUpdate * _Nullable updateModel, NSError * _Nullable error) {
         if (!error && updateModel.canUpdate)
             [self.headerView show:YES];
     }];
-    
 }
 
 - (void)updateAllModels
@@ -97,21 +99,14 @@
     NSString *searchText = searchController.searchBar.text;
     searchController.dimBackground = (searchText.length == 0);
     
-    if (self.searchOperation)
-        [self.searchOperation cancel];
+    self.collectionView.performingSearch = YES;
+    self.collectionView.searchText = searchText;
+    self.collectionView.searchResults = nil;
     
-    self.searchOperation = [NSBlockOperation blockOperationWithBlock:^{
-        self.collectionView.performingSearch = YES;
-        self.collectionView.searchText = searchText;
-        self.collectionView.searchResults = nil;
-        
-        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"bundleIdentifier CONTAINS[cd] %@ OR displayedName CONTAINS[cd] %@", searchText, searchText];
-        [self.localDatabase fetchAppModelsWithPredicate:predicate completion:^(NSArray<RJTApplicationModel *> * _Nonnull models) {
-            self.collectionView.searchResults = models;
-            [self.collectionView reload];
-        }];
+    [self.localDatabase performModelsSearchWithText:searchText completion:^(NSArray<RJTApplicationModel *> * _Nonnull models) {
+        self.collectionView.searchResults = models;
+        [self.collectionView reload];
     }];
-    [self.searchOperation start];
 }
 
 - (void)willPresentSearchController:(RJTSearchController *)searchController
@@ -158,46 +153,17 @@
 
 - (void)databaseUpdater:(RJTDatabaseUpdater *)databaseUpdater finishedUpdateWithModels:(NSArray <RJTApplicationModel *> *)models
 {
-    dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
-    
-    [self.localDatabase fetchAllAppModelsWithCompletion:^(NSArray<RJTApplicationModel *> * _Nonnull allModels) {
-        dispatch_semaphore_t internalSemaphore = dispatch_semaphore_create(0);
-        for (RJTApplicationModel *model in models) {
-            if ([allModels containsObject:model]) {
-                [self.localDatabase updateModel:model];
-            } else {
-                [self.localDatabase insertAppModels:@[model] completion:^{
-                    dispatch_semaphore_signal(internalSemaphore);
-                }];
-                dispatch_semaphore_wait(internalSemaphore, DISPATCH_TIME_FOREVER);
-            }
-        }
+    [self.localDatabase performFullDatabaseUpdateWithModels:models completion:^{
+        self.databaseUpdater = nil;
+        [self updateAllModels];
         
-        for (RJTApplicationModel *model in allModels) {
-            if (![models containsObject:model]) {
-                [self.localDatabase removeModel:model completion:^(NSError * _Nullable error) {
-                    dispatch_semaphore_signal(internalSemaphore);
-                }];
-                dispatch_semaphore_wait(internalSemaphore, DISPATCH_TIME_FOREVER);
-            }
-        }
-        
-        dispatch_semaphore_signal(semaphore);
+        [self.hud hideAnimated:YES];
+        [self.headerView hide:YES];
     }];
-    
-    dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
-    
-    [self updateAllModels];
-    self.databaseUpdater = nil;
-    
-    [self.hud hideAnimated:YES];
-    [self.headerView hide:YES];
 }
 
 - (void)databaseUpdater:(RJTDatabaseUpdater *)databaseUpdater failedUpdateWithError:(NSError *)error
 {
-    RJTErrorLog(@"Failed to update database with error: %@", error);
-    
     self.hud.style = RJTHudStyleTextOnly;
     self.hud.text = NSLocalizedString(@"failed_to_update", @"");
     self.hud.detailText = error.localizedDescription;
@@ -206,6 +172,9 @@
 
 - (void)databaseUpdater:(RJTDatabaseUpdater *)databaseUpdater updateProgress:(double)progress
 {
+    if (progress >= 100.0f)
+        progress = 0.75f;
+        
     self.hud.progress = (CGFloat)progress;
 }
 

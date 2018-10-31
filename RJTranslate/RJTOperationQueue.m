@@ -20,8 +20,6 @@
     self = [super init];
     if (self) {
         _pendingOperations = [NSMutableArray array];
-        self.qualityOfService = NSQualityOfServiceBackground;
-        self.name = @"ru.danpashin.rjtranslate.queue";
     }
     return self;
 }

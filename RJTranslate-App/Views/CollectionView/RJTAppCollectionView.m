@@ -47,9 +47,11 @@
 
 - (void)sendSelectionFeedback
 {
-    UISelectionFeedbackGenerator *selectionGenerator = [UISelectionFeedbackGenerator new];
-    [selectionGenerator prepare];
-    [selectionGenerator selectionChanged];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        UISelectionFeedbackGenerator *selectionGenerator = [UISelectionFeedbackGenerator new];
+        [selectionGenerator prepare];
+        [selectionGenerator selectionChanged];
+    });
 }
 
 #pragma mark -

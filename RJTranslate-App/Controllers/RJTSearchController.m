@@ -18,10 +18,14 @@
 
 @implementation RJTSearchController
 
-- (instancetype)initWithSearchResultsController:(UIViewController *)searchResultsController
+- (instancetype)initWithDelegate:(id<UISearchControllerDelegate>)delegate
+            searchResultsUpdater:(id<UISearchResultsUpdating>)searchResultsUpdater
 {
-    self = [super initWithSearchResultsController:searchResultsController];
+    self = [super initWithSearchResultsController:nil];
     if (self) {
+        self.delegate = delegate;
+        self.searchResultsUpdater = searchResultsUpdater;
+        
         self.dimsBackgroundDuringPresentation = NO;
         self.hidesNavigationBarDuringPresentation = NO;
         self.searchBar.searchBarStyle = UISearchBarStyleMinimal;
@@ -30,6 +34,7 @@
         self.searchBar.searchField.layer.masksToBounds = YES;
         self.searchBar.searchField.textColor = [UIColor whiteColor];
     }
+    
     return self;
 }
 

@@ -23,6 +23,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface RJTDatabaseUpdater : NSObject
 
+- (instancetype)initWithDelegate:(id <RJTDatabaseUpdaterDelegate>)delegate;
+
 @property (weak, nonatomic, nullable) id <RJTDatabaseUpdaterDelegate> delegate;
 
 - (void)downloadTranslations;
