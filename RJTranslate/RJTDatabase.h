@@ -29,6 +29,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)insertAppModels:(NSArray <RJTApplicationModel *> *)appModels completion:(void(^ _Nullable)(void))completion;
 
 - (void)updateModel:(RJTApplicationModel *)appModel;
+
+- (void)removeModel:(RJTApplicationModel *)appModel completion:(void(^ _Nullable)(NSError * _Nullable error))completion;
 @end
 
 NS_ASSUME_NONNULL_END

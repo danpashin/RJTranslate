@@ -196,7 +196,7 @@
         return;
     }
     
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"bundleIdentifier == %@ AND executableName == %@", appModel.bundleIdentifier, appModel.executableName];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"displayedName == %@", appModel.displayedName];
     [self fetchAppEntitiesWithPredicate:predicate completion:^(NSArray<RJTApplicationEntity *> * _Nonnull appEntities) {
         if (appEntities.count != 1)
             return;
@@ -204,6 +204,26 @@
         RJTApplicationEntity *entity = appEntities.firstObject;
         [entity copyPropertiesFrom:appModel];
         [self saveContext:entity.managedObjectContext];
+    }];
+}
+
+- (void)removeModel:(RJTApplicationModel *)appModel completion:(void(^)(NSError * _Nullable error))completion
+{
+    if (self.readOnly) {
+        RJTErrorLog(@"Persistent store is read-only. Skipping removing.");
+        return;
+    }
+    
+    [self performBackgroundTask:^(NSManagedObjectContext * _Nonnull context) {
+        NSFetchRequest *fetchRequest = [RJTApplicationEntity fetchRequest];
+        fetchRequest.predicate = [NSPredicate predicateWithFormat:@"displayedName == %@", appModel.displayedName];
+        
+        NSBatchDeleteRequest *deleteRequest = [[NSBatchDeleteRequest alloc] initWithFetchRequest:fetchRequest];
+        
+        NSError *error = nil;
+        [context executeRequest:deleteRequest error:&error];
+        if (completion)
+            completion(error);
     }];
 }
 

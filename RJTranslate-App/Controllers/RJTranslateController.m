@@ -158,28 +158,34 @@
 
 - (void)databaseUpdater:(RJTDatabaseUpdater *)databaseUpdater finishedUpdateWithModels:(NSArray <RJTApplicationModel *> *)models
 {
-    for (RJTApplicationModel *model in models) {
-        @autoreleasepool {
-            dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
-            NSPredicate *predicate = [NSPredicate predicateWithFormat:@"bundleIdentifier == %@", model.bundleIdentifier];
-            [self.localDatabase fetchAppEntitiesWithPredicate:predicate completion:^(NSArray<RJTApplicationEntity *> * _Nonnull entities) {
-                NSInteger entitiesCount = entities.count;
-                if (entitiesCount == 0) {
-                    [self.localDatabase insertAppModels:@[model] completion:^{
-                        dispatch_semaphore_signal(semaphore);
-                    }];
-                } else if (entitiesCount == 1) {
-                    model.enableTranslation = entities.firstObject.enableTranslation;
-                    [self.localDatabase updateModel:model];
-                    dispatch_semaphore_signal(semaphore);
-                } else {
-                    RJTErrorLog(@"Can not update localization. Number of localizations with identifier '%@' is more than one.", model.bundleIdentifier);
-                    dispatch_semaphore_signal(semaphore);
-                }
-            }];
-            dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+    dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
+    
+    [self.localDatabase fetchAllAppModelsWithCompletion:^(NSArray<RJTApplicationModel *> * _Nonnull allModels) {
+        dispatch_semaphore_t internalSemaphore = dispatch_semaphore_create(0);
+        for (RJTApplicationModel *model in models) {
+            if ([allModels containsObject:model]) {
+                [self.localDatabase updateModel:model];
+            } else {
+                [self.localDatabase insertAppModels:@[model] completion:^{
+                    dispatch_semaphore_signal(internalSemaphore);
+                }];
+                dispatch_semaphore_wait(internalSemaphore, DISPATCH_TIME_FOREVER);
+            }
         }
-    }
+        
+        for (RJTApplicationModel *model in allModels) {
+            if (![models containsObject:model]) {
+                [self.localDatabase removeModel:model completion:^(NSError * _Nullable error) {
+                    dispatch_semaphore_signal(internalSemaphore);
+                }];
+                dispatch_semaphore_wait(internalSemaphore, DISPATCH_TIME_FOREVER);
+            }
+        }
+        
+        dispatch_semaphore_signal(semaphore);
+    }];
+    
+    dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
     
     [self updateAllModels];
     self.databaseUpdater = nil;

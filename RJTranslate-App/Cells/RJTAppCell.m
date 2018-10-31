@@ -42,7 +42,7 @@
     self.nameLabel.text = model.displayedName;
     self.identifierLabel.text = model.bundleIdentifier;
     
-    if (model)
+    if (model.bundleIdentifier.length > 0)
         self.iconView.image = [UIImage _applicationIconImageForBundleIdentifier:model.bundleIdentifier 
                                                                          format:MIIconVariantDefault 
                                                                           scale:[UIScreen mainScreen].scale];

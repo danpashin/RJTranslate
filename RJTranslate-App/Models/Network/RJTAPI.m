@@ -32,12 +32,11 @@
 
 + (NSURL *)apiURL
 {
-//#if (defined(__arm__) || defined(__arm64__))
-//    return [NSURL URLWithString:@"https://api.rejail.ru/translation.php"];
-    return [NSURL URLWithString:@"http://imac.local/~daniil/api/rjtranslate/translation.php"];
-//#else
-//    return [NSURL URLWithString:@"https://127.0.0.1/"];
-//#endif
+#if (defined(__arm__) || defined(__arm64__))
+    return [NSURL URLWithString:@"https://api.rejail.ru/translation.php"];
+#else
+    return [NSURL URLWithString:@"http://localhost/~daniil/api/rjtranslate/translation.php"];
+#endif
 }
 
 - (instancetype)init
