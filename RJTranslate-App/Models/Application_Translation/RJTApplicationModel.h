@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "RJTAppIcon.h"
 @class RJTApplicationEntity;
 
 NS_ASSUME_NONNULL_BEGIN
@@ -21,6 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic, readonly, nullable) NSString *bundleIdentifier;
 @property (strong, nonatomic, readonly, nullable) NSString *executableName;
 @property (strong, nonatomic, readonly, nullable) NSDictionary *translation;
+@property (strong, nonatomic, readonly, nullable) RJTAppIcon *icon;
 @property (assign, nonatomic) BOOL enableTranslation;
 
 @end

@@ -30,6 +30,9 @@
 		A56FB1C12180ADA0002F4175 /* RJTColors.m in Sources */ = {isa = PBXBuildFile; fileRef = A56FB1C02180ADA0002F4175 /* RJTColors.m */; };
 		A56FB1C42180B17B002F4175 /* RJTTickView.m in Sources */ = {isa = PBXBuildFile; fileRef = A56FB1C32180B17B002F4175 /* RJTTickView.m */; };
 		A5763DA121823B4300C7F82A /* PrefixHeader.pch in Headers */ = {isa = PBXBuildFile; fileRef = A5763DA021823B4300C7F82A /* PrefixHeader.pch */; };
+		A57C40AA218A029200885834 /* RJTOperationQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = A57C40A8218A029200885834 /* RJTOperationQueue.h */; };
+		A57C40AB218A029200885834 /* RJTOperationQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = A57C40A9218A029200885834 /* RJTOperationQueue.m */; };
+		A57C40AC218A061300885834 /* RJTOperationQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = A57C40A9218A029200885834 /* RJTOperationQueue.m */; };
 		A57CF73A217AFFC8004A71F8 /* RJTDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = A535341B217A5A2800E08881 /* RJTDatabase.m */; };
 		A57CF73B217AFFD0004A71F8 /* RJTApplicationEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = A5353414217A595200E08881 /* RJTApplicationEntity.m */; };
 		A57CF73E217B50B9004A71F8 /* RJTNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = A57CF73D217B50B9004A71F8 /* RJTNavigationBar.m */; };
@@ -42,6 +45,12 @@
 		A5ADC0292184DB3100C33863 /* RJTAPIDownloadRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = A5ADC0282184DB3100C33863 /* RJTAPIDownloadRequest.m */; };
 		A5ADC02C2184DDCE00C33863 /* RJTAPIJSONRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = A5ADC02B2184DDCE00C33863 /* RJTAPIJSONRequest.m */; };
 		A5ADC030218508A400C33863 /* Cydia_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = A5ADC02F218508A400C33863 /* Cydia_icon.png */; };
+		A5BFB49F2189B1EB001A9D82 /* RJTAppIconEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = A5BFB49D2189B1EB001A9D82 /* RJTAppIconEntity.m */; };
+		A5BFB4A02189B1EB001A9D82 /* RJTAppIconEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = A5BFB49D2189B1EB001A9D82 /* RJTAppIconEntity.m */; };
+		A5BFB4A12189B1EB001A9D82 /* RJTAppIconEntity.h in Headers */ = {isa = PBXBuildFile; fileRef = A5BFB49E2189B1EB001A9D82 /* RJTAppIconEntity.h */; };
+		A5BFB4A42189B267001A9D82 /* RJTAppIcon.h in Headers */ = {isa = PBXBuildFile; fileRef = A5BFB4A22189B267001A9D82 /* RJTAppIcon.h */; };
+		A5BFB4A52189B267001A9D82 /* RJTAppIcon.m in Sources */ = {isa = PBXBuildFile; fileRef = A5BFB4A32189B267001A9D82 /* RJTAppIcon.m */; };
+		A5BFB4A62189B267001A9D82 /* RJTAppIcon.m in Sources */ = {isa = PBXBuildFile; fileRef = A5BFB4A32189B267001A9D82 /* RJTAppIcon.m */; };
 		A5CC12EA2184A2A600A607E3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A5CC12E92184A2A600A607E3 /* GoogleService-Info.plist */; };
 		A5DB9ABE217B74DB0061A810 /* RJTGradientView.m in Sources */ = {isa = PBXBuildFile; fileRef = A5DB9ABB217B74DB0061A810 /* RJTGradientView.m */; };
 		A5DB9AC5217B80150061A810 /* RJTNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = A5DB9AC2217B80150061A810 /* RJTNavigationController.m */; };
@@ -95,6 +104,8 @@
 		A56FB1C22180B17B002F4175 /* RJTTickView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RJTTickView.h; sourceTree = "<group>"; };
 		A56FB1C32180B17B002F4175 /* RJTTickView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RJTTickView.m; sourceTree = "<group>"; };
 		A5763DA021823B4300C7F82A /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		A57C40A8218A029200885834 /* RJTOperationQueue.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RJTOperationQueue.h; sourceTree = "<group>"; };
+		A57C40A9218A029200885834 /* RJTOperationQueue.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RJTOperationQueue.m; sourceTree = "<group>"; };
 		A57CF73C217B50B9004A71F8 /* RJTNavigationBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RJTNavigationBar.h; sourceTree = "<group>"; };
 		A57CF73D217B50B9004A71F8 /* RJTNavigationBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RJTNavigationBar.m; sourceTree = "<group>"; };
 		A58AFD72217DF975008A900C /* sign.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = sign.entitlements; sourceTree = SOURCE_ROOT; };
@@ -115,6 +126,10 @@
 		A5ADC02A2184DDCE00C33863 /* RJTAPIJSONRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RJTAPIJSONRequest.h; sourceTree = "<group>"; };
 		A5ADC02B2184DDCE00C33863 /* RJTAPIJSONRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RJTAPIJSONRequest.m; sourceTree = "<group>"; };
 		A5ADC02F218508A400C33863 /* Cydia_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Cydia_icon.png; sourceTree = "<group>"; };
+		A5BFB49D2189B1EB001A9D82 /* RJTAppIconEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RJTAppIconEntity.m; sourceTree = "<group>"; };
+		A5BFB49E2189B1EB001A9D82 /* RJTAppIconEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RJTAppIconEntity.h; sourceTree = "<group>"; };
+		A5BFB4A22189B267001A9D82 /* RJTAppIcon.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RJTAppIcon.h; sourceTree = "<group>"; };
+		A5BFB4A32189B267001A9D82 /* RJTAppIcon.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RJTAppIcon.m; sourceTree = "<group>"; };
 		A5C107D5217E56F900989BDB /* postinst */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = postinst; sourceTree = "<group>"; };
 		A5C107D6217E56F900989BDB /* postrm */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = postrm; sourceTree = "<group>"; };
 		A5C107D7217E56F900989BDB /* control */ = {isa = PBXFileReference; lastKnownFileType = text; path = control; sourceTree = "<group>"; };
@@ -231,10 +246,9 @@
 		A5353400217A57ED00E08881 /* RJTranslate */ = {
 			isa = PBXGroup;
 			children = (
-				A5353413217A595200E08881 /* RJTApplicationEntity.h */,
-				A5353414217A595200E08881 /* RJTApplicationEntity.m */,
-				A535341A217A5A2800E08881 /* RJTDatabase.h */,
-				A535341B217A5A2800E08881 /* RJTDatabase.m */,
+				A57C40AD218A0B7E00885834 /* Database */,
+				A57C40A8218A029200885834 /* RJTOperationQueue.h */,
+				A57C40A9218A029200885834 /* RJTOperationQueue.m */,
 				A5353401217A57ED00E08881 /* RJTranslate.m */,
 				A5763DA021823B4300C7F82A /* PrefixHeader.pch */,
 				A535340F217A584500E08881 /* RJTranslate.xcdatamodeld */,
@@ -249,16 +263,12 @@
 			isa = PBXGroup;
 			children = (
 				A5ADC02D2184E07D00C33863 /* Network */,
+				A57C40AF218A0F6600885834 /* Application_Translation */,
+				A57C40AE218A0F5800885834 /* Database */,
 				A56FB1BF2180ADA0002F4175 /* RJTColors.h */,
 				A56FB1C02180ADA0002F4175 /* RJTColors.m */,
-				A54ADB1C217BB0CF00D32EB7 /* RJTApplicationModel.h */,
-				A54ADB1D217BB0CF00D32EB7 /* RJTApplicationModel.m */,
 				A5A0954C217C73E8009743DF /* RJTCollectionViewLayout.h */,
 				A5A0954D217C73E8009743DF /* RJTCollectionViewLayout.m */,
-				A56C0165217F25D000027DB3 /* RJTDatabaseUpdater.h */,
-				A56C0166217F25D000027DB3 /* RJTDatabaseUpdater.m */,
-				A5ADC0242184D3A400C33863 /* RJTDatabaseUpdate.h */,
-				A5ADC0252184D3A400C33863 /* RJTDatabaseUpdate.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -270,6 +280,41 @@
 				A5DB9ACE217B8A260061A810 /* RJTAppCell.m */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		A57C40AD218A0B7E00885834 /* Database */ = {
+			isa = PBXGroup;
+			children = (
+				A5353413217A595200E08881 /* RJTApplicationEntity.h */,
+				A5353414217A595200E08881 /* RJTApplicationEntity.m */,
+				A5BFB49E2189B1EB001A9D82 /* RJTAppIconEntity.h */,
+				A5BFB49D2189B1EB001A9D82 /* RJTAppIconEntity.m */,
+				A535341A217A5A2800E08881 /* RJTDatabase.h */,
+				A535341B217A5A2800E08881 /* RJTDatabase.m */,
+			);
+			path = Database;
+			sourceTree = "<group>";
+		};
+		A57C40AE218A0F5800885834 /* Database */ = {
+			isa = PBXGroup;
+			children = (
+				A56C0165217F25D000027DB3 /* RJTDatabaseUpdater.h */,
+				A56C0166217F25D000027DB3 /* RJTDatabaseUpdater.m */,
+				A5ADC0242184D3A400C33863 /* RJTDatabaseUpdate.h */,
+				A5ADC0252184D3A400C33863 /* RJTDatabaseUpdate.m */,
+			);
+			path = Database;
+			sourceTree = "<group>";
+		};
+		A57C40AF218A0F6600885834 /* Application_Translation */ = {
+			isa = PBXGroup;
+			children = (
+				A5BFB4A22189B267001A9D82 /* RJTAppIcon.h */,
+				A5BFB4A32189B267001A9D82 /* RJTAppIcon.m */,
+				A54ADB1C217BB0CF00D32EB7 /* RJTApplicationModel.h */,
+				A54ADB1D217BB0CF00D32EB7 /* RJTApplicationModel.m */,
+			);
+			path = Application_Translation;
 			sourceTree = "<group>";
 		};
 		A5ADC02D2184E07D00C33863 /* Network */ = {
@@ -397,8 +442,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				A5763DA121823B4300C7F82A /* PrefixHeader.pch in Headers */,
+				A5BFB4A12189B1EB001A9D82 /* RJTAppIconEntity.h in Headers */,
 				A535341C217A5A2800E08881 /* RJTDatabase.h in Headers */,
 				A5353417217A595200E08881 /* RJTApplicationEntity.h in Headers */,
+				A57C40AA218A029200885834 /* RJTOperationQueue.h in Headers */,
+				A5BFB4A42189B267001A9D82 /* RJTAppIcon.h in Headers */,
 				A517965F217D1A9400B87596 /* RJTApplicationModel.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -623,6 +671,7 @@
 				A56C0167217F25D000027DB3 /* RJTDatabaseUpdater.m in Sources */,
 				A522F1D0217AFC300085A5E4 /* RJTranslateController.m in Sources */,
 				A5E0BBB3218646A10094ECBC /* RJTHud.m in Sources */,
+				A5BFB4A62189B267001A9D82 /* RJTAppIcon.m in Sources */,
 				A5ACD6F22182DA510009DB9C /* RJTAPI.m in Sources */,
 				A5ADC02C2184DDCE00C33863 /* RJTAPIJSONRequest.m in Sources */,
 				A57CF73A217AFFC8004A71F8 /* RJTDatabase.m in Sources */,
@@ -630,10 +679,12 @@
 				A523DAE221836750002E0149 /* RJTCollectionHeaderView.m in Sources */,
 				A5DB9ABE217B74DB0061A810 /* RJTGradientView.m in Sources */,
 				A5DB9ACF217B8A260061A810 /* RJTAppCell.m in Sources */,
+				A57C40AC218A061300885834 /* RJTOperationQueue.m in Sources */,
 				A56FB1C12180ADA0002F4175 /* RJTColors.m in Sources */,
 				A5ADC0262184D3A400C33863 /* RJTDatabaseUpdate.m in Sources */,
 				A522F1DB217AFC310085A5E4 /* main.m in Sources */,
 				A522F1CD217AFC300085A5E4 /* RJTAppDelegate.m in Sources */,
+				A5BFB4A02189B1EB001A9D82 /* RJTAppIconEntity.m in Sources */,
 				A57CF73E217B50B9004A71F8 /* RJTNavigationBar.m in Sources */,
 				A57CF73B217AFFD0004A71F8 /* RJTApplicationEntity.m in Sources */,
 				A5E0BBB2218646A10094ECBC /* RJTHudProgressView.m in Sources */,
@@ -649,8 +700,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A5BFB49F2189B1EB001A9D82 /* RJTAppIconEntity.m in Sources */,
+				A5BFB4A52189B267001A9D82 /* RJTAppIcon.m in Sources */,
 				A5353411217A584500E08881 /* RJTranslate.xcdatamodeld in Sources */,
 				A535341D217A5A2800E08881 /* RJTDatabase.m in Sources */,
+				A57C40AB218A029200885834 /* RJTOperationQueue.m in Sources */,
 				A5353418217A595200E08881 /* RJTApplicationEntity.m in Sources */,
 				A5353402217A57ED00E08881 /* RJTranslate.m in Sources */,
 				A517965E217D1A9200B87596 /* RJTApplicationModel.m in Sources */,
@@ -767,7 +821,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 0.3;
+				CURRENT_PROJECT_VERSION = 0.4;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = VW97WHTS78;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -849,7 +903,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 0.3;
+				CURRENT_PROJECT_VERSION = 0.4;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = VW97WHTS78;
 				ENABLE_NS_ASSERTIONS = NO;

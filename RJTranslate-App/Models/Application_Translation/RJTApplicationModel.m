@@ -15,6 +15,7 @@
 @property (strong, nonatomic, readwrite, nullable) NSString *bundleIdentifier;
 @property (strong, nonatomic, readwrite, nullable) NSString *executableName;
 @property (strong, nonatomic, readwrite, nullable) NSDictionary *translation;
+@property (strong, nonatomic, readwrite, nullable) RJTAppIcon *icon;
 
 @end
 
@@ -24,6 +25,7 @@ static NSString *const kRJTDisplayedNameKey = @"Displayed Name";
 static NSString *const kRJTBundleIdentifierKey = @"Bundle Identifier";
 static NSString *const kRJTExecutableNameKey = @"Executable Name";
 static NSString *const kRJTTranslationsKey = @"Translations";
+static NSString *const kRJTIconKey = @"Icon";
 
 + (instancetype)copyFromEntity:(RJTApplicationEntity *)entity
 {
@@ -33,6 +35,8 @@ static NSString *const kRJTTranslationsKey = @"Translations";
     model.executableName = [entity.executableName copy];
     model.translation = [entity.translation copy];
     model.enableTranslation = entity.enableTranslation;
+    model.icon = [RJTAppIcon copyFromEntity:entity.icon];
+    model.icon.appModel = model;
     
     return model;
 }
@@ -47,6 +51,8 @@ static NSString *const kRJTTranslationsKey = @"Translations";
     model.bundleIdentifier = dictionary[kRJTBundleIdentifierKey];
     model.executableName = dictionary[kRJTExecutableNameKey];
     model.translation = dictionary[kRJTTranslationsKey];
+    model.icon = [RJTAppIcon from:dictionary[kRJTIconKey]];
+    model.icon.appModel = model;
     
     return model;
 }

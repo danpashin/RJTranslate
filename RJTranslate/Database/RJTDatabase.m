@@ -12,10 +12,14 @@
 #import "RJTApplicationEntity.h"
 #import "RJTApplicationModel.h"
 
+#import "RJTOperationQueue.h"
+
 @interface RJTDatabase ()
 @property (strong, nonatomic) dispatch_queue_t serialBackgroundQueue;
 @property (assign, nonatomic) BOOL readOnly;
-@property (assign, nonatomic) BOOL storeWasReadSuccessfully;
+@property (strong, nonatomic) RJTOperationQueue *operationsQueue;
+
+@property (assign, nonatomic) BOOL wasLoadedSuccessfully;
 @end
 
 @implementation RJTDatabase
@@ -39,7 +43,7 @@
     return url;
 }
 
-+ (instancetype)defaultDatabase
++ (instancetype _Nullable)defaultDatabase
 {
     __block RJTDatabase *defaultDatabase = nil;
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0);
@@ -58,40 +62,53 @@
 {
     self = [super initWithName:name managedObjectModel:model];
     if (self) {
+        self.operationsQueue = [RJTOperationQueue new];
         self.serialBackgroundQueue = dispatch_queue_create("ru.danpashin.rjtranslate.database", DISPATCH_QUEUE_SERIAL);
-        dispatch_async(self.serialBackgroundQueue, ^{
-            NSString *databaseName = [name stringByAppendingString:@".sqlite"];
-            NSString *bundleIdentfier = [NSBundle mainBundle].bundleIdentifier;
-            self.readOnly = ![bundleIdentfier isEqualToString:@"ru.danpashin.RJTranslate"];
-
-            NSError *loadingError = nil;
-            NSURL *databaseURL = [[self.class defaultDirectoryURL] URLByAppendingPathComponent:databaseName];
-            [self.persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:databaseURL options:@{NSReadOnlyPersistentStoreOption:@(self.readOnly)} error:&loadingError];
-            if (!loadingError)
-                self.storeWasReadSuccessfully = YES;
-            
-            RJTLog(@"Loaded persistent store read-only: %@; with error: %@", @(self.readOnly), loadingError);
-        });
+        
+        [self loadPersistentStore];
     }
     return self;
 }
 
-- (void)performBackgroundTask:(void (^)(NSManagedObjectContext * _Nonnull))block
+- (void)loadPersistentStore
 {
-    if (!self.storeWasReadSuccessfully) {
-        RJTErrorLog(@"Can not start background task because of error while reading/creating persistent store.");
-        return;
-    }
-    
-    [super performBackgroundTask:^(NSManagedObjectContext * _Nonnull context) {
-        context.stalenessInterval = 0.0f;
-        block(context);
-    }];
+    dispatch_async(self.serialBackgroundQueue, ^{
+        NSString *databaseName = [self.name stringByAppendingString:@".sqlite"];
+        NSString *bundleIdentfier = [NSBundle mainBundle].bundleIdentifier;
+        self.readOnly = ![bundleIdentfier isEqualToString:@"ru.danpashin.RJTranslate"];
+        
+        NSDictionary *loadingOptions = @{NSReadOnlyPersistentStoreOption:@(self.readOnly),
+                                         NSMigratePersistentStoresAutomaticallyOption:@YES,
+                                         NSInferMappingModelAutomaticallyOption:@YES};
+        
+        NSError *loadingError = nil;
+        NSURL *databaseURL = [[self.class defaultDirectoryURL] URLByAppendingPathComponent:databaseName];
+        [self.persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType
+                                                      configuration:nil
+                                                                URL:databaseURL
+                                                            options:loadingOptions
+                                                              error:&loadingError];
+        
+        RJTLog(@"Loaded persistent store read-only: %@; with error: %@", @(self.readOnly), loadingError);
+        
+        if (!loadingError) {
+            [self.operationsQueue startAllPending];
+        }
+        
+        self.wasLoadedSuccessfully = !loadingError;
+    });
 }
 
-- (void)save
+- (void)performBackgroundTask:(void (^)(NSManagedObjectContext * _Nonnull))block
 {
-    [self saveContext:self.viewContext];
+    __block NSBlockOperation *operation = [NSBlockOperation blockOperationWithBlock:^{
+        [super performBackgroundTask:^(NSManagedObjectContext * _Nonnull context) {
+            context.stalenessInterval = 0.0f;
+            block(context);
+        }];
+    }];
+    
+    [self.operationsQueue addOperation:operation startImmediately:self.wasLoadedSuccessfully];
 }
 
 - (void)saveContext:(NSManagedObjectContext *)context
@@ -116,9 +133,12 @@
 
 - (void)fetchAllAppModelsWithCompletion:(void(^)(NSArray <RJTApplicationModel *>  * _Nonnull allModels))completion
 {
-    [self fetchAllAppEntitiesWithCompletion:^(NSArray<RJTApplicationEntity *> *allEntities) {
+    [self performBackgroundTask:^(NSManagedObjectContext * _Nonnull context) {
+        NSFetchRequest *fetchRequest = [RJTApplicationEntity fetchRequest];
+        NSArray <RJTApplicationEntity *> *result = [context executeFetchRequest:fetchRequest error:nil];
+        
         NSMutableArray <RJTApplicationModel *> *allModels = [NSMutableArray array];
-        for (RJTApplicationEntity *entity in allEntities) {
+        for (RJTApplicationEntity *entity in result) {
             RJTApplicationModel *model = [RJTApplicationModel copyFromEntity:entity];
             if (model)
                 [allModels addObject:model];
@@ -128,19 +148,9 @@
     }];
 }
 
-- (void)fetchAllAppEntitiesWithCompletion:(void(^)(NSArray <RJTApplicationEntity *> * _Nonnull allEntities))completion
-{
-    dispatch_async(self.serialBackgroundQueue, ^{
-        [self performBackgroundTask:^(NSManagedObjectContext * _Nonnull context) {
-            NSFetchRequest *fetchRequest = [RJTApplicationEntity fetchRequest];
-            NSArray <RJTApplicationEntity *> *result = [context executeFetchRequest:fetchRequest error:nil];
 
-            completion(result ?: @[]);
-        }];
-    });
-}
-
-- (void)fetchAppModelsWithPredicate:(NSPredicate *)predicate completion:(void(^)(NSArray <RJTApplicationModel *>  * _Nonnull models))completion
+- (void)fetchAppModelsWithPredicate:(NSPredicate * _Nullable)predicate
+                         completion:(void(^)(NSArray <RJTApplicationModel *>  * _Nonnull models))completion
 {
     [self fetchAppEntitiesWithPredicate:predicate completion:^(NSArray<RJTApplicationEntity *> * _Nonnull appEntities) {
         NSMutableArray <RJTApplicationModel *> *models = [NSMutableArray array];
@@ -154,39 +164,40 @@
     }];
 }
 
-- (void)fetchAppEntitiesWithPredicate:(NSPredicate *)predicate completion:(void (^)(NSArray<RJTApplicationEntity *> * _Nonnull entities))completion
+- (void)fetchAppEntitiesWithPredicate:(NSPredicate * _Nullable)predicate
+                           completion:(void (^)(NSArray<RJTApplicationEntity *> * _Nonnull entities))completion
 {
-    dispatch_async(self.serialBackgroundQueue, ^{
-        [self performBackgroundTask:^(NSManagedObjectContext * _Nonnull context) {
-            NSFetchRequest *fetchRequest = [RJTApplicationEntity fetchRequest];
-            fetchRequest.predicate = predicate;
-            
-            NSArray <RJTApplicationEntity *> *result = [context executeFetchRequest:fetchRequest error:nil];
-            completion(result ?: @[]);
-        }];
-    });
+    [self performBackgroundTask:^(NSManagedObjectContext * _Nonnull context) {
+        NSFetchRequest *fetchRequest = [RJTApplicationEntity fetchRequest];
+        fetchRequest.predicate = predicate;
+    
+        NSArray <RJTApplicationEntity *> *result = [context executeFetchRequest:fetchRequest error:nil];
+        completion(result ?: @[]);
+    }];
 }
 
 - (void)insertAppModels:(NSArray <RJTApplicationModel *> *)appModels completion:(void(^_Nullable)(void))completion
 {
     if (self.readOnly) {
         RJTErrorLog(@"Persistent store is read-only. Skipping inserting.");
+        
+        if (completion)
+            completion();
+        
         return;
     }
     
-    dispatch_async(self.serialBackgroundQueue, ^{
-        [self performBackgroundTask:^(NSManagedObjectContext * _Nonnull context) {
-            for (RJTApplicationModel *appModel in appModels) {
-                RJTApplicationEntity *appObject = [RJTApplicationEntity insertIntoContext:context];
-                [appObject copyPropertiesFrom:appModel];
-            }
-            
-            [self saveContext:context];
-            
-            if (completion)
-                completion();
-        }];
-    });
+    [self performBackgroundTask:^(NSManagedObjectContext * _Nonnull context) {
+        for (RJTApplicationModel *appModel in appModels) {
+            RJTApplicationEntity *appObject = [RJTApplicationEntity insertIntoContext:context];
+            [appObject copyPropertiesFrom:appModel];
+        }
+        
+        [self saveContext:context];
+        
+        if (completion)
+            completion();
+    }];
 }
 
 - (void)updateModel:(RJTApplicationModel *)appModel
@@ -207,10 +218,17 @@
     }];
 }
 
-- (void)removeModel:(RJTApplicationModel *)appModel completion:(void(^)(NSError * _Nullable error))completion
+- (void)removeModel:(RJTApplicationModel *)appModel completion:(void(^_Nullable)(NSError * _Nullable error))completion
 {
     if (self.readOnly) {
         RJTErrorLog(@"Persistent store is read-only. Skipping removing.");
+        
+        NSError *error = [NSError errorWithDomain:NSCocoaErrorDomain code:0
+                                         userInfo:@{NSLocalizedDescriptionKey:@"Persistent store is read-only"}];
+        
+        if (completion)
+            completion(error);
+        
         return;
     }
     
@@ -222,6 +240,7 @@
         
         NSError *error = nil;
         [context executeRequest:deleteRequest error:&error];
+        
         if (completion)
             completion(error);
     }];

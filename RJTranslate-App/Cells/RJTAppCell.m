@@ -9,7 +9,6 @@
 #import "RJTAppCell.h"
 #import "RJTApplicationModel.h"
 #import "RJTTickView.h"
-#import "UIImage+Private.h"
 
 @interface RJTAppCell ()
 
@@ -41,11 +40,7 @@
     
     self.nameLabel.text = model.displayedName;
     self.identifierLabel.text = model.bundleIdentifier;
-    
-    if (model.bundleIdentifier.length > 0)
-        self.iconView.image = [UIImage _applicationIconImageForBundleIdentifier:model.bundleIdentifier 
-                                                                         format:MIIconVariantDefault 
-                                                                          scale:[UIScreen mainScreen].scale];
+    self.iconView.image = self.model.icon.image ?: [UIImage imageNamed:@"app"];
 }
 
 - (void)prepareForReuse

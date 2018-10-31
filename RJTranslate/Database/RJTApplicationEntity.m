@@ -17,6 +17,7 @@
 @dynamic enableTranslation;
 @dynamic displayedName;
 @dynamic executableName;
+@dynamic icon;
 
 + (NSFetchRequest<RJTApplicationEntity *> *)fetchRequest
 {
@@ -35,6 +36,12 @@
     self.executableName = [appModel.executableName copy];
     self.translation = [appModel.translation copy];
     self.enableTranslation = appModel.enableTranslation;
+    
+    if (!self.icon) {
+        self.icon = [RJTAppIconEntity insertIntoContext:self.managedObjectContext];
+    }
+    
+    [self.icon copyPropertiesFrom:appModel.icon];
 }
 
 @end
