@@ -138,6 +138,7 @@
 {
     [self performBackgroundTask:^(NSManagedObjectContext * _Nonnull context) {
         NSFetchRequest *fetchRequest = [RJTApplicationEntity fetchRequest];
+        fetchRequest.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"displayedName" ascending:YES]];
         NSArray <RJTApplicationEntity *> *result = [context executeFetchRequest:fetchRequest error:nil];
         
         NSMutableArray <RJTApplicationModel *> *allModels = [NSMutableArray array];
@@ -172,6 +173,7 @@
 {
     [self performBackgroundTask:^(NSManagedObjectContext * _Nonnull context) {
         NSFetchRequest *fetchRequest = [RJTApplicationEntity fetchRequest];
+        fetchRequest.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"displayedName" ascending:YES]];
         fetchRequest.predicate = predicate;
     
         NSArray <RJTApplicationEntity *> *result = [context executeFetchRequest:fetchRequest error:nil];
@@ -253,7 +255,7 @@
 - (void)performModelsSearchWithText:(NSString *)text
                          completion:(void(^)(NSArray <RJTApplicationModel *> * _Nonnull models))completion
 {
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"bundleIdentifier CONTAINS[cd] %@ OR displayedName CONTAINS[cd] %@", text, text];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"bundleIdentifier CONTAINS[cd] %@ OR displayedName CONTAINS[cd] %@ OR executableName CONTAINS[cd] %@", text, text, text];
     [self fetchAppModelsWithPredicate:predicate completion:completion];
 }
 
