@@ -24,7 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface RJTAppCollectionView : UICollectionView
 
 /**
- Содержит модели приложений для коллекции
+ Содержит модели приложений.
  */
 @property (strong, nonatomic, nullable) NSArray <RJTApplicationModel *> *appModels;
 

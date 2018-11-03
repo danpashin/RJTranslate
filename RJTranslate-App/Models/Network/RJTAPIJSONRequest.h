@@ -14,8 +14,18 @@ typedef void(^RJTAPIRequestJSONCompletionBlock)(NSDictionary * _Nullable json, N
 
 @interface RJTAPIJSONRequest : RJTAPIRequest
 
+/**
+ Выполняет инициализацию JSON запроса.
+
+ @param URL Адрес удаленного сервера.
+ @param completion Блок, определяющий действие по завершении обработки JSON'a.
+ @return Возвращает экземпляр класса для дальнейшей работы.
+ */
 + (RJTAPIJSONRequest *)jsonRequestWithURL:(NSURL *)URL completion:(RJTAPIRequestJSONCompletionBlock)completion;
 
+/**
+ Блок, определяющий действие по завершении обработки JSON'a.
+ */
 @property (copy, nonatomic, readonly, nullable) RJTAPIRequestJSONCompletionBlock jsonCompletion;
 
 @end

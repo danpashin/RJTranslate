@@ -47,9 +47,7 @@ static NSString *const kRJTForceLocalizeKey = @"forceLocalize";
     model.enableTranslation = entity.enableTranslation;
     model.forceLocalize = entity.forceLocalize;
     
-    model.icon = [RJTAppIcon copyFromEntity:entity.icon];
-    model.icon.appModel = model;
-    
+    model.icon = [RJTAppIcon copyFromEntity:entity.icon appModel:model];
     
     return model;
 }
@@ -66,8 +64,7 @@ static NSString *const kRJTForceLocalizeKey = @"forceLocalize";
     model.executablePath = dictionary[kRJTExecutablePathKey];
     
     model.translation = dictionary[kRJTTranslationsKey];
-    model.icon = [RJTAppIcon from:dictionary[kRJTIconKey]];
-    model.icon.appModel = model;
+    model.icon = [RJTAppIcon from:dictionary[kRJTIconKey] appModel:model];
     
     model.forceLocalize = [dictionary[kRJTForceLocalizeKey] boolValue];
     

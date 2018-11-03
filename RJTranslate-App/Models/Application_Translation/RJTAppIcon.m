@@ -15,13 +15,15 @@
 @property (strong, nonatomic, nullable, readwrite) NSString *path;
 @property (strong, nonatomic, nullable, readwrite) NSString *base64_encoded;
 
+@property (weak, nonatomic) RJTApplicationModel *appModel;
+
 @end
 
 @implementation RJTAppIcon
 static NSString *const kRJTIconPathKey = @"path";
 static NSString *const kRJTIconBase64Key = @"base64";
 
-+ (RJTAppIcon *)from:(NSDictionary *)dictionary
++ (RJTAppIcon *)from:(NSDictionary *)dictionary appModel:(RJTApplicationModel * _Nullable)appModel
 {
     RJTAppIcon *appIcon = [RJTAppIcon new];
     appIcon.path = dictionary[kRJTIconPathKey];
@@ -30,11 +32,12 @@ static NSString *const kRJTIconBase64Key = @"base64";
     return appIcon;
 }
 
-+ (RJTAppIcon *)copyFromEntity:(RJTAppIconEntity *)entity
++ (RJTAppIcon *)copyFromEntity:(RJTAppIconEntity *)entity appModel:(RJTApplicationModel * _Nullable)appModel
 {
     RJTAppIcon *appIcon = [RJTAppIcon new];
     appIcon.path = entity.path;
     appIcon.base64_encoded = entity.base64_encoded;
+    appIcon.appModel = appModel;
     
     return appIcon;
 }

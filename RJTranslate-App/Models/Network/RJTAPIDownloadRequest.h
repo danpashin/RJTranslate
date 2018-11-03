@@ -16,11 +16,26 @@ typedef void(^RJTAPIRequestDownloadCompletionBlock)(NSURL * _Nullable downloaded
 
 @interface RJTAPIDownloadRequest : RJTAPIRequest
 
+/**
+ Выполняет инициализацию запроса на загрузку.
+
+ @param URL Адрес удаленного сервера.
+ @param progressHandler Блок, обрабатывающий прогресс загрузки данных.
+ @param completion Блок, определяющий действие при завершении загрузки.
+ @return Возвращает экземпляр класса для дальнейшей работы.
+ */
 + (RJTAPIDownloadRequest *)downloadRequestWithURL:(NSURL *)URL
                                   progressHandler:(RJTAPIRequestProgressBlock _Nullable)progressHandler
                                        completion:(RJTAPIRequestDownloadCompletionBlock)completion;
 
+/**
+ Блок, обрабатывающий прогресс загрузки данных.
+ */
 @property (copy, nonatomic, readonly, nullable) RJTAPIRequestProgressBlock progressHandler;
+
+/**
+ Блок, определяющий действие при завершении загрузки.
+ */
 @property (copy, nonatomic, readonly, nullable) RJTAPIRequestDownloadCompletionBlock downloadCompletion;
 
 @end

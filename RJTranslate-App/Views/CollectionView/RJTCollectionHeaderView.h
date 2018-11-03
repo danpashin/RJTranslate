@@ -12,13 +12,25 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface RJTCollectionHeaderView : UIView
 
+/**
+ Основной лейбл хэдера.
+ */
 @property (strong, nonatomic, readonly) UILabel *textLabel;
+
+/**
+ Дополнительный лейбл.
+ */
 @property (strong, nonatomic, readonly) UILabel *detailedTextLabel;
 
 @property (strong, nonatomic) NSLayoutConstraint *heightConstraint;
 
-- (void)hide:(BOOL)animated;
-- (void)show:(BOOL)animated;
+/**
+ Обновляет положение хэдера на экране.
+
+ @param show Флаг определяет появление/скрытие на экране
+ @param animated Флаг определяет, должна ли воспроизводиться анимация.
+ */
+- (void)show:(BOOL)show animated:(BOOL)animated;
 
 @end
 

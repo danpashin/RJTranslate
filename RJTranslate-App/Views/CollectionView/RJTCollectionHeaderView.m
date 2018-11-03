@@ -41,20 +41,10 @@
     [stackView.centerYAnchor constraintEqualToAnchor:self.centerYAnchor].active = YES;
 }
 
-- (void)hide:(BOOL)animated
-{
-    [self setHeight:0.0f animated:animated];
-}
-
-- (void)show:(BOOL)animated
-{
-    [self setHeight:72.0f animated:animated];
-}
-
-- (void)setHeight:(CGFloat)height animated:(BOOL)animated
+- (void)show:(BOOL)show animated:(BOOL)animated
 {
     dispatch_async(dispatch_get_main_queue(), ^{
-        self.heightConstraint.constant = height;
+        self.heightConstraint.constant = show ? 72.0f : 0.0f;
         
         if (animated) {
             [UIView animateWithDuration:0.3f delay:0.0f options:UIViewAnimationOptionAllowUserInteraction animations:^{

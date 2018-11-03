@@ -57,7 +57,7 @@
     self.headerView.heightConstraint = self.headerHeightConstraint;
     self.headerView.textLabel.text = NSLocalizedString(@"translations_update_is_available", @"");
     self.headerView.detailedTextLabel.text = NSLocalizedString(@"tap_to_download", @"");
-    [self.headerView hide:NO];
+    [self.headerView show:NO animated:NO];
     [self.headerView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(actionUpdateDatabase)]];
     
     [self updateAllModels];
@@ -69,7 +69,7 @@
     self.databaseUpdater = [[RJTDatabaseUpdater alloc] initWithDelegate:self];
     [self.databaseUpdater checkTranslationsVersion:^(RJTDatabaseUpdate * _Nullable updateModel, NSError * _Nullable error) {
         if (!error && updateModel.canUpdate)
-            [self.headerView show:YES];
+            [self.headerView show:YES animated:YES];
     }];
 }
 
@@ -108,7 +108,7 @@
 - (void)willPresentSearchController:(RJTSearchController *)searchController
 {
     [self.navigationController showNavigationLargeTitle:NO];
-    [self.headerView hide:YES];
+    [self.headerView show:NO animated:YES];
 }
 
 - (void)didDismissSearchController:(RJTSearchController *)searchController
@@ -151,7 +151,7 @@
         [self updateAllModels];
         
         [self.hud hideAnimated:YES];
-        [self.headerView hide:YES];
+        [self.headerView show:NO animated:YES];
     }];
 }
 

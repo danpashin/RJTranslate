@@ -61,7 +61,8 @@
         uname(&deviceInfo);
         
         NSString *appVersion = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"];
-        NSString *userAgent = [NSString stringWithFormat:@"RJTranslate/%@ (%s; %@/%@; Scale/%.1f)", appVersion, deviceInfo.machine, systemName, systemVersion, scale];
+        NSString *userAgent = [NSString stringWithFormat:@"RJTranslate/%@ (%s; %@/%@; Scale/%.1f)",
+                               appVersion, deviceInfo.machine, systemName, systemVersion, scale];
         self.configuration.HTTPAdditionalHeaders = @{@"User-Agent":userAgent};
         
         

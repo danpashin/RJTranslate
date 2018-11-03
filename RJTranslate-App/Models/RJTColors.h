@@ -13,8 +13,15 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface RJTColors : NSObject
 
-@property (strong, nonatomic, class, readonly) UIColor *mainColor;
-@property (strong, nonatomic, class, readonly) UIColor *secondaryColor;
+/**
+ Основной цвет приложения.
+ */
+@property (strong, nonatomic, class, readonly) UIColor *accentMainColor;
+
+/**
+ Дополнительный цвет приложения.
+ */
+@property (strong, nonatomic, class, readonly) UIColor *accentSecondaryColor;
 
 @end
 

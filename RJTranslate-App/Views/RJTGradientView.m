@@ -20,7 +20,7 @@
 + (RJTGradientView *)defaultGradientView
 {
     RJTGradientView *gradientView = [RJTGradientView new];
-    gradientView.layer.colors = @[(id)[RJTColors secondaryColor].CGColor, (id)[RJTColors mainColor].CGColor];
+    gradientView.layer.colors = @[(id)[RJTColors accentSecondaryColor].CGColor, (id)[RJTColors accentMainColor].CGColor];
     gradientView.layer.startPoint = CGPointMake(0.0f, 0.0f);
     gradientView.layer.endPoint = CGPointMake(1.0f, 1.0f);
     

@@ -15,9 +15,23 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface RJTAppIcon : NSObject
 
-+ (RJTAppIcon *)copyFromEntity:(RJTAppIconEntity *)entity;
+/**
+ Выполняет инициализацию модели через сущность базы данных.
 
-+ (RJTAppIcon *)from:(NSDictionary *)dictionary;
+ @param entity Сущность базы данных для инициализации.
+ @param appModel  Модель приложения, к которой привязана модель иконки. Используется для получения саймо иконки приложения.
+ @return Возвращает экземпляр класса для дальнейшей работы.
+ */
++ (RJTAppIcon *)copyFromEntity:(RJTAppIconEntity *)entity appModel:(RJTApplicationModel * _Nullable)appModel;
+
+/**
+ Выполняет парсинг модели из словаря.
+
+ @param dictionary Словарь для парсинга.
+ @param appModel Модель приложения, к которой привязана модель иконки. Используется для получения саймо иконки приложения.
+ @return Возвращает экземпляр класса для дальнейшей работы.
+ */
++ (RJTAppIcon *)from:(NSDictionary *)dictionary appModel:(RJTApplicationModel * _Nullable)appModel;
 
 /**
  Путь к изображению в файловой системе.
@@ -33,9 +47,6 @@ NS_ASSUME_NONNULL_BEGIN
  Создает изображение из доступных данных: файла либо base64 строке. Не потокобезопасно.
  */
 @property (strong, nonatomic, readonly, nullable) UIImage *image;
-
-
-@property (weak, nonatomic) RJTApplicationModel *appModel;
 
 @end
 
