@@ -16,6 +16,15 @@ NS_ASSUME_NONNULL_BEGIN
 @interface RJTAppIcon : NSObject
 
 /**
+ Выполняет парсинг модели из словаря.
+ 
+ @param dictionary Словарь для парсинга.
+ @param appModel Модель приложения, к которой привязана модель иконки. Используется для получения саймо иконки приложения.
+ @return Возвращает экземпляр класса для дальнейшей работы.
+ */
++ (RJTAppIcon *)from:(NSDictionary * _Nullable)dictionary appModel:(RJTApplicationModel * _Nullable)appModel;
+
+/**
  Выполняет инициализацию модели через сущность базы данных.
 
  @param entity Сущность базы данных для инициализации.
@@ -23,15 +32,6 @@ NS_ASSUME_NONNULL_BEGIN
  @return Возвращает экземпляр класса для дальнейшей работы.
  */
 + (RJTAppIcon *)copyFromEntity:(RJTAppIconEntity *)entity appModel:(RJTApplicationModel * _Nullable)appModel;
-
-/**
- Выполняет парсинг модели из словаря.
-
- @param dictionary Словарь для парсинга.
- @param appModel Модель приложения, к которой привязана модель иконки. Используется для получения саймо иконки приложения.
- @return Возвращает экземпляр класса для дальнейшей работы.
- */
-+ (RJTAppIcon *)from:(NSDictionary *)dictionary appModel:(RJTApplicationModel * _Nullable)appModel;
 
 /**
  Путь к изображению в файловой системе.

@@ -11,14 +11,15 @@
 "tap_to_download" = "Нажмите, чтобы загрузить";
 
 "please_wait" = "Пожалуйста, подождите";
-"updating_database..." = "Выполняем обновление базы данных";
-"failed_to_update" = "Не удалось выполнить обновление.";
+"updating_database..." = "Выполняем обновление базы данных...";
+"downloating_localization..." = "Загружаем файлы локализаций...";
+"failed_to_update" = "Не удалось выполнить обновление";
 
 // Поиск
-"cannot_find_any_results" = "К сожалению, по вашему запросу ничего не найдено.";
-"change_search_request_and_try_again" = "Измените поисковой запрос и попробуйте снова.";
+"cannot_find_any_results" = "К сожалению, по вашему запросу ничего не найдено";
+"change_search_request_and_try_again" = "Измените поисковой запрос и попробуйте снова";
 
-"no_translations_downloaded" = "Нет установленных переводов.";
-"tap_button_to_download_available" = "Нажмите на кнопку ниже, чтобы выполнить установку доступных.";
+"no_translations_downloaded" = "Нет установленных переводов";
+"tap_button_to_download_available" = "Нажмите на кнопку ниже, чтобы выполнить установку доступных";
 "download" = "Загрузить";
 

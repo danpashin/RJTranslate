@@ -39,7 +39,6 @@
     _model = model;
     
     self.nameLabel.text = model.displayedName;
-    self.iconView.image = self.model.icon.image ?: [UIImage imageNamed:@"icon_template"];
     
     if (model.bundleIdentifier.length > 0 && model.executableName.length > 0) {
         self.identifierLabel.text = [NSString stringWithFormat:@"%@ - %@", model.executableName, model.bundleIdentifier];
@@ -47,6 +46,19 @@
         self.identifierLabel.text = model.bundleIdentifier;
     } else {
         self.identifierLabel.text = model.executableName;
+    }
+    
+    if (!model) {
+         self.iconView.image = [UIImage imageNamed:@"icon_template"];
+    } else {
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+            UIImage *iconImage = model.icon.image ?: [UIImage imageNamed:@"icon_template"];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [UIView transitionWithView:self.iconView duration:0.2f options:UIViewAnimationOptionAllowUserInteraction | UIViewAnimationOptionTransitionCrossDissolve animations:^{
+                    self.iconView.image = iconImage;
+                } completion:nil];
+            });
+        });
     }
 }
 

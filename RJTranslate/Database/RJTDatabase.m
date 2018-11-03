@@ -255,7 +255,7 @@
 - (void)performModelsSearchWithText:(NSString *)text
                          completion:(void(^)(NSArray <RJTApplicationModel *> * _Nonnull models))completion
 {
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"bundleIdentifier CONTAINS[cd] %@ OR displayedName CONTAINS[cd] %@ OR executableName CONTAINS[cd] %@", text, text, text];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"bundleIdentifier BEGINSWITH[cd] %@ OR displayedName BEGINSWITH[cd] %@", text, text];
     [self fetchAppModelsWithPredicate:predicate completion:completion];
 }
 
@@ -266,6 +266,10 @@
         dispatch_semaphore_t internalSemaphore = dispatch_semaphore_create(0);
         for (RJTApplicationModel *model in models) {
             if ([allModels containsObject:model]) {
+                NSUInteger index = [allModels indexOfObject:model];
+                if (index >= 0)
+                    model.enableTranslation = allModels[index].enableTranslation;
+                
                 [self updateModel:model];
             } else {
                 [self insertAppModels:@[model] completion:^{

@@ -85,7 +85,7 @@
 {
     RJTHud *hud = [RJTHud show];
     hud.text = NSLocalizedString(@"please_wait", @"");
-    hud.detailText = NSLocalizedString(@"updating_database...", @"");
+    hud.detailText = NSLocalizedString(@"downloating_localization...", @"");
     self.hud = hud;
     
     [self.databaseUpdater downloadTranslations];
@@ -98,8 +98,7 @@
 
 - (void)updateSearchResultsForSearchController:(RJTSearchController *)searchController
 {
-    NSString *searchText = searchController.searchText;
-    [self.localDatabase performModelsSearchWithText:searchText completion:^(NSArray<RJTApplicationModel *> * _Nonnull models) {
+    [self.localDatabase performModelsSearchWithText:searchController.searchText completion:^(NSArray<RJTApplicationModel *> * _Nonnull models) {
         self.collectionView.appModels = models;
         [self.collectionView reload];
     }];
@@ -146,6 +145,7 @@
 - (void)databaseUpdater:(RJTDatabaseUpdater *)databaseUpdater finishedUpdateWithModels:(NSArray <RJTApplicationModel *> *)models
 {
     self.hud.progress = 0.75f;
+    self.hud.detailText = NSLocalizedString(@"updating_database...", @"");
     
     [self.localDatabase performFullDatabaseUpdateWithModels:models completion:^{
         [self updateAllModels];

@@ -23,7 +23,7 @@
 static NSString *const kRJTIconPathKey = @"path";
 static NSString *const kRJTIconBase64Key = @"base64";
 
-+ (RJTAppIcon *)from:(NSDictionary *)dictionary appModel:(RJTApplicationModel * _Nullable)appModel
++ (RJTAppIcon *)from:(NSDictionary * _Nullable)dictionary appModel:(RJTApplicationModel * _Nullable)appModel
 {
     RJTAppIcon *appIcon = [RJTAppIcon new];
     appIcon.path = dictionary[kRJTIconPathKey];
@@ -47,7 +47,19 @@ static NSString *const kRJTIconBase64Key = @"base64";
     UIImage *image = nil;
     
     if (self.path.length > 0) {
-        image = [UIImage imageWithContentsOfFile:self.path];
+        if ([self.path.lowercaseString containsString:@"bundle"]) {
+            NSString *bundlePath = [self.path stringByDeletingLastPathComponent];
+            NSBundle *bundle = [NSBundle bundleWithPath:bundlePath];
+            
+            NSString *imageName = [self.path.lastPathComponent stringByDeletingPathExtension];
+            imageName = [imageName stringByReplacingOccurrencesOfString:@"@2x" withString:@""];
+            imageName = [imageName stringByReplacingOccurrencesOfString:@"@3x" withString:@""];
+            
+            image = [UIImage imageNamed:imageName inBundle:bundle compatibleWithTraitCollection:nil];
+        }
+        
+        if (!image)
+            image = [UIImage imageWithContentsOfFile:self.path];
     } else if (self.base64_encoded.length > 0) {
         NSData *imageData = [[NSData alloc] initWithBase64EncodedString:self.base64_encoded options:0];
         image = [UIImage imageWithData:imageData scale:[UIScreen mainScreen].scale];
