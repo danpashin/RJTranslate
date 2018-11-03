@@ -17,14 +17,25 @@
 #import "RJTApplicationEntity.h"
 
 
+NS_ASSUME_NONNULL_BEGIN
+
 __strong NSMutableDictionary <NSString *, NSString *> *localizations;
-NSString *localizedString(NSString *origString);
+BOOL localizeString(NSString **origString);
 
 CHDeclareClass(UILabel);
 CHOptimizedMethod(1, self, void, UILabel, setText, NSString *, text)
 {
-    text = localizedString(text);
+    localizeString(&text);
     CHSuper(1, UILabel, setText, text);
+}
+
+CHDeclareClass(NSBundle);
+CHOptimizedMethod(3, self, NSString *, NSBundle, localizedStringForKey, NSString *, key, value, NSString *, value, table, NSString *, table)
+{
+    if (localizeString(&key))
+        return key;
+    
+    return CHSuper(3, NSBundle, localizedStringForKey, key, value, value, table, table);
 }
 
 
@@ -33,10 +44,7 @@ CHConstructor
     NSBundle *mainBundle = [NSBundle mainBundle];
     NSString *bundleIdentifier = mainBundle.bundleIdentifier;
     if (bundleIdentifier.length == 0 ||
-        [bundleIdentifier isEqualToString:@"ru.danpashin.RJTranslate"] ||
-        [bundleIdentifier isEqualToString:@"com.apple.accessibility.AccessibilityUIServer"] ||
-//        [bundleIdentifier isEqualToString:@"com.apple.springboard"] ||
-        [bundleIdentifier isEqualToString:@"com.apple.PassbookUIService"])
+        [bundleIdentifier isEqualToString:@"ru.danpashin.RJTranslate"])
         return;
     
     localizations = [NSMutableDictionary dictionary];
@@ -47,25 +55,40 @@ CHConstructor
     
     RJTDatabase *localDatabase = [RJTDatabase defaultDatabase];
     [localDatabase fetchAppEntitiesWithPredicate:predicate completion:^(NSArray<RJTApplicationEntity *> * _Nonnull entities) {
-        RJTLog(@"Loaded localizations with result: %@", entities);
         if (entities.count >= 1) {
+            BOOL forceLocalize = NO;
             for(RJTApplicationEntity *entity in entities) {
+                if (entity.forceLocalize)
+                    forceLocalize = YES;
+                
                 [localizations addEntriesFromDictionary:entity.translation];
             }
             
-            CHLoadClass(UILabel);
-            CHHook(1, UILabel, setText);
-        } else {
-            RJTLog(@"Localizations were not found.");
+//            if (forceLocalize) {
+                CHLoadClass(UILabel);
+                CHHook(1, UILabel, setText);
+//            } else {
+//                CHLoadClass(NSBundle);
+//                CHHook(3, NSBundle, localizedStringForKey, value, table);
+//            }
+            
         }
     }];
 }
 
-NSString *localizedString(NSString *origString)
+
+BOOL localizeString(NSString **origString)
 {
-    NSString *translatedString = localizations[origString];
-    if (translatedString)
-        return translatedString;
+    if (!*origString)
+        return NO;
     
-    return origString;
+    NSString *translatedString = localizations[*origString];
+    if (translatedString) {
+        *origString = translatedString;
+        return YES;
+    }
+    
+    return NO;
 }
+
+NS_ASSUME_NONNULL_END

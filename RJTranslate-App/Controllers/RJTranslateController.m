@@ -154,7 +154,6 @@
 - (void)databaseUpdater:(RJTDatabaseUpdater *)databaseUpdater finishedUpdateWithModels:(NSArray <RJTApplicationModel *> *)models
 {
     [self.localDatabase performFullDatabaseUpdateWithModels:models completion:^{
-        self.databaseUpdater = nil;
         [self updateAllModels];
         
         [self.hud hideAnimated:YES];

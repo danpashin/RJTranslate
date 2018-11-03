@@ -14,8 +14,12 @@
 @property (strong, nonatomic, readwrite, nullable) NSString *displayedName;
 @property (strong, nonatomic, readwrite, nullable) NSString *bundleIdentifier;
 @property (strong, nonatomic, readwrite, nullable) NSString *executableName;
+@property (strong, nonatomic, readwrite, nullable) NSString *executablePath;
+
 @property (strong, nonatomic, readwrite, nullable) NSDictionary *translation;
 @property (strong, nonatomic, readwrite, nullable) RJTAppIcon *icon;
+
+@property (assign, nonatomic, readwrite) BOOL forceLocalize;
 
 @end
 
@@ -24,8 +28,12 @@
 static NSString *const kRJTDisplayedNameKey = @"Displayed Name";
 static NSString *const kRJTBundleIdentifierKey = @"Bundle Identifier";
 static NSString *const kRJTExecutableNameKey = @"Executable Name";
+static NSString *const kRJTExecutablePathKey = @"Executable Path";
+
 static NSString *const kRJTTranslationsKey = @"Translations";
 static NSString *const kRJTIconKey = @"Icon";
+
+static NSString *const kRJTForceLocalizeKey = @"forceLocalize";
 
 + (instancetype)copyFromEntity:(RJTApplicationEntity *)entity
 {
@@ -33,10 +41,15 @@ static NSString *const kRJTIconKey = @"Icon";
     model.displayedName = [entity.displayedName copy];
     model.bundleIdentifier = [entity.bundleIdentifier copy];
     model.executableName = [entity.executableName copy];
+    model.executablePath = [entity.executablePath copy];
+    
     model.translation = [entity.translation copy];
     model.enableTranslation = entity.enableTranslation;
+    model.forceLocalize = entity.forceLocalize;
+    
     model.icon = [RJTAppIcon copyFromEntity:entity.icon];
     model.icon.appModel = model;
+    
     
     return model;
 }
@@ -50,9 +63,13 @@ static NSString *const kRJTIconKey = @"Icon";
     model.displayedName = dictionary[kRJTDisplayedNameKey];
     model.bundleIdentifier = dictionary[kRJTBundleIdentifierKey];
     model.executableName = dictionary[kRJTExecutableNameKey];
+    model.executablePath = dictionary[kRJTExecutablePathKey];
+    
     model.translation = dictionary[kRJTTranslationsKey];
     model.icon = [RJTAppIcon from:dictionary[kRJTIconKey]];
     model.icon.appModel = model;
+    
+    model.forceLocalize = [dictionary[kRJTForceLocalizeKey] boolValue];
     
     return model;
 }

@@ -10,6 +10,8 @@
         <attribute name="displayedName" attributeType="String" minValueString="1" syncable="YES"/>
         <attribute name="enableTranslation" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="executableName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="executablePath" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="forceLocalize" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="translation" optional="YES" attributeType="Transformable" customClassName="NSDictionary" syncable="YES"/>
         <relationship name="icon" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="RJTAppIconEntity" inverseName="application" inverseEntity="RJTAppIconEntity" syncable="YES"/>
         <uniquenessConstraints>
@@ -19,7 +21,7 @@
         </uniquenessConstraints>
     </entity>
     <elements>
-        <element name="RJTApplicationEntity" positionX="7" positionY="-6" width="128" height="133"/>
         <element name="RJTAppIconEntity" positionX="169.99609375" positionY="67" width="108.00390625" height="88"/>
+        <element name="RJTApplicationEntity" positionX="7" positionY="-6" width="128" height="163"/>
     </elements>
 </model>

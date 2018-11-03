@@ -21,9 +21,11 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, copy) NSString *displayedName;
 @property (nullable, nonatomic, copy) NSString *bundleIdentifier;
 @property (nullable, nonatomic, copy) NSString *executableName;
+@property (nullable, nonatomic, copy) NSString *executablePath;
 
 @property (nullable, nonatomic, retain) NSDictionary *translation;
 @property (assign, nonatomic) BOOL enableTranslation;
+@property (assign, nonatomic) BOOL forceLocalize;
 
 @property (nullable, nonatomic, retain) RJTAppIconEntity *icon;
 

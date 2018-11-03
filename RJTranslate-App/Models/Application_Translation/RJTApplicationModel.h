@@ -21,9 +21,13 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic, readonly, nullable) NSString *displayedName;
 @property (strong, nonatomic, readonly, nullable) NSString *bundleIdentifier;
 @property (strong, nonatomic, readonly, nullable) NSString *executableName;
+@property (strong, nonatomic, readonly, nullable) NSString *executablePath;
+
 @property (strong, nonatomic, readonly, nullable) NSDictionary *translation;
 @property (strong, nonatomic, readonly, nullable) RJTAppIcon *icon;
+
 @property (assign, nonatomic) BOOL enableTranslation;
+@property (assign, nonatomic, readonly) BOOL forceLocalize;
 
 @end
 

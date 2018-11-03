@@ -62,7 +62,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="312" height="72"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="app" translatesAutoresizingMaskIntoConstraints="NO" id="Jad-Kf-djK">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_template" translatesAutoresizingMaskIntoConstraints="NO" id="Jad-Kf-djK">
                                                     <rect key="frame" x="12" y="11" width="50" height="50"/>
                                                     <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                                     <color key="tintColor" white="0.82645726312785384" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -149,6 +149,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="app" width="48" height="48"/>
+        <image name="icon_template" width="40" height="40"/>
     </resources>
 </document>

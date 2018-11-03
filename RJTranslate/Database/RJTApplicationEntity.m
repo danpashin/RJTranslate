@@ -18,6 +18,8 @@
 @dynamic displayedName;
 @dynamic executableName;
 @dynamic icon;
+@dynamic executablePath;
+@dynamic forceLocalize;
 
 + (NSFetchRequest<RJTApplicationEntity *> *)fetchRequest
 {
@@ -34,12 +36,15 @@
     self.bundleIdentifier = [appModel.bundleIdentifier copy];
     self.displayedName = [appModel.displayedName copy];
     self.executableName = [appModel.executableName copy];
+    self.executablePath = [appModel.executablePath copy];
+    
     self.translation = [appModel.translation copy];
     self.enableTranslation = appModel.enableTranslation;
     
-    if (!self.icon) {
+    self.forceLocalize = appModel.forceLocalize;
+    
+    if (!self.icon)
         self.icon = [RJTAppIconEntity insertIntoContext:self.managedObjectContext];
-    }
     
     [self.icon copyPropertiesFrom:appModel.icon];
 }
