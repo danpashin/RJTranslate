@@ -13,12 +13,29 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface RJTAPI : NSObject
 
+/**
+ Инициализирует АПИ для выполнения запросов к удаленному серверу.
+
+ @return Возвращает синглтон-экземпляр для дальнейшей работы.
+ */
 + (instancetype)sharedAPI;
 
+/**
+ Определяет основной URL Апи.
+ */
 @property (strong, nonatomic, class, readonly) NSURL *apiURL;
 
+
+/**
+ Конфигурация сессии.
+ */
 @property (strong, nonatomic, readonly) NSURLSessionConfiguration *configuration;
 
+/**
+ Выполняет добавление запроса и стартует его.
+
+ @param request Запрос для добавления в очередь.
+ */
 - (void)addRequest:(__kindof RJTAPIRequest *)request;
 
 @end

@@ -32,7 +32,7 @@
 {
     self = [super init];
     if (self) {
-        self.delegate = delegate;
+        _delegate = delegate;
         self.backgroundQueue = dispatch_queue_create("ru.danpashin.rjtranslate.database.update", DISPATCH_QUEUE_CONCURRENT);
     }
     return self;

@@ -64,7 +64,7 @@
     if (self) {
         self.operationsQueue = [RJTOperationQueue new];
         self.operationsQueue.name = @"ru.danpashin.rjtranslate.queue";
-        self.operationsQueue.qualityOfService = NSQualityOfServiceBackground;
+        self.operationsQueue.qualityOfService = NSQualityOfServiceUtility;
         
         self.serialBackgroundQueue = dispatch_queue_create("ru.danpashin.rjtranslate.database", DISPATCH_QUEUE_SERIAL);
         

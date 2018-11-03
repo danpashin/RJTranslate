@@ -12,6 +12,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface RJTNavigationController : UINavigationController
 
+/**
+ Выполняет показ или скрытие большого бара навигации.
+
+ @param show YES - показывает. NO - скрывает.
+ */
 - (void)showNavigationLargeTitle:(BOOL)show;
 
 @end

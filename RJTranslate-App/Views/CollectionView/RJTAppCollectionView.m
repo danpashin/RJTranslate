@@ -7,11 +7,13 @@
 //
 
 #import "RJTAppCollectionView.h"
+
 #import "RJTApplicationModel.h"
 #import "RJTCollectionViewLayout.h"
 
 #import "RJTAppCell.h"
 #import <DZNEmptyDataSet/UIScrollView+EmptyDataSet.h>
+#import "RJTSearchController.h"
 
 @interface RJTAppCollectionView () <UICollectionViewDelegateFlowLayout, UICollectionViewDataSource, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>
 @property (nonatomic, strong) RJTCollectionViewLayout *collectionViewLayout;
@@ -23,9 +25,6 @@
 - (void)awakeFromNib
 {
     [super awakeFromNib];
-    
-    self.availableApps = [NSArray array];
-    self.searchResults = [NSArray array];
     
     self.dataSource = self;
     self.delegate = self;
@@ -60,7 +59,7 @@
 
 - (NSInteger)collectionView:(nonnull UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return self.performingSearch ? self.searchResults.count : self.availableApps.count;
+    return self.appModels.count;
 }
 
 - (nonnull __kindof UICollectionViewCell *)collectionView:(nonnull UICollectionView *)collectionView
@@ -68,7 +67,7 @@
 {
     RJTAppCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cell"
                                                                  forIndexPath:indexPath];
-    cell.model = self.performingSearch ? self.searchResults[indexPath.row] : self.availableApps[indexPath.row];
+    cell.model = self.appModels[indexPath.row];
     
     return cell;
 }
@@ -110,9 +109,10 @@
 
 - (UIImage *)imageForEmptyDataSet:(UIScrollView *)scrollView
 {
-    if (!self.performingSearch)
+    RJTSearchController *searchController = self.searchController;
+    if (!searchController.performingSearch)
         return [UIImage imageNamed:@"translationIcon"];
-    else if (self.performingSearch && self.searchText.length > 0)
+    else if (searchController.performingSearch && searchController.searchText.length > 0)
         return [UIImage imageNamed:@"sad-face"];
     
     return nil;
@@ -127,9 +127,10 @@
 {
     NSString *titleString = @"";
     
-    if (self.performingSearch && self.searchText.length > 0)
+    RJTSearchController *searchController = self.searchController;
+    if (searchController.performingSearch && searchController.searchText.length > 0)
         titleString = NSLocalizedString(@"cannot_find_any_results", @"");
-    else if (!self.performingSearch)
+    else if (!searchController.performingSearch)
         titleString = NSLocalizedString(@"no_translations_downloaded", @"");
     
     NSDictionary *attributes = @{NSFontAttributeName: [UIFont preferredFontForTextStyle:UIFontTextStyleTitle2],
@@ -142,9 +143,10 @@
 {
     NSString *titleString = @"";
     
-    if (self.performingSearch && self.searchText.length > 0)
+    RJTSearchController *searchController = self.searchController;
+    if (searchController.performingSearch && searchController.searchText.length > 0)
         titleString = NSLocalizedString(@"change_search_request_and_try_again", @"");
-    else if (!self.performingSearch)
+    else if (!searchController.performingSearch)
         titleString = NSLocalizedString(@"tap_button_to_download_available", @"");
     
     return [[NSAttributedString alloc] initWithString:titleString];
@@ -152,7 +154,7 @@
 
 - (NSAttributedString *)buttonTitleForEmptyDataSet:(UIScrollView *)scrollView forState:(UIControlState)state
 {
-    if (self.performingSearch)
+    if (self.searchController.performingSearch)
         return nil;
     
     NSDictionary *attributes = @{NSFontAttributeName: [UIFont preferredFontForTextStyle:UIFontTextStyleTitle3],
@@ -168,7 +170,7 @@
 
 - (void)emptyDataSet:(UIScrollView *)scrollView didTapButton:(UIButton *)button
 {
-    if (!self.performingSearch)
+    if (!self.searchController.performingSearch)
         [self.customDelegate collectionViewRequestedDownloadingTranslations:self];
 }
 

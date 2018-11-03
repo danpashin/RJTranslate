@@ -53,6 +53,7 @@
     self.title = NSLocalizedString(@"available_translations", @"");
     
     self.collectionView.customDelegate = self;
+    
     self.headerView.heightConstraint = self.headerHeightConstraint;
     self.headerView.textLabel.text = NSLocalizedString(@"translations_update_is_available", @"");
     self.headerView.detailedTextLabel.text = NSLocalizedString(@"tap_to_download", @"");
@@ -62,6 +63,7 @@
     [self updateAllModels];
     
     self.searchController = [[RJTSearchController alloc] initWithDelegate:self searchResultsUpdater:self];
+    self.collectionView.searchController = self.searchController;
     self.navigationItem.titleView = self.searchController.searchBar;
     
     self.databaseUpdater = [[RJTDatabaseUpdater alloc] initWithDelegate:self];
@@ -74,7 +76,7 @@
 - (void)updateAllModels
 {
     [self.localDatabase fetchAllAppModelsWithCompletion:^(NSArray<RJTApplicationModel *> * _Nonnull allModels) {
-        self.collectionView.availableApps = allModels;
+        self.collectionView.appModels = allModels;
         [self.collectionView reload];
     }];
 }
@@ -96,15 +98,9 @@
 
 - (void)updateSearchResultsForSearchController:(RJTSearchController *)searchController
 {
-    NSString *searchText = searchController.searchBar.text;
-    searchController.dimBackground = (searchText.length == 0);
-    
-    self.collectionView.performingSearch = YES;
-    self.collectionView.searchText = searchText;
-    self.collectionView.searchResults = nil;
-    
+    NSString *searchText = searchController.searchText;
     [self.localDatabase performModelsSearchWithText:searchText completion:^(NSArray<RJTApplicationModel *> * _Nonnull models) {
-        self.collectionView.searchResults = models;
+        self.collectionView.appModels = models;
         [self.collectionView reload];
     }];
 }
@@ -113,15 +109,11 @@
 {
     [self.navigationController showNavigationLargeTitle:NO];
     [self.headerView hide:YES];
-    searchController.dimBackground = YES;
 }
 
 - (void)didDismissSearchController:(RJTSearchController *)searchController
 {
     [self.navigationController showNavigationLargeTitle:YES];
-    searchController.dimBackground = NO;
-    
-    self.collectionView.performingSearch = NO;
     [self updateAllModels];
 }
 
@@ -153,6 +145,8 @@
 
 - (void)databaseUpdater:(RJTDatabaseUpdater *)databaseUpdater finishedUpdateWithModels:(NSArray <RJTApplicationModel *> *)models
 {
+    self.hud.progress = 0.75f;
+    
     [self.localDatabase performFullDatabaseUpdateWithModels:models completion:^{
         [self updateAllModels];
         
@@ -171,9 +165,6 @@
 
 - (void)databaseUpdater:(RJTDatabaseUpdater *)databaseUpdater updateProgress:(double)progress
 {
-    if (progress >= 100.0f)
-        progress = 0.75f;
-        
     self.hud.progress = (CGFloat)progress;
 }
 

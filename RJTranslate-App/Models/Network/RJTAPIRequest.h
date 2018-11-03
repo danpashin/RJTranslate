@@ -17,6 +17,7 @@ typedef void(^RJTAPIRequestCompletionBlock)(NSData * _Nullable responseData, NSE
 
 + (__kindof RJTAPIRequest *)defaultRequestWithURL:(NSURL *)URL;
 
+
 + (RJTAPIRequest *)requestWithURL:(NSURL *)URL completion:(RJTAPIRequestCompletionBlock)completion;
 
 @property (copy, nonatomic, readonly, nullable) RJTAPIRequestCompletionBlock completion;

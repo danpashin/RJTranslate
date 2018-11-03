@@ -25,7 +25,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (instancetype)initWithDelegate:(id <RJTDatabaseUpdaterDelegate>)delegate;
 
-@property (weak, nonatomic, nullable) id <RJTDatabaseUpdaterDelegate> delegate;
+@property (weak, nonatomic, nullable, readonly) id <RJTDatabaseUpdaterDelegate> delegate;
 
 - (void)downloadTranslations;
 - (void)checkTranslationsVersion:(void(^)(RJTDatabaseUpdate * _Nullable updateModel, NSError * _Nullable error))completion;

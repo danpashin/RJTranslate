@@ -88,13 +88,14 @@
     RJTAPIRequest *request = (RJTAPIRequest *)task.originalRequest;
     if (error) {
         if ([request isKindOfClass:[RJTAPIDownloadRequest class]]) {
-            ((RJTAPIDownloadRequest *)request).downloadCompletion(nil, error);
-        } else {
+            RJTAPIDownloadRequest *downloadRequest = (RJTAPIDownloadRequest *)request;
+            if (downloadRequest.downloadCompletion)
+                downloadRequest.downloadCompletion(nil, error);
+        } else if (request.completion) {
             request.completion(nil, error);
         }
-    } else {
-        if (request.completion)
-            request.completion(request.responseData, error);
+    } else if (request.completion) {
+        request.completion(request.responseData, error);
     }
 }
 
@@ -136,16 +137,18 @@
 
 - (void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask didWriteData:(int64_t)bytesWritten totalBytesWritten:(int64_t)totalBytesWritten totalBytesExpectedToWrite:(int64_t)totalBytesExpectedToWrite
 {
-    double downloadProgress = ((double)totalBytesWritten / (double)totalBytesExpectedToWrite);
-    
     RJTAPIDownloadRequest *request = (RJTAPIDownloadRequest *)downloadTask.originalRequest;
-    request.progressHandler(downloadProgress);
+    if (request.progressHandler) {
+        double downloadProgress = ((double)totalBytesWritten / (double)totalBytesExpectedToWrite);
+        request.progressHandler(downloadProgress);
+    }
 }
 
 - (void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask didFinishDownloadingToURL:(NSURL *)location
 {
     RJTAPIDownloadRequest *request = (RJTAPIDownloadRequest *)downloadTask.originalRequest;
-    request.downloadCompletion(location, nil);
+    if (request.downloadCompletion)
+        request.downloadCompletion(location, nil);
 }
 
 @end

@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-@class RJTApplicationModel;
+@class RJTApplicationModel, RJTSearchController;
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -23,14 +23,25 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface RJTAppCollectionView : UICollectionView
 
-@property (assign, nonatomic) BOOL performingSearch;
+/**
+ Содержит модели приложений для коллекции
+ */
+@property (strong, nonatomic, nullable) NSArray <RJTApplicationModel *> *appModels;
 
-@property (strong, nonatomic) NSArray <RJTApplicationModel *> *availableApps;
-@property (strong, nonatomic, nullable) NSArray <RJTApplicationModel *> *searchResults;
-@property (weak, nonatomic) NSString *searchText;
+/**
+ Устанавливает контроллер поиска. Нужен для определения показа фонового вида.
+ */
+@property (weak, nonatomic, nullable) RJTSearchController *searchController;
 
+/**
+ Устанавливает кастомный делегат для объекта.
+ */
 @property (weak, nonatomic) id <RJTAppCollectionViewDelegate> customDelegate;
 
+
+/**
+ Выполняет анимированную перезагрузку ячеек коллекции.
+ */
 - (void)reload;
 
 - (void)reloadData NS_UNAVAILABLE;

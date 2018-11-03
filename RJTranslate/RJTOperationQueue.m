@@ -10,6 +10,7 @@
 
 @interface RJTOperationQueue ()
 
+@property (strong, nonatomic) NSMutableArray <__kindof NSOperation *> *__pendingOperations;
 
 @end
 
@@ -19,7 +20,7 @@
 {
     self = [super init];
     if (self) {
-        _pendingOperations = [NSMutableArray array];
+        self.__pendingOperations = [NSMutableArray array];
     }
     return self;
 }
@@ -32,7 +33,7 @@
     }
     
     @synchronized (self) {
-        [self.pendingOperations addObject:op];
+        [self.__pendingOperations addObject:op];
     }
 }
 
@@ -41,9 +42,14 @@
     @synchronized (self) {
         for (NSOperation *operation in self.pendingOperations) {
             [self addOperation:operation];
-            [self.pendingOperations removeObject:operation];
+            [self.__pendingOperations removeObject:operation];
         }
     }
+}
+
+- (NSArray *)pendingOperations
+{
+    return ___pendingOperations;
 }
 
 @end

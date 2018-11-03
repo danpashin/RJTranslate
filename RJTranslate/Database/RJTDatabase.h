@@ -15,6 +15,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface RJTDatabase : NSPersistentContainer
 
+/**
+ Загружает базу данных и локальное хранилище.
+
+ @return Возвращает экземпляр класса для работы с базой.
+ */
 + (instancetype _Nullable)defaultDatabase;
 
 /**

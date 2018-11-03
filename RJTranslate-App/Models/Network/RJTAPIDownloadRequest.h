@@ -16,8 +16,9 @@ typedef void(^RJTAPIRequestDownloadCompletionBlock)(NSURL * _Nullable downloaded
 
 @interface RJTAPIDownloadRequest : RJTAPIRequest
 
-+ (RJTAPIDownloadRequest *)downloadRequestWithURL:(NSURL *)URL progressHandler:(RJTAPIRequestProgressBlock _Nullable)progressHandler
-                            completion:(RJTAPIRequestDownloadCompletionBlock)completion;
++ (RJTAPIDownloadRequest *)downloadRequestWithURL:(NSURL *)URL
+                                  progressHandler:(RJTAPIRequestProgressBlock _Nullable)progressHandler
+                                       completion:(RJTAPIRequestDownloadCompletionBlock)completion;
 
 @property (copy, nonatomic, readonly, nullable) RJTAPIRequestProgressBlock progressHandler;
 @property (copy, nonatomic, readonly, nullable) RJTAPIRequestDownloadCompletionBlock downloadCompletion;
