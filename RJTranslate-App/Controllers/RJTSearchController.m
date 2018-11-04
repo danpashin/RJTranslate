@@ -79,6 +79,7 @@
 
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
 {
+    _searchText = nil;
     _performingSearch = NO;
     [self showDimmingView:NO];
 }

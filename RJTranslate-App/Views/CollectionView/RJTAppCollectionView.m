@@ -32,8 +32,13 @@
     self.emptyDataSetDelegate = self;
     self.alwaysBounceVertical = YES;
     self.allowsMultipleSelection = YES;
+}
+
+- (void)setAppModels:(NSArray<RJTApplicationModel *> *)appModels
+{
+    [self.collectionViewLayout dataSourceChangedFrom:_appModels toNew:appModels];
     
-    self.layer.cornerRadius = 8.0f;
+    _appModels = appModels;
 }
 
 - (void)reload

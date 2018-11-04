@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface RJTCollectionViewLayout : UICollectionViewFlowLayout
 
+- (void)dataSourceChangedFrom:(NSArray * _Nullable)oldDataSource toNew:(NSArray * _Nullable)newDatasource;
+
 @end
 
 NS_ASSUME_NONNULL_END

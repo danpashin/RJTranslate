@@ -84,16 +84,16 @@
 - (void)loadPersistentStore
 {
     dispatch_async(self.serialBackgroundQueue, ^{
-        NSString *databaseName = [self.name stringByAppendingString:@".sqlite"];
-        NSString *bundleIdentfier = [NSBundle mainBundle].bundleIdentifier;
-        self.readOnly = ![bundleIdentfier isEqualToString:@"ru.danpashin.RJTranslate"];
+        NSURL *persistentStoreFolderURL = [self.class defaultDirectoryURL];
+        self.readOnly = ![[NSFileManager defaultManager] isWritableFileAtPath:persistentStoreFolderURL.path];
         
         NSDictionary *loadingOptions = @{NSReadOnlyPersistentStoreOption:@(self.readOnly),
                                          NSMigratePersistentStoresAutomaticallyOption:@YES,
                                          NSInferMappingModelAutomaticallyOption:@YES};
         
         NSError *loadingError = nil;
-        NSURL *databaseURL = [[self.class defaultDirectoryURL] URLByAppendingPathComponent:databaseName];
+        NSString *databaseName = [self.name stringByAppendingString:@".sqlite"];
+        NSURL *databaseURL = [persistentStoreFolderURL URLByAppendingPathComponent:databaseName];
         [self.persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType
                                                       configuration:nil
                                                                 URL:databaseURL

@@ -43,7 +43,7 @@
 
 - (void)show:(BOOL)show animated:(BOOL)animated
 {
-    dispatch_async(dispatch_get_main_queue(), ^{
+    [self performOnMainThread:^{
         self.heightConstraint.constant = show ? 72.0f : 0.0f;
         
         if (animated) {
@@ -51,7 +51,12 @@
                 [self.superview layoutIfNeeded];
             } completion:nil];
         }
-    });
+    }];
+}
+
+- (void)performOnMainThread:(void(^)(void))block
+{
+    [NSThread isMainThread] ? block() : dispatch_sync(dispatch_get_main_queue(), block);
 }
 
 @end

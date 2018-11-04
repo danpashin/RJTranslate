@@ -8,19 +8,33 @@
 
 #import "RJTCollectionViewLayout.h"
 
+@interface RJTCollectionViewLayout ()
+@property (strong, nonatomic) NSArray *collectionViewOldDataSource;
+@property (weak, nonatomic) NSArray *collectionViewNewDataSource;
+@end
+
 @implementation RJTCollectionViewLayout
 
 - (void)prepareLayout
 {
     [super prepareLayout];
     
-    self.itemSize = CGSizeMake(CGRectGetWidth(self.collectionView.frame), 72.0f);
+    self.itemSize = CGSizeMake(CGRectGetWidth(self.collectionView.frame) - 24.0f, 72.0f);
+}
+
+- (void)finalizeCollectionViewUpdates
+{
+    [super finalizeCollectionViewUpdates];
+    self.collectionViewOldDataSource = nil;
 }
 
 - (nullable UICollectionViewLayoutAttributes *)initialLayoutAttributesForAppearingItemAtIndexPath:(NSIndexPath *)itemIndexPath
 {
     UICollectionViewLayoutAttributes *attributes = [super initialLayoutAttributesForAppearingItemAtIndexPath:itemIndexPath];
-    attributes.transform = CGAffineTransformMakeScale(0.2f, 0.2f);
+    
+    NSInteger oldItemsCount = (NSInteger)(self.collectionViewOldDataSource.count);
+    if (itemIndexPath.item > oldItemsCount - 1)
+        attributes.transform = CGAffineTransformMakeScale(0.2f, 0.2f);
 
     return attributes;
 }
@@ -28,9 +42,18 @@
 - (nullable UICollectionViewLayoutAttributes *)finalLayoutAttributesForDisappearingItemAtIndexPath:(NSIndexPath *)itemIndexPath
 {
     UICollectionViewLayoutAttributes *attributes = [super finalLayoutAttributesForDisappearingItemAtIndexPath:itemIndexPath];
-    attributes.transform = CGAffineTransformMakeScale(0.2f, 0.2f);
+    
+    NSInteger newItemsCount = (NSInteger)(self.collectionViewNewDataSource.count);
+    if (itemIndexPath.item > newItemsCount - 1)
+        attributes.transform = CGAffineTransformMakeScale(0.2f, 0.2f);
 
     return attributes;
+}
+
+- (void)dataSourceChangedFrom:(NSArray *)oldDataSource toNew:(NSArray *)newDatasource
+{
+    self.collectionViewOldDataSource = oldDataSource;
+    self.collectionViewNewDataSource = newDatasource;
 }
 
 @end
