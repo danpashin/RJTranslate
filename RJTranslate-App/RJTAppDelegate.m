@@ -7,6 +7,7 @@
 //
 
 #import "RJTAppDelegate.h"
+#import "RJTImageCache.h"
 @import Firebase;
 
 @interface RJTAppDelegate ()
@@ -17,10 +18,16 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+#if (defined(__arm__) || defined(__arm64__))
     [FIRApp configure];
+#endif
+    
+    [[RJTImageCache sharedCache] countSizeWithCompletion:^(NSUInteger cacheSize) {
+        if (cacheSize > 20 * 1024 * 1024)
+            [[RJTImageCache sharedCache] flush];
+    }];
     
     return YES;
 }
-
 
 @end

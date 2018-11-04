@@ -8,6 +8,7 @@
 
 #import "RJTDatabase.h"
 #import <CoreData/CoreData.h>
+#import "RJTManagedObjectContext.h"
 
 #import "RJTApplicationEntity.h"
 #import "RJTApplicationModel.h"
@@ -20,6 +21,9 @@
 @property (strong, nonatomic) RJTOperationQueue *operationsQueue;
 
 @property (assign, nonatomic) BOOL wasLoadedSuccessfully;
+
+@property (assign, nonatomic) NSInteger contextChanges;
+@property (strong, nonatomic) RJTManagedObjectContext *context;
 @end
 
 @implementation RJTDatabase
@@ -66,6 +70,10 @@
         self.operationsQueue.name = @"ru.danpashin.rjtranslate.queue";
         self.operationsQueue.qualityOfService = NSQualityOfServiceUtility;
         
+        self.context = [[RJTManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
+        self.context.persistentStoreCoordinator = self.persistentStoreCoordinator;
+        self.context.stalenessInterval = 0.0f;
+        
         self.serialBackgroundQueue = dispatch_queue_create("ru.danpashin.rjtranslate.database", DISPATCH_QUEUE_SERIAL);
         
         [self loadPersistentStore];
@@ -104,26 +112,15 @@
 
 - (void)performBackgroundTask:(void (^)(NSManagedObjectContext * _Nonnull))block
 {
-    __block NSBlockOperation *operation = [NSBlockOperation blockOperationWithBlock:^{
-        [super performBackgroundTask:^(NSManagedObjectContext * _Nonnull context) {
-            context.stalenessInterval = 0.0f;
-            block(context);
-        }];
-    }];
-    
-    [self.operationsQueue addOperation:operation startImmediately:self.wasLoadedSuccessfully];
+    [self.operationsQueue addOperation:[NSBlockOperation blockOperationWithBlock:^{
+        block(self.context);
+    }] startImmediately:self.wasLoadedSuccessfully];
 }
 
 - (void)saveContext:(NSManagedObjectContext *)context
 {
     if (self.readOnly) {
         RJTErrorLog(@"Persistent store is read-only. Skipping saving.");
-        return;
-    }
-    
-    BOOL hasChanges = context.hasChanges;
-    if (!hasChanges) {
-        RJTLog(@"Context has no changes. Skipping saving.");
         return;
     }
     

@@ -55,6 +55,12 @@
 		A5DB9ABE217B74DB0061A810 /* RJTGradientView.m in Sources */ = {isa = PBXBuildFile; fileRef = A5DB9ABB217B74DB0061A810 /* RJTGradientView.m */; };
 		A5DB9AC5217B80150061A810 /* RJTNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = A5DB9AC2217B80150061A810 /* RJTNavigationController.m */; };
 		A5DB9ACF217B8A260061A810 /* RJTAppCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A5DB9ACE217B8A260061A810 /* RJTAppCell.m */; };
+		A5DEBB29218EF5B900858616 /* RJTImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = A5DEBB28218EF5B900858616 /* RJTImageCache.m */; };
+		A5DEBB2D218EFC5C00858616 /* RJTManagedObjectContext.h in Headers */ = {isa = PBXBuildFile; fileRef = A5DEBB2B218EFC5C00858616 /* RJTManagedObjectContext.h */; };
+		A5DEBB2E218EFC5C00858616 /* RJTManagedObjectContext.m in Sources */ = {isa = PBXBuildFile; fileRef = A5DEBB2C218EFC5C00858616 /* RJTManagedObjectContext.m */; };
+		A5DEBB2F218EFF1B00858616 /* RJTManagedObjectContext.m in Sources */ = {isa = PBXBuildFile; fileRef = A5DEBB2C218EFC5C00858616 /* RJTManagedObjectContext.m */; };
+		A5DEBB30218F0EED00858616 /* RJTImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = A5DEBB28218EF5B900858616 /* RJTImageCache.m */; };
+		A5DEBB31218F0EF000858616 /* RJTImageCache.h in Headers */ = {isa = PBXBuildFile; fileRef = A5DEBB27218EF5B800858616 /* RJTImageCache.h */; };
 		A5E0BBB2218646A10094ECBC /* RJTHudProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = A5E0BBB0218646A10094ECBC /* RJTHudProgressView.m */; };
 		A5E0BBB3218646A10094ECBC /* RJTHud.m in Sources */ = {isa = PBXBuildFile; fileRef = A5E0BBB1218646A10094ECBC /* RJTHud.m */; };
 		B9547F1B8B42C09F1AAAB596 /* libPods-RJTranslate.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 18933699E1CEE06A405D344F /* libPods-RJTranslate.a */; };
@@ -143,6 +149,10 @@
 		A5DB9AC2217B80150061A810 /* RJTNavigationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RJTNavigationController.m; sourceTree = "<group>"; };
 		A5DB9ACD217B8A260061A810 /* RJTAppCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RJTAppCell.h; sourceTree = "<group>"; };
 		A5DB9ACE217B8A260061A810 /* RJTAppCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RJTAppCell.m; sourceTree = "<group>"; };
+		A5DEBB27218EF5B800858616 /* RJTImageCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RJTImageCache.h; sourceTree = "<group>"; };
+		A5DEBB28218EF5B900858616 /* RJTImageCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RJTImageCache.m; sourceTree = "<group>"; };
+		A5DEBB2B218EFC5C00858616 /* RJTManagedObjectContext.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RJTManagedObjectContext.h; sourceTree = "<group>"; };
+		A5DEBB2C218EFC5C00858616 /* RJTManagedObjectContext.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RJTManagedObjectContext.m; sourceTree = "<group>"; };
 		A5E0BBAE218646A10094ECBC /* RJTHud.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RJTHud.h; sourceTree = "<group>"; };
 		A5E0BBAF218646A10094ECBC /* RJTHudProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RJTHudProgressView.h; sourceTree = "<group>"; };
 		A5E0BBB0218646A10094ECBC /* RJTHudProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RJTHudProgressView.m; sourceTree = "<group>"; };
@@ -270,6 +280,8 @@
 				A56FB1C02180ADA0002F4175 /* RJTColors.m */,
 				A5A0954C217C73E8009743DF /* RJTCollectionViewLayout.h */,
 				A5A0954D217C73E8009743DF /* RJTCollectionViewLayout.m */,
+				A5DEBB27218EF5B800858616 /* RJTImageCache.h */,
+				A5DEBB28218EF5B900858616 /* RJTImageCache.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -292,6 +304,8 @@
 				A5BFB49D2189B1EB001A9D82 /* RJTAppIconEntity.m */,
 				A535341A217A5A2800E08881 /* RJTDatabase.h */,
 				A535341B217A5A2800E08881 /* RJTDatabase.m */,
+				A5DEBB2B218EFC5C00858616 /* RJTManagedObjectContext.h */,
+				A5DEBB2C218EFC5C00858616 /* RJTManagedObjectContext.m */,
 			);
 			path = Database;
 			sourceTree = "<group>";
@@ -442,6 +456,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A5DEBB2D218EFC5C00858616 /* RJTManagedObjectContext.h in Headers */,
 				A5763DA121823B4300C7F82A /* PrefixHeader.pch in Headers */,
 				A5BFB4A12189B1EB001A9D82 /* RJTAppIconEntity.h in Headers */,
 				A535341C217A5A2800E08881 /* RJTDatabase.h in Headers */,
@@ -449,6 +464,7 @@
 				A57C40AA218A029200885834 /* RJTOperationQueue.h in Headers */,
 				A5BFB4A42189B267001A9D82 /* RJTAppIcon.h in Headers */,
 				A517965F217D1A9400B87596 /* RJTApplicationModel.h in Headers */,
+				A5DEBB31218F0EF000858616 /* RJTImageCache.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -507,6 +523,11 @@
 				TargetAttributes = {
 					A522F1C8217AFC300085A5E4 = {
 						CreatedOnToolsVersion = 10.0;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 0;
+							};
+						};
 					};
 					A53533FA217A57ED00E08881 = {
 						CreatedOnToolsVersion = 10.0;
@@ -676,7 +697,9 @@
 				A5ACD6F22182DA510009DB9C /* RJTAPI.m in Sources */,
 				A5ADC02C2184DDCE00C33863 /* RJTAPIJSONRequest.m in Sources */,
 				A57CF73A217AFFC8004A71F8 /* RJTDatabase.m in Sources */,
+				A5DEBB29218EF5B900858616 /* RJTImageCache.m in Sources */,
 				A5A09548217C4696009743DF /* RJTAppCollectionView.m in Sources */,
+				A5DEBB2F218EFF1B00858616 /* RJTManagedObjectContext.m in Sources */,
 				A523DAE221836750002E0149 /* RJTCollectionHeaderView.m in Sources */,
 				A5DB9ABE217B74DB0061A810 /* RJTGradientView.m in Sources */,
 				A5DB9ACF217B8A260061A810 /* RJTAppCell.m in Sources */,
@@ -707,6 +730,8 @@
 				A535341D217A5A2800E08881 /* RJTDatabase.m in Sources */,
 				A57C40AB218A029200885834 /* RJTOperationQueue.m in Sources */,
 				A5353418217A595200E08881 /* RJTApplicationEntity.m in Sources */,
+				A5DEBB2E218EFC5C00858616 /* RJTManagedObjectContext.m in Sources */,
+				A5DEBB30218F0EED00858616 /* RJTImageCache.m in Sources */,
 				A5353402217A57ED00E08881 /* RJTranslate.m in Sources */,
 				A517965E217D1A9200B87596 /* RJTApplicationModel.m in Sources */,
 			);

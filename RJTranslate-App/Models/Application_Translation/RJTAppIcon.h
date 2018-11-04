@@ -44,9 +44,11 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic, nullable, readonly) NSString *base64_encoded;
 
 /**
- Создает изображение из доступных данных: файла либо base64 строке. Не потокобезопасно.
+ Выполняет загрузку изображения из кэша, файла или base64.
+
+ @param completion Блок, вызывающийся при завершении. Всегда вызывется на фоновой очереди.
  */
-@property (strong, nonatomic, readonly, nullable) UIImage *image;
+- (void)loadIconWithCompletion:(void(^)(UIImage * _Nullable iconImage))completion;
 
 @end
 

@@ -9,6 +9,7 @@
 #import "RJTAppIcon.h"
 #import "RJTApplicationModel.h"
 #import "UIImage+Private.h"
+#import "RJTImageCache.h"
 
 @interface RJTAppIcon ()
 
@@ -42,36 +43,48 @@ static NSString *const kRJTIconBase64Key = @"base64";
     return appIcon;
 }
 
-- (UIImage * _Nullable)image
+- (void)loadIconWithCompletion:(void(^)(UIImage * _Nullable iconImage))completion
 {
-    UIImage *image = nil;
-    
-    if (self.path.length > 0) {
-        if ([self.path.lowercaseString containsString:@"bundle"]) {
-            NSString *bundlePath = [self.path stringByDeletingLastPathComponent];
-            NSBundle *bundle = [NSBundle bundleWithPath:bundlePath];
-            
-            NSString *imageName = [self.path.lastPathComponent stringByDeletingPathExtension];
-            imageName = [imageName stringByReplacingOccurrencesOfString:@"@2x" withString:@""];
-            imageName = [imageName stringByReplacingOccurrencesOfString:@"@3x" withString:@""];
-            
-            image = [UIImage imageNamed:imageName inBundle:bundle compatibleWithTraitCollection:nil];
+    dispatch_queue_t queue = dispatch_queue_create("ru.danpashin.rjtranslate.image", DISPATCH_QUEUE_CONCURRENT);
+    dispatch_async(queue, ^{
+        RJTImageCache *imageCache = [RJTImageCache sharedCache];
+        UIImage *image = imageCache[self.appModel.displayedName];
+        if (image) {
+            completion(image);
+            return;
         }
         
-        if (!image)
-            image = [UIImage imageWithContentsOfFile:self.path];
-    } else if (self.base64_encoded.length > 0) {
-        NSData *imageData = [[NSData alloc] initWithBase64EncodedString:self.base64_encoded options:0];
-        image = [UIImage imageWithData:imageData scale:[UIScreen mainScreen].scale];
-    }
-    
-    if (!image && self.appModel.bundleIdentifier.length > 0) {
-       image = [UIImage _applicationIconImageForBundleIdentifier:self.appModel.bundleIdentifier
-                                                          format:MIIconVariantDefault
-                                                           scale:[UIScreen mainScreen].scale];
-    }
-    
-    return image;
+        if (self.path.length > 0) {
+            if ([self.path.lowercaseString containsString:@"bundle"]) {
+                NSString *bundlePath = [self.path stringByDeletingLastPathComponent];
+                NSBundle *bundle = [NSBundle bundleWithPath:bundlePath];
+                
+                NSString *imageName = [self.path.lastPathComponent stringByDeletingPathExtension];
+                imageName = [imageName stringByReplacingOccurrencesOfString:@"@2x" withString:@""];
+                imageName = [imageName stringByReplacingOccurrencesOfString:@"@3x" withString:@""];
+                
+                image = [UIImage imageNamed:imageName inBundle:bundle compatibleWithTraitCollection:nil];
+            }
+            
+            if (!image)
+                image = [UIImage imageWithContentsOfFile:self.path];
+        } else if (self.base64_encoded.length > 0) {
+            NSData *imageData = [[NSData alloc] initWithBase64EncodedString:self.base64_encoded options:0];
+            image = [UIImage imageWithData:imageData scale:[UIScreen mainScreen].scale];
+        }
+        
+        if (image) {
+            imageCache[self.appModel.displayedName] = image;
+        }
+        
+        if (!image && self.appModel.bundleIdentifier.length > 0) {
+            image = [UIImage _applicationIconImageForBundleIdentifier:self.appModel.bundleIdentifier
+                                                               format:MIIconVariantDefault
+                                                                scale:[UIScreen mainScreen].scale];
+        }
+        
+        completion(image);
+    });
 }
 
 @end

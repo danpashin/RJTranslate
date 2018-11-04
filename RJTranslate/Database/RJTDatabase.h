@@ -90,6 +90,9 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (void)performFullDatabaseUpdateWithModels:(NSArray <RJTApplicationModel *> *)models
                                  completion:(void(^ _Nullable)(void))completion;
+
+@property (strong, readonly) NSManagedObjectContext *viewContext NS_UNAVAILABLE;
+- (NSManagedObjectContext *)newBackgroundContext NS_RETURNS_RETAINED NS_UNAVAILABLE;
 @end
 
 NS_ASSUME_NONNULL_END
