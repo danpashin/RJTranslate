@@ -35,6 +35,8 @@
     NSString *savedHash = [[NSUserDefaults standardUserDefaults] stringForKey:@"latestDatabaseUpdateHash"];
     if (hashSum.length > 0 && savedHash.length > 0)
         self.canUpdate = ![hashSum isEqualToString:savedHash];
+    else if (savedHash.length == 0)
+        self.canUpdate = YES;
     else
         self.canUpdate = NO;
 }

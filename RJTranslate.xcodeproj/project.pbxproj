@@ -54,9 +54,6 @@
 		A5DB9AC5217B80150061A810 /* RJTNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = A5DB9AC2217B80150061A810 /* RJTNavigationController.m */; };
 		A5DB9ACF217B8A260061A810 /* RJTAppCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A5DB9ACE217B8A260061A810 /* RJTAppCell.m */; };
 		A5DEBB29218EF5B900858616 /* RJTImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = A5DEBB28218EF5B900858616 /* RJTImageCache.m */; };
-		A5DEBB2D218EFC5C00858616 /* RJTManagedObjectContext.h in Headers */ = {isa = PBXBuildFile; fileRef = A5DEBB2B218EFC5C00858616 /* RJTManagedObjectContext.h */; };
-		A5DEBB2E218EFC5C00858616 /* RJTManagedObjectContext.m in Sources */ = {isa = PBXBuildFile; fileRef = A5DEBB2C218EFC5C00858616 /* RJTManagedObjectContext.m */; };
-		A5DEBB2F218EFF1B00858616 /* RJTManagedObjectContext.m in Sources */ = {isa = PBXBuildFile; fileRef = A5DEBB2C218EFC5C00858616 /* RJTManagedObjectContext.m */; };
 		A5DEBB31218F0EF000858616 /* RJTImageCache.h in Headers */ = {isa = PBXBuildFile; fileRef = A5DEBB27218EF5B800858616 /* RJTImageCache.h */; };
 		A5E0BBB2218646A10094ECBC /* RJTHudProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = A5E0BBB0218646A10094ECBC /* RJTHudProgressView.m */; };
 		A5E0BBB3218646A10094ECBC /* RJTHud.m in Sources */ = {isa = PBXBuildFile; fileRef = A5E0BBB1218646A10094ECBC /* RJTHud.m */; };
@@ -456,7 +453,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A5DEBB2D218EFC5C00858616 /* RJTManagedObjectContext.h in Headers */,
 				A5763DA121823B4300C7F82A /* PrefixHeader.pch in Headers */,
 				A5BFB4A12189B1EB001A9D82 /* RJTAppIconEntity.h in Headers */,
 				A535341C217A5A2800E08881 /* RJTDatabase.h in Headers */,
@@ -700,7 +696,6 @@
 				A57CF73A217AFFC8004A71F8 /* RJTDatabase.m in Sources */,
 				A5DEBB29218EF5B900858616 /* RJTImageCache.m in Sources */,
 				A5A09548217C4696009743DF /* RJTAppCollectionView.m in Sources */,
-				A5DEBB2F218EFF1B00858616 /* RJTManagedObjectContext.m in Sources */,
 				A523DAE221836750002E0149 /* RJTCollectionHeaderView.m in Sources */,
 				A5DB9ABE217B74DB0061A810 /* RJTGradientView.m in Sources */,
 				A5DB9ACF217B8A260061A810 /* RJTAppCell.m in Sources */,
@@ -730,7 +725,6 @@
 				A57C40AB218A029200885834 /* RJTOperationQueue.m in Sources */,
 				A5353418217A595200E08881 /* RJTApplicationEntity.m in Sources */,
 				A5F40123218F7DBE00046C58 /* RJTApplicationModel.m in Sources */,
-				A5DEBB2E218EFC5C00858616 /* RJTManagedObjectContext.m in Sources */,
 				A5F40125218F7DC200046C58 /* RJTImageCache.m in Sources */,
 				A5353402217A57ED00E08881 /* RJTranslate.m in Sources */,
 				A5F40124218F7DC000046C58 /* RJTAppIcon.m in Sources */,

@@ -8,7 +8,7 @@
 
 #import "RJTDatabase.h"
 #import <CoreData/CoreData.h>
-#import "RJTManagedObjectContext.h"
+//#import "RJTManagedObjectContext.h"
 
 #import "RJTApplicationEntity.h"
 #import "RJTApplicationModel.h"
@@ -23,7 +23,7 @@
 @property (assign, nonatomic) BOOL wasLoadedSuccessfully;
 
 @property (assign, nonatomic) NSInteger contextChanges;
-@property (strong, nonatomic) RJTManagedObjectContext *context;
+//@property (strong, nonatomic) RJTManagedObjectContext *context;
 @end
 
 @implementation RJTDatabase
@@ -70,9 +70,9 @@
         self.operationsQueue.name = @"ru.danpashin.rjtranslate.queue";
         self.operationsQueue.qualityOfService = NSQualityOfServiceUtility;
         
-        self.context = [[RJTManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
-        self.context.persistentStoreCoordinator = self.persistentStoreCoordinator;
-        self.context.stalenessInterval = 0.0f;
+//        self.context = [[RJTManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
+//        self.context.persistentStoreCoordinator = self.persistentStoreCoordinator;
+//        self.context.stalenessInterval = 0.0f;
         
         self.serialBackgroundQueue = dispatch_queue_create("ru.danpashin.rjtranslate.database", DISPATCH_QUEUE_SERIAL);
         
@@ -113,7 +113,10 @@
 - (void)performBackgroundTask:(void (^)(NSManagedObjectContext * _Nonnull))block
 {
     [self.operationsQueue addOperation:[NSBlockOperation blockOperationWithBlock:^{
-        block(self.context);
+        [super performBackgroundTask:^(NSManagedObjectContext *context) {
+            context.stalenessInterval = 0.0f;
+            block(context);
+        }];
     }] startImmediately:self.wasLoadedSuccessfully];
 }
 
