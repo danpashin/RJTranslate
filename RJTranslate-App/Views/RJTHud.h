@@ -65,7 +65,7 @@ typedef NS_ENUM(NSInteger, RJTHudStyle) {
 @property (readwrite, copy, nonatomic, nullable) NSString *detailText;
 
 /**
- Стиль заднего размытия. По умолчанию, UIBlurEffectStyleLight
+ Стиль заднего размытия. По умолчанию, UIBlurEffectStyleExtraLight
  */
 @property (assign, nonatomic) UIBlurEffectStyle blurStyle;
 

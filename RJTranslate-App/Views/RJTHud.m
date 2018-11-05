@@ -30,7 +30,7 @@
 
 @implementation RJTHud
 
-static CGFloat const RJTHudContentSize = 160.0f;
+static CGFloat const RJTHudContentSize = 140.0f;
 
 + (instancetype)show
 {
@@ -46,7 +46,7 @@ static CGFloat const RJTHudContentSize = 160.0f;
     self = [super initWithFrame:CGRectZero];
     if (self) {
         _labelsDefaultHeight = 32.0f;
-        _blurStyle = UIBlurEffectStyleLight;
+        _blurStyle = UIBlurEffectStyleExtraLight;
         
         self.contentView = [UIView new];
         self.contentView.layer.cornerRadius = 20.0f;
@@ -58,18 +58,17 @@ static CGFloat const RJTHudContentSize = 160.0f;
         
         UIBlurEffect *blurEffect = [UIBlurEffect effectWithStyle:self.blurStyle];
         self.blurView = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
-        self.blurView.backgroundColor = [UIColor colorWithWhite:1.0f alpha:0.7f];
         self.blurView.layer.masksToBounds = YES;
         self.blurView.layer.cornerRadius = self.contentView.layer.cornerRadius;
         [self.contentView addSubview:self.blurView];
         
         self.progressView = [RJTHudProgressView defaultProgressView];
-        self.progressView.tintColor = [UIColor colorWithWhite:0.0f alpha:0.7f];
+        self.progressView.tintColor = [UIColor colorWithWhite:0.0f alpha:0.6f];
         
         self.textLabel = [[UILabel alloc] init];
         self.textLabel.numberOfLines = 1;
         self.textLabel.textAlignment = NSTextAlignmentCenter;
-        self.textLabel.textColor = [UIColor colorWithWhite:0.0f alpha:0.7f];
+        self.textLabel.textColor = [UIColor colorWithWhite:0.0f alpha:0.6f];
         self.textLabel.font = [UIFont boldSystemFontOfSize:[UIFont buttonFontSize]];
         
         self.detailTextLabel = [[UILabel alloc] init];
@@ -178,10 +177,10 @@ static CGFloat const RJTHudContentSize = 160.0f;
     [self.blurView.leadingAnchor constraintEqualToAnchor:self.contentView.leadingAnchor].active = YES;
     [self.blurView.trailingAnchor constraintEqualToAnchor:self.contentView.trailingAnchor].active = YES;
     
-    self.textLabelHeightConstraint = [self.textLabel.heightAnchor constraintEqualToConstant:self.labelsDefaultHeight];
+    self.textLabelHeightConstraint = [self.textLabel.heightAnchor constraintEqualToConstant:0.0];
     self.textLabelHeightConstraint.active = YES;
     
-    self.detailTextLabelHeightConstraint = [self.detailTextLabel.heightAnchor constraintEqualToConstant:self.labelsDefaultHeight];
+    self.detailTextLabelHeightConstraint = [self.detailTextLabel.heightAnchor constraintEqualToConstant:0.0];
     self.detailTextLabelHeightConstraint.active = YES;
 }
 
@@ -281,7 +280,7 @@ static CGFloat const RJTHudContentSize = 160.0f;
     if (textSize.width > RJTHudContentSize || detailTextSize.width > RJTHudContentSize) {
         width += MAX(textSize.width, detailTextSize.width);
     } else {
-        width += RJTHudContentSize;
+        width = RJTHudContentSize;
     }
     self.widthConstraint.constant = width;
     
@@ -289,8 +288,12 @@ static CGFloat const RJTHudContentSize = 160.0f;
     CGFloat progressViewHeight = self.progressView.heightConstraint.constant;
     CGFloat minLabelHeight = self.labelsDefaultHeight;
     
-    CGFloat height = progressViewHeight + MAX(textSize.height, minLabelHeight) + MAX(detailTextSize.height, minLabelHeight) + 32.0f;
+    CGFloat height = progressViewHeight + MAX(textSize.height, minLabelHeight) + MAX(detailTextSize.height, minLabelHeight);
+    if (height > RJTHudContentSize)
+        height += 32.0;
+    
     self.heightConstraint.constant = height;
+    self.textLabelHeightConstraint.constant = textSize.height;
     self.detailTextLabelHeightConstraint.constant = detailTextSize.height;
     
     CGRect newFrame = CGRectMake(0.0f, 0.0f, width, height);

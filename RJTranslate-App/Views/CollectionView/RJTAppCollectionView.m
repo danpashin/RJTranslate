@@ -36,7 +36,9 @@
 
 - (void)setAppModels:(NSArray<RJTApplicationModel *> *)appModels
 {
-    [self.collectionViewLayout dataSourceChangedFrom:_appModels toNew:appModels];
+    [self performOnMainThread:^{
+        [self.collectionViewLayout dataSourceChangedFrom:self->_appModels toNew:appModels];
+    }];
     
     _appModels = appModels;
 }
@@ -56,6 +58,11 @@
         [selectionGenerator prepare];
         [selectionGenerator selectionChanged];
     });
+}
+
+- (void)performOnMainThread:(void(^)(void))block
+{
+    [NSThread isMainThread] ? block() : dispatch_sync(dispatch_get_main_queue(), block);
 }
 
 #pragma mark -

@@ -64,13 +64,13 @@ CHConstructor
                 [localizations addEntriesFromDictionary:entity.translation];
             }
             
-//            if (forceLocalize) {
+            if (forceLocalize) {
                 CHLoadClass(UILabel);
                 CHHook(1, UILabel, setText);
-//            } else {
-//                CHLoadClass(NSBundle);
-//                CHHook(3, NSBundle, localizedStringForKey, value, table);
-//            }
+            } else {
+                CHLoadClass(NSBundle);
+                CHHook(3, NSBundle, localizedStringForKey, value, table);
+            }
             
         }
     }];

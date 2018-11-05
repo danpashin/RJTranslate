@@ -33,7 +33,7 @@ static NSString *const kRJTExecutablePathKey = @"Executable Path";
 static NSString *const kRJTTranslationsKey = @"Translations";
 static NSString *const kRJTIconKey = @"Icon";
 
-static NSString *const kRJTForceLocalizeKey = @"forceLocalize";
+static NSString *const kRJTForceLocalizeKey = @"Force";
 
 + (instancetype)copyFromEntity:(RJTApplicationEntity *)entity
 {
