@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14315.18" systemVersion="18A389" minimumToolsVersion="Automatic" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14460.32" systemVersion="18A389" minimumToolsVersion="Automatic" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
     <entity name="RJTAppIconEntity" representedClassName="RJTAppIconEntity" syncable="YES">
         <attribute name="base64_encoded" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="path" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="primary" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <relationship name="application" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="RJTApplicationEntity" inverseName="icon" inverseEntity="RJTApplicationEntity" syncable="YES"/>
     </entity>
     <entity name="RJTApplicationEntity" representedClassName="RJTApplicationEntity" syncable="YES">
@@ -21,7 +22,7 @@
         </uniquenessConstraints>
     </entity>
     <elements>
-        <element name="RJTAppIconEntity" positionX="169.99609375" positionY="67" width="108.00390625" height="88"/>
+        <element name="RJTAppIconEntity" positionX="169.99609375" positionY="67" width="108.00390625" height="105"/>
         <element name="RJTApplicationEntity" positionX="7" positionY="-6" width="128" height="163"/>
     </elements>
 </model>

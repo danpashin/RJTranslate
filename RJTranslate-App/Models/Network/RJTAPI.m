@@ -36,6 +36,7 @@
     return [NSURL URLWithString:@"https://api.rejail.ru/translation.php"];
 //#else
 //    return [NSURL URLWithString:@"http://localhost/~daniil/api/rjtranslate/translation.php"];
+//    return [NSURL URLWithString:@"http://imac.local/~daniil/rjtranslate/translation.php"];
 //#endif
 }
 

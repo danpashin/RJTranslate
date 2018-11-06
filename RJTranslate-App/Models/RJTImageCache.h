@@ -11,9 +11,20 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef NS_ENUM(NSInteger, RJTImageCacheType) {
+    RJTImageCacheTypeMemory = 0,
+    RJTImageCacheTypeMemoryDisk,
+    RJTImageCacheTypeDisk
+};
+
 @interface RJTImageCache : NSObject
 
 + (instancetype)sharedCache;
+
+/**
+ Тип кэша. По умолчанию, RJTImageCacheTypeMemory
+ */
+@property (assign, nonatomic) RJTImageCacheType type;
 
 - (nullable UIImage *)objectForKeyedSubscript:(NSString *)key;
 - (void)setObject:(nullable UIImage *)obj forKeyedSubscript:(NSString *)key;

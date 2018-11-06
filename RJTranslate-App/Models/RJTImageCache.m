@@ -33,6 +33,7 @@
 {
     self = [super init];
     if (self) {
+        self.type = RJTImageCacheTypeMemory;
         self.memoryCache = [NSCache new];
     }
     return self;
@@ -57,17 +58,21 @@
 
 - (nullable UIImage *)objectForKeyedSubscript:(NSString *)key
 {
-    UIImage *image = [self.memoryCache objectForKey:key];
-    if (image)
-        return image;
-    
-    NSString *fullPath = [self.defaultCacheDirectory stringByAppendingString:key];
-    if ([[NSFileManager defaultManager] fileExistsAtPath:fullPath]) {
-        image = [UIImage imageWithData:[NSData dataWithContentsOfFile:fullPath]];
+    if (self.type == RJTImageCacheTypeDisk) {
+        UIImage *image = [self.memoryCache objectForKey:key];
         if (image)
-            return [UIImage imageWithCGImage:image.CGImage
-                                       scale:[UIScreen mainScreen].scale
-                                 orientation:image.imageOrientation];
+            return image;
+    }
+    
+    if (self.type != RJTImageCacheTypeMemory) {
+        NSString *fullPath = [self.defaultCacheDirectory stringByAppendingString:key];
+        if ([[NSFileManager defaultManager] fileExistsAtPath:fullPath]) {
+            UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfFile:fullPath]];
+            if (image)
+                return [UIImage imageWithCGImage:image.CGImage
+                                           scale:[UIScreen mainScreen].scale
+                                     orientation:image.imageOrientation];
+        }
     }
     
     return nil;
@@ -75,17 +80,25 @@
 
 - (void)setObject:(nullable UIImage *)obj forKeyedSubscript:(NSString *)key
 {
-    NSString *fullPath = [self.defaultCacheDirectory stringByAppendingString:key];
+    if (self.type != RJTImageCacheTypeDisk) {
+        if (obj) {
+            [self.memoryCache setObject:obj forKey:key];
+        } else {
+            [self.memoryCache removeObjectForKey:key];
+        }
+    }
     
-    if (obj) {
-        [self.memoryCache setObject:obj forKey:key];
-        UIImage *newImage = [UIImage imageWithCGImage:obj.CGImage scale:1.0f
-                                          orientation:obj.imageOrientation];
-        
-        [UIImagePNGRepresentation(newImage) writeToFile:fullPath atomically:YES];
-    } else {
-        [self.memoryCache removeObjectForKey:key];
-        [[NSFileManager defaultManager] removeItemAtPath:fullPath error:nil];
+    
+    if (self.type != RJTImageCacheTypeMemory) {
+        NSString *fullPath = [self.defaultCacheDirectory stringByAppendingString:key];
+        if (obj) {
+            UIImage *newImage = [UIImage imageWithCGImage:obj.CGImage scale:1.0f
+                                              orientation:obj.imageOrientation];
+            
+            [UIImagePNGRepresentation(newImage) writeToFile:fullPath atomically:YES];
+        } else {
+            [[NSFileManager defaultManager] removeItemAtPath:fullPath error:nil];
+        }
     }
 }
 

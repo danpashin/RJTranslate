@@ -15,6 +15,7 @@
 
 @property (strong, nonatomic, nullable, readwrite) NSString *path;
 @property (strong, nonatomic, nullable, readwrite) NSString *base64_encoded;
+@property (assign, nonatomic, readwrite) BOOL primary;
 
 @property (weak, nonatomic) RJTApplicationModel *appModel;
 
@@ -23,22 +24,25 @@
 @implementation RJTAppIcon
 static NSString *const kRJTIconPathKey = @"path";
 static NSString *const kRJTIconBase64Key = @"base64";
+static NSString *const kRJTIconPrimaryKey = @"Primary";
 
 + (RJTAppIcon *)from:(NSDictionary * _Nullable)dictionary appModel:(RJTApplicationModel * _Nullable)appModel
 {
     RJTAppIcon *appIcon = [RJTAppIcon new];
     appIcon.path = dictionary[kRJTIconPathKey];
     appIcon.base64_encoded = dictionary[kRJTIconBase64Key];
+    appIcon.primary = [dictionary[kRJTIconPrimaryKey] boolValue];
     
     return appIcon;
 }
 
-+ (RJTAppIcon *)copyFromEntity:(RJTAppIconEntity *)entity appModel:(RJTApplicationModel * _Nullable)appModel
++ (RJTAppIcon *)copyFromEntity:(RJTAppIconEntity * _Nullable)entity appModel:(RJTApplicationModel * _Nullable)appModel
 {
     RJTAppIcon *appIcon = [RJTAppIcon new];
     appIcon.path = entity.path;
     appIcon.base64_encoded = entity.base64_encoded;
     appIcon.appModel = appModel;
+    appIcon.primary = entity.primary;
     
     return appIcon;
 }
@@ -54,37 +58,51 @@ static NSString *const kRJTIconBase64Key = @"base64";
             return;
         }
         
-        if (self.path.length > 0) {
-            if ([self.path.lowercaseString containsString:@"bundle"]) {
-                NSString *bundlePath = [self.path stringByDeletingLastPathComponent];
-                NSBundle *bundle = [NSBundle bundleWithPath:bundlePath];
-                
-                NSString *imageName = [self.path.lastPathComponent stringByDeletingPathExtension];
-                imageName = [imageName stringByReplacingOccurrencesOfString:@"@2x" withString:@""];
-                imageName = [imageName stringByReplacingOccurrencesOfString:@"@3x" withString:@""];
-                
-                image = [UIImage imageNamed:imageName inBundle:bundle compatibleWithTraitCollection:nil];
-            }
-            
-            if (!image)
-                image = [UIImage imageWithContentsOfFile:self.path];
-        } else if (self.base64_encoded.length > 0) {
-            NSData *imageData = [[NSData alloc] initWithBase64EncodedString:self.base64_encoded options:0];
-            image = [UIImage imageWithData:imageData scale:[UIScreen mainScreen].scale];
+        UIImage *icon = nil;
+        if (self.primary) {
+            icon = self.customIcon ?: self.systemIcon;
+        } else {
+            icon = self.systemIcon ?: self.customIcon;
         }
         
-        if (image) {
-            imageCache[self.appModel.displayedName] = image;
-        }
-        
-        if (!image && self.appModel.bundleIdentifier.length > 0) {
-            image = [UIImage _applicationIconImageForBundleIdentifier:self.appModel.bundleIdentifier
-                                                               format:MIIconVariantDefault
-                                                                scale:[UIScreen mainScreen].scale];
-        }
-        
-        completion(image);
+        completion(icon);
     });
+}
+
+
+- (UIImage * _Nullable)systemIcon
+{
+    if (self.appModel.bundleIdentifier.length > 0)
+        return [UIImage _applicationIconImageForBundleIdentifier:self.appModel.bundleIdentifier
+                                                           format:MIIconVariantDefault
+                                                            scale:[UIScreen mainScreen].scale];
+    
+    return nil;
+}
+
+- (UIImage * _Nullable)customIcon
+{
+    UIImage *icon = nil;
+    if (self.path.length > 0) {
+        if ([self.path.lowercaseString containsString:@"bundle"]) {
+            NSString *bundlePath = [self.path stringByDeletingLastPathComponent];
+            NSBundle *bundle = [NSBundle bundleWithPath:bundlePath];
+            
+            NSString *imageName = [self.path.lastPathComponent stringByDeletingPathExtension];
+            imageName = [imageName stringByReplacingOccurrencesOfString:@"@2x" withString:@""];
+            imageName = [imageName stringByReplacingOccurrencesOfString:@"@3x" withString:@""];
+            
+            icon = [UIImage imageNamed:imageName inBundle:bundle compatibleWithTraitCollection:nil];
+        }
+        
+        if (!icon)
+            icon = [UIImage imageWithContentsOfFile:self.path];
+    } else if (self.base64_encoded.length > 0) {
+        NSData *imageData = [[NSData alloc] initWithBase64EncodedString:self.base64_encoded options:0];
+        icon = [UIImage imageWithData:imageData scale:[UIScreen mainScreen].scale];
+    }
+    
+    return icon;
 }
 
 @end

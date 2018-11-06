@@ -55,6 +55,7 @@ CHConstructor
     
     RJTDatabase *localDatabase = [RJTDatabase defaultDatabase];
     [localDatabase fetchAppEntitiesWithPredicate:predicate completion:^(NSArray<RJTApplicationEntity *> * _Nonnull entities) {
+        RJTLog(@"Found localzations: %@ for bundleIdentifier: %@", entities, bundleIdentifier);
         if (entities.count >= 1) {
             BOOL forceLocalize = NO;
             for(RJTApplicationEntity *entity in entities) {

@@ -14,6 +14,7 @@
 @dynamic path;
 @dynamic base64_encoded;
 @dynamic application;
+@dynamic primary;
 
 + (NSFetchRequest<RJTAppIconEntity *> *)fetchRequest
 {
@@ -30,6 +31,7 @@
 {
     self.path = [appIcon.path copy];
     self.base64_encoded = [appIcon.base64_encoded copy];
+    self.primary = appIcon.primary;
 }
 
 @end

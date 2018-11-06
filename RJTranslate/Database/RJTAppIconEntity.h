@@ -20,6 +20,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, copy) NSString *path;
 @property (nullable, nonatomic, copy) NSString *base64_encoded;
 
+@property (assign, nonatomic) BOOL primary;
+
 @property (nullable, nonatomic, retain) RJTApplicationEntity *application;
 
 - (void)copyPropertiesFrom:(RJTAppIcon *)appIcon;

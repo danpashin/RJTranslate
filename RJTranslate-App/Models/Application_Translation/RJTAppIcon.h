@@ -31,7 +31,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param appModel  Модель приложения, к которой привязана модель иконки. Используется для получения саймо иконки приложения.
  @return Возвращает экземпляр класса для дальнейшей работы.
  */
-+ (RJTAppIcon *)copyFromEntity:(RJTAppIconEntity *)entity appModel:(RJTApplicationModel * _Nullable)appModel;
++ (RJTAppIcon *)copyFromEntity:(RJTAppIconEntity * _Nullable)entity appModel:(RJTApplicationModel * _Nullable)appModel;
 
 /**
  Путь к изображению в файловой системе.
@@ -42,6 +42,11 @@ NS_ASSUME_NONNULL_BEGIN
  Изображение в формате base64.
  */
 @property (strong, nonatomic, nullable, readonly) NSString *base64_encoded;
+
+/**
+ Определяет, имеет ли иконка приоритет над системной
+ */
+@property (assign, nonatomic, readonly) BOOL primary;
 
 /**
  Выполняет загрузку изображения из кэша, файла или base64.
