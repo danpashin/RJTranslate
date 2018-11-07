@@ -17,7 +17,7 @@
 #import "RJTApplicationModel.h"
 
 #import "RJTAppCollectionView.h"
-#import "RJTCollectionHeaderView.h"
+#import "RJTCollectionViewUpdateCell.h"
 #import "RJTHud.h"
 
 
@@ -30,8 +30,6 @@
 @property (strong, nonatomic) RJTSearchController *searchController;
 @property (nullable, nonatomic, readonly, strong) RJTNavigationController *navigationController;
 
-@property (strong, nonatomic) IBOutlet RJTCollectionHeaderView *headerView;
-@property (strong, nonatomic) IBOutlet NSLayoutConstraint *headerHeightConstraint;
 @property (weak, nonatomic) RJTHud *hud;
 @end
 
@@ -53,13 +51,6 @@
     self.title = NSLocalizedString(@"available_translations", @"");
     
     self.collectionView.customDelegate = self;
-    
-    self.headerView.heightConstraint = self.headerHeightConstraint;
-    self.headerView.textLabel.text = NSLocalizedString(@"translations_update_is_available", @"");
-    self.headerView.detailedTextLabel.text = NSLocalizedString(@"tap_to_download", @"");
-    [self.headerView show:NO animated:NO];
-    [self.headerView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(actionUpdateDatabase)]];
-    
     [self updateAllModels];
     
     self.searchController = [[RJTSearchController alloc] initWithDelegate:self searchResultsUpdater:self];
@@ -69,7 +60,7 @@
     self.databaseUpdater = [[RJTDatabaseUpdater alloc] initWithDelegate:self];
     [self.databaseUpdater checkTranslationsVersion:^(RJTDatabaseUpdate * _Nullable updateModel, NSError * _Nullable error) {
         if (!error && updateModel.canUpdate)
-            [self.headerView show:YES animated:YES];
+            [self.collectionView showUpdateCell:YES];
     }];
 }
 
@@ -107,7 +98,7 @@
 - (void)willPresentSearchController:(RJTSearchController *)searchController
 {
     [self.navigationController showNavigationLargeTitle:NO];
-    [self.headerView show:NO animated:YES];
+//    [self.headerView show:NO animated:YES];
 }
 
 - (void)didDismissSearchController:(RJTSearchController *)searchController
@@ -137,6 +128,13 @@
     }
 }
 
+- (void)collectionView:(RJTAppCollectionView *)collectionView didLoadUpdateCell:(RJTCollectionViewUpdateCell *)updateCell
+{
+    updateCell.textLabel.text = NSLocalizedString(@"translations_update_is_available", @"");
+    updateCell.detailedTextLabel.text = NSLocalizedString(@"tap_to_download", @"");
+    [updateCell addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(actionUpdateDatabase)]];
+}
+
 
 #pragma mark -
 #pragma mark RJTDatabaseUpdaterDelegate
@@ -151,7 +149,7 @@
         [self updateAllModels];
         
         [self.hud hideAnimated:YES];
-        [self.headerView show:NO animated:YES];
+        [self.collectionView showUpdateCell:NO];
     }];
 }
 

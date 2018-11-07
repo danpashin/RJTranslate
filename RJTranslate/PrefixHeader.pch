@@ -6,20 +6,21 @@
 //  Copyright © 2018 Даниил. All rights reserved.
 //
 
-//#import <os/log.h>
+@class NSError, NSString;
 
-#ifdef DEBUG
+extern void RJTErrorLogInternal(NSError *error, NSString *format, ...);
+
 #define RJT_LOG_TEMPLATE    "[RJTranslate] %@:%d %s "
 #define RJT_LOG_ARGUMENTS   @(__FILE__).lastPathComponent, __LINE__, __FUNCTION__
 
-//#define RJTLog(format, ...)             os_log_debug  (OS_LOG_DEFAULT, RJT_LOG_TEMPLATE # format, RJT_LOG_ARGUMENTS, ##__VA_ARGS__)
-//#define RJTErrorLog(format, ...)        os_log_error  (OS_LOG_DEFAULT, RJT_LOG_TEMPLATE # format, RJT_LOG_ARGUMENTS, ##__VA_ARGS__)
 
-
-#define RJTLog(format, ...)             NSLog((@RJT_LOG_TEMPLATE format), RJT_LOG_ARGUMENTS, ##__VA_ARGS__)
-#define RJTErrorLog(format, ...)        NSLog((@RJT_LOG_TEMPLATE format), RJT_LOG_ARGUMENTS, ##__VA_ARGS__)
-
+#ifdef DEBUG
+#define RJTLog(format, ...)     NSLog((@RJT_LOG_TEMPLATE format), RJT_LOG_ARGUMENTS, ##__VA_ARGS__);
 #else
 #define RJTLog(...)
-#define RJTErrorLog(...)
 #endif
+
+
+#define RJT_ERROR_LOG_TEMPLATE    "[RJTranslate][ERROR] %@:%d %s "
+#define RJTErrorLog(error, format, ...) \
+RJTErrorLogInternal(error, (@RJT_ERROR_LOG_TEMPLATE format), RJT_LOG_ARGUMENTS, ##__VA_ARGS__)

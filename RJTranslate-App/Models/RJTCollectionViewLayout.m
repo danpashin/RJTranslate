@@ -19,6 +19,7 @@
 {
     [super prepareLayout];
     
+    self.sectionInset = UIEdgeInsetsMake(0.0f, 0.0f, 20.0f, 0.0f);
     self.itemSize = CGSizeMake(CGRectGetWidth(self.collectionView.frame) - 24.0f, 72.0f);
 }
 
@@ -28,12 +29,21 @@
     self.collectionViewOldDataSource = nil;
 }
 
+- (void)dataSourceChangedFrom:(NSArray *)oldDataSource toNew:(NSArray *)newDatasource
+{
+    self.collectionViewOldDataSource = oldDataSource;
+    self.collectionViewNewDataSource = newDatasource;
+}
+
+
+#pragma mark -
+
 - (nullable UICollectionViewLayoutAttributes *)initialLayoutAttributesForAppearingItemAtIndexPath:(NSIndexPath *)itemIndexPath
 {
     UICollectionViewLayoutAttributes *attributes = [super initialLayoutAttributesForAppearingItemAtIndexPath:itemIndexPath];
     
     NSInteger oldItemsCount = (NSInteger)(self.collectionViewOldDataSource.count);
-    if (itemIndexPath.item > oldItemsCount - 1)
+    if (self.collectionViewOldDataSource && itemIndexPath.item > oldItemsCount - 1)
         attributes.transform = CGAffineTransformMakeScale(0.2f, 0.2f);
 
     return attributes;
@@ -50,10 +60,5 @@
     return attributes;
 }
 
-- (void)dataSourceChangedFrom:(NSArray *)oldDataSource toNew:(NSArray *)newDatasource
-{
-    self.collectionViewOldDataSource = oldDataSource;
-    self.collectionViewNewDataSource = newDatasource;
-}
 
 @end

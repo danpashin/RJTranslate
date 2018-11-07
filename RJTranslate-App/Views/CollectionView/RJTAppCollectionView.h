@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-@class RJTApplicationModel, RJTSearchController;
+@class RJTApplicationModel, RJTSearchController, RJTCollectionViewUpdateCell;
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -16,6 +16,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)collectionViewRequestedDownloadingTranslations:(RJTAppCollectionView *)collectionView;
 - (void)collectionView:(RJTAppCollectionView *)collectionView didUpdateModel:(RJTApplicationModel *)appModel;
+
+@optional
+- (void)collectionView:(RJTAppCollectionView *)collectionView didLoadUpdateCell:(RJTCollectionViewUpdateCell *)updateCell;
 
 @end
 
@@ -43,6 +46,8 @@ NS_ASSUME_NONNULL_BEGIN
  Выполняет анимированную перезагрузку ячеек коллекции.
  */
 - (void)reload;
+
+- (void)showUpdateCell:(BOOL)shouldShow;
 
 - (void)reloadData NS_UNAVAILABLE;
 

@@ -1,18 +1,14 @@
 //
-//  RJTCollectionHeaderView.m
+//  RJTCollectionViewUpdateCell.m
 //  RJTranslate-App
 //
-//  Created by Даниил on 26/10/2018.
+//  Created by Даниил on 07/11/2018.
 //  Copyright © 2018 Даниил. All rights reserved.
 //
 
-#import "RJTCollectionHeaderView.h"
+#import "RJTCollectionViewUpdateCell.h"
 
-@interface RJTCollectionHeaderView ()
-@property (weak, nonatomic) UICollectionView *collectionView;
-@end
-
-@implementation RJTCollectionHeaderView
+@implementation RJTCollectionViewUpdateCell
 
 - (void)awakeFromNib
 {
@@ -39,24 +35,6 @@
     stackView.translatesAutoresizingMaskIntoConstraints = NO;
     [stackView.centerXAnchor constraintEqualToAnchor:self.centerXAnchor].active = YES;
     [stackView.centerYAnchor constraintEqualToAnchor:self.centerYAnchor].active = YES;
-}
-
-- (void)show:(BOOL)show animated:(BOOL)animated
-{
-    [self performOnMainThread:^{
-        self.heightConstraint.constant = show ? 72.0f : 0.0f;
-        
-        if (animated) {
-            [UIView animateWithDuration:0.3f delay:0.0f options:UIViewAnimationOptionAllowUserInteraction animations:^{
-                [self.superview layoutIfNeeded];
-            } completion:nil];
-        }
-    }];
-}
-
-- (void)performOnMainThread:(void(^)(void))block
-{
-    [NSThread isMainThread] ? block() : dispatch_sync(dispatch_get_main_queue(), block);
 }
 
 @end

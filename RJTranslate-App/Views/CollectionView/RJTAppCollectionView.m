@@ -6,17 +6,19 @@
 //  Copyright © 2018 Даниил. All rights reserved.
 //
 
-#import "RJTAppCollectionView.h"
-
+#import "RJTAppCollectionViewDelegate.h"
 #import "RJTApplicationModel.h"
 #import "RJTCollectionViewLayout.h"
 
-#import "RJTAppCell.h"
 #import <DZNEmptyDataSet/UIScrollView+EmptyDataSet.h>
 #import "RJTSearchController.h"
 
-@interface RJTAppCollectionView () <UICollectionViewDelegateFlowLayout, UICollectionViewDataSource, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>
+#import "RJTCollectionLabelHeader.h"
+
+
+@interface RJTAppCollectionView () <DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>
 @property (nonatomic, strong) RJTCollectionViewLayout *collectionViewLayout;
+@property (strong, nonatomic) RJTAppCollectionViewDelegate *delegateObject;
 @end
 
 @implementation RJTAppCollectionView
@@ -26,12 +28,15 @@
 {
     [super awakeFromNib];
     
-    self.dataSource = self;
-    self.delegate = self;
     self.emptyDataSetSource = self;
     self.emptyDataSetDelegate = self;
     self.alwaysBounceVertical = YES;
     self.allowsMultipleSelection = YES;
+    
+    [self registerClass:[RJTCollectionLabelHeader class]
+forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"header"];
+    
+    self.delegateObject = [[RJTAppCollectionViewDelegate alloc] initWithCollectionView:self];
 }
 
 - (void)setAppModels:(NSArray<RJTApplicationModel *> *)appModels
@@ -46,7 +51,7 @@
 - (void)reload
 {
     dispatch_async(dispatch_get_main_queue(), ^{
-        [self reloadSections:[NSIndexSet indexSetWithIndex:0]];
+        [self reloadSections:[NSIndexSet indexSetWithIndex:1]];
         [self reloadEmptyDataSet];
     });
 }
@@ -65,54 +70,13 @@
     [NSThread isMainThread] ? block() : dispatch_sync(dispatch_get_main_queue(), block);
 }
 
-#pragma mark -
-#pragma mark UICollectionViewDataSource
-#pragma mark -
-
-- (NSInteger)collectionView:(nonnull UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+- (void)showUpdateCell:(BOOL)shouldShow
 {
-    return self.appModels.count;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        self.delegateObject.showUpdateHeader = shouldShow;
+        [self reloadSections:[NSIndexSet indexSetWithIndex:0]];
+    });
 }
-
-- (nonnull __kindof UICollectionViewCell *)collectionView:(nonnull UICollectionView *)collectionView
-                                   cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath
-{
-    RJTAppCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cell"
-                                                                 forIndexPath:indexPath];
-    cell.model = self.appModels[indexPath.row];
-    
-    return cell;
-}
-
-- (void)collectionView:(UICollectionView *)collectionView willDisplayCell:(RJTAppCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (cell.model.enableTranslation) {
-        [collectionView selectItemAtIndexPath:indexPath animated:NO scrollPosition:UICollectionViewScrollPositionNone];
-        [cell updateSelection:YES animated:NO];
-        cell.selected = YES;
-    }
-}
-
-- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    RJTAppCell *cell = (RJTAppCell *)[collectionView cellForItemAtIndexPath:indexPath];
-    [cell updateSelection:YES animated:YES];
-    
-    cell.model.enableTranslation = YES;
-    [self.customDelegate collectionView:self didUpdateModel:cell.model];
-    [self sendSelectionFeedback];
-}
-
-- (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    RJTAppCell *cell = (RJTAppCell *)[collectionView cellForItemAtIndexPath:indexPath];
-    [cell updateSelection:NO animated:YES];
-    
-    cell.model.enableTranslation = NO;
-    [self.customDelegate collectionView:self didUpdateModel:cell.model];
-    [self sendSelectionFeedback];
-}
-
 
 
 #pragma mark -

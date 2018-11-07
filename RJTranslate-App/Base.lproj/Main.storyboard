@@ -41,21 +41,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view autoresizesSubviews="NO" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tco-aY-2xs" customClass="RJTCollectionHeaderView">
-                                <rect key="frame" x="8" y="72" width="359" height="72"/>
-                                <color key="backgroundColor" red="1" green="0.57637232540000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="72" id="1HQ-xw-EEF"/>
-                                </constraints>
-                                <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
-                            </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" bouncesZoom="NO" keyboardDismissMode="interactive" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="RvJ-yb-fTx" customClass="RJTAppCollectionView">
-                                <rect key="frame" x="0.0" y="152" width="375" height="515"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <inset key="scrollIndicatorInsets" minX="0.0" minY="-1" maxX="0.0" maxY="0.0"/>
                                 <collectionViewLayout key="collectionViewLayout" id="8oa-3I-5eX" customClass="RJTCollectionViewLayout"/>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cell" id="RgZ-da-Q3a" customClass="RJTAppCell">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="appCell" id="RgZ-da-Q3a" userLabel="appCell" customClass="RJTAppCell">
                                         <rect key="frame" x="31.5" y="0.0" width="312" height="72"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
@@ -76,7 +68,7 @@
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="24" id="n8x-sj-0lc"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -120,18 +112,25 @@
                                             <outlet property="tickView" destination="2d6-Kj-Mgb" id="v3k-tH-I1l"/>
                                         </connections>
                                     </collectionViewCell>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="updateCell" id="nyI-rq-Wn1" customClass="RJTCollectionViewUpdateCell">
+                                        <rect key="frame" x="31.5" y="82" width="312" height="72"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                            <rect key="frame" x="0.0" y="0.0" width="312" height="72"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </view>
+                                        <color key="backgroundColor" red="1" green="0.57637232540000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <size key="customSize" width="312" height="72"/>
+                                    </collectionViewCell>
                                 </cells>
                             </collectionView>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="RvJ-yb-fTx" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="8M8-VT-O7P"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="tco-aY-2xs" secondAttribute="trailing" constant="8" id="8Qu-nb-ovD"/>
-                            <constraint firstItem="RvJ-yb-fTx" firstAttribute="top" secondItem="tco-aY-2xs" secondAttribute="bottom" constant="8" id="bKD-X0-fTF"/>
+                            <constraint firstItem="RvJ-yb-fTx" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="Pom-m1-t6Z"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="RvJ-yb-fTx" secondAttribute="trailing" id="fXi-5W-USb"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="RvJ-yb-fTx" secondAttribute="bottom" id="mgq-k0-cEK"/>
-                            <constraint firstItem="tco-aY-2xs" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="8" id="q6K-KC-0FU"/>
-                            <constraint firstItem="tco-aY-2xs" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="8" id="xgr-gn-2Bf"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
@@ -139,8 +138,6 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="collectionView" destination="RvJ-yb-fTx" id="UKr-Vl-ChJ"/>
-                        <outlet property="headerHeightConstraint" destination="1HQ-xw-EEF" id="had-zB-1ra"/>
-                        <outlet property="headerView" destination="tco-aY-2xs" id="IQz-Ty-X2y"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

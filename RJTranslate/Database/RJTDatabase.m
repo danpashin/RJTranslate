@@ -9,6 +9,7 @@
 #import "RJTDatabase.h"
 #import <CoreData/CoreData.h>
 //#import "RJTManagedObjectContext.h"
+@import Firebase;
 
 #import "RJTApplicationEntity.h"
 #import "RJTApplicationModel.h"
@@ -123,14 +124,15 @@
 - (void)saveContext:(NSManagedObjectContext *)context
 {
     if (self.readOnly) {
-        RJTErrorLog(@"Persistent store is read-only. Skipping saving.");
+        RJTErrorLog(nil, @"Persistent store is read-only. Skipping saving.");
         return;
     }
     
     NSError *error = nil;
     if (![context save:&error]) {
-        RJTErrorLog(@"Unresolved error while saving context: %@, %@", error, error.userInfo);
-        abort();
+        RJTErrorLog(error, @"Unresolved error while saving context: %@, %@", error, error.userInfo);
+        [[Crashlytics sharedInstance] recordError:error];
+        
     }
 }
 
@@ -184,7 +186,7 @@
 - (void)insertAppModels:(NSArray <RJTApplicationModel *> *)appModels completion:(void(^_Nullable)(void))completion
 {
     if (self.readOnly) {
-        RJTErrorLog(@"Persistent store is read-only. Skipping inserting.");
+        RJTErrorLog(nil, @"Persistent store is read-only. Skipping inserting.");
         
         if (completion)
             completion();
@@ -208,7 +210,7 @@
 - (void)updateModel:(RJTApplicationModel *)appModel
 {
     if (self.readOnly) {
-        RJTErrorLog(@"Persistent store is read-only. Skipping updating.");
+        RJTErrorLog(nil, @"Persistent store is read-only. Skipping updating.");
         return;
     }
     
@@ -226,7 +228,7 @@
 - (void)removeModel:(RJTApplicationModel *)appModel completion:(void(^_Nullable)(NSError * _Nullable error))completion
 {
     if (self.readOnly) {
-        RJTErrorLog(@"Persistent store is read-only. Skipping removing.");
+        RJTErrorLog(nil, @"Persistent store is read-only. Skipping removing.");
         
         NSError *error = [NSError errorWithDomain:NSCocoaErrorDomain code:0
                                          userInfo:@{NSLocalizedDescriptionKey:@"Persistent store is read-only"}];
