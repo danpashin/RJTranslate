@@ -145,7 +145,7 @@
         return CGSizeMake(CGRectGetWidth(collectionView.frame), 52.0f);
     }
     
-    if ((section == 2 && dataSource.installedAppsModels.count > 0 && dataSource.uninstalledAppsModels.count > 0)) {
+    if (section == 2 && dataSource.installedAppsModels.count > 0 && dataSource.uninstalledAppsModels.count > 0) {
         return CGSizeMake(CGRectGetWidth(collectionView.frame), 16.0f);
     }
     

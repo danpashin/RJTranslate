@@ -9,7 +9,6 @@
 #import "RJTDatabase.h"
 #import <CoreData/CoreData.h>
 //#import "RJTManagedObjectContext.h"
-@import Firebase;
 
 #import "RJTApplicationEntity.h"
 #import "RJTApplicationModel.h"
@@ -131,7 +130,6 @@
     NSError *error = nil;
     if (![context save:&error]) {
         RJTErrorLog(error, @"Unresolved error while saving context: %@, %@", error, error.userInfo);
-        [[Crashlytics sharedInstance] recordError:error];
         
     }
 }

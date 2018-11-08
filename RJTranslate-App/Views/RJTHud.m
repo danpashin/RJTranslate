@@ -324,7 +324,7 @@ static CGFloat const RJTHudContentSize = 140.0f;
 {
     NSUInteger linesCount = [text componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]].count + 1;
     
-    CGSize boundingSize = CGSizeMake(CGRectGetWidth([UIScreen mainScreen].bounds), self.labelsDefaultHeight);
+    CGSize boundingSize = CGSizeMake(CGRectGetWidth([UIScreen mainScreen].bounds) - 16.0f, self.labelsDefaultHeight);
     CGSize textSize = [text boundingRectWithSize:boundingSize
                                          options:0 attributes:@{NSFontAttributeName:label.font} context:nil].size;
     textSize.height *= (CGFloat)linesCount;

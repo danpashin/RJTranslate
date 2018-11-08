@@ -89,7 +89,6 @@ forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentif
     dispatch_async(dispatch_get_main_queue(), ^{
         self.delegateObject.showUpdateHeader = shouldShow;
         [self reload];
-//        [self reloadSections:[NSIndexSet indexSetWithIndex:0]];
     });
 }
 

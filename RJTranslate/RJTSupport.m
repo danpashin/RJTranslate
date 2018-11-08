@@ -7,7 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
+
+#ifdef BUILD_APP
 @import Firebase;
+#endif
 
 
 void RJTErrorLogInternal(NSError *error, NSString *format, ...)
@@ -19,6 +22,8 @@ void RJTErrorLogInternal(NSError *error, NSString *format, ...)
     
     NSLog(@"%@", errorMessage);
     
+#ifdef BUILD_APP
     if (error)
         [[Crashlytics sharedInstance] recordError:error];
+#endif
 }

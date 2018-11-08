@@ -42,4 +42,11 @@
     return self;
 }
 
+- (void)prepareForReuse
+{
+    [super prepareForReuse];
+    
+    self.label.text = nil;
+}
+
 @end
