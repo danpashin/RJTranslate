@@ -62,13 +62,18 @@
         if (!error && updateModel.canUpdate)
             [self.collectionView showUpdateCell:YES];
     }];
+    
+//    __block BOOL showCell = YES;
+//    [[NSTimer scheduledTimerWithTimeInterval:6.0 repeats:YES block:^(NSTimer * _Nonnull timer) {
+//        [self.collectionView showUpdateCell:showCell];
+//        showCell = !showCell;
+//    }] fire];
 }
 
 - (void)updateAllModels
 {
     [self.localDatabase fetchAllAppModelsWithCompletion:^(NSArray<RJTApplicationModel *> * _Nonnull allModels) {
-        self.collectionView.appModels = allModels;
-        [self.collectionView reload];
+        [self.collectionView updateViewWithModelsAndReload:allModels];
     }];
 }
 
@@ -90,15 +95,13 @@
 - (void)updateSearchResultsForSearchController:(RJTSearchController *)searchController
 {
     [self.localDatabase performModelsSearchWithText:searchController.searchText completion:^(NSArray<RJTApplicationModel *> * _Nonnull models) {
-        self.collectionView.appModels = models;
-        [self.collectionView reload];
+        [self.collectionView updateViewWithModelsAndReload:models];
     }];
 }
 
 - (void)willPresentSearchController:(RJTSearchController *)searchController
 {
     [self.navigationController showNavigationLargeTitle:NO];
-//    [self.headerView show:NO animated:YES];
 }
 
 - (void)didDismissSearchController:(RJTSearchController *)searchController

@@ -35,6 +35,7 @@
 		A57CF73A217AFFC8004A71F8 /* RJTDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = A535341B217A5A2800E08881 /* RJTDatabase.m */; };
 		A57CF73B217AFFD0004A71F8 /* RJTApplicationEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = A5353414217A595200E08881 /* RJTApplicationEntity.m */; };
 		A57CF73E217B50B9004A71F8 /* RJTNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = A57CF73D217B50B9004A71F8 /* RJTNavigationBar.m */; };
+		A583C3B82193E1BE0072903B /* RJTCollectionViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = A583C3B72193E1BE0072903B /* RJTCollectionViewDataSource.m */; };
 		A58659952192CCE600A76A6C /* RJTSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = A58659942192CCE600A76A6C /* RJTSupport.m */; };
 		A58659962192CCE600A76A6C /* RJTSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = A58659942192CCE600A76A6C /* RJTSupport.m */; };
 		A58659992192F70300A76A6C /* RJTCollectionLabelHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = A58659982192F70300A76A6C /* RJTCollectionLabelHeader.m */; };
@@ -115,6 +116,8 @@
 		A57C40A9218A029200885834 /* RJTOperationQueue.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RJTOperationQueue.m; sourceTree = "<group>"; };
 		A57CF73C217B50B9004A71F8 /* RJTNavigationBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RJTNavigationBar.h; sourceTree = "<group>"; };
 		A57CF73D217B50B9004A71F8 /* RJTNavigationBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RJTNavigationBar.m; sourceTree = "<group>"; };
+		A583C3B62193E1BE0072903B /* RJTCollectionViewDataSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RJTCollectionViewDataSource.h; sourceTree = "<group>"; };
+		A583C3B72193E1BE0072903B /* RJTCollectionViewDataSource.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RJTCollectionViewDataSource.m; sourceTree = "<group>"; };
 		A58659942192CCE600A76A6C /* RJTSupport.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RJTSupport.m; sourceTree = "<group>"; };
 		A58659972192F70300A76A6C /* RJTCollectionLabelHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RJTCollectionLabelHeader.h; sourceTree = "<group>"; };
 		A58659982192F70300A76A6C /* RJTCollectionLabelHeader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RJTCollectionLabelHeader.m; sourceTree = "<group>"; };
@@ -291,6 +294,8 @@
 				A5DEBB28218EF5B900858616 /* RJTImageCache.m */,
 				A5C7DA8221935D310086BE40 /* RJTAppCollectionViewDelegate.h */,
 				A5C7DA8321935D310086BE40 /* RJTAppCollectionViewDelegate.m */,
+				A583C3B62193E1BE0072903B /* RJTCollectionViewDataSource.h */,
+				A583C3B72193E1BE0072903B /* RJTCollectionViewDataSource.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -724,6 +729,7 @@
 				A5BFB4A02189B1EB001A9D82 /* RJTAppIconEntity.m in Sources */,
 				A57CF73E217B50B9004A71F8 /* RJTNavigationBar.m in Sources */,
 				A57CF73B217AFFD0004A71F8 /* RJTApplicationEntity.m in Sources */,
+				A583C3B82193E1BE0072903B /* RJTCollectionViewDataSource.m in Sources */,
 				A5E0BBB2218646A10094ECBC /* RJTHudProgressView.m in Sources */,
 				A5ACD6F52182DB7C0009DB9C /* RJTAPIRequest.m in Sources */,
 				A5A0954B217C4D3A009743DF /* RJTSearchController.m in Sources */,

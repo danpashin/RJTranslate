@@ -8,11 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
+@class RJTCollectionViewDataSource;
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface RJTCollectionViewLayout : UICollectionViewFlowLayout
 
-- (void)dataSourceChangedFrom:(NSArray * _Nullable)oldDataSource toNew:(NSArray * _Nullable)newDatasource;
+- (void)dataSourceChangedFrom:(RJTCollectionViewDataSource * _Nullable)oldDataSource toNew:(RJTCollectionViewDataSource * _Nullable)newDatasource;
 
 @end
 

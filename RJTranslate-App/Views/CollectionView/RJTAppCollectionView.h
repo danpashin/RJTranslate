@@ -27,11 +27,6 @@ NS_ASSUME_NONNULL_BEGIN
 @interface RJTAppCollectionView : UICollectionView
 
 /**
- Содержит модели приложений.
- */
-@property (strong, nonatomic, nullable) NSArray <RJTApplicationModel *> *appModels;
-
-/**
  Устанавливает контроллер поиска. Нужен для определения показа фонового вида.
  */
 @property (weak, nonatomic, nullable) RJTSearchController *searchController;
@@ -41,12 +36,24 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (weak, nonatomic) id <RJTAppCollectionViewDelegate> customDelegate;
 
+/**
+ Выполняет разбиение моделей по группам, устанавливает их и перезагружает коллекуцию.
+ 
+ @param appModels Модели приложений для отображения.
+ */
+- (void)updateViewWithModelsAndReload:(NSArray<RJTApplicationModel *> *)appModels;
+
 
 /**
  Выполняет анимированную перезагрузку ячеек коллекции.
  */
 - (void)reload;
 
+/**
+ Показывает/скрывает ячейку с обновлением.
+
+ @param shouldShow YES - показывает, NO - скрывает.
+ */
 - (void)showUpdateCell:(BOOL)shouldShow;
 
 - (void)reloadData NS_UNAVAILABLE;

@@ -70,6 +70,11 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (assign, nonatomic, readonly) BOOL forceLocalize;
 
+/**
+ Флаг определяет, существует ли необходимый бинарник в файловой системе.
+ */
+@property (assign, nonatomic, readonly) BOOL executableExists;
+
 @end
 
 NS_ASSUME_NONNULL_END

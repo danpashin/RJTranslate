@@ -90,4 +90,13 @@ static NSString *const kRJTForceLocalizeKey = @"Force";
     return YES;
 }
 
+
+- (BOOL)executableExists
+{
+    if (self.executablePath.length == 0)
+        return NO;
+    
+    return (access(self.executablePath.UTF8String, F_OK) == 0);
+}
+
 @end

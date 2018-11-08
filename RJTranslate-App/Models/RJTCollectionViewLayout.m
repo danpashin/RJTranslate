@@ -7,10 +7,11 @@
 //
 
 #import "RJTCollectionViewLayout.h"
+#import "RJTCollectionViewDataSource.h"
 
 @interface RJTCollectionViewLayout ()
-@property (strong, nonatomic) NSArray *collectionViewOldDataSource;
-@property (weak, nonatomic) NSArray *collectionViewNewDataSource;
+@property (strong, nonatomic) RJTCollectionViewDataSource *collectionViewOldDataSource;
+@property (weak, nonatomic) RJTCollectionViewDataSource *collectionViewNewDataSource;
 @end
 
 @implementation RJTCollectionViewLayout
@@ -29,7 +30,7 @@
     self.collectionViewOldDataSource = nil;
 }
 
-- (void)dataSourceChangedFrom:(NSArray *)oldDataSource toNew:(NSArray *)newDatasource
+- (void)dataSourceChangedFrom:(RJTCollectionViewDataSource *)oldDataSource toNew:(RJTCollectionViewDataSource *)newDatasource
 {
     self.collectionViewOldDataSource = oldDataSource;
     self.collectionViewNewDataSource = newDatasource;
@@ -42,7 +43,12 @@
 {
     UICollectionViewLayoutAttributes *attributes = [super initialLayoutAttributesForAppearingItemAtIndexPath:itemIndexPath];
     
-    NSInteger oldItemsCount = (NSInteger)(self.collectionViewOldDataSource.count);
+    NSInteger oldItemsCount = 0;
+    if (itemIndexPath.section == 1)
+        oldItemsCount = self.collectionViewOldDataSource.installedAppsModels.count;
+    else if (itemIndexPath.section == 2)
+        oldItemsCount = self.collectionViewOldDataSource.uninstalledAppsModels.count;
+    
     if (self.collectionViewOldDataSource && itemIndexPath.item > oldItemsCount - 1)
         attributes.transform = CGAffineTransformMakeScale(0.2f, 0.2f);
 
@@ -53,7 +59,12 @@
 {
     UICollectionViewLayoutAttributes *attributes = [super finalLayoutAttributesForDisappearingItemAtIndexPath:itemIndexPath];
     
-    NSInteger newItemsCount = (NSInteger)(self.collectionViewNewDataSource.count);
+    NSInteger newItemsCount = 0;
+    if (itemIndexPath.section == 1)
+        newItemsCount = self.collectionViewOldDataSource.installedAppsModels.count;
+    else if (itemIndexPath.section == 2)
+        newItemsCount = self.collectionViewOldDataSource.uninstalledAppsModels.count;
+    
     if (itemIndexPath.item > newItemsCount - 1)
         attributes.transform = CGAffineTransformMakeScale(0.2f, 0.2f);
 

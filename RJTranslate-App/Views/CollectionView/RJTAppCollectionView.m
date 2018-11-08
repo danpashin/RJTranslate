@@ -9,6 +9,7 @@
 #import "RJTAppCollectionViewDelegate.h"
 #import "RJTApplicationModel.h"
 #import "RJTCollectionViewLayout.h"
+#import "RJTCollectionViewDataSource.h"
 
 #import <DZNEmptyDataSet/UIScrollView+EmptyDataSet.h>
 #import "RJTSearchController.h"
@@ -19,6 +20,7 @@
 @interface RJTAppCollectionView () <DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>
 @property (nonatomic, strong) RJTCollectionViewLayout *collectionViewLayout;
 @property (strong, nonatomic) RJTAppCollectionViewDelegate *delegateObject;
+@property (strong, nonatomic) RJTCollectionViewDataSource *modelsSourceObject;
 @end
 
 @implementation RJTAppCollectionView
@@ -36,22 +38,34 @@
     [self registerClass:[RJTCollectionLabelHeader class]
 forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"header"];
     
+    self.modelsSourceObject = [RJTCollectionViewDataSource new];
     self.delegateObject = [[RJTAppCollectionViewDelegate alloc] initWithCollectionView:self];
 }
 
-- (void)setAppModels:(NSArray<RJTApplicationModel *> *)appModels
+- (void)updateViewWithModelsAndReload:(NSArray<RJTApplicationModel *> *)appModels
 {
-    [self performOnMainThread:^{
-        [self.collectionViewLayout dataSourceChangedFrom:self->_appModels toNew:appModels];
-    }];
-    
-    _appModels = appModels;
+    @synchronized (self) {
+        RJTCollectionViewDataSource *modelsSourceObject = [RJTCollectionViewDataSource new];
+        [appModels enumerateObjectsUsingBlock:^(RJTApplicationModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            if (obj.executableExists) {
+                [modelsSourceObject.installedAppsModels addObject:obj];
+            } else {
+                [modelsSourceObject.uninstalledAppsModels addObject:obj];
+            }
+        }];
+        
+        [self performOnMainThread:^{
+            [self.collectionViewLayout dataSourceChangedFrom:self.modelsSourceObject toNew:modelsSourceObject];
+            self.modelsSourceObject = modelsSourceObject;
+            [self reload];
+        }];
+    }
 }
 
 - (void)reload
 {
     dispatch_async(dispatch_get_main_queue(), ^{
-        [self reloadSections:[NSIndexSet indexSetWithIndex:1]];
+        [self reloadSections:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, 3)]];
         [self reloadEmptyDataSet];
     });
 }
@@ -74,7 +88,8 @@ forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentif
 {
     dispatch_async(dispatch_get_main_queue(), ^{
         self.delegateObject.showUpdateHeader = shouldShow;
-        [self reloadSections:[NSIndexSet indexSetWithIndex:0]];
+        [self reload];
+//        [self reloadSections:[NSIndexSet indexSetWithIndex:0]];
     });
 }
 

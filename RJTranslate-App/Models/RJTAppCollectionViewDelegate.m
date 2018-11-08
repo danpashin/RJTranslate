@@ -9,6 +9,7 @@
 #import "RJTAppCollectionViewDelegate.h"
 #import "RJTApplicationModel.h"
 #import "RJTCollectionViewLayout.h"
+#import "RJTCollectionViewDataSource.h"
 
 #import "RJTCollectionViewUpdateCell.h"
 #import "RJTCollectionLabelHeader.h"
@@ -16,6 +17,8 @@
 
 @interface RJTAppCollectionView ()
 - (void)sendSelectionFeedback;
+
+@property (strong, nonatomic) RJTCollectionViewDataSource *modelsSourceObject;
 @end
 
 
@@ -49,7 +52,7 @@
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
-    return 2;
+    return 3;
 }
 
 - (NSInteger)collectionView:(nonnull UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
@@ -57,7 +60,13 @@
     if (section == 0)
         return (NSInteger)self.showUpdateHeader;
     
-    return self.collectionView.appModels.count;
+    if (section == 1)
+        return self.collectionView.modelsSourceObject.installedAppsModels.count;
+
+    if (section == 2)
+        return self.collectionView.modelsSourceObject.uninstalledAppsModels.count;
+    
+    return 0;
 }
 
 - (nonnull __kindof UICollectionViewCell *)collectionView:(nonnull UICollectionView *)collectionView
@@ -76,7 +85,10 @@
     
     RJTAppCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"appCell"
                                                                  forIndexPath:indexPath];
-    cell.model = self.collectionView.appModels[indexPath.row];
+    if (indexPath.section == 1)
+        cell.model = self.collectionView.modelsSourceObject.installedAppsModels[indexPath.row];
+    else if (indexPath.section == 2)
+        cell.model = self.collectionView.modelsSourceObject.uninstalledAppsModels[indexPath.row];
     
     return cell;
 }
@@ -121,8 +133,6 @@
                                                                                      forIndexPath:indexPath];
     if (indexPath.section == 1) {
         headerView.label.text = NSLocalizedString(@"installed", @"");
-    } else {
-        headerView.label.text = @"test";
     }
     
     return headerView;
@@ -130,11 +140,30 @@
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(RJTCollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section
 {
-    if (section == 1) {
-        return CGSizeMake(CGRectGetWidth(collectionView.frame), 44.0f);
+    RJTCollectionViewDataSource *dataSource = self.collectionView.modelsSourceObject;
+    if (section == 1 && dataSource.installedAppsModels.count > 0) {
+        return CGSizeMake(CGRectGetWidth(collectionView.frame), 52.0f);
+    }
+    
+    if ((section == 2 && dataSource.installedAppsModels.count > 0 && dataSource.uninstalledAppsModels.count > 0)) {
+        return CGSizeMake(CGRectGetWidth(collectionView.frame), 16.0f);
     }
     
     return CGSizeZero;
+}
+
+- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(RJTCollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
+{
+    if (section == 0 && self.showUpdateHeader)
+        return UIEdgeInsetsMake(10.0, 0.0f, 0.0, 0.0f);
+    
+    RJTCollectionViewDataSource *dataSource = self.collectionView.modelsSourceObject;
+    if ((section == 1 && dataSource.installedAppsModels.count > 0) || section == 2) {
+        return UIEdgeInsetsMake(10.0f, 0.0f, 10.0f, 0.0f);
+    } else if (section == 1 || section == 2)
+        return UIEdgeInsetsMake(0.0f, 0.0f, 10.0f, 0.0f);
+    
+    return UIEdgeInsetsZero;
 }
 
 
