@@ -16,8 +16,6 @@
 #import "RJTAppCell.h"
 
 @interface RJTAppCollectionView ()
-- (void)sendSelectionFeedback;
-
 @property (strong, nonatomic) RJTCollectionViewDataSource *modelsSourceObject;
 @end
 
@@ -31,6 +29,8 @@
         _collectionView = collectionView;
         collectionView.delegate = self;
         collectionView.dataSource = self;
+        
+        [collectionView registerClass:[RJTCollectionLabelHeader class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"header"];
     }
     
     return self;
@@ -42,7 +42,12 @@
     
     appCell.model.enableTranslation = selected;
     [self.collectionView.customDelegate collectionView:self.collectionView didUpdateModel:appCell.model];
-    [self.collectionView sendSelectionFeedback];
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        UISelectionFeedbackGenerator *selectionGenerator = [UISelectionFeedbackGenerator new];
+        [selectionGenerator prepare];
+        [selectionGenerator selectionChanged];
+    });
 }
 
 

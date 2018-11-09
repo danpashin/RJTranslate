@@ -6,11 +6,15 @@
 //  Copyright © 2018 Даниил. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import <UIKit/UIResponder.h>
+
+#import "UIApplication+RJTranslate.h"
+#import "RJTTracker.h"
 
 @interface RJTAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
+@property (strong, nonatomic, readonly) RJTTracker *tracker;
 
 @end
 

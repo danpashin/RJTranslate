@@ -17,7 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 
  @param show YES - показывает. NO - скрывает.
  */
-- (void)showNavigationLargeTitle:(BOOL)show;
+//- (void)showNavigationLargeTitle:(BOOL)show;
 
 @end
 

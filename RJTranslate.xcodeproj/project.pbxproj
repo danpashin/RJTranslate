@@ -55,13 +55,16 @@
 		A5BFB4A62189B267001A9D82 /* RJTAppIcon.m in Sources */ = {isa = PBXBuildFile; fileRef = A5BFB4A32189B267001A9D82 /* RJTAppIcon.m */; };
 		A5C7DA8421935D310086BE40 /* RJTAppCollectionViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A5C7DA8321935D310086BE40 /* RJTAppCollectionViewDelegate.m */; };
 		A5CC12EA2184A2A600A607E3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A5CC12E92184A2A600A607E3 /* GoogleService-Info.plist */; };
-		A5DB9ABE217B74DB0061A810 /* RJTGradientView.m in Sources */ = {isa = PBXBuildFile; fileRef = A5DB9ABB217B74DB0061A810 /* RJTGradientView.m */; };
+		A5D8155C2195987B00EB3633 /* RJTTracker.m in Sources */ = {isa = PBXBuildFile; fileRef = A5D8155B2195987B00EB3633 /* RJTTracker.m */; };
+		A5D8155F21959BBC00EB3633 /* UIApplication+RJTranslate.m in Sources */ = {isa = PBXBuildFile; fileRef = A5D8155E21959BBC00EB3633 /* UIApplication+RJTranslate.m */; };
 		A5DB9AC5217B80150061A810 /* RJTNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = A5DB9AC2217B80150061A810 /* RJTNavigationController.m */; };
 		A5DB9ACF217B8A260061A810 /* RJTAppCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A5DB9ACE217B8A260061A810 /* RJTAppCell.m */; };
 		A5DEBB29218EF5B900858616 /* RJTImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = A5DEBB28218EF5B900858616 /* RJTImageCache.m */; };
 		A5DEBB31218F0EF000858616 /* RJTImageCache.h in Headers */ = {isa = PBXBuildFile; fileRef = A5DEBB27218EF5B800858616 /* RJTImageCache.h */; };
 		A5E0BBB2218646A10094ECBC /* RJTHudProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = A5E0BBB0218646A10094ECBC /* RJTHudProgressView.m */; };
 		A5E0BBB3218646A10094ECBC /* RJTHud.m in Sources */ = {isa = PBXBuildFile; fileRef = A5E0BBB1218646A10094ECBC /* RJTHud.m */; };
+		A5E62763219618D1005BAA69 /* RJTGradientView.m in Sources */ = {isa = PBXBuildFile; fileRef = A5DB9ABB217B74DB0061A810 /* RJTGradientView.m */; };
+		A5E6276721961BEF005BAA69 /* RJTCollectionViewEmptyDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = A5E6276621961BEF005BAA69 /* RJTCollectionViewEmptyDataSource.m */; };
 		A5F40123218F7DBE00046C58 /* RJTApplicationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A54ADB1D217BB0CF00D32EB7 /* RJTApplicationModel.m */; };
 		A5F40124218F7DC000046C58 /* RJTAppIcon.m in Sources */ = {isa = PBXBuildFile; fileRef = A5BFB4A32189B267001A9D82 /* RJTAppIcon.m */; };
 		A5F40125218F7DC200046C58 /* RJTImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = A5DEBB28218EF5B900858616 /* RJTImageCache.m */; };
@@ -152,6 +155,10 @@
 		A5C7DA8321935D310086BE40 /* RJTAppCollectionViewDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RJTAppCollectionViewDelegate.m; sourceTree = "<group>"; };
 		A5CC12E92184A2A600A607E3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A5CC725B218DDD99001A4BDB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		A5D8155A2195987B00EB3633 /* RJTTracker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RJTTracker.h; sourceTree = "<group>"; };
+		A5D8155B2195987B00EB3633 /* RJTTracker.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RJTTracker.m; sourceTree = "<group>"; };
+		A5D8155D21959BBC00EB3633 /* UIApplication+RJTranslate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIApplication+RJTranslate.h"; sourceTree = "<group>"; };
+		A5D8155E21959BBC00EB3633 /* UIApplication+RJTranslate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIApplication+RJTranslate.m"; sourceTree = "<group>"; };
 		A5DB9ABA217B74DB0061A810 /* RJTGradientView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RJTGradientView.h; sourceTree = "<group>"; };
 		A5DB9ABB217B74DB0061A810 /* RJTGradientView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RJTGradientView.m; sourceTree = "<group>"; };
 		A5DB9AC1217B80150061A810 /* RJTNavigationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RJTNavigationController.h; sourceTree = "<group>"; };
@@ -166,6 +173,8 @@
 		A5E0BBAF218646A10094ECBC /* RJTHudProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RJTHudProgressView.h; sourceTree = "<group>"; };
 		A5E0BBB0218646A10094ECBC /* RJTHudProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RJTHudProgressView.m; sourceTree = "<group>"; };
 		A5E0BBB1218646A10094ECBC /* RJTHud.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RJTHud.m; sourceTree = "<group>"; };
+		A5E6276521961BEF005BAA69 /* RJTCollectionViewEmptyDataSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RJTCollectionViewEmptyDataSource.h; sourceTree = "<group>"; };
+		A5E6276621961BEF005BAA69 /* RJTCollectionViewEmptyDataSource.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RJTCollectionViewEmptyDataSource.m; sourceTree = "<group>"; };
 		A7448D1A9FAB2BCD471A34BC /* Pods-RJTranslate.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RJTranslate.release.xcconfig"; path = "Pods/Target Support Files/Pods-RJTranslate/Pods-RJTranslate.release.xcconfig"; sourceTree = "<group>"; };
 		C442FAAA903384EF3A1DF395 /* Pods-RJTranslate.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RJTranslate.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RJTranslate/Pods-RJTranslate.debug.xcconfig"; sourceTree = "<group>"; };
 		D6FE48C60EC713FBE57420E8 /* Pods-RJTranslate-App.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RJTranslate-App.release.xcconfig"; path = "Pods/Target Support Files/Pods-RJTranslate-App/Pods-RJTranslate-App.release.xcconfig"; sourceTree = "<group>"; };
@@ -219,6 +228,8 @@
 			children = (
 				A522F1CB217AFC300085A5E4 /* RJTAppDelegate.h */,
 				A522F1CC217AFC300085A5E4 /* RJTAppDelegate.m */,
+				A5D8155D21959BBC00EB3633 /* UIApplication+RJTranslate.h */,
+				A5D8155E21959BBC00EB3633 /* UIApplication+RJTranslate.m */,
 				A5DB9AC0217B7FF50061A810 /* Controllers */,
 				A5DB9ABF217B75DF0061A810 /* Views */,
 				A54ADB20217BB6EB00D32EB7 /* Cells */,
@@ -286,16 +297,13 @@
 				A5ADC02D2184E07D00C33863 /* Network */,
 				A57C40AF218A0F6600885834 /* Application_Translation */,
 				A57C40AE218A0F5800885834 /* Database */,
+				A5D815592195984100EB3633 /* Collection View */,
 				A56FB1BF2180ADA0002F4175 /* RJTColors.h */,
 				A56FB1C02180ADA0002F4175 /* RJTColors.m */,
-				A5A0954C217C73E8009743DF /* RJTCollectionViewLayout.h */,
-				A5A0954D217C73E8009743DF /* RJTCollectionViewLayout.m */,
 				A5DEBB27218EF5B800858616 /* RJTImageCache.h */,
 				A5DEBB28218EF5B900858616 /* RJTImageCache.m */,
-				A5C7DA8221935D310086BE40 /* RJTAppCollectionViewDelegate.h */,
-				A5C7DA8321935D310086BE40 /* RJTAppCollectionViewDelegate.m */,
-				A583C3B62193E1BE0072903B /* RJTCollectionViewDataSource.h */,
-				A583C3B72193E1BE0072903B /* RJTCollectionViewDataSource.m */,
+				A5D8155A2195987B00EB3633 /* RJTTracker.h */,
+				A5D8155B2195987B00EB3633 /* RJTTracker.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -432,6 +440,21 @@
 			children = (
 			);
 			path = Applications;
+			sourceTree = "<group>";
+		};
+		A5D815592195984100EB3633 /* Collection View */ = {
+			isa = PBXGroup;
+			children = (
+				A5A0954C217C73E8009743DF /* RJTCollectionViewLayout.h */,
+				A5A0954D217C73E8009743DF /* RJTCollectionViewLayout.m */,
+				A5C7DA8221935D310086BE40 /* RJTAppCollectionViewDelegate.h */,
+				A5C7DA8321935D310086BE40 /* RJTAppCollectionViewDelegate.m */,
+				A583C3B62193E1BE0072903B /* RJTCollectionViewDataSource.h */,
+				A583C3B72193E1BE0072903B /* RJTCollectionViewDataSource.m */,
+				A5E6276521961BEF005BAA69 /* RJTCollectionViewEmptyDataSource.h */,
+				A5E6276621961BEF005BAA69 /* RJTCollectionViewEmptyDataSource.m */,
+			);
+			path = "Collection View";
 			sourceTree = "<group>";
 		};
 		A5DB9ABF217B75DF0061A810 /* Views */ = {
@@ -718,14 +741,17 @@
 				A57CF73A217AFFC8004A71F8 /* RJTDatabase.m in Sources */,
 				A5DEBB29218EF5B900858616 /* RJTImageCache.m in Sources */,
 				A5A09548217C4696009743DF /* RJTAppCollectionView.m in Sources */,
-				A5DB9ABE217B74DB0061A810 /* RJTGradientView.m in Sources */,
 				A5DB9ACF217B8A260061A810 /* RJTAppCell.m in Sources */,
+				A5D8155F21959BBC00EB3633 /* UIApplication+RJTranslate.m in Sources */,
+				A5E6276721961BEF005BAA69 /* RJTCollectionViewEmptyDataSource.m in Sources */,
 				A5470D7421936AA200A7A7EB /* RJTCollectionViewUpdateCell.m in Sources */,
 				A57C40AC218A061300885834 /* RJTOperationQueue.m in Sources */,
+				A5E62763219618D1005BAA69 /* RJTGradientView.m in Sources */,
 				A56FB1C12180ADA0002F4175 /* RJTColors.m in Sources */,
 				A5ADC0262184D3A400C33863 /* RJTDatabaseUpdate.m in Sources */,
 				A522F1DB217AFC310085A5E4 /* main.m in Sources */,
 				A522F1CD217AFC300085A5E4 /* RJTAppDelegate.m in Sources */,
+				A5D8155C2195987B00EB3633 /* RJTTracker.m in Sources */,
 				A5BFB4A02189B1EB001A9D82 /* RJTAppIconEntity.m in Sources */,
 				A57CF73E217B50B9004A71F8 /* RJTNavigationBar.m in Sources */,
 				A57CF73B217AFFD0004A71F8 /* RJTApplicationEntity.m in Sources */,
@@ -887,7 +913,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPYING_PRESERVES_HFS_DATA = YES;
-				CURRENT_PROJECT_VERSION = 0.6;
+				CURRENT_PROJECT_VERSION = 0.7;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = VW97WHTS78;
 				ENABLE_BITCODE = NO;
@@ -985,7 +1011,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPYING_PRESERVES_HFS_DATA = YES;
-				CURRENT_PROJECT_VERSION = 0.6;
+				CURRENT_PROJECT_VERSION = 0.7;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = VW97WHTS78;
 				ENABLE_BITCODE = NO;

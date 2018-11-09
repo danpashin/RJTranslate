@@ -30,12 +30,14 @@
         
         self.dimsBackgroundDuringPresentation = NO;
         self.hidesNavigationBarDuringPresentation = NO;
-        self.searchBar.searchBarStyle = UISearchBarStyleMinimal;
         self.searchBar.delegate = self;
         
-        self.searchBar.searchField.layer.cornerRadius = 18.0f;
-        self.searchBar.searchField.layer.masksToBounds = YES;
-        self.searchBar.searchField.textColor = [UIColor whiteColor];
+        if (@available(iOS 11.0, *)) {
+        } else {
+            self.searchBar.searchField.layer.cornerRadius = 8.0f;
+            self.searchBar.searchField.layer.masksToBounds = YES;
+            self.searchBar.searchField.backgroundColor = [UIColor colorWithRed:0.0f green:0.027f blue:0.098f alpha:0.08f];
+        }
     }
     
     return self;

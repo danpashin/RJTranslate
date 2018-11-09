@@ -20,8 +20,8 @@
     self = [super initWithFrame:frame];
     if (self) {
         _label = [UILabel new];
-        self.label.textColor = [UIColor colorWithWhite:0.2f alpha:1.0f];
-        self.label.font = [UIFont systemFontOfSize:[UIFont labelFontSize] + 4.0f weight:UIFontWeightBlack];
+        self.label.textColor = RJTColors.headerColor;
+        self.label.font = [UIFont systemFontOfSize:[UIFont labelFontSize] + 4.0f weight:UIFontWeightBold];
         [self addSubview:self.label];
         
         self.separatorView = [UIView new];

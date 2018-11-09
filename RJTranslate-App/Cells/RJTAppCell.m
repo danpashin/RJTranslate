@@ -25,12 +25,12 @@
 - (void)awakeFromNib
 {
     [super awakeFromNib];
-    self.nameLabel.textColor = [UIColor colorWithWhite:0.05f alpha:1.0f];
+    self.nameLabel.textColor = RJTColors.textPrimaryColor;
     
     self.layer.cornerRadius = 10.0f;
     self.iconView.layer.masksToBounds = YES;
     self.iconView.layer.cornerRadius = 11.0f;
-    self.iconView.tintColor = [UIColor colorWithWhite:0.83f alpha:1.0f];
+    self.iconView.tintColor = RJTColors.textDetailColor;
     
     [self updateSelection:NO animated:NO];
 }

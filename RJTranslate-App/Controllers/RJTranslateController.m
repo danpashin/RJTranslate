@@ -55,7 +55,12 @@
     
     self.searchController = [[RJTSearchController alloc] initWithDelegate:self searchResultsUpdater:self];
     self.collectionView.searchController = self.searchController;
-    self.navigationItem.titleView = self.searchController.searchBar;
+    
+    if (@available(iOS 11.0, *)) {
+        self.navigationItem.searchController = self.searchController;
+    } else {
+        self.navigationItem.titleView = self.searchController.searchBar;
+    }
     
     self.databaseUpdater = [[RJTDatabaseUpdater alloc] initWithDelegate:self];
     [self.databaseUpdater checkTranslationsVersion:^(RJTDatabaseUpdate * _Nullable updateModel, NSError * _Nullable error) {
@@ -94,19 +99,16 @@
 
 - (void)updateSearchResultsForSearchController:(RJTSearchController *)searchController
 {
-    [self.localDatabase performModelsSearchWithText:searchController.searchText completion:^(NSArray<RJTApplicationModel *> * _Nonnull models) {
+    NSString *searchText = searchController.searchText;
+    [self.localDatabase performModelsSearchWithText:searchText completion:^(NSArray<RJTApplicationModel *> * _Nonnull models) {
         [self.collectionView updateViewWithModelsAndReload:models];
     }];
-}
-
-- (void)willPresentSearchController:(RJTSearchController *)searchController
-{
-    [self.navigationController showNavigationLargeTitle:NO];
+    
+    [[UIApplication sharedApplication].appDelegate.tracker trackSearchEvent:searchText];
 }
 
 - (void)didDismissSearchController:(RJTSearchController *)searchController
 {
-    [self.navigationController showNavigationLargeTitle:YES];
     [self updateAllModels];
 }
 
@@ -129,6 +131,8 @@
         char *args[] = {"/usr/bin/killall", "-9", (char *)executableName.UTF8String, NULL};
         posix_spawn(NULL, args[0], NULL, NULL, args, NULL);
     }
+    
+    [[UIApplication sharedApplication].appDelegate.tracker trackSelectTranslationWithName:appModel.displayedName];
 }
 
 - (void)collectionView:(RJTAppCollectionView *)collectionView didLoadUpdateCell:(RJTCollectionViewUpdateCell *)updateCell

@@ -134,11 +134,17 @@
     }
 }
 
+- (NSSortDescriptor *)caseInsensetiveSortDescriptorWithKey:(NSString *)key ascending:(BOOL)ascending
+{
+    return [[NSSortDescriptor alloc] initWithKey:key ascending:ascending
+                                        selector:@selector(localizedCaseInsensitiveCompare:)];
+}
+
 - (void)fetchAllAppModelsWithCompletion:(void(^)(NSArray <RJTApplicationModel *>  * _Nonnull allModels))completion
 {
     [self performBackgroundTask:^(NSManagedObjectContext * _Nonnull context) {
         NSFetchRequest *fetchRequest = [RJTApplicationEntity fetchRequest];
-        fetchRequest.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"displayedName" ascending:YES]];
+        fetchRequest.sortDescriptors = @[[self caseInsensetiveSortDescriptorWithKey:@"displayedName" ascending:YES]];
         NSArray <RJTApplicationEntity *> *result = [context executeFetchRequest:fetchRequest error:nil];
         
         NSMutableArray <RJTApplicationModel *> *allModels = [NSMutableArray array];
@@ -173,7 +179,7 @@
 {
     [self performBackgroundTask:^(NSManagedObjectContext * _Nonnull context) {
         NSFetchRequest *fetchRequest = [RJTApplicationEntity fetchRequest];
-        fetchRequest.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"displayedName" ascending:YES]];
+        fetchRequest.sortDescriptors = @[[self caseInsensetiveSortDescriptorWithKey:@"displayedName" ascending:YES]];
         fetchRequest.predicate = predicate;
     
         NSArray <RJTApplicationEntity *> *result = [context executeFetchRequest:fetchRequest error:nil];

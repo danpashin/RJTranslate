@@ -6,6 +6,9 @@
 //  Copyright © 2018 Даниил. All rights reserved.
 //
 
+#import "RJTColors.h"
+#import "RJTAppDelegate.h"
+
 @class NSError, NSString;
 
 extern void RJTErrorLogInternal(NSError *error, NSString *format, ...);

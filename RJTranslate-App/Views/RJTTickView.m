@@ -41,7 +41,7 @@
 
 - (void)commonInit
 {
-    self.layer.strokeColor = [RJTColors accentSecondaryColor].CGColor;
+    self.layer.strokeColor = RJTColors.accentSecondaryColor.CGColor;
     self.layer.fillColor = [UIColor clearColor].CGColor;
     self.layer.strokeEnd = 0.0f;
     self.layer.lineWidth = 2.0f;

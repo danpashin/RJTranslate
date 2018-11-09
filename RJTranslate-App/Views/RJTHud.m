@@ -49,8 +49,9 @@ static CGFloat const RJTHudContentSize = 140.0f;
         _blurStyle = UIBlurEffectStyleExtraLight;
         
         self.contentView = [UIView new];
+        self.contentView.backgroundColor = [UIColor colorWithWhite:1.0f alpha:0.5f];
         self.contentView.layer.cornerRadius = 20.0f;
-        self.contentView.layer.shadowOpacity = 0.15f;
+        self.contentView.layer.shadowOpacity = 0.2f;
         self.contentView.layer.shadowColor = [UIColor blackColor].CGColor;
         self.contentView.layer.shadowRadius = 40.0f;
         self.contentView.layer.shadowOffset = CGSizeZero;
