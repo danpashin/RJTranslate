@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-@class RJTDatabaseUpdater, RJTApplicationModel, RJTDatabaseUpdate;
+@class RJTDatabase, RJTDatabaseUpdater, RJTApplicationModel, RJTDatabaseUpdate;
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -31,6 +31,13 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (void)databaseUpdater:(RJTDatabaseUpdater *)databaseUpdater failedUpdateWithError:(NSError *)error;
 
+/**
+ Метод вызывается, когда апдейтер начинает обновлять базу данных.
+
+ @param databaseUpdater Экземляр апдейтера.
+ */
+- (void)databaseUpdaterDidStartUpdatingDatabase:(RJTDatabaseUpdater *)databaseUpdater;
+
 @optional
 
 /**
@@ -50,10 +57,11 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  Выполняет инициализацию апдейтера.
 
+ @param database База данных.
  @param delegate Делегат для объекта-обработчика статуса обновления.
  @return Возвращает экземпляр класса для дальнейшей работы.
  */
-- (instancetype)initWithDelegate:(id <RJTDatabaseUpdaterDelegate>)delegate;
+- (instancetype)initWithDatabase:(RJTDatabase *)database delegate:(id<RJTDatabaseUpdaterDelegate>)delegate;
 
 /**
  Делегат для объекта-обработчика статуса обновления.
@@ -63,7 +71,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  Выполняет загрузку и последующую обработку моделей приложений.
  */
-- (void)downloadTranslations;
+- (void)performDatabaseUpdate;
 
 /**
  Проверяет версию локализации приложений.

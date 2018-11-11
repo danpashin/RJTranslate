@@ -1,6 +1,6 @@
 
 
-target 'RJParser' do
+target 'RJParser_macOS' do
   platform :osx, '10.10'
   pod 'SSZipArchive'
 end

@@ -20,7 +20,7 @@
 {
     _tracker = [RJTTracker new];
 #if (defined(__arm__) || defined(__arm64__))
-//    [FIRApp configure];
+    [FIRApp configure];
 #endif
     
     [[RJTImageCache sharedCache] countSizeWithCompletion:^(NSUInteger cacheSize) {

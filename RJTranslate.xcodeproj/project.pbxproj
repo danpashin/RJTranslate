@@ -15,6 +15,8 @@
 		A522F1D5217AFC310085A5E4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A522F1D4217AFC310085A5E4 /* Assets.xcassets */; };
 		A522F1D8217AFC310085A5E4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A522F1D6217AFC310085A5E4 /* LaunchScreen.storyboard */; };
 		A522F1DB217AFC310085A5E4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A522F1DA217AFC310085A5E4 /* main.m */; };
+		A526FD982198969F00E1A434 /* UIColor+RJT_Private.m in Sources */ = {isa = PBXBuildFile; fileRef = A526FD972198969F00E1A434 /* UIColor+RJT_Private.m */; };
+		A526FD9B21989A9900E1A434 /* RJTCollectionViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A526FD9A21989A9900E1A434 /* RJTCollectionViewModel.m */; };
 		A53533FF217A57ED00E08881 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A53533FE217A57ED00E08881 /* Foundation.framework */; };
 		A5353402217A57ED00E08881 /* RJTranslate.m in Sources */ = {isa = PBXBuildFile; fileRef = A5353401217A57ED00E08881 /* RJTranslate.m */; };
 		A5353411217A584500E08881 /* RJTranslate.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A535340F217A584500E08881 /* RJTranslate.xcdatamodeld */; };
@@ -57,7 +59,6 @@
 		A5CC12EA2184A2A600A607E3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A5CC12E92184A2A600A607E3 /* GoogleService-Info.plist */; };
 		A5D8155C2195987B00EB3633 /* RJTTracker.m in Sources */ = {isa = PBXBuildFile; fileRef = A5D8155B2195987B00EB3633 /* RJTTracker.m */; };
 		A5D8155F21959BBC00EB3633 /* UIApplication+RJTranslate.m in Sources */ = {isa = PBXBuildFile; fileRef = A5D8155E21959BBC00EB3633 /* UIApplication+RJTranslate.m */; };
-		A5DB9AC5217B80150061A810 /* RJTNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = A5DB9AC2217B80150061A810 /* RJTNavigationController.m */; };
 		A5DB9ACF217B8A260061A810 /* RJTAppCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A5DB9ACE217B8A260061A810 /* RJTAppCell.m */; };
 		A5DEBB29218EF5B900858616 /* RJTImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = A5DEBB28218EF5B900858616 /* RJTImageCache.m */; };
 		A5DEBB31218F0EF000858616 /* RJTImageCache.h in Headers */ = {isa = PBXBuildFile; fileRef = A5DEBB27218EF5B800858616 /* RJTImageCache.h */; };
@@ -95,6 +96,10 @@
 		A522F1D7217AFC310085A5E4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A522F1D9217AFC310085A5E4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A522F1DA217AFC310085A5E4 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		A526FD962198969F00E1A434 /* UIColor+RJT_Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIColor+RJT_Private.h"; sourceTree = "<group>"; };
+		A526FD972198969F00E1A434 /* UIColor+RJT_Private.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIColor+RJT_Private.m"; sourceTree = "<group>"; };
+		A526FD9921989A9900E1A434 /* RJTCollectionViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RJTCollectionViewModel.h; sourceTree = "<group>"; };
+		A526FD9A21989A9900E1A434 /* RJTCollectionViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RJTCollectionViewModel.m; sourceTree = "<group>"; };
 		A53533FB217A57ED00E08881 /* RJTranslate.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = RJTranslate.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		A53533FE217A57ED00E08881 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		A5353401217A57ED00E08881 /* RJTranslate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RJTranslate.m; sourceTree = "<group>"; };
@@ -304,6 +309,8 @@
 				A5DEBB28218EF5B900858616 /* RJTImageCache.m */,
 				A5D8155A2195987B00EB3633 /* RJTTracker.h */,
 				A5D8155B2195987B00EB3633 /* RJTTracker.m */,
+				A526FD962198969F00E1A434 /* UIColor+RJT_Private.h */,
+				A526FD972198969F00E1A434 /* UIColor+RJT_Private.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -453,6 +460,8 @@
 				A583C3B72193E1BE0072903B /* RJTCollectionViewDataSource.m */,
 				A5E6276521961BEF005BAA69 /* RJTCollectionViewEmptyDataSource.h */,
 				A5E6276621961BEF005BAA69 /* RJTCollectionViewEmptyDataSource.m */,
+				A526FD9921989A9900E1A434 /* RJTCollectionViewModel.h */,
+				A526FD9A21989A9900E1A434 /* RJTCollectionViewModel.m */,
 			);
 			path = "Collection View";
 			sourceTree = "<group>";
@@ -647,7 +656,8 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [[ \"ls -1 ${BUILT_PRODUCTS_DIR}/*.dylib 2>/dev/null | wc -l\" == 0 ]]; then\necho \"${BUILT_PRODUCTS_DIR} does not contain any dylib file.\";\nexit 1;\nfi\n\nPACKAGE_PROJECT_FOLDER=\"${PROJECT_DIR}/${PROJECT_NAME}/Package\";\nif [ ! -d $PACKAGE_PROJECT_FOLDER ]; then\necho \"${PROJECT_DIR}/Package does not exits.\";\nexit 2;\nfi\n\n\nPACKAGE_TEMP_FOLDER=\"${BUILT_PRODUCTS_DIR}/Package\";\nif [ -d $PACKAGE_TEMP_FOLDER ]; then\nrm -rf $PACKAGE_TEMP_FOLDER;\nfi\n\necho \"[->] Copying binaries...\";\ncp -r $PACKAGE_PROJECT_FOLDER $PACKAGE_TEMP_FOLDER;\nfind ${BUILT_PRODUCTS_DIR} -type f -iname '*.dylib' \\( -exec ldid -S\"${PROJECT_DIR}/sign.entitlements\" \"{}\" \\; -exec cp \"{}\" \"$PACKAGE_TEMP_FOLDER/Library/MobileSubstrate/DynamicLibraries/\" 2> /dev/null \\; \\)\n#find ${BUILT_PRODUCTS_DIR} -iname '*.app' -exec cp -R \"{}\" \"$PACKAGE_TEMP_FOLDER/Applications/\" \\;\nfind ${BUILT_PRODUCTS_DIR} -iname '*.momd' -exec cp -R \"{}\" \"$PACKAGE_TEMP_FOLDER/Library/Application Support/RJTranslate.bundle/\" \\;\ncp -R \"${BUILT_PRODUCTS_DIR}/RJTranslate.app\" \"$PACKAGE_TEMP_FOLDER/Applications/RJTranslate.app\";\n\ncodesign --remove-sign \"$PACKAGE_TEMP_FOLDER/Applications/RJTranslate.app\";\nrm -rf \"$PACKAGE_TEMP_FOLDER/Applications/RJTranslate.app/embedded.mobileprovision\";\nldid -S\"${PROJECT_DIR}/sign.entitlements\" \"$PACKAGE_TEMP_FOLDER/Applications/RJTranslate.app/RJTranslate\";\nfind \"$PACKAGE_TEMP_FOLDER\" -type d -exec chmod +rx \"{}\" \\;\n\necho \"[->] Cleaning (stage 1)...\"\nfind $PACKAGE_PROJECT_FOLDER -name \".DS_Store\" -exec rm -f {} \\;\n\necho \"[->] Updating control...\";\nsed -i '' \"s/CURRENT_PROJECT_VERSION/${CURRENT_PROJECT_VERSION}/g\" \"$PACKAGE_TEMP_FOLDER/DEBIAN/control\";\n\necho \"[->] Counting size...\";\nFOLDER_SIZE=$(du -sk $PACKAGE_TEMP_FOLDER);\nINSTALLED_SIZE=$(echo $FOLDER_SIZE | tr -dc '0-9' );\nsed -i '' \"s/PACKAGE_SIZE/${INSTALLED_SIZE}/g\" \"$PACKAGE_TEMP_FOLDER/DEBIAN/control\";\n\necho \"[->] Packaging...\";\nDEBS_FOLDER=\"${PROJECT_DIR}/debs\";\nif [ ! -d $DEBS_FOLDER ]; then\nmkdir $DEBS_FOLDER\nfi\n\nDEB_NAME=\"${PRODUCT_BUNDLE_IDENTIFIER}_${CURRENT_PROJECT_VERSION}_${PLATFORM_NAME}-arm.deb\";\ndpkg-deb -b -Zlzma $PACKAGE_TEMP_FOLDER $DEBS_FOLDER/$DEB_NAME 2> /dev/null;\n\necho \"[->] Cleaning (stage 2)...\";\nrm -rf $PACKAGE_TEMP_FOLDER;\n";
+			shellScript = "if [[ \"ls -1 ${BUILT_PRODUCTS_DIR}/*.dylib 2>/dev/null | wc -l\" == 0 ]]; then\necho \"${BUILT_PRODUCTS_DIR} does not contain any dylib file.\";\nexit 1;\nfi\n\nPACKAGE_PROJECT_FOLDER=\"${PROJECT_DIR}/${PROJECT_NAME}/Package\";\nif [ ! -d $PACKAGE_PROJECT_FOLDER ]; then\necho \"${PROJECT_DIR}/Package does not exits.\";\nexit 2;\nfi\n\n\nPACKAGE_TEMP_FOLDER=\"${BUILT_PRODUCTS_DIR}/Package\";\nif [ -d $PACKAGE_TEMP_FOLDER ]; then\nrm -rf $PACKAGE_TEMP_FOLDER;\nfi\n\necho \"[->] Copying binaries...\";\ncp -r $PACKAGE_PROJECT_FOLDER $PACKAGE_TEMP_FOLDER;\nfind ${BUILT_PRODUCTS_DIR} -type f -iname '*.dylib' \\( -exec ldid -S\"${PROJECT_DIR}/sign.entitlements\" \"{}\" \\; -exec cp \"{}\" \"$PACKAGE_TEMP_FOLDER/Library/MobileSubstrate/DynamicLibraries/\" 2> /dev/null \\; \\)\n#find ${BUILT_PRODUCTS_DIR} -iname '*.app' -exec cp -R \"{}\" \"$PACKAGE_TEMP_FOLDER/Applications/\" \\;\nfind ${BUILT_PRODUCTS_DIR} -iname '*.momd' -exec cp -R \"{}\" \"$PACKAGE_TEMP_FOLDER/Library/Application Support/RJTranslate.bundle/\" \\;\ncp -R \"${BUILT_PRODUCTS_DIR}/RJTranslate.app\" \"$PACKAGE_TEMP_FOLDER/Applications/RJTranslate.app\";\n\ncodesign --remove-sign \"$PACKAGE_TEMP_FOLDER/Applications/RJTranslate.app\";\nrm -rf \"$PACKAGE_TEMP_FOLDER/Applications/RJTranslate.app/embedded.mobileprovision\";\nldid -S\"${PROJECT_DIR}/sign.entitlements\" \"$PACKAGE_TEMP_FOLDER/Applications/RJTranslate.app/RJTranslate\";\nfind \"$PACKAGE_TEMP_FOLDER\" -type d -exec chmod +rx \"{}\" \\;\n\necho \"[->] Cleaning (stage 1)...\"\n#find $PACKAGE_TEMP_FOLDER -name \".DS_Store\" -exec rm -f \"{}\" \\;\nfind $PACKAGE_TEMP_FOLDER -name \".*\" -exec rm -rf \"{}\" \\;\n\necho \"[->] Updating control...\";\nsed -i '' \"s/CURRENT_PROJECT_VERSION/${CURRENT_PROJECT_VERSION}/g\" \"$PACKAGE_TEMP_FOLDER/DEBIAN/control\";\n\necho \"[->] Counting size...\";\nFOLDER_SIZE=$(du -sk $PACKAGE_TEMP_FOLDER);\nINSTALLED_SIZE=$(echo $FOLDER_SIZE | tr -dc '0-9' );\nsed -i '' \"s/PACKAGE_SIZE/${INSTALLED_SIZE}/g\" \"$PACKAGE_TEMP_FOLDER/DEBIAN/control\";\n\necho \"[->] Packaging...\";\nDEBS_FOLDER=\"${PROJECT_DIR}/debs\";\nif [ ! -d $DEBS_FOLDER ]; then\nmkdir $DEBS_FOLDER\nfi\n\nDEB_NAME=\"${PRODUCT_BUNDLE_IDENTIFIER}_${CURRENT_PROJECT_VERSION}_${PLATFORM_NAME}-arm.deb\";\ndpkg-deb -b -Zlzma $PACKAGE_TEMP_FOLDER $DEBS_FOLDER/$DEB_NAME 2> /dev/null;\n\necho \"[->] Cleaning (stage 2)...\";\nrm -rf $PACKAGE_TEMP_FOLDER;\n";
+			showEnvVarsInLog = 0;
 		};
 		A5CC12EB2184A52F00A607E3 /* Setup Crashlytics */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -726,7 +736,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A5DB9AC5217B80150061A810 /* RJTNavigationController.m in Sources */,
 				A5ADC0292184DB3100C33863 /* RJTAPIDownloadRequest.m in Sources */,
 				A5527FBB218F4C4000095251 /* RJTApplicationModel.m in Sources */,
 				A56C0167217F25D000027DB3 /* RJTDatabaseUpdater.m in Sources */,
@@ -736,6 +745,7 @@
 				A5ACD6F22182DA510009DB9C /* RJTAPI.m in Sources */,
 				A58659962192CCE600A76A6C /* RJTSupport.m in Sources */,
 				A5C7DA8421935D310086BE40 /* RJTAppCollectionViewDelegate.m in Sources */,
+				A526FD982198969F00E1A434 /* UIColor+RJT_Private.m in Sources */,
 				A5ADC02C2184DDCE00C33863 /* RJTAPIJSONRequest.m in Sources */,
 				A58659992192F70300A76A6C /* RJTCollectionLabelHeader.m in Sources */,
 				A57CF73A217AFFC8004A71F8 /* RJTDatabase.m in Sources */,
@@ -745,6 +755,7 @@
 				A5D8155F21959BBC00EB3633 /* UIApplication+RJTranslate.m in Sources */,
 				A5E6276721961BEF005BAA69 /* RJTCollectionViewEmptyDataSource.m in Sources */,
 				A5470D7421936AA200A7A7EB /* RJTCollectionViewUpdateCell.m in Sources */,
+				A526FD9B21989A9900E1A434 /* RJTCollectionViewModel.m in Sources */,
 				A57C40AC218A061300885834 /* RJTOperationQueue.m in Sources */,
 				A5E62763219618D1005BAA69 /* RJTGradientView.m in Sources */,
 				A56FB1C12180ADA0002F4175 /* RJTColors.m in Sources */,

@@ -1,11 +1,11 @@
 Package: ru.danpashin.RJTranslate
-Name: RJTranslate
+Name: RJTranslate [Dev]
 Version: CURRENT_PROJECT_VERSION
-Description: Перевод твиков от ReJail
+Description: Самая прогрессивная утилита для перевода твиков от команды ReJail!
 Priority: optional
 Architecture: iphoneos-arm
-Author: Даниил
-Maintainer:  Даниил
+Author: ReJail
+Maintainer:  ReJail
 dev: danpashin
 Icon: file:///Applications/RJTranslate.app/Cydia_icon.png
 Tag: purpose::extension, compatible::ios10, compatible::ios11

@@ -19,6 +19,7 @@
 		A5E90104218C7321005D644C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A5E90103218C7321005D644C /* main.m */; };
 		A5F2EB7E21971A93002ED630 /* RJPUpdater.m in Sources */ = {isa = PBXBuildFile; fileRef = A5F2EB7D21971A93002ED630 /* RJPUpdater.m */; };
 		A5F2EB8121971B2F002ED630 /* RJPatch.m in Sources */ = {isa = PBXBuildFile; fileRef = A5F2EB8021971B2F002ED630 /* RJPatch.m */; };
+		B3F7A2787BE81D63B631852E /* libPods-RJParser_macOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BEEFEA8673561F4E7EA46353 /* libPods-RJParser_macOS.a */; };
 		E47593ACE8ABB6E24442401A /* libPods-RJParser_iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 95F000C53A3FB7C0886A2804 /* libPods-RJParser_iOS.a */; };
 		F0AF2E35063F3C5944C51E60 /* libPods-RJParser.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D8C370EB9ABADAFBEAB78BF4 /* libPods-RJParser.a */; };
 /* End PBXBuildFile section */
@@ -38,6 +39,7 @@
 /* Begin PBXFileReference section */
 		2151CC6A0E64ABACF352EDC2 /* Pods-RJParser.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RJParser.release.xcconfig"; path = "Pods/Target Support Files/Pods-RJParser/Pods-RJParser.release.xcconfig"; sourceTree = "<group>"; };
 		62A45D6EB3DC9748317219F5 /* Pods-RJParser.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RJParser.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RJParser/Pods-RJParser.debug.xcconfig"; sourceTree = "<group>"; };
+		699A8C0DE840E24209C56B50 /* Pods-RJParser_macOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RJParser_macOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RJParser_macOS/Pods-RJParser_macOS.debug.xcconfig"; sourceTree = "<group>"; };
 		6BA1FA8DB1E5706E2798D744 /* Pods-RJParser_iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RJParser_iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-RJParser_iOS/Pods-RJParser_iOS.release.xcconfig"; sourceTree = "<group>"; };
 		6BF7460BC677A956B4B85C97 /* Pods-RJParser_iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RJParser_iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RJParser_iOS/Pods-RJParser_iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		95F000C53A3FB7C0886A2804 /* libPods-RJParser_iOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RJParser_iOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -51,6 +53,8 @@
 		A5F2EB7D21971A93002ED630 /* RJPUpdater.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RJPUpdater.m; sourceTree = "<group>"; };
 		A5F2EB7F21971B2F002ED630 /* RJPatch.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RJPatch.h; sourceTree = "<group>"; };
 		A5F2EB8021971B2F002ED630 /* RJPatch.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RJPatch.m; sourceTree = "<group>"; };
+		B6606D53B8A873B55028019F /* Pods-RJParser_macOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RJParser_macOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-RJParser_macOS/Pods-RJParser_macOS.release.xcconfig"; sourceTree = "<group>"; };
+		BEEFEA8673561F4E7EA46353 /* libPods-RJParser_macOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RJParser_macOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D5C82DE168CEAAAD3A02B49D /* libPods-RJTParser.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RJTParser.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8C370EB9ABADAFBEAB78BF4 /* libPods-RJParser.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RJParser.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -70,6 +74,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F0AF2E35063F3C5944C51E60 /* libPods-RJParser.a in Frameworks */,
+				B3F7A2787BE81D63B631852E /* libPods-RJParser_macOS.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -83,6 +88,8 @@
 				2151CC6A0E64ABACF352EDC2 /* Pods-RJParser.release.xcconfig */,
 				6BF7460BC677A956B4B85C97 /* Pods-RJParser_iOS.debug.xcconfig */,
 				6BA1FA8DB1E5706E2798D744 /* Pods-RJParser_iOS.release.xcconfig */,
+				699A8C0DE840E24209C56B50 /* Pods-RJParser_macOS.debug.xcconfig */,
+				B6606D53B8A873B55028019F /* Pods-RJParser_macOS.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -127,6 +134,7 @@
 				D8C370EB9ABADAFBEAB78BF4 /* libPods-RJParser.a */,
 				A54754032190A221000210BC /* Foundation.framework */,
 				95F000C53A3FB7C0886A2804 /* libPods-RJParser_iOS.a */,
+				BEEFEA8673561F4E7EA46353 /* libPods-RJParser_macOS.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -257,7 +265,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-RJParser-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-RJParser_macOS-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -427,7 +435,7 @@
 		};
 		A5E90108218C7321005D644C /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 62A45D6EB3DC9748317219F5 /* Pods-RJParser.debug.xcconfig */;
+			baseConfigurationReference = 699A8C0DE840E24209C56B50 /* Pods-RJParser_macOS.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = VW97WHTS78;
@@ -440,7 +448,7 @@
 		};
 		A5E90109218C7321005D644C /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2151CC6A0E64ABACF352EDC2 /* Pods-RJParser.release.xcconfig */;
+			baseConfigurationReference = B6606D53B8A873B55028019F /* Pods-RJParser_macOS.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = VW97WHTS78;

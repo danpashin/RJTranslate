@@ -12,6 +12,13 @@
 #import "RJTGradientView.h"
 #import "RJTAppCollectionView.h"
 
+#import "UIColor+RJT_Private.h"
+
+@interface RJTCollectionViewEmptyDataSource ()
+@property (strong, nonatomic) UIImage *buttonNormalImage;
+@property (strong, nonatomic) UIImage *buttonSelectedImage;
+@end
+
 @implementation RJTCollectionViewEmptyDataSource
 
 - (instancetype)initWithCollectionView:(RJTAppCollectionView *)collectionView
@@ -21,8 +28,68 @@
         _collectionView = collectionView;
         collectionView.emptyDataSetSource = self;
         collectionView.emptyDataSetDelegate = self;
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveMemoryWarning) name:UIApplicationDidReceiveMemoryWarningNotification object:nil];
     }
     return self;
+}
+
+- (void)didReceiveMemoryWarning
+{
+    self.buttonNormalImage = nil;
+    self.buttonSelectedImage = nil;
+}
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+- (UIImage *)buttonNormalImage
+{
+    if (!_buttonNormalImage) {
+        _buttonNormalImage = [self renderButtonImageForState:UIControlStateNormal];
+    }
+    return _buttonNormalImage;
+}
+
+- (UIImage *)buttonSelectedImage
+{
+    if (!_buttonSelectedImage) {
+        _buttonSelectedImage = [self renderButtonImageForState:UIControlStateHighlighted];
+    }
+    return _buttonSelectedImage;
+}
+
+- (UIImage *)renderButtonImageForState:(UIControlState)state
+{
+    __block UIImage *image = nil;
+    void (^renderBlock)(void) = ^{
+        CGSize imageSize = CGSizeMake(CGRectGetWidth([UIScreen mainScreen].bounds), 44.0);
+        UIGraphicsBeginImageContextWithOptions(imageSize, NO, [UIScreen mainScreen].scale);
+        CGContextRef context = UIGraphicsGetCurrentContext();
+        
+        RJTGradientView *gradientView = [RJTGradientView defaultGradientView];
+        gradientView.frame = (CGRect){{0, 0}, imageSize};
+        gradientView.layer.cornerRadius = 10.0;
+        
+        if (state == UIControlStateHighlighted) {
+            NSMutableArray *newColors = [NSMutableArray array];
+            for (id color in gradientView.layer.colors) {
+                UIColor *uiColor = [UIColor colorWithCGColor:(__bridge CGColorRef)color];
+                [newColors addObject:(id)uiColor.darkerColor.CGColor];
+            }
+            gradientView.layer.colors = newColors;
+        }
+        
+        [gradientView.layer renderInContext:context];
+        image = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+    };
+    
+    [NSThread isMainThread] ? renderBlock() : dispatch_sync(dispatch_get_main_queue(), renderBlock);
+    
+    return image;
 }
 
 #pragma mark -
@@ -36,11 +103,6 @@
         return [UIImage imageNamed:@"translationIcon"];
     
     return nil;
-}
-
-- (UIColor *)imageTintColorForEmptyDataSet:(UIScrollView *)scrollView
-{
-    return [UIColor colorWithRed:149/255.0f green:132/255.0f blue:156/255.0f alpha:1.0f];
 }
 
 - (NSAttributedString *)titleForEmptyDataSet:(UIScrollView *)scrollView
@@ -87,24 +149,12 @@
 
 - (UIImage *)buttonBackgroundImageForEmptyDataSet:(UIScrollView *)scrollView forState:(UIControlState)state
 {
-    __block UIImage *image = nil;
-    void (^renderBlock)(void) = ^{
-        CGSize imageSize = CGSizeMake(CGRectGetWidth([UIScreen mainScreen].bounds), 44.0);
-        UIGraphicsBeginImageContextWithOptions(imageSize, NO, [UIScreen mainScreen].scale);
-        CGContextRef context = UIGraphicsGetCurrentContext();
-        
-        RJTGradientView *gradientView = [RJTGradientView defaultGradientView];
-        gradientView.frame = (CGRect){{0, 0}, imageSize};
-        gradientView.layer.cornerRadius = 10.0;
-        [gradientView.layer renderInContext:context];
-        
-        image = UIGraphicsGetImageFromCurrentImageContext();
-        UIGraphicsEndImageContext();
-    };
-    
-    [NSThread isMainThread] ? renderBlock() : dispatch_sync(dispatch_get_main_queue(), renderBlock);
-    
-    return image;
+    return (state == UIControlStateNormal) ? self.buttonNormalImage : self.buttonSelectedImage;
+}
+
+- (BOOL)emptyDataSetShouldAllowScroll:(UIScrollView *)scrollView
+{
+    return YES;
 }
 
 - (CGFloat)verticalOffsetForEmptyDataSet:(UIScrollView *)scrollView

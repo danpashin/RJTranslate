@@ -13,7 +13,7 @@
         <!--Navigation Controller-->
         <scene sceneID="hgR-IW-sFI">
             <objects>
-                <navigationController id="DN6-oA-nK2" customClass="RJTNavigationController" sceneMemberID="viewController">
+                <navigationController id="DN6-oA-nK2" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="LgB-Qj-ZQY" customClass="RJTNavigationBar">
                         <rect key="frame" x="0.0" y="20" width="375" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>

@@ -14,7 +14,9 @@ NS_ASSUME_NONNULL_BEGIN
 @interface RJTCollectionViewDataSource : NSObject
 
 @property (strong, nonatomic) NSMutableArray <RJTApplicationModel *> *installedAppsModels;
-@property (strong,  nonatomic) NSMutableArray <RJTApplicationModel *> *uninstalledAppsModels;
+@property (strong, nonatomic) NSMutableArray <RJTApplicationModel *> *uninstalledAppsModels;
+
+@property (nonatomic, readonly) NSSet <RJTApplicationModel *> *allObjects;
 
 - (void)removeAll;
 

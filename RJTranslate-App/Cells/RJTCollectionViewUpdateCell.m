@@ -7,6 +7,7 @@
 //
 
 #import "RJTCollectionViewUpdateCell.h"
+#import "RJTGradientView.h"
 
 @implementation RJTCollectionViewUpdateCell
 
@@ -15,7 +16,6 @@
     [super awakeFromNib];
     
     self.layer.cornerRadius = 8.0f;
-    self.backgroundColor = [UIColor orangeColor];
     
     _textLabel = [[UILabel alloc] init];
     self.textLabel.textColor = [UIColor whiteColor];
@@ -35,6 +35,13 @@
     stackView.translatesAutoresizingMaskIntoConstraints = NO;
     [stackView.centerXAnchor constraintEqualToAnchor:self.centerXAnchor].active = YES;
     [stackView.centerYAnchor constraintEqualToAnchor:self.centerYAnchor].active = YES;
+    
+    RJTGradientView *gradientView = [RJTGradientView defaultGradientView];
+    [self insertSubview:gradientView atIndex:0];
+    
+    gradientView.translatesAutoresizingMaskIntoConstraints = NO;
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[view]|" options:0 metrics:nil views:@{@"view":gradientView}]];
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[view]|" options:0 metrics:nil views:@{@"view":gradientView}]];
 }
 
 @end

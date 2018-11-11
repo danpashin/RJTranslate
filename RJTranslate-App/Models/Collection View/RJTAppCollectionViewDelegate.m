@@ -171,5 +171,14 @@
     return UIEdgeInsetsZero;
 }
 
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(RJTCollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    CGSize size = collectionViewLayout.itemSize;
+    if (indexPath.section == 0 && self.showUpdateHeader)
+        size.height -= 10.0f;
+    
+    return size;
+}
+
 
 @end

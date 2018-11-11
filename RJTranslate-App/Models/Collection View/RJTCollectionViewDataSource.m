@@ -20,16 +20,24 @@
     return self;
 }
 
-- (NSString *)description
+- (NSSet *)allObjects
 {
-    return [NSString stringWithFormat:@"<%@: %p; installed %@; uninstalled %@>",
-            NSStringFromClass([self class]), self, self.installedAppsModels, self.uninstalledAppsModels];
+    NSMutableSet *allObjects = [[NSMutableSet alloc] initWithArray:self.installedAppsModels];
+    [allObjects addObjectsFromArray:self.uninstalledAppsModels];
+    
+    return allObjects;
 }
 
 - (void)removeAll
 {
     [self.installedAppsModels removeAllObjects];
     [self.uninstalledAppsModels removeAllObjects];
+}
+
+- (NSString *)description
+{
+    return [NSString stringWithFormat:@"<%@: %p; installed %@; uninstalled %@>",
+            NSStringFromClass([self class]), self, self.installedAppsModels, self.uninstalledAppsModels];
 }
 
 @end

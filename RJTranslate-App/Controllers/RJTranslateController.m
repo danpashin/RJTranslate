@@ -8,13 +8,10 @@
 
 #import "RJTranslateController.h"
 #import "RJTSearchController.h"
-#import "RJTNavigationController.h"
 
-#import <spawn.h>
-#import "RJTDatabase.h"
-#import "RJTDatabaseUpdater.h"
 #import "RJTDatabaseUpdate.h"
-#import "RJTApplicationModel.h"
+#import "RJTDatabaseUpdater.h"
+#import "RJTCollectionViewModel.h"
 
 #import "RJTAppCollectionView.h"
 #import "RJTCollectionViewUpdateCell.h"
@@ -23,35 +20,21 @@
 
 @interface RJTranslateController () <UISearchResultsUpdating, UISearchControllerDelegate, RJTAppCollectionViewDelegate, RJTDatabaseUpdaterDelegate>
 
-@property (strong, nonatomic) RJTDatabase *localDatabase;
 @property (strong, nonatomic) RJTDatabaseUpdater *databaseUpdater;
-
-@property (weak, nonatomic) IBOutlet RJTAppCollectionView *collectionView;
-@property (strong, nonatomic) RJTSearchController *searchController;
-@property (nullable, nonatomic, readonly, strong) RJTNavigationController *navigationController;
+@property (strong, nonatomic) RJTCollectionViewModel *collectionViewModel;
 
 @property (weak, nonatomic) RJTHud *hud;
+@property (strong, nonatomic) RJTSearchController *searchController;
+@property (weak, nonatomic) IBOutlet RJTAppCollectionView *collectionView;
+
 @end
 
 @implementation RJTranslateController
-@dynamic navigationController;
-
-- (instancetype)initWithCoder:(NSCoder *)coder
-{
-    self = [super initWithCoder:coder];
-    if (self) {
-        self.localDatabase = [RJTDatabase defaultDatabase];
-    }
-    return self;
-}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     self.title = NSLocalizedString(@"available_translations", @"");
-    
-    self.collectionView.customDelegate = self;
-    [self updateAllModels];
     
     self.searchController = [[RJTSearchController alloc] initWithDelegate:self searchResultsUpdater:self];
     self.collectionView.searchController = self.searchController;
@@ -62,24 +45,20 @@
         self.navigationItem.titleView = self.searchController.searchBar;
     }
     
-    self.databaseUpdater = [[RJTDatabaseUpdater alloc] initWithDelegate:self];
+    self.databaseUpdater = [[RJTDatabaseUpdater alloc] initWithDatabase:self.collectionViewModel.database delegate:self];
     [self.databaseUpdater checkTranslationsVersion:^(RJTDatabaseUpdate * _Nullable updateModel, NSError * _Nullable error) {
         if (!error && updateModel.canUpdate)
             [self.collectionView showUpdateCell:YES];
     }];
-    
-//    __block BOOL showCell = YES;
-//    [[NSTimer scheduledTimerWithTimeInterval:6.0 repeats:YES block:^(NSTimer * _Nonnull timer) {
-//        [self.collectionView showUpdateCell:showCell];
-//        showCell = !showCell;
-//    }] fire];
 }
 
-- (void)updateAllModels
+- (void)setCollectionView:(RJTAppCollectionView *)collectionView
 {
-    [self.localDatabase fetchAllAppModelsWithCompletion:^(NSArray<RJTApplicationModel *> * _Nonnull allModels) {
-        [self.collectionView updateViewWithModelsAndReload:allModels];
-    }];
+    _collectionView = collectionView;
+    
+    self.collectionView.customDelegate = self;
+    self.collectionViewModel = [[RJTCollectionViewModel alloc] initWithCollectionView:collectionView];
+    [self.collectionViewModel loadDatabaseModels];
 }
 
 - (void)actionUpdateDatabase
@@ -89,7 +68,7 @@
     hud.detailText = NSLocalizedString(@"downloating_localization...", @"");
     self.hud = hud;
     
-    [self.databaseUpdater downloadTranslations];
+    [self.databaseUpdater performDatabaseUpdate];
 }
 
 
@@ -97,19 +76,21 @@
 #pragma mark UISearchResultsUpdating, UISearchControllerDelegate 
 #pragma mark -
 
+- (void)willPresentSearchController:(RJTSearchController *)searchController
+{
+    [self.collectionView showUpdateCell:NO];
+    [self.collectionViewModel beginSearch];
+}
+
 - (void)updateSearchResultsForSearchController:(RJTSearchController *)searchController
 {
-    NSString *searchText = searchController.searchText;
-    [self.localDatabase performModelsSearchWithText:searchText completion:^(NSArray<RJTApplicationModel *> * _Nonnull models) {
-        [self.collectionView updateViewWithModelsAndReload:models];
-    }];
+    [self.collectionViewModel performSearchWithText:searchController.searchText];
 }
 
-- (void)didDismissSearchController:(RJTSearchController *)searchController
+- (void)willDismissSearchController:(RJTSearchController *)searchController
 {
-    [self updateAllModels];
+    [self.collectionViewModel endSearch];
 }
-
 
 #pragma mark -
 #pragma mark RJTAppCollectionViewDelegate 
@@ -122,15 +103,7 @@
 
 - (void)collectionView:(RJTAppCollectionView *)collectionView didUpdateModel:(RJTApplicationModel *)appModel
 {
-    [self.localDatabase updateModel:appModel];
-    
-    NSString *executableName = appModel.executableName;
-    if (executableName.length > 0) {
-        char *args[] = {"/usr/bin/killall", "-9", (char *)executableName.UTF8String, NULL};
-        posix_spawn(NULL, args[0], NULL, NULL, args, NULL);
-    }
-    
-    [[UIApplication sharedApplication].appDelegate.tracker trackSelectTranslationWithName:appModel.displayedName];
+    [self.collectionViewModel updateModel:appModel];
 }
 
 - (void)collectionView:(RJTAppCollectionView *)collectionView didLoadUpdateCell:(RJTCollectionViewUpdateCell *)updateCell
@@ -145,17 +118,18 @@
 #pragma mark RJTDatabaseUpdaterDelegate
 #pragma mark -
 
-- (void)databaseUpdater:(RJTDatabaseUpdater *)databaseUpdater finishedUpdateWithModels:(NSArray <RJTApplicationModel *> *)models
+- (void)databaseUpdaterDidStartUpdatingDatabase:(RJTDatabaseUpdater *)databaseUpdater
 {
     self.hud.progress = 0.75f;
     self.hud.detailText = NSLocalizedString(@"updating_database...", @"");
+}
+
+- (void)databaseUpdater:(RJTDatabaseUpdater *)databaseUpdater finishedUpdateWithModels:(NSArray <RJTApplicationModel *> *)models
+{
+    [self.collectionViewModel loadDatabaseModels];
     
-    [self.localDatabase performFullDatabaseUpdateWithModels:models completion:^{
-        [self updateAllModels];
-        
-        [self.hud hideAnimated:YES];
-        [self.collectionView showUpdateCell:NO];
-    }];
+    [self.hud hideAnimated:YES];
+    [self.collectionView showUpdateCell:NO];
 }
 
 - (void)databaseUpdater:(RJTDatabaseUpdater *)databaseUpdater failedUpdateWithError:(NSError *)error

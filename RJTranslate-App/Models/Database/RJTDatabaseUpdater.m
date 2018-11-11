@@ -11,6 +11,7 @@
 
 #import "RJTApplicationModel.h"
 #import "RJTDatabaseUpdate.h"
+#import "RJTDatabase.h"
 
 #import "RJTAPIDownloadRequest.h"
 #import "RJTAPIJSONRequest.h"
@@ -22,23 +23,25 @@
 @property (assign, nonatomic) double downloadProgress;
 @property (assign, nonatomic) double unzipProgress;
 
+@property (weak, nonatomic) RJTDatabase *database;
 @property (strong, nonatomic) RJTDatabaseUpdate *currentUpdate;
 
 @end
 
 @implementation RJTDatabaseUpdater
 
-- (instancetype)initWithDelegate:(id<RJTDatabaseUpdaterDelegate>)delegate
+- (instancetype)initWithDatabase:(RJTDatabase *)database delegate:(id<RJTDatabaseUpdaterDelegate>)delegate
 {
     self = [super init];
     if (self) {
         _delegate = delegate;
+        self.database = database;
         self.backgroundQueue = dispatch_queue_create("ru.danpashin.rjtranslate.database.update", DISPATCH_QUEUE_CONCURRENT);
     }
     return self;
 }
 
-- (void)downloadTranslations
+- (void)performDatabaseUpdate
 {
     void (^downloadBlock)(void) = ^{
         NSURL *url = [NSURL URLWithString:self.currentUpdate.archiveURL];
@@ -127,7 +130,9 @@
     }
     [fileManager removeItemAtPath:path error:nil];
     
-    [self.delegate databaseUpdater:self finishedUpdateWithModels:modelsArray];
+    [self.database performFullDatabaseUpdateWithModels:modelsArray completion:^{
+        [self.delegate databaseUpdater:self finishedUpdateWithModels:modelsArray];
+    }];
 }
 
 

@@ -16,7 +16,7 @@
 - (void)trackSearchEvent:(NSString *)searchText
 {
     [self performBackgroundBlock:^{
-        if (searchText.length == 0 || ![FIRApp isDefaultAppConfigured])
+        if (searchText.length == 0)
             return;
         
         [FIRAnalytics logEventWithName:kFIREventSearch parameters:@{kFIRParameterSearchTerm: searchText}];
