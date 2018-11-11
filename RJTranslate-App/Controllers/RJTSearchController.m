@@ -72,6 +72,11 @@
     [self showDimmingView:YES];
 }
 
+- (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar
+{
+    [[UIApplication sharedApplication].appDelegate.tracker trackSearchEvent:self.searchText];
+}
+
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
 {
     _searchText = searchText;

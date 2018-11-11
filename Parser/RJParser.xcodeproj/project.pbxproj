@@ -1,0 +1,487 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A515D5442190819200337BC4 /* RJParser.m in Sources */ = {isa = PBXBuildFile; fileRef = A515D5432190819200337BC4 /* RJParser.m */; };
+		A54754042190A221000210BC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A54754032190A221000210BC /* Foundation.framework */; };
+		A547540B2190A2B4000210BC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A5E90103218C7321005D644C /* main.m */; };
+		A547540C2190A2B4000210BC /* RJParser.h in Headers */ = {isa = PBXBuildFile; fileRef = A515D5422190819200337BC4 /* RJParser.h */; };
+		A547540D2190A2B4000210BC /* RJParser.m in Sources */ = {isa = PBXBuildFile; fileRef = A515D5432190819200337BC4 /* RJParser.m */; };
+		A555BFD521981FC3009DAC73 /* RJPUpdater.m in Sources */ = {isa = PBXBuildFile; fileRef = A5F2EB7D21971A93002ED630 /* RJPUpdater.m */; };
+		A555BFD621981FC3009DAC73 /* RJPatch.m in Sources */ = {isa = PBXBuildFile; fileRef = A5F2EB8021971B2F002ED630 /* RJPatch.m */; };
+		A555BFD721981FCB009DAC73 /* RJPatch.h in Headers */ = {isa = PBXBuildFile; fileRef = A5F2EB7F21971B2F002ED630 /* RJPatch.h */; };
+		A555BFD821981FCE009DAC73 /* RJPUpdater.h in Headers */ = {isa = PBXBuildFile; fileRef = A5F2EB7C21971A93002ED630 /* RJPUpdater.h */; };
+		A5E90104218C7321005D644C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A5E90103218C7321005D644C /* main.m */; };
+		A5F2EB7E21971A93002ED630 /* RJPUpdater.m in Sources */ = {isa = PBXBuildFile; fileRef = A5F2EB7D21971A93002ED630 /* RJPUpdater.m */; };
+		A5F2EB8121971B2F002ED630 /* RJPatch.m in Sources */ = {isa = PBXBuildFile; fileRef = A5F2EB8021971B2F002ED630 /* RJPatch.m */; };
+		E47593ACE8ABB6E24442401A /* libPods-RJParser_iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 95F000C53A3FB7C0886A2804 /* libPods-RJParser_iOS.a */; };
+		F0AF2E35063F3C5944C51E60 /* libPods-RJParser.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D8C370EB9ABADAFBEAB78BF4 /* libPods-RJParser.a */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		A5E900FE218C7321005D644C /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		2151CC6A0E64ABACF352EDC2 /* Pods-RJParser.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RJParser.release.xcconfig"; path = "Pods/Target Support Files/Pods-RJParser/Pods-RJParser.release.xcconfig"; sourceTree = "<group>"; };
+		62A45D6EB3DC9748317219F5 /* Pods-RJParser.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RJParser.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RJParser/Pods-RJParser.debug.xcconfig"; sourceTree = "<group>"; };
+		6BA1FA8DB1E5706E2798D744 /* Pods-RJParser_iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RJParser_iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-RJParser_iOS/Pods-RJParser_iOS.release.xcconfig"; sourceTree = "<group>"; };
+		6BF7460BC677A956B4B85C97 /* Pods-RJParser_iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RJParser_iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RJParser_iOS/Pods-RJParser_iOS.debug.xcconfig"; sourceTree = "<group>"; };
+		95F000C53A3FB7C0886A2804 /* libPods-RJParser_iOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RJParser_iOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A515D5422190819200337BC4 /* RJParser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RJParser.h; sourceTree = "<group>"; };
+		A515D5432190819200337BC4 /* RJParser.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RJParser.m; sourceTree = "<group>"; };
+		A54754022190A220000210BC /* RJParser_iOS */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = RJParser_iOS; sourceTree = BUILT_PRODUCTS_DIR; };
+		A54754032190A221000210BC /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		A5E90100218C7321005D644C /* RJParser_macOS */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = RJParser_macOS; sourceTree = BUILT_PRODUCTS_DIR; };
+		A5E90103218C7321005D644C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		A5F2EB7C21971A93002ED630 /* RJPUpdater.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RJPUpdater.h; sourceTree = "<group>"; };
+		A5F2EB7D21971A93002ED630 /* RJPUpdater.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RJPUpdater.m; sourceTree = "<group>"; };
+		A5F2EB7F21971B2F002ED630 /* RJPatch.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RJPatch.h; sourceTree = "<group>"; };
+		A5F2EB8021971B2F002ED630 /* RJPatch.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RJPatch.m; sourceTree = "<group>"; };
+		D5C82DE168CEAAAD3A02B49D /* libPods-RJTParser.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RJTParser.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D8C370EB9ABADAFBEAB78BF4 /* libPods-RJParser.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RJParser.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A54753FF2190A220000210BC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A54754042190A221000210BC /* Foundation.framework in Frameworks */,
+				E47593ACE8ABB6E24442401A /* libPods-RJParser_iOS.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A5E900FD218C7321005D644C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F0AF2E35063F3C5944C51E60 /* libPods-RJParser.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		3256006FB9EA7D95358C039A /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				62A45D6EB3DC9748317219F5 /* Pods-RJParser.debug.xcconfig */,
+				2151CC6A0E64ABACF352EDC2 /* Pods-RJParser.release.xcconfig */,
+				6BF7460BC677A956B4B85C97 /* Pods-RJParser_iOS.debug.xcconfig */,
+				6BA1FA8DB1E5706E2798D744 /* Pods-RJParser_iOS.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		A5E900F7218C7321005D644C = {
+			isa = PBXGroup;
+			children = (
+				A5E90102218C7321005D644C /* RJParser */,
+				A5E90101218C7321005D644C /* Products */,
+				3256006FB9EA7D95358C039A /* Pods */,
+				DE891B3BCFD90A177136C6EC /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		A5E90101218C7321005D644C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A5E90100218C7321005D644C /* RJParser_macOS */,
+				A54754022190A220000210BC /* RJParser_iOS */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A5E90102218C7321005D644C /* RJParser */ = {
+			isa = PBXGroup;
+			children = (
+				A5E90103218C7321005D644C /* main.m */,
+				A515D5422190819200337BC4 /* RJParser.h */,
+				A515D5432190819200337BC4 /* RJParser.m */,
+				A5F2EB7C21971A93002ED630 /* RJPUpdater.h */,
+				A5F2EB7D21971A93002ED630 /* RJPUpdater.m */,
+				A5F2EB7F21971B2F002ED630 /* RJPatch.h */,
+				A5F2EB8021971B2F002ED630 /* RJPatch.m */,
+			);
+			path = RJParser;
+			sourceTree = "<group>";
+		};
+		DE891B3BCFD90A177136C6EC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D5C82DE168CEAAAD3A02B49D /* libPods-RJTParser.a */,
+				D8C370EB9ABADAFBEAB78BF4 /* libPods-RJParser.a */,
+				A54754032190A221000210BC /* Foundation.framework */,
+				95F000C53A3FB7C0886A2804 /* libPods-RJParser_iOS.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		A54754002190A220000210BC /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A547540C2190A2B4000210BC /* RJParser.h in Headers */,
+				A555BFD721981FCB009DAC73 /* RJPatch.h in Headers */,
+				A555BFD821981FCE009DAC73 /* RJPUpdater.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		A54754012190A220000210BC /* RJParser_iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A547540A2190A221000210BC /* Build configuration list for PBXNativeTarget "RJParser_iOS" */;
+			buildPhases = (
+				169C8711EAFAD25F24FA0B43 /* [CP] Check Pods Manifest.lock */,
+				A54753FE2190A220000210BC /* Sources */,
+				A54753FF2190A220000210BC /* Frameworks */,
+				A54754002190A220000210BC /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = RJParser_iOS;
+			productName = RJParser_iOS;
+			productReference = A54754022190A220000210BC /* RJParser_iOS */;
+			productType = "com.apple.product-type.library.dynamic";
+		};
+		A5E900FF218C7321005D644C /* RJParser_macOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A5E90107218C7321005D644C /* Build configuration list for PBXNativeTarget "RJParser_macOS" */;
+			buildPhases = (
+				F22746EF897EC4821282D86D /* [CP] Check Pods Manifest.lock */,
+				A5E900FC218C7321005D644C /* Sources */,
+				A5E900FD218C7321005D644C /* Frameworks */,
+				A5E900FE218C7321005D644C /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = RJParser_macOS;
+			productName = RJTParser;
+			productReference = A5E90100218C7321005D644C /* RJParser_macOS */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A5E900F8218C7321005D644C /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = RJP;
+				LastUpgradeCheck = 1000;
+				ORGANIZATIONNAME = "Даниил";
+				TargetAttributes = {
+					A54754012190A220000210BC = {
+						CreatedOnToolsVersion = 10.1;
+					};
+					A5E900FF218C7321005D644C = {
+						CreatedOnToolsVersion = 10.0;
+					};
+				};
+			};
+			buildConfigurationList = A5E900FB218C7321005D644C /* Build configuration list for PBXProject "RJParser" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = A5E900F7218C7321005D644C;
+			productRefGroup = A5E90101218C7321005D644C /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A5E900FF218C7321005D644C /* RJParser_macOS */,
+				A54754012190A220000210BC /* RJParser_iOS */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		169C8711EAFAD25F24FA0B43 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-RJParser_iOS-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F22746EF897EC4821282D86D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-RJParser-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A54753FE2190A220000210BC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A555BFD621981FC3009DAC73 /* RJPatch.m in Sources */,
+				A555BFD521981FC3009DAC73 /* RJPUpdater.m in Sources */,
+				A547540B2190A2B4000210BC /* main.m in Sources */,
+				A547540D2190A2B4000210BC /* RJParser.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A5E900FC218C7321005D644C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A5F2EB8121971B2F002ED630 /* RJPatch.m in Sources */,
+				A5F2EB7E21971A93002ED630 /* RJPUpdater.m in Sources */,
+				A515D5442190819200337BC4 /* RJParser.m in Sources */,
+				A5E90104218C7321005D644C /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		A54754082190A221000210BC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6BF7460BC677A956B4B85C97 /* Pods-RJParser_iOS.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = VW97WHTS78;
+				DYLIB_COMPATIBILITY_VERSION = "";
+				DYLIB_CURRENT_VERSION = "";
+				EXECUTABLE_SUFFIX = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MACH_O_TYPE = mh_execute;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = iphoneos;
+			};
+			name = Debug;
+		};
+		A54754092190A221000210BC /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6BA1FA8DB1E5706E2798D744 /* Pods-RJParser_iOS.release.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = VW97WHTS78;
+				DYLIB_COMPATIBILITY_VERSION = "";
+				DYLIB_CURRENT_VERSION = "";
+				EXECUTABLE_SUFFIX = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MACH_O_TYPE = mh_execute;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = iphoneos;
+			};
+			name = Release;
+		};
+		A5E90105218C7321005D644C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+			};
+			name = Debug;
+		};
+		A5E90106218C7321005D644C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+			};
+			name = Release;
+		};
+		A5E90108218C7321005D644C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 62A45D6EB3DC9748317219F5 /* Pods-RJParser.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = VW97WHTS78;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SUPPORTED_PLATFORMS = macosx;
+			};
+			name = Debug;
+		};
+		A5E90109218C7321005D644C /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2151CC6A0E64ABACF352EDC2 /* Pods-RJParser.release.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = VW97WHTS78;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SUPPORTED_PLATFORMS = macosx;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A547540A2190A221000210BC /* Build configuration list for PBXNativeTarget "RJParser_iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A54754082190A221000210BC /* Debug */,
+				A54754092190A221000210BC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A5E900FB218C7321005D644C /* Build configuration list for PBXProject "RJParser" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A5E90105218C7321005D644C /* Debug */,
+				A5E90106218C7321005D644C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A5E90107218C7321005D644C /* Build configuration list for PBXNativeTarget "RJParser_macOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A5E90108218C7321005D644C /* Debug */,
+				A5E90109218C7321005D644C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = A5E900F8218C7321005D644C /* Project object */;
+}

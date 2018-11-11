@@ -1,0 +1,11 @@
+
+
+target 'RJParser' do
+  platform :osx, '10.10'
+  pod 'SSZipArchive'
+end
+
+target 'RJParser_iOS' do
+  platform :ios, '8.0'
+  pod 'SSZipArchive'
+end

@@ -75,7 +75,7 @@
 
 - (void)showUpdateCell:(BOOL)shouldShow
 {
-//    self.delegateObject.showUpdateHeader = shouldShow;
+    self.delegateObject.showUpdateHeader = shouldShow;
     [self reload];
 }
 

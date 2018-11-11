@@ -103,8 +103,6 @@
     [self.localDatabase performModelsSearchWithText:searchText completion:^(NSArray<RJTApplicationModel *> * _Nonnull models) {
         [self.collectionView updateViewWithModelsAndReload:models];
     }];
-    
-    [[UIApplication sharedApplication].appDelegate.tracker trackSearchEvent:searchText];
 }
 
 - (void)didDismissSearchController:(RJTSearchController *)searchController

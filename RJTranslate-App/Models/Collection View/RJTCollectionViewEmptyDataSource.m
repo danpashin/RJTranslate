@@ -34,8 +34,6 @@
     RJTSearchController *searchController = self.collectionView.searchController;
     if (!searchController.performingSearch)
         return [UIImage imageNamed:@"translationIcon"];
-    else if (searchController.performingSearch && searchController.searchText.length > 0)
-        return [UIImage imageNamed:@"sad-face"];
     
     return nil;
 }
