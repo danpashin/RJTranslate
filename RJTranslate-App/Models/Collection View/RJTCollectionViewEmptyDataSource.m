@@ -152,16 +152,6 @@
     return (state == UIControlStateNormal) ? self.buttonNormalImage : self.buttonSelectedImage;
 }
 
-- (BOOL)emptyDataSetShouldAllowScroll:(UIScrollView *)scrollView
-{
-    return YES;
-}
-
-- (CGFloat)verticalOffsetForEmptyDataSet:(UIScrollView *)scrollView
-{
-    return -50.0f;
-}
-
 - (CGFloat)spaceHeightForEmptyDataSet:(UIScrollView *)scrollView
 {
     return 16.0f;

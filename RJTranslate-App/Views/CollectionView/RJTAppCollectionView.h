@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 @class RJTApplicationModel, RJTSearchController, RJTCollectionViewUpdateCell;
+@class RJTCollectionViewModel;
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -37,11 +38,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) id <RJTAppCollectionViewDelegate> customDelegate;
 
 /**
- Выполняет разбиение моделей по группам, устанавливает их и перезагружает коллекуцию.
- 
- @param appModels Модели приложений для отображения.
+ Модель, используемая для коллекции.
  */
-- (void)updateViewWithModelsAndReload:(NSArray<RJTApplicationModel *> *)appModels;
+@property (strong, nonatomic, readonly) RJTCollectionViewModel *model;
 
 
 /**

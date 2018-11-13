@@ -8,6 +8,7 @@
 
 #import "RJTAppCollectionViewDelegate.h"
 #import "RJTApplicationModel.h"
+#import "RJTCollectionViewModel.h"
 #import "RJTCollectionViewLayout.h"
 #import "RJTCollectionViewDataSource.h"
 
@@ -15,10 +16,9 @@
 #import "RJTCollectionLabelHeader.h"
 #import "RJTAppCell.h"
 
-@interface RJTAppCollectionView ()
-@property (strong, nonatomic) RJTCollectionViewDataSource *modelsSourceObject;
+@interface RJTAppCollectionViewDelegate ()
+@property (weak, nonatomic) RJTCollectionViewModel *collectionModel;
 @end
-
 
 @implementation RJTAppCollectionViewDelegate
 
@@ -31,6 +31,8 @@
         collectionView.dataSource = self;
         
         [collectionView registerClass:[RJTCollectionLabelHeader class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"header"];
+        
+        self.collectionModel = collectionView.model;
     }
     
     return self;
@@ -66,10 +68,10 @@
         return (NSInteger)self.showUpdateHeader;
     
     if (section == 1)
-        return self.collectionView.modelsSourceObject.installedAppsModels.count;
+        return self.collectionModel.currentDataSource.installedAppsModels.count;
 
     if (section == 2)
-        return self.collectionView.modelsSourceObject.uninstalledAppsModels.count;
+        return self.collectionModel.currentDataSource.uninstalledAppsModels.count;
     
     return 0;
 }
@@ -91,9 +93,9 @@
     RJTAppCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"appCell"
                                                                  forIndexPath:indexPath];
     if (indexPath.section == 1)
-        cell.model = self.collectionView.modelsSourceObject.installedAppsModels[indexPath.row];
+        cell.model = self.collectionModel.currentDataSource.installedAppsModels[indexPath.row];
     else if (indexPath.section == 2)
-        cell.model = self.collectionView.modelsSourceObject.uninstalledAppsModels[indexPath.row];
+        cell.model = self.collectionModel.currentDataSource.uninstalledAppsModels[indexPath.row];
     
     return cell;
 }
@@ -145,7 +147,7 @@
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(RJTCollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section
 {
-    RJTCollectionViewDataSource *dataSource = self.collectionView.modelsSourceObject;
+    RJTCollectionViewDataSource *dataSource = self.collectionModel.currentDataSource;
     if (section == 1 && dataSource.installedAppsModels.count > 0) {
         return CGSizeMake(CGRectGetWidth(collectionView.frame), 52.0f);
     }
@@ -162,7 +164,7 @@
     if (section == 0 && self.showUpdateHeader)
         return UIEdgeInsetsMake(10.0, 0.0f, 0.0, 0.0f);
     
-    RJTCollectionViewDataSource *dataSource = self.collectionView.modelsSourceObject;
+    RJTCollectionViewDataSource *dataSource = self.collectionModel.currentDataSource;
     if ((section == 1 && dataSource.installedAppsModels.count > 0) || section == 2) {
         return UIEdgeInsetsMake(10.0f, 0.0f, 10.0f, 0.0f);
     } else if (section == 1 || section == 2)

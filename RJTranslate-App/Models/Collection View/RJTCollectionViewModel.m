@@ -13,20 +13,24 @@
 #import "RJTCollectionViewDataSource.h"
 
 #import "RJTAppCollectionView.h"
+#import "RJTCollectionViewLayout.h"
 
 #import <spawn.h>
 
+
 @interface RJTAppCollectionView ()
-@property (strong, nonatomic) RJTCollectionViewDataSource *modelsSourceObject;
+@property (strong, nonatomic, readwrite) RJTCollectionViewModel *model;
+@property (nonatomic, strong) RJTCollectionViewLayout *collectionViewLayout;
 @end
+
+
 
 @interface RJTCollectionViewModel ()
 @property (strong, nonatomic) RJTDatabase *database;
 @property (weak, nonatomic) RJTAppCollectionView *collectionView;
 
-@property (assign, nonatomic) BOOL performingSearch;
-
-@property (strong, nonatomic) RJTCollectionViewDataSource *cachedDataSource;
+@property (strong, nonatomic) RJTCollectionViewDataSource *allModelsDataSource;
+@property (strong, nonatomic, readwrite) RJTCollectionViewDataSource *currentDataSource;
 @end
 
 @implementation RJTCollectionViewModel
@@ -37,6 +41,7 @@
     if (self) {
         self.database = [RJTDatabase defaultDatabase];
         self.collectionView = collectionView;
+        self.collectionView.model = self;
     }
     
     return self;
@@ -49,44 +54,39 @@
 
 - (void)beginSearch
 {
-    self.performingSearch = YES;
-    self.cachedDataSource = self.collectionView.modelsSourceObject;
+    self.allModelsDataSource = self.currentDataSource;
 }
 
 - (void)performSearchWithText:(NSString *)searchText
 {
-    if (!self.performingSearch)
+    if (searchText.length == 0) {
+        [self restoreDatasourceCache];
         return;
+    }
     
     [self.database performModelsSearchWithText:searchText completion:^(NSArray<RJTApplicationModel *> * _Nonnull models) {
-        [self.collectionView updateViewWithModelsAndReload:models];
+        [self updateCollectionWithModels:models];
     }];
     
     [[UIApplication sharedApplication].appDelegate.tracker trackSearchEvent:searchText];
 }
 
+- (void)restoreDatasourceCache
+{
+    if (!self.allModelsDataSource)
+        return;
+    
+    [self updateDataSourceObject:self.allModelsDataSource];
+}
+
 - (void)endSearch
 {
-    self.performingSearch = NO;
-    
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.02 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        RJTCollectionViewDataSource *cachedDataSource = self.cachedDataSource;
-        NSArray *models = cachedDataSource.allObjects.allObjects;
-        
-        [self.collectionView updateViewWithModelsAndReload:models];
-        self.cachedDataSource = nil;
-    });
+    [self restoreDatasourceCache];
+    self.allModelsDataSource = nil;
 }
 
 
 #pragma mark -
-
-- (void)loadDatabaseModels
-{
-    [self.database fetchAllAppModelsWithCompletion:^(NSArray<RJTApplicationModel *> * _Nonnull allModels) {
-        [self.collectionView updateViewWithModelsAndReload:allModels];
-    }];
-}
 
 - (void)updateModel:(RJTApplicationModel *)appModel
 {
@@ -99,6 +99,38 @@
     }
     
     [[UIApplication sharedApplication].appDelegate.tracker trackSelectTranslationWithName:appModel.displayedName];
+}
+
+
+#pragma mark -
+
+- (void)loadDatabaseModels
+{
+    [self.database fetchAllAppModelsWithCompletion:^(NSArray<RJTApplicationModel *> * _Nonnull allModels) {
+        [self updateCollectionWithModels:allModels]; 
+    }];
+}
+
+- (void)updateCollectionWithModels:(NSArray<RJTApplicationModel *> *)models
+{
+    @synchronized (self) {
+        RJTCollectionViewDataSource *modelsSourceObject = [[RJTCollectionViewDataSource alloc] initWithModels:models];
+        [self updateDataSourceObject:modelsSourceObject];
+    }
+}
+
+- (void)updateDataSourceObject:(RJTCollectionViewDataSource *)dataSourceObject
+{
+    [self performOnMainThread:^{
+        [self.collectionView.collectionViewLayout dataSourceChangedFrom:self.currentDataSource toNew:dataSourceObject];
+        self.currentDataSource = dataSourceObject;
+        [self.collectionView reload];
+    }];
+}
+
+- (void)performOnMainThread:(void(^)(void))block
+{
+    [NSThread isMainThread] ? block() : dispatch_sync(dispatch_get_main_queue(), block);
 }
 
 @end

@@ -23,7 +23,9 @@ void RJTErrorLogInternal(NSError *error, NSString *format, ...)
     NSLog(@"%@", errorMessage);
     
 #ifdef BUILD_APP
-    if (error)
-        [[Crashlytics sharedInstance] recordError:error];
+    if (!error)
+        error = [NSError errorWithDomain:NSCocoaErrorDomain code:-1 userInfo:@{NSLocalizedDescriptionKey:errorMessage}];
+    
+    [[Crashlytics sharedInstance] recordError:error];
 #endif
 }

@@ -36,13 +36,13 @@
         <!--Translate Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="BYZ-38-t0r" customClass="RJTranslateController" sceneMemberID="viewController">
+                <viewController definesPresentationContext="YES" id="BYZ-38-t0r" customClass="RJTranslateController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" bouncesZoom="NO" keyboardDismissMode="interactive" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="RvJ-yb-fTx" customClass="RJTAppCollectionView">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <inset key="scrollIndicatorInsets" minX="0.0" minY="-1" maxX="0.0" maxY="0.0"/>
                                 <collectionViewLayout key="collectionViewLayout" id="8oa-3I-5eX" customClass="RJTCollectionViewLayout"/>
@@ -128,7 +128,7 @@
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="RvJ-yb-fTx" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="8M8-VT-O7P"/>
-                            <constraint firstItem="RvJ-yb-fTx" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="Pom-m1-t6Z"/>
+                            <constraint firstItem="RvJ-yb-fTx" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="Pom-m1-t6Z"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="RvJ-yb-fTx" secondAttribute="trailing" id="fXi-5W-USb"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="RvJ-yb-fTx" secondAttribute="bottom" id="mgq-k0-cEK"/>
                         </constraints>

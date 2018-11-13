@@ -34,6 +34,8 @@
         
         if (@available(iOS 11.0, *)) {
         } else {
+            self.hidesNavigationBarDuringPresentation = NO;
+            
             self.searchBar.searchField.layer.cornerRadius = 8.0f;
             self.searchBar.searchField.layer.masksToBounds = YES;
             self.searchBar.searchField.backgroundColor = [UIColor colorWithRed:0.0f green:0.027f blue:0.098f alpha:0.08f];
@@ -57,7 +59,7 @@
         return;
     
     [UIView animateWithDuration:0.15f delay:0.0f options:0 animations:^{
-        self.view.backgroundColor = [UIColor colorWithWhite:0.0f alpha:show ? 0.35f : 0.0f];
+        self.view.backgroundColor = [UIColor colorWithWhite:0.0f alpha:show ? 0.3f : 0.0f];
     } completion:nil];
 }
 

@@ -7,31 +7,39 @@
 //
 
 #import "RJTCollectionViewDataSource.h"
+#import "RJTApplicationModel.h"
 
 @implementation RJTCollectionViewDataSource
 
-- (instancetype)init
+- (instancetype)initWithModels:(NSArray<RJTApplicationModel *> *)appModels
 {
     self = [super init];
     if (self) {
-        self.installedAppsModels = [NSMutableArray array];
-        self.uninstalledAppsModels = [NSMutableArray array];
+        NSMutableArray *installedAppsModels = [NSMutableArray array];
+        _installedAppsModels = installedAppsModels;
+        
+        NSMutableArray *uninstalledAppsModels = [NSMutableArray array];
+        _uninstalledAppsModels = uninstalledAppsModels;
+        
+        [appModels enumerateObjectsUsingBlock:^(RJTApplicationModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            if (obj.executableExists) {
+                [installedAppsModels addObject:obj];
+            } else {
+                [uninstalledAppsModels addObject:obj];
+            }
+        }];
     }
     return self;
 }
 
-- (NSSet *)allObjects
+- (instancetype)init
 {
-    NSMutableSet *allObjects = [[NSMutableSet alloc] initWithArray:self.installedAppsModels];
-    [allObjects addObjectsFromArray:self.uninstalledAppsModels];
-    
-    return allObjects;
+    return [self initWithModels:@[]];
 }
 
-- (void)removeAll
+- (instancetype)initWithCoder:(NSCoder *)coder
 {
-    [self.installedAppsModels removeAllObjects];
-    [self.uninstalledAppsModels removeAllObjects];
+    return [self initWithModels:@[]];
 }
 
 - (NSString *)description

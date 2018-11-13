@@ -13,12 +13,24 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface RJTCollectionViewDataSource : NSObject
 
-@property (strong, nonatomic) NSMutableArray <RJTApplicationModel *> *installedAppsModels;
-@property (strong, nonatomic) NSMutableArray <RJTApplicationModel *> *uninstalledAppsModels;
+/**
+ Массив содержит модели переводов, приложения которых установлены на устройстве.
+ */
+@property (nonatomic, readonly) NSArray <RJTApplicationModel *> *installedAppsModels;
 
-@property (nonatomic, readonly) NSSet <RJTApplicationModel *> *allObjects;
+/**
+ Массив содержит модели переводов, приложения которых НЕ установлены на устройстве.
+ */
+@property (nonatomic, readonly) NSArray <RJTApplicationModel *> *uninstalledAppsModels;
 
-- (void)removeAll;
+
+/**
+ Выполняет инициализацию и разделение моделей в датасорсе.
+
+ @param appModels Модели для датасорса.
+ @return Возвращает экземпляр класса для дальнейшей работы.
+ */
+- (instancetype)initWithModels:(NSArray<RJTApplicationModel *> *)appModels NS_DESIGNATED_INITIALIZER;
 
 @end
 

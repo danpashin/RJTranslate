@@ -7,10 +7,8 @@
 //
 
 #import "RJTNavigationBar.h"
-#import "RJTGradientView.h"
 
 @interface RJTNavigationBar ()
-@property (strong, nonatomic) RJTGradientView *gradientView;
 @end
 
 @implementation RJTNavigationBar
@@ -19,8 +17,8 @@
 {
     [super awakeFromNib];
 
-    self.tintColor = RJTColors.navTintColor;
-    self.shadowImage = [UIImage new];
+//    self.tintColor = RJTColors.navTintColor;
+//    self.shadowImage = [UIImage new];
 }
 
 @end
