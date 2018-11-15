@@ -8,6 +8,7 @@
 
 #import "RJTranslateController.h"
 #import "RJTSearchController.h"
+#import "RJTPreferencesController.h"
 
 #import "RJTDatabaseUpdate.h"
 #import "RJTDatabaseUpdater.h"
@@ -71,6 +72,12 @@
     [self.databaseUpdater performDatabaseUpdate];
 }
 
+- (IBAction)actionPresentPreferences
+{
+    RJTPreferencesController *prefsController = [RJTPreferencesController new];
+    [self.navigationController pushViewController:prefsController animated:YES];
+}
+
 
 #pragma mark -
 #pragma mark UISearchResultsUpdating, UISearchControllerDelegate 
@@ -126,10 +133,12 @@
 
 - (void)databaseUpdater:(RJTDatabaseUpdater *)databaseUpdater finishedUpdateWithModels:(NSArray <RJTApplicationModel *> *)models
 {
-    [self.collectionViewModel loadDatabaseModels];
-    
-    [self.hud hideAnimated:YES];
-    [self.collectionView showUpdateCell:NO];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self.hud hideAnimated:YES];
+        [self.collectionView showUpdateCell:NO];
+        
+        [self.collectionViewModel loadDatabaseModels];
+    });
 }
 
 - (void)databaseUpdater:(RJTDatabaseUpdater *)databaseUpdater failedUpdateWithError:(NSError *)error

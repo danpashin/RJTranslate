@@ -10,7 +10,7 @@
 #import "RJTImageCache.h"
 @import Firebase;
 
-@interface RJTAppDelegate ()
+@interface RJTAppDelegate () <CrashlyticsDelegate>
 
 @end
 
@@ -18,17 +18,45 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    _tracker = [RJTTracker new];
-#if (defined(__arm__) || defined(__arm64__))
+    [[FIRConfiguration sharedInstance] setLoggerLevel:FIRLoggerLevelMin];
+    [Crashlytics sharedInstance].delegate = self;
     [FIRApp configure];
-#endif
     
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    BOOL enableStatisctics = [userDefaults objectForKey:@"send_statistics"] ? [userDefaults boolForKey:@"send_statistics"] : YES;
+    [self enableTracker:enableStatisctics];
+    
+    [self flushCacheIfNeeded];
+    
+    return YES;
+}
+
+- (void)enableTracker:(BOOL)enable
+{
+    _tracker = enable ? [RJTTracker new] : nil;
+    [[FIRAnalyticsConfiguration sharedInstance] setAnalyticsCollectionEnabled:enable];
+}
+
+- (void)flushCacheIfNeeded
+{
     [[RJTImageCache sharedCache] countSizeWithCompletion:^(NSUInteger cacheSize) {
         if (cacheSize > 20 * 1024 * 1024)
             [[RJTImageCache sharedCache] flush];
     }];
+}
+
+
+#pragma mark -
+#pragma mark CrashlyticsDelegate
+#pragma mark -
+
+- (void)crashlyticsDidDetectReportForLastExecution:(CLSReport *)report completionHandler:(void (^)(BOOL submit))completionHandler
+{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    BOOL sendCrash = [userDefaults objectForKey:@"send_crashlogs"] ? [userDefaults boolForKey:@"send_crashlogs"] : YES;
+    RJTLog(@"Detected crash. Need to send %@", @(sendCrash));
     
-    return YES;
+    completionHandler(sendCrash);
 }
 
 @end

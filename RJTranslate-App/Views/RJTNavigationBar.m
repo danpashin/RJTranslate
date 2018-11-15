@@ -17,7 +17,7 @@
 {
     [super awakeFromNib];
 
-//    self.tintColor = RJTColors.navTintColor;
+    self.tintColor = RJTColors.navTintColor;
 //    self.shadowImage = [UIImage new];
 }
 

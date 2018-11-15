@@ -28,7 +28,8 @@
 
 + (UIColor *)navTintColor
 {
-    return [UIColor colorWithWhite:0.1f alpha:1.0f];
+//    return [UIColor colorWithWhite:0.1f alpha:1.0f];
+    return self.accentMainColor;
 }
 
 + (UIColor *)textPrimaryColor

@@ -134,7 +134,13 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <navigationItem key="navigationItem" largeTitleDisplayMode="always" id="tTK-cy-bob"/>
+                    <navigationItem key="navigationItem" largeTitleDisplayMode="always" id="tTK-cy-bob">
+                        <barButtonItem key="leftBarButtonItem" image="settings_normal_30_white" id="nC0-tD-Lq9">
+                            <connections>
+                                <action selector="actionPresentPreferences" destination="BYZ-38-t0r" id="5Jh-1L-ghF"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="collectionView" destination="RvJ-yb-fTx" id="UKr-Vl-ChJ"/>
@@ -147,5 +153,6 @@
     </scenes>
     <resources>
         <image name="icon_template" width="40" height="40"/>
+        <image name="settings_normal_30_white" width="30" height="30"/>
     </resources>
 </document>

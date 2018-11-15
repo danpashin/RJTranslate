@@ -16,5 +16,7 @@
 @property (strong, nonatomic) UIWindow *window;
 @property (strong, nonatomic, readonly) RJTTracker *tracker;
 
+- (void)enableTracker:(BOOL)enable;
+
 @end
 

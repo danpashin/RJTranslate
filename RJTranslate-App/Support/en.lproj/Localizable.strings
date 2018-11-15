@@ -24,3 +24,14 @@
 "download" = "Download";
 
 "installed" = "Installed";
+
+
+// Настройки
+"preferences" = "Settings";
+
+"statistics" = "Statistics";
+"send_statistics" = "Send statistics";
+"send_statistics_footer" = "Statistics helps us to have better understanding of your preferences and quickly implement new features. But if you do not want to send it, you can disable it.";
+
+"send_crashlogs" = "Send crash messages";
+"send_crashlogs_footer" = "Crash messages help up to quicker fix critical errors and give you a stable product. You can also disable it if you want.";

@@ -29,7 +29,6 @@
         self.searchResultsUpdater = searchResultsUpdater;
         
         self.dimsBackgroundDuringPresentation = NO;
-        self.hidesNavigationBarDuringPresentation = NO;
         self.searchBar.delegate = self;
         
         if (@available(iOS 11.0, *)) {

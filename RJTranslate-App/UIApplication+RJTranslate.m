@@ -12,7 +12,14 @@
 
 - (RJTAppDelegate *)appDelegate
 {
-    return (RJTAppDelegate *)self.delegate;
+    __block RJTAppDelegate *delegate = nil;
+    void (^block)(void) = ^{
+        delegate = (RJTAppDelegate *)self.delegate;
+    };
+    
+    [NSThread isMainThread] ? block() : dispatch_sync(dispatch_get_main_queue(), block);
+    
+    return delegate;
 }
 
 @end

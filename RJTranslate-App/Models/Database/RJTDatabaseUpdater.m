@@ -123,6 +123,10 @@
     for (NSString *fileName in folderContents) {
         NSString *fullPath = [NSString stringWithFormat:@"%@/%@", path, fileName];
         NSDictionary *translationDict = [NSDictionary dictionaryWithContentsOfFile:fullPath];
+        if (!translationDict) {
+            RJTErrorLog(nil, @"Translation dictionary for file name %@ is nil", fileName);
+            continue;
+        }
         RJTApplicationModel *model = [RJTApplicationModel from:translationDict];
         
         if (![modelsArray containsObject:model] && model)
