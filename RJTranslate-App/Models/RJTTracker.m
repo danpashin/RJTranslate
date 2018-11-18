@@ -7,8 +7,8 @@
 //
 
 #import "RJTTracker.h"
-@import Firebase;
-#import <FirebaseCore/FIRAppInternal.h>
+//@import Firebase;
+//#import <FirebaseCore/FIRAppInternal.h>
 
 
 @implementation RJTTracker
@@ -19,7 +19,7 @@
         if (searchText.length == 0)
             return;
         
-        [FIRAnalytics logEventWithName:kFIREventSearch parameters:@{kFIRParameterSearchTerm: searchText}];
+//        [FIRAnalytics logEventWithName:kFIREventSearch parameters:@{kFIRParameterSearchTerm: searchText}];
     }];
 }
 
@@ -29,8 +29,8 @@
         if (name.length == 0)
             return;
         
-        [FIRAnalytics logEventWithName:kFIREventSelectContent parameters:@{kFIRParameterContentType:@"translation",
-                                                                           kFIRParameterItemID:name}];
+//        [FIRAnalytics logEventWithName:kFIREventSelectContent parameters:@{kFIRParameterContentType:@"translation",
+//                                                                           kFIRParameterItemID:name}];
     }];
 }
 

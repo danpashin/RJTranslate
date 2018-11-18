@@ -7,7 +7,7 @@
 //
 
 #import "RJTDatabaseUpdater.h"
-#import "SSZipArchive.h"
+#import <SSZipArchive.h>
 
 #import "RJTApplicationModel.h"
 #import "RJTDatabaseUpdate.h"
@@ -23,19 +23,17 @@
 @property (assign, nonatomic) double downloadProgress;
 @property (assign, nonatomic) double unzipProgress;
 
-@property (weak, nonatomic) RJTDatabase *database;
 @property (strong, nonatomic) RJTDatabaseUpdate *currentUpdate;
 
 @end
 
 @implementation RJTDatabaseUpdater
 
-- (instancetype)initWithDatabase:(RJTDatabase *)database delegate:(id<RJTDatabaseUpdaterDelegate>)delegate
+- (instancetype)initWithDelegate:(id<RJTDatabaseUpdaterDelegate>)delegate
 {
     self = [super init];
     if (self) {
         _delegate = delegate;
-        self.database = database;
         self.backgroundQueue = dispatch_queue_create("ru.danpashin.rjtranslate.database.update", DISPATCH_QUEUE_CONCURRENT);
     }
     return self;
@@ -134,7 +132,8 @@
     }
     [fileManager removeItemAtPath:path error:nil];
     
-    [self.database performFullDatabaseUpdateWithModels:modelsArray completion:^{
+    RJTDatabase *database = [UIApplication sharedApplication].appDelegate.defaultDatabase;
+    [database performFullDatabaseUpdateWithModels:modelsArray completion:^{
         [self.delegate databaseUpdater:self finishedUpdateWithModels:modelsArray];
     }];
 }

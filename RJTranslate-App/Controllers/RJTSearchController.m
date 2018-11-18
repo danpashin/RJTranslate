@@ -17,16 +17,16 @@
 @end
 
 @implementation RJTSearchController
+@dynamic delegate;
+@dynamic searchResultsUpdater;
 @synthesize searchText = _searchText;
 
-- (instancetype)initWithDelegate:(id<UISearchControllerDelegate>)delegate
-            searchResultsUpdater:(id<UISearchResultsUpdating>)searchResultsUpdater
+- (instancetype)initWithDelegate:(id<RJTSearchControllerDelegate>)delegate
 {
     self = [super initWithSearchResultsController:nil];
     if (self) {
         _dimBackground = YES;
         self.delegate = delegate;
-        self.searchResultsUpdater = searchResultsUpdater;
         
         self.dimsBackgroundDuringPresentation = NO;
         self.searchBar.delegate = self;
@@ -83,6 +83,7 @@
     _searchText = searchText;
     
     [self showDimmingView:(searchText.length == 0)];
+    [self.delegate searchController:self didUpdateSearchText:searchText];
 }
 
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar

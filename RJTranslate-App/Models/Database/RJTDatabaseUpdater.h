@@ -57,11 +57,10 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  Выполняет инициализацию апдейтера.
 
- @param database База данных.
  @param delegate Делегат для объекта-обработчика статуса обновления.
  @return Возвращает экземпляр класса для дальнейшей работы.
  */
-- (instancetype)initWithDatabase:(RJTDatabase *)database delegate:(id<RJTDatabaseUpdaterDelegate>)delegate;
+- (instancetype)initWithDelegate:(id<RJTDatabaseUpdaterDelegate>)delegate;
 
 /**
  Делегат для объекта-обработчика статуса обновления.

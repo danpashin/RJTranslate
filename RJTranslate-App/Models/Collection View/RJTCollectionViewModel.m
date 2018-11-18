@@ -26,7 +26,7 @@
 
 
 @interface RJTCollectionViewModel ()
-@property (strong, nonatomic) RJTDatabase *database;
+@property (weak, nonatomic) RJTDatabase *database;
 @property (weak, nonatomic) RJTAppCollectionView *collectionView;
 
 @property (strong, nonatomic) RJTCollectionViewDataSource *allModelsDataSource;
@@ -39,7 +39,7 @@
 {
     self = [super init];
     if (self) {
-        self.database = [RJTDatabase defaultDatabase];
+        self.database = [UIApplication sharedApplication].appDelegate.defaultDatabase;
         self.collectionView = collectionView;
         self.collectionView.model = self;
     }
@@ -60,7 +60,7 @@
 - (void)performSearchWithText:(NSString *)searchText
 {
     if (searchText.length == 0) {
-        [self restoreDatasourceCache];
+        [self restoreDatasource];
         return;
     }
     
@@ -71,17 +71,14 @@
     [[UIApplication sharedApplication].appDelegate.tracker trackSearchEvent:searchText];
 }
 
-- (void)restoreDatasourceCache
+- (void)restoreDatasource
 {
-    if (!self.allModelsDataSource)
-        return;
-    
     [self updateDataSourceObject:self.allModelsDataSource];
 }
 
 - (void)endSearch
 {
-    [self restoreDatasourceCache];
+    [self restoreDatasource];
     self.allModelsDataSource = nil;
 }
 

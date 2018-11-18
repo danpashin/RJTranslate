@@ -25,7 +25,7 @@ NS_ASSUME_NONNULL_BEGIN
  
  @warning Не должна использоваться напрямую!
  */
-@property (strong, nonatomic, readonly) RJTDatabase *database;
+//@property (strong, nonatomic, readonly) RJTDatabase *database;
 
 /**
  Выполняет инициализацию модели для конкретной коллекции.

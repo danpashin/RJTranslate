@@ -8,7 +8,6 @@
 
 #import "RJTPreferencesController.h"
 #import "RJTPrefsTableModel.h"
-@import Crashlytics;
 
 @interface RJTPreferencesController () <RJTPrefsTableModelDelegate>
 @property (strong, nonatomic) RJTPrefsTableModel *model;

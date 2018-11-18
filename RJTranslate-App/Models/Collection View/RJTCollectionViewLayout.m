@@ -60,16 +60,18 @@
     UICollectionViewLayoutAttributes *attributes = [super finalLayoutAttributesForDisappearingItemAtIndexPath:itemIndexPath];
     
     NSInteger newItemsCount = 0;
-    if (itemIndexPath.section == 1)
+    if (itemIndexPath.section == 1) {
         newItemsCount = self.collectionViewOldDataSource.installedAppsModels.count;
-    else if (itemIndexPath.section == 2)
+        RJTLog(@"section 1: %@", @(newItemsCount));
+    } else if (itemIndexPath.section == 2) {
         newItemsCount = self.collectionViewOldDataSource.uninstalledAppsModels.count;
+        RJTLog(@"section 2: %@", @(newItemsCount));
+    }
     
     if (itemIndexPath.item > newItemsCount - 1)
         attributes.transform = CGAffineTransformMakeScale(0.2f, 0.2f);
 
     return attributes;
 }
-
 
 @end

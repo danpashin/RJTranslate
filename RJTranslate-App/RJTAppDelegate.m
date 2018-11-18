@@ -8,9 +8,10 @@
 
 #import "RJTAppDelegate.h"
 #import "RJTImageCache.h"
-@import Firebase;
+#import "RJTDatabase.h"
+//@import Firebase;
 
-@interface RJTAppDelegate () <CrashlyticsDelegate>
+@interface RJTAppDelegate ()
 
 @end
 
@@ -18,15 +19,17 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    [[FIRConfiguration sharedInstance] setLoggerLevel:FIRLoggerLevelMin];
-    [Crashlytics sharedInstance].delegate = self;
-    [FIRApp configure];
-    
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    BOOL enableStatisctics = [userDefaults objectForKey:@"send_statistics"] ? [userDefaults boolForKey:@"send_statistics"] : YES;
-    [self enableTracker:enableStatisctics];
-    
-    [self flushCacheIfNeeded];
+//    [[FIRConfiguration sharedInstance] setLoggerLevel:FIRLoggerLevelMin];
+//    [Crashlytics sharedInstance].delegate = self;
+//    [FIRApp configure];
+//    
+//    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+//    BOOL enableStatisctics = [userDefaults objectForKey:@"send_statistics"] ? [userDefaults boolForKey:@"send_statistics"] : YES;
+//    [self enableTracker:enableStatisctics];
+//    
+//    _defaultDatabase = [RJTDatabase defaultDatabase];
+//    
+//    [self flushCacheIfNeeded];
     
     return YES;
 }
@@ -34,7 +37,7 @@
 - (void)enableTracker:(BOOL)enable
 {
     _tracker = enable ? [RJTTracker new] : nil;
-    [[FIRAnalyticsConfiguration sharedInstance] setAnalyticsCollectionEnabled:enable];
+//    [[FIRAnalyticsConfiguration sharedInstance] setAnalyticsCollectionEnabled:enable];
 }
 
 - (void)flushCacheIfNeeded
@@ -50,13 +53,13 @@
 #pragma mark CrashlyticsDelegate
 #pragma mark -
 
-- (void)crashlyticsDidDetectReportForLastExecution:(CLSReport *)report completionHandler:(void (^)(BOOL submit))completionHandler
-{
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    BOOL sendCrash = [userDefaults objectForKey:@"send_crashlogs"] ? [userDefaults boolForKey:@"send_crashlogs"] : YES;
-    RJTLog(@"Detected crash. Need to send %@", @(sendCrash));
-    
-    completionHandler(sendCrash);
-}
+//- (void)crashlyticsDidDetectReportForLastExecution:(CLSReport *)report completionHandler:(void (^)(BOOL submit))completionHandler
+//{
+//    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+//    BOOL sendCrash = [userDefaults objectForKey:@"send_crashlogs"] ? [userDefaults boolForKey:@"send_crashlogs"] : YES;
+//    RJTLog(@"Detected crash. Need to send %@", @(sendCrash));
+//    
+//    completionHandler(sendCrash);
+//}
 
 @end

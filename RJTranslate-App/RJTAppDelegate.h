@@ -11,10 +11,14 @@
 #import "UIApplication+RJTranslate.h"
 #import "RJTTracker.h"
 
+@class RJTDatabase;
+
 @interface RJTAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 @property (strong, nonatomic, readonly) RJTTracker *tracker;
+
+@property (strong, nonatomic, readonly) RJTDatabase *defaultDatabase;
 
 - (void)enableTracker:(BOOL)enable;
 

@@ -35,6 +35,7 @@
 
 - (void)reload
 {
+    RJTLog(@"");
     dispatch_async(dispatch_get_main_queue(), ^{
         [self reloadSections:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, 3)]];
         [self reloadEmptyDataSet];
@@ -43,8 +44,10 @@
 
 - (void)showUpdateCell:(BOOL)shouldShow
 {
-    self.delegateObject.showUpdateHeader = shouldShow;
-    [self reload];
+    if (self.delegateObject.showUpdateHeader != shouldShow) {
+        self.delegateObject.showUpdateHeader = shouldShow;
+        [self reload];
+    }
 }
 
 @end

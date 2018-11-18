@@ -19,7 +19,7 @@
 #import "RJTHud.h"
 
 
-@interface RJTranslateController () <UISearchResultsUpdating, UISearchControllerDelegate, RJTAppCollectionViewDelegate, RJTDatabaseUpdaterDelegate>
+@interface RJTranslateController () <RJTSearchControllerDelegate, RJTAppCollectionViewDelegate, RJTDatabaseUpdaterDelegate>
 
 @property (strong, nonatomic) RJTDatabaseUpdater *databaseUpdater;
 @property (strong, nonatomic) RJTCollectionViewModel *collectionViewModel;
@@ -37,7 +37,7 @@
     [super viewDidLoad];
     self.title = NSLocalizedString(@"available_translations", @"");
     
-    self.searchController = [[RJTSearchController alloc] initWithDelegate:self searchResultsUpdater:self];
+    self.searchController = [[RJTSearchController alloc] initWithDelegate:self];
     self.collectionView.searchController = self.searchController;
     
     if (@available(iOS 11.0, *)) {
@@ -46,7 +46,7 @@
         self.navigationItem.titleView = self.searchController.searchBar;
     }
     
-    self.databaseUpdater = [[RJTDatabaseUpdater alloc] initWithDatabase:self.collectionViewModel.database delegate:self];
+    self.databaseUpdater = [[RJTDatabaseUpdater alloc] initWithDelegate:self];
     [self.databaseUpdater checkTranslationsVersion:^(RJTDatabaseUpdate * _Nullable updateModel, NSError * _Nullable error) {
         if (!error && updateModel.canUpdate)
             [self.collectionView showUpdateCell:YES];
@@ -57,9 +57,9 @@
 {
     _collectionView = collectionView;
     
-    self.collectionView.customDelegate = self;
-    self.collectionViewModel = [[RJTCollectionViewModel alloc] initWithCollectionView:collectionView];
-    [self.collectionViewModel loadDatabaseModels];
+//    self.collectionView.customDelegate = self;
+//    self.collectionViewModel = [[RJTCollectionViewModel alloc] initWithCollectionView:collectionView];
+//    [self.collectionViewModel loadDatabaseModels];
 }
 
 - (void)actionUpdateDatabase
@@ -89,9 +89,11 @@
     [self.collectionViewModel beginSearch];
 }
 
-- (void)updateSearchResultsForSearchController:(RJTSearchController *)searchController
+- (void)searchController:(RJTSearchController *)searchController didUpdateSearchText:(NSString *)searchText
 {
-    [self.collectionViewModel performSearchWithText:searchController.searchText];
+    RJTLog(@"'%@'", searchText);
+    
+    [self.collectionViewModel performSearchWithText:searchText];
 }
 
 - (void)willDismissSearchController:(RJTSearchController *)searchController

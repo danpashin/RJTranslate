@@ -10,17 +10,23 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@class RJTSearchController;
+@protocol RJTSearchControllerDelegate <UISearchControllerDelegate>
+
+@optional
+- (void)searchController:(RJTSearchController *)searchController didUpdateSearchText:(NSString *)searchText;
+
+@end
+
 @interface RJTSearchController : UISearchController
 
 /**
  Выполняет инициализацию контроллера поиска.
 
  @param delegate Устанавливает делегат для объекта.
- @param searchResultsUpdater Устанавливает делегат обновления поиска для объекта.
  @return Возвращает экземпляр класса для дальнейшей работы с контроллером.
  */
-- (instancetype)initWithDelegate:(id <UISearchControllerDelegate>)delegate
-            searchResultsUpdater:(id <UISearchResultsUpdating>)searchResultsUpdater;
+- (instancetype)initWithDelegate:(id <RJTSearchControllerDelegate>)delegate;
 
 /**
  Определяет, должен ли затемняться фон при начале поиска. По умолчанию, YES.
@@ -37,7 +43,10 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (assign, nonatomic, readonly) BOOL performingSearch;
 
+@property (nullable, nonatomic, weak) id <RJTSearchControllerDelegate> delegate;
 
+
+@property (nullable, nonatomic, weak) id <UISearchResultsUpdating> searchResultsUpdater NS_UNAVAILABLE;
 - (instancetype)initWithSearchResultsController:(nullable UIViewController *)searchResultsController NS_UNAVAILABLE;
 @end
 
