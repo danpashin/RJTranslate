@@ -11,6 +11,9 @@ target 'RJTranslate-App' do
   pod 'DZNEmptyDataSet'
   pod 'SSZipArchive'
 
+  pod 'Firebase/Core'
+  pod 'Fabric'
+  pod 'Crashlytics'
 end
 
 post_install do |installer|

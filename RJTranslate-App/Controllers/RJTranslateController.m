@@ -57,9 +57,9 @@
 {
     _collectionView = collectionView;
     
-//    self.collectionView.customDelegate = self;
-//    self.collectionViewModel = [[RJTCollectionViewModel alloc] initWithCollectionView:collectionView];
-//    [self.collectionViewModel loadDatabaseModels];
+    self.collectionView.customDelegate = self;
+    self.collectionViewModel = [[RJTCollectionViewModel alloc] initWithCollectionView:collectionView];
+    [self.collectionViewModel loadDatabaseModels];
 }
 
 - (void)actionUpdateDatabase
@@ -79,13 +79,19 @@
 }
 
 
+- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator
+{
+    [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
+    [self.collectionView updateLayoutToSize:size];
+}
+
+
 #pragma mark -
 #pragma mark UISearchResultsUpdating, UISearchControllerDelegate 
 #pragma mark -
 
 - (void)willPresentSearchController:(RJTSearchController *)searchController
 {
-    [self.collectionView showUpdateCell:NO];
     [self.collectionViewModel beginSearch];
 }
 
@@ -93,6 +99,7 @@
 {
     RJTLog(@"'%@'", searchText);
     
+    [self.collectionView showUpdateCell:NO];
     [self.collectionViewModel performSearchWithText:searchText];
 }
 

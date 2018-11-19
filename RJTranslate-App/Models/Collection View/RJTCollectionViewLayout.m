@@ -16,12 +16,18 @@
 
 @implementation RJTCollectionViewLayout
 
-- (void)prepareLayout
+- (instancetype)init
 {
-    [super prepareLayout];
-    
-    self.sectionInset = UIEdgeInsetsMake(0.0f, 0.0f, 20.0f, 0.0f);
-    self.itemSize = CGSizeMake(CGRectGetWidth(self.collectionView.frame) - 24.0f, 72.0f);
+    self = [super init];
+    if (self) {
+        self.sectionInset = UIEdgeInsetsMake(0.0f, 0.0f, 20.0f, 0.0f);
+    }
+    return self;
+}
+
+- (CGSize)itemSizeFromCollectionFrame:(CGRect)collectionViewFrame
+{
+    return CGSizeMake(CGRectGetWidth(collectionViewFrame) - 24.0f, 72.0f);
 }
 
 - (void)finalizeCollectionViewUpdates
@@ -62,10 +68,10 @@
     NSInteger newItemsCount = 0;
     if (itemIndexPath.section == 1) {
         newItemsCount = self.collectionViewOldDataSource.installedAppsModels.count;
-        RJTLog(@"section 1: %@", @(newItemsCount));
+//        RJTLog(@"section 1: %@", @(newItemsCount));
     } else if (itemIndexPath.section == 2) {
         newItemsCount = self.collectionViewOldDataSource.uninstalledAppsModels.count;
-        RJTLog(@"section 2: %@", @(newItemsCount));
+//        RJTLog(@"section 2: %@", @(newItemsCount));
     }
     
     if (itemIndexPath.item > newItemsCount - 1)
@@ -73,5 +79,10 @@
 
     return attributes;
 }
+
+//- (BOOL)shouldInvalidateLayoutForBoundsChange:(CGRect)newBounds
+//{
+//    return YES;
+//}
 
 @end

@@ -55,6 +55,8 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (void)showUpdateCell:(BOOL)shouldShow;
 
+- (void)updateLayoutToSize:(CGSize)size;
+
 - (void)reloadData NS_UNAVAILABLE;
 
 @end

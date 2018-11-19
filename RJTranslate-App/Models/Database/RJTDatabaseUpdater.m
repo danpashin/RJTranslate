@@ -7,7 +7,7 @@
 //
 
 #import "RJTDatabaseUpdater.h"
-#import <SSZipArchive.h>
+#import "SSZipArchive.h"
 
 #import "RJTApplicationModel.h"
 #import "RJTDatabaseUpdate.h"
@@ -74,25 +74,27 @@
 
 - (void)checkTranslationsVersion:(void(^)(RJTDatabaseUpdate * _Nullable updateModel, NSError * _Nullable error))completion
 {
-    NSURL *url = [RJTAPI apiURL];
-    RJTAPIJSONRequest *versionRequest = [RJTAPIJSONRequest jsonRequestWithURL:url completion:^(NSDictionary * _Nullable json, NSError * _Nullable error) {
-        if (error) {
-            completion(nil, error);
-            return;
-        }
-        
-        NSDictionary *errorDict = json[@"error"];
-        if (errorDict) {
-            NSInteger errorCode = [errorDict[@"code"] integerValue];
-            NSString *errorDescription = errorDict[@"description"] ?: @"";
-            NSError *serverError = [NSError errorWithDomain:@"ru.danpashin.rjtranslate.serverError" code:errorCode userInfo:@{NSLocalizedDescriptionKey:errorDescription}];
-            completion(nil, serverError);
-        } else {
-            self.currentUpdate = [RJTDatabaseUpdate from:json[@"translation"]];
-            completion(self.currentUpdate, nil);
-        }
-    }];
-    [[RJTAPI sharedAPI] addRequest:versionRequest];
+    dispatch_async(self.backgroundQueue, ^{
+        NSURL *url = [RJTAPI apiURL];
+        RJTAPIJSONRequest *versionRequest = [RJTAPIJSONRequest jsonRequestWithURL:url completion:^(NSDictionary * _Nullable json, NSError * _Nullable error) {
+            if (error) {
+                completion(nil, error);
+                return;
+            }
+            
+            NSDictionary *errorDict = json[@"error"];
+            if (errorDict) {
+                NSInteger errorCode = [errorDict[@"code"] integerValue];
+                NSString *errorDescription = errorDict[@"description"] ?: @"";
+                NSError *serverError = [NSError errorWithDomain:@"ru.danpashin.rjtranslate.serverError" code:errorCode userInfo:@{NSLocalizedDescriptionKey:errorDescription}];
+                completion(nil, serverError);
+            } else {
+                self.currentUpdate = [RJTDatabaseUpdate from:json[@"translation"]];
+                completion(self.currentUpdate, nil);
+            }
+        }];
+        [[RJTAPI sharedAPI] addRequest:versionRequest];
+    });
 }
 
 - (void)setDownloadProgress:(double)downloadProgress

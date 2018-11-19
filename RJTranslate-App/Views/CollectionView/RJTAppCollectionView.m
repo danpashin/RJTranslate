@@ -25,6 +25,7 @@
 - (void)awakeFromNib
 {
     [super awakeFromNib];
+    [self updateLayoutToSize:UIScreen.mainScreen.bounds.size];
     
     self.alwaysBounceVertical = YES;
     self.allowsMultipleSelection = YES;
@@ -48,6 +49,12 @@
         self.delegateObject.showUpdateHeader = shouldShow;
         [self reload];
     }
+}
+
+- (void)updateLayoutToSize:(CGSize)size
+{
+    self.collectionViewLayout.itemSize = [self.collectionViewLayout itemSizeFromCollectionFrame:(CGRect){{0, 0}, size}];
+    [self.collectionViewLayout invalidateLayout];
 }
 
 @end

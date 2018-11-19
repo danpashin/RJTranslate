@@ -14,6 +14,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface RJTCollectionViewLayout : UICollectionViewFlowLayout
 
+- (CGSize)itemSizeFromCollectionFrame:(CGRect)collectionViewFrame;
+
 - (void)dataSourceChangedFrom:(RJTCollectionViewDataSource * _Nullable)oldDataSource toNew:(RJTCollectionViewDataSource * _Nullable)newDatasource;
 
 @end
