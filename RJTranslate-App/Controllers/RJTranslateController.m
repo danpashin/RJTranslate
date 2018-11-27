@@ -97,8 +97,6 @@
 
 - (void)searchController:(RJTSearchController *)searchController didUpdateSearchText:(NSString *)searchText
 {
-    RJTLog(@"'%@'", searchText);
-    
     [self.collectionView showUpdateCell:NO];
     [self.collectionViewModel performSearchWithText:searchText];
 }

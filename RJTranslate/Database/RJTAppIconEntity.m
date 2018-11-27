@@ -18,12 +18,13 @@
 
 + (NSFetchRequest<RJTAppIconEntity *> *)fetchRequest
 {
-	return [NSFetchRequest fetchRequestWithEntityName:@"RJTAppIconEntity"];
+	return [NSFetchRequest fetchRequestWithEntityName:NSStringFromClass([self class])];
 }
 
 + (RJTAppIconEntity *)insertIntoContext:(NSManagedObjectContext *)context
 {
-    return [NSEntityDescription insertNewObjectForEntityForName:@"RJTAppIconEntity" inManagedObjectContext:context];
+    return [NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass([self class])
+                                         inManagedObjectContext:context];
 }
 
 

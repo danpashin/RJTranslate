@@ -139,7 +139,7 @@
                                                                               withReuseIdentifier:@"header"
                                                                                      forIndexPath:indexPath];
     if (indexPath.section == 1) {
-        headerView.label.text = NSLocalizedString(@"installed", @"");
+        headerView.text = NSLocalizedString(@"installed", @"");
     }
     
     return headerView;

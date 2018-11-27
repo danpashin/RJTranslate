@@ -57,7 +57,6 @@
 {
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     BOOL sendCrash = [userDefaults objectForKey:@"send_crashlogs"] ? [userDefaults boolForKey:@"send_crashlogs"] : YES;
-    RJTLog(@"Detected crash. Need to send %@", @(sendCrash));
     
     completionHandler(sendCrash);
 }

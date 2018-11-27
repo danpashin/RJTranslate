@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface RJTCollectionLabelHeader : UICollectionReusableView
 
-@property (strong, nonatomic, readonly) UILabel *label;
+@property (strong, nonatomic, nullable) NSString *text;
 
 @end
 

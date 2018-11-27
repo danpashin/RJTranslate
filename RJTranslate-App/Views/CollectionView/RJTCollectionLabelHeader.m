@@ -11,6 +11,7 @@
 
 @interface RJTCollectionLabelHeader ()
 @property (strong, nonatomic) UIView *separatorView;
+@property (strong, nonatomic, readonly) UILabel *label;
 @end
 
 @implementation RJTCollectionLabelHeader
@@ -46,7 +47,15 @@
 {
     [super prepareForReuse];
     
-    self.label.text = nil;
+    self.text = nil;
+}
+
+- (void)setText:(NSString *)text
+{
+    _text = text;
+    
+    self.label.text = text;
+    self.separatorView.hidden = (text.length > 0);
 }
 
 @end

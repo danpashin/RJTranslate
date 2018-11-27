@@ -23,12 +23,13 @@
 
 + (NSFetchRequest<RJTApplicationEntity *> *)fetchRequest
 {
-    return [NSFetchRequest fetchRequestWithEntityName:@"RJTApplicationEntity"];
+    return [NSFetchRequest fetchRequestWithEntityName:NSStringFromClass([self class])];
 }
 
 + (RJTApplicationEntity *)insertIntoContext:(NSManagedObjectContext *)context
 {
-    return [NSEntityDescription insertNewObjectForEntityForName:@"RJTApplicationEntity" inManagedObjectContext:context];
+    return [NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass([self class])
+                                         inManagedObjectContext:context];
 }
 
 - (void)copyPropertiesFrom:(RJTApplicationModel *)appModel

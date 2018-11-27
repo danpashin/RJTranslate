@@ -116,8 +116,8 @@
 		A545D86321847B120072674C /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A5470D7221936AA200A7A7EB /* RJTCollectionViewUpdateCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RJTCollectionViewUpdateCell.h; sourceTree = "<group>"; };
 		A5470D7321936AA200A7A7EB /* RJTCollectionViewUpdateCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RJTCollectionViewUpdateCell.m; sourceTree = "<group>"; };
-		A5477F55219C14B200F5B7E3 /* RJTPrefsSectionOption.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = RJTPrefsSectionOption.h; path = Application_Translation/RJTPrefsSectionOption.h; sourceTree = "<group>"; };
-		A5477F56219C14B200F5B7E3 /* RJTPrefsSectionOption.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = RJTPrefsSectionOption.m; path = Application_Translation/RJTPrefsSectionOption.m; sourceTree = "<group>"; };
+		A5477F55219C14B200F5B7E3 /* RJTPrefsSectionOption.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RJTPrefsSectionOption.h; sourceTree = "<group>"; };
+		A5477F56219C14B200F5B7E3 /* RJTPrefsSectionOption.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RJTPrefsSectionOption.m; sourceTree = "<group>"; };
 		A54ADB1C217BB0CF00D32EB7 /* RJTApplicationModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RJTApplicationModel.h; sourceTree = "<group>"; };
 		A54ADB1D217BB0CF00D32EB7 /* RJTApplicationModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RJTApplicationModel.m; sourceTree = "<group>"; };
 		A56C0165217F25D000027DB3 /* RJTDatabaseUpdater.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RJTDatabaseUpdater.h; sourceTree = "<group>"; };
@@ -309,6 +309,19 @@
 			path = RJTranslate;
 			sourceTree = "<group>";
 		};
+		A5370DD821A4019B009A2BA5 /* Preferences */ = {
+			isa = PBXGroup;
+			children = (
+				A5FFBBA8219B541C00DE2E3B /* RJTPrefsTableModel.h */,
+				A5FFBBA9219B541C00DE2E3B /* RJTPrefsTableModel.m */,
+				A5EB41E4219C0C5B007E2646 /* RJTPrefsOption.h */,
+				A5EB41E5219C0C5B007E2646 /* RJTPrefsOption.m */,
+				A5477F55219C14B200F5B7E3 /* RJTPrefsSectionOption.h */,
+				A5477F56219C14B200F5B7E3 /* RJTPrefsSectionOption.m */,
+			);
+			path = Preferences;
+			sourceTree = "<group>";
+		};
 		A54ADB1F217BB6E500D32EB7 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -324,12 +337,7 @@
 				A5D8155B2195987B00EB3633 /* RJTTracker.m */,
 				A526FD962198969F00E1A434 /* UIColor+RJT_Private.h */,
 				A526FD972198969F00E1A434 /* UIColor+RJT_Private.m */,
-				A5FFBBA8219B541C00DE2E3B /* RJTPrefsTableModel.h */,
-				A5FFBBA9219B541C00DE2E3B /* RJTPrefsTableModel.m */,
-				A5EB41E4219C0C5B007E2646 /* RJTPrefsOption.h */,
-				A5EB41E5219C0C5B007E2646 /* RJTPrefsOption.m */,
-				A5477F55219C14B200F5B7E3 /* RJTPrefsSectionOption.h */,
-				A5477F56219C14B200F5B7E3 /* RJTPrefsSectionOption.m */,
+				A5370DD821A4019B009A2BA5 /* Preferences */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -862,6 +870,7 @@
 			baseConfigurationReference = DB57EBDFB696BF1BE2E20A93 /* Pods-RJTranslate-App.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = VW97WHTS78;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -874,6 +883,10 @@
 					"BUILD_APP=1",
 				);
 				INFOPLIST_FILE = "RJTranslate-App/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				ONLY_ACTIVE_ARCH = YES;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
@@ -886,6 +899,7 @@
 			baseConfigurationReference = D6FE48C60EC713FBE57420E8 /* Pods-RJTranslate-App.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = VW97WHTS78;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -898,6 +912,10 @@
 					"BUILD_APP=1",
 				);
 				INFOPLIST_FILE = "RJTranslate-App/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				ONLY_ACTIVE_ARCH = NO;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
