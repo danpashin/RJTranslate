@@ -10,7 +10,7 @@
 #import "SSZipArchive.h"
 
 #import "RJTApplicationModel.h"
-#import "RJTDatabaseUpdate.h"
+#import "RJTranslate-Swift.h"
 #import "RJTDatabase.h"
 
 #import "RJTAPIDownloadRequest.h"
@@ -23,7 +23,7 @@
 @property (assign, nonatomic) double downloadProgress;
 @property (assign, nonatomic) double unzipProgress;
 
-@property (strong, nonatomic) RJTDatabaseUpdate *currentUpdate;
+@property (strong, nonatomic) TranslationsUpdate *currentUpdate;
 
 @end
 
@@ -42,7 +42,7 @@
 - (void)performDatabaseUpdate
 {
     void (^downloadBlock)(void) = ^{
-        NSURL *url = [NSURL URLWithString:self.currentUpdate.archiveURL];
+        NSURL *url = self.currentUpdate.archiveURL;
         RJTAPIDownloadRequest *translationsDownloadRequest = [RJTAPIDownloadRequest downloadRequestWithURL:url progressHandler:^(double progress) {
             self.downloadProgress = progress;
         } completion:^(NSURL * _Nullable downloadedDataURL, NSError * _Nullable downloadError) {
@@ -59,10 +59,10 @@
         [[RJTAPI sharedAPI] addRequest:translationsDownloadRequest];
     };
     
-    if (self.currentUpdate.archiveURL.length > 0) {
+    if (self.currentUpdate.archiveURL.absoluteString.length > 0) {
         downloadBlock();
     } else {
-        [self checkTranslationsVersion:^(RJTDatabaseUpdate * _Nullable updateModel, NSError * _Nullable error) {
+        [self checkTranslationsVersion:^(TranslationsUpdate * _Nullable updateModel, NSError * _Nullable error) {
             if (error) {
                 [self.delegate databaseUpdater:self failedUpdateWithError:error];
                 return;
@@ -72,7 +72,7 @@
     }
 }
 
-- (void)checkTranslationsVersion:(void(^)(RJTDatabaseUpdate * _Nullable updateModel, NSError * _Nullable error))completion
+- (void)checkTranslationsVersion:(void(^)(TranslationsUpdate * _Nullable updateModel, NSError * _Nullable error))completion
 {
     dispatch_async(self.backgroundQueue, ^{
         NSURL *url = [RJTAPI apiURL];
@@ -89,7 +89,7 @@
                 NSError *serverError = [NSError errorWithDomain:@"ru.danpashin.rjtranslate.serverError" code:errorCode userInfo:@{NSLocalizedDescriptionKey:errorDescription}];
                 completion(nil, serverError);
             } else {
-                self.currentUpdate = [RJTDatabaseUpdate from:json[@"translation"]];
+                self.currentUpdate = [TranslationsUpdate fromDictionary:json[@"translation"]];
                 completion(self.currentUpdate, nil);
             }
         }];

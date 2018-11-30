@@ -10,7 +10,7 @@
 #import "RJTSearchController.h"
 #import "RJTPreferencesController.h"
 
-#import "RJTDatabaseUpdate.h"
+#import "RJTranslate-Swift.h"
 #import "RJTDatabaseUpdater.h"
 #import "RJTCollectionViewModel.h"
 
@@ -47,7 +47,7 @@
     }
     
     self.databaseUpdater = [[RJTDatabaseUpdater alloc] initWithDelegate:self];
-    [self.databaseUpdater checkTranslationsVersion:^(RJTDatabaseUpdate * _Nullable updateModel, NSError * _Nullable error) {
+    [self.databaseUpdater checkTranslationsVersion:^(TranslationsUpdate * _Nullable updateModel, NSError * _Nullable error) {
         if (!error && updateModel.canUpdate)
             [self.collectionView showUpdateCell:YES];
     }];

@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-@class RJTDatabase, RJTDatabaseUpdater, RJTApplicationModel, RJTDatabaseUpdate;
+@class RJTDatabase, RJTDatabaseUpdater, RJTApplicationModel, TranslationsUpdate;
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -77,7 +77,7 @@ NS_ASSUME_NONNULL_BEGIN
 
  @param completion Блок вызывается в конце проверки.
  */
-- (void)checkTranslationsVersion:(void(^)(RJTDatabaseUpdate * _Nullable updateModel, NSError * _Nullable error))completion;
+- (void)checkTranslationsVersion:(void(^)(TranslationsUpdate * _Nullable updateModel, NSError * _Nullable error))completion;
 
 @end
 

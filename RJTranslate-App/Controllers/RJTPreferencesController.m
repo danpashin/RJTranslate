@@ -7,9 +7,9 @@
 //
 
 #import "RJTPreferencesController.h"
-#import "RJTPrefsTableModel.h"
+#import "RJTranslate-Swift.h"
 
-@interface RJTPreferencesController () <RJTPrefsTableModelDelegate>
+@interface RJTPreferencesController () <PrefsTableModelDelegate>
 @property (strong, nonatomic) RJTPrefsTableModel *model;
 @end
 
@@ -41,7 +41,7 @@
 #pragma mark RJTPrefsTableModelDelegate
 #pragma mark -
 
-- (void)userDidSetPreferenceValue:(id)value forKey:(NSString *)key
+- (void)userDidSetPreferenceValue:(id _Nullable)value forKey:(NSString * _Nonnull)key
 {
     RJTAppDelegate *appDelegate = [UIApplication sharedApplication].appDelegate;
     
