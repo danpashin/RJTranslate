@@ -7,17 +7,14 @@
 //
 
 #import "RJTranslateController.h"
-#import "RJTSearchController.h"
-#import "RJTPreferencesController.h"
 
-#import "RJTranslate-Swift.h"
 #import "RJTDatabaseUpdater.h"
 #import "RJTCollectionViewModel.h"
 
 #import "RJTAppCollectionView.h"
-#import "RJTCollectionViewUpdateCell.h"
 #import "RJTHud.h"
 
+#import "NSTask.h"
 
 @interface RJTranslateController () <RJTSearchControllerDelegate, RJTAppCollectionViewDelegate, RJTDatabaseUpdaterDelegate>
 

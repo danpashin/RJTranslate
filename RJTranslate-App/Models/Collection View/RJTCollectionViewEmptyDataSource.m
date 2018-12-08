@@ -7,7 +7,7 @@
 //
 
 #import "RJTCollectionViewEmptyDataSource.h"
-#import "RJTSearchController.h"
+//#import "RJTSearchController.h"
 
 #import "RJTGradientView.h"
 #import "RJTAppCollectionView.h"

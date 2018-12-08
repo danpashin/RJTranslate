@@ -12,9 +12,7 @@
 #import "RJTCollectionViewLayout.h"
 #import "RJTCollectionViewDataSource.h"
 
-#import "RJTCollectionViewUpdateCell.h"
 #import "RJTCollectionLabelHeader.h"
-#import "RJTAppCell.h"
 
 @interface RJTAppCollectionViewDelegate ()
 @property (weak, nonatomic) RJTCollectionViewModel *collectionModel;

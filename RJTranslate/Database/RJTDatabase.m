@@ -269,7 +269,7 @@
                                  completion:(void(^ _Nullable)(void))completion
 {
     [self fetchAllAppModelsWithCompletion:^(NSArray<RJTApplicationModel *> * _Nonnull allModels) {
-        dispatch_semaphore_t internalSemaphore = dispatch_semaphore_create(0);
+//        dispatch_semaphore_t internalSemaphore = dispatch_semaphore_create(0);
         for (RJTApplicationModel *model in models) {
             if ([allModels containsObject:model]) {
                 NSUInteger index = [allModels indexOfObject:model];
@@ -279,18 +279,18 @@
                 [self updateModel:model];
             } else {
                 [self insertAppModels:@[model] completion:^{
-                    dispatch_semaphore_signal(internalSemaphore);
+//                    dispatch_semaphore_signal(internalSemaphore);
                 }];
-                dispatch_semaphore_wait(internalSemaphore, DISPATCH_TIME_FOREVER);
+//                dispatch_semaphore_wait(internalSemaphore, DISPATCH_TIME_FOREVER);
             }
         }
         
         for (RJTApplicationModel *model in allModels) {
             if (![models containsObject:model]) {
                 [self removeModel:model completion:^(NSError * _Nullable error) {
-                    dispatch_semaphore_signal(internalSemaphore);
+//                    dispatch_semaphore_signal(internalSemaphore);
                 }];
-                dispatch_semaphore_wait(internalSemaphore, DISPATCH_TIME_FOREVER);
+//                dispatch_semaphore_wait(internalSemaphore, DISPATCH_TIME_FOREVER);
             }
         }
         

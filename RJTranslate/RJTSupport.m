@@ -26,6 +26,6 @@ void RJTErrorLogInternal(NSError *error, NSString *format, ...)
     if (!error)
         error = [NSError errorWithDomain:NSCocoaErrorDomain code:-1 userInfo:@{NSLocalizedDescriptionKey:errorMessage}];
     
-//    [[Crashlytics sharedInstance] recordError:error];
+    [[Crashlytics sharedInstance] recordError:error];
 #endif
 }

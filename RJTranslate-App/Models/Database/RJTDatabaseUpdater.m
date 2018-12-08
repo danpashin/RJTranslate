@@ -10,7 +10,6 @@
 #import "SSZipArchive.h"
 
 #import "RJTApplicationModel.h"
-#import "RJTranslate-Swift.h"
 #import "RJTDatabase.h"
 
 #import "RJTAPIDownloadRequest.h"

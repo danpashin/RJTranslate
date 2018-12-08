@@ -24,12 +24,6 @@ class PreferenceGroup: CustomStringConvertible {
                       NSStringFromClass(type(of: self)), title ?? "", footerText ?? "", preferences)
     }
     
-    
-    public class func group(withTitle title: String?, footerText: String?,
-                            preferences: Array <Preference> ) -> PreferenceGroup {
-        return PreferenceGroup.init(title: title, footerText: footerText, preferences: preferences)
-    }
-    
     public init(title: String?, footerText: String?,  preferences: Array <Preference> ) {
         self.title = title
         self.footerText = footerText

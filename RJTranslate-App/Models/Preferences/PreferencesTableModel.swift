@@ -8,17 +8,17 @@
 
 import Foundation
 
-@objc protocol PrefsTableModelDelegate {
+protocol PrefsTableModelDelegate: NSObjectProtocol {
     func userDidSetPreferenceValue(_ value: Any?, forKey key: String)
 }
 
-@objc(RJTPrefsTableModel) class PreferencesTableModel : NSObject, UITableViewDelegate, UITableViewDataSource {
+class PreferencesTableModel: NSObject, UITableViewDelegate, UITableViewDataSource {
     private weak var tableView: UITableView?
     public private(set) weak var delegate: PrefsTableModelDelegate?
     
     private var groups: [PreferenceGroup] = []
     
-    @objc public init(tableView: UITableView, delegate: PrefsTableModelDelegate) {
+    public init(tableView: UITableView, delegate: PrefsTableModelDelegate) {
         self.tableView = tableView
         self.delegate = delegate
         
