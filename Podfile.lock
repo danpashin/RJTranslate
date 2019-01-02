@@ -1,4 +1,5 @@
 PODS:
+  - Alamofire (4.8.0)
   - Crashlytics (3.11.0):
     - Fabric (~> 1.8.0)
   - DZNEmptyDataSet (1.8.1)
@@ -55,6 +56,7 @@ PODS:
   - SSZipArchive (2.1.4)
 
 DEPENDENCIES:
+  - Alamofire
   - Crashlytics
   - DZNEmptyDataSet
   - Fabric
@@ -63,6 +65,7 @@ DEPENDENCIES:
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - Alamofire
     - Crashlytics
     - DZNEmptyDataSet
     - Fabric
@@ -76,6 +79,7 @@ SPEC REPOS:
     - SSZipArchive
 
 SPEC CHECKSUMS:
+  Alamofire: 3ec537f71edc9804815215393ae2b1a8ea33a844
   Crashlytics: 1448070c1d2731ab71ea7c3faf84ac0f69657287
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
   Fabric: 4ac1cdfef3004ccd83ce0959b91eda8a6e37df72
@@ -88,6 +92,6 @@ SPEC CHECKSUMS:
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
   SSZipArchive: 41455d4b8d2b6ab93990820b50dc697c2554a322
 
-PODFILE CHECKSUM: 7ef38dd6e432affe6d03c14a5c10c0feec749e4f
+PODFILE CHECKSUM: 6fce7fbdb8ea95e0f440f4f5f24005e871fd7562
 
-COCOAPODS: 1.5.3
+COCOAPODS: 1.6.0.beta.2
