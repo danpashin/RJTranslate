@@ -12,6 +12,8 @@
 		A511A67A21B18ABA003D4244 /* Preference.swift in Sources */ = {isa = PBXBuildFile; fileRef = A511A67921B18ABA003D4244 /* Preference.swift */; };
 		A511A67C21B19FFC003D4244 /* PreferencesTableModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A511A67B21B19FFC003D4244 /* PreferencesTableModel.swift */; };
 		A517965F217D1A9400B87596 /* RJTApplicationModel.h in Headers */ = {isa = PBXBuildFile; fileRef = A54ADB1C217BB0CF00D32EB7 /* RJTApplicationModel.h */; };
+		A5196B7A21D0BB3200201DEF /* CollectionHeaderLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5196B7921D0BB3200201DEF /* CollectionHeaderLabel.swift */; };
+		A5196B7C21D0BF2200201DEF /* AppCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5196B7B21D0BF2200201DEF /* AppCollectionView.swift */; };
 		A522F1D0217AFC300085A5E4 /* RJTranslateController.m in Sources */ = {isa = PBXBuildFile; fileRef = A522F1CF217AFC300085A5E4 /* RJTranslateController.m */; };
 		A522F1D3217AFC300085A5E4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A522F1D1217AFC300085A5E4 /* Main.storyboard */; };
 		A522F1D5217AFC310085A5E4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A522F1D4217AFC310085A5E4 /* Assets.xcassets */; };
@@ -34,7 +36,6 @@
 		A5527FBB218F4C4000095251 /* RJTApplicationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A54ADB1D217BB0CF00D32EB7 /* RJTApplicationModel.m */; };
 		A552F90621B0320F002771E9 /* RJTAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = A5ACD6F12182DA510009DB9C /* RJTAPI.m */; };
 		A552F90821B03279002771E9 /* TranslationsUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A552F90721B03279002771E9 /* TranslationsUpdate.swift */; };
-		A56C0167217F25D000027DB3 /* RJTDatabaseUpdater.m in Sources */ = {isa = PBXBuildFile; fileRef = A56C0166217F25D000027DB3 /* RJTDatabaseUpdater.m */; };
 		A56FB1C12180ADA0002F4175 /* RJTColors.m in Sources */ = {isa = PBXBuildFile; fileRef = A56FB1C02180ADA0002F4175 /* RJTColors.m */; };
 		A56FB1C42180B17B002F4175 /* RJTTickView.m in Sources */ = {isa = PBXBuildFile; fileRef = A56FB1C32180B17B002F4175 /* RJTTickView.m */; };
 		A5763DA121823B4300C7F82A /* PrefixHeader.pch in Headers */ = {isa = PBXBuildFile; fileRef = A5763DA021823B4300C7F82A /* PrefixHeader.pch */; };
@@ -63,6 +64,7 @@
 		A5C1FB3B21B258A1007BB861 /* PreferencesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C1FB3A21B258A1007BB861 /* PreferencesController.swift */; };
 		A5C7DA8421935D310086BE40 /* RJTAppCollectionViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A5C7DA8321935D310086BE40 /* RJTAppCollectionViewDelegate.m */; };
 		A5CC12EA2184A2A600A607E3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A5CC12E92184A2A600A607E3 /* GoogleService-Info.plist */; };
+		A5DAAE1B21C7973B0012D559 /* DatabaseUpdater.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DAAE1A21C7973B0012D559 /* DatabaseUpdater.swift */; };
 		A5DEBB29218EF5B900858616 /* RJTImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = A5DEBB28218EF5B900858616 /* RJTImageCache.m */; };
 		A5DEBB31218F0EF000858616 /* RJTImageCache.h in Headers */ = {isa = PBXBuildFile; fileRef = A5DEBB27218EF5B800858616 /* RJTImageCache.h */; };
 		A5E0BBB2218646A10094ECBC /* RJTHudProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = A5E0BBB0218646A10094ECBC /* RJTHudProgressView.m */; };
@@ -93,6 +95,8 @@
 		A511A67721B185E7003D4244 /* PreferenceGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferenceGroup.swift; sourceTree = "<group>"; };
 		A511A67921B18ABA003D4244 /* Preference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preference.swift; sourceTree = "<group>"; };
 		A511A67B21B19FFC003D4244 /* PreferencesTableModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesTableModel.swift; sourceTree = "<group>"; };
+		A5196B7921D0BB3200201DEF /* CollectionHeaderLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionHeaderLabel.swift; sourceTree = "<group>"; };
+		A5196B7B21D0BF2200201DEF /* AppCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCollectionView.swift; sourceTree = "<group>"; };
 		A522F1C9217AFC300085A5E4 /* RJTranslate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RJTranslate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A522F1CE217AFC300085A5E4 /* RJTranslateController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RJTranslateController.h; sourceTree = "<group>"; };
 		A522F1CF217AFC300085A5E4 /* RJTranslateController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RJTranslateController.m; sourceTree = "<group>"; };
@@ -168,6 +172,7 @@
 		A5C7DA8321935D310086BE40 /* RJTAppCollectionViewDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RJTAppCollectionViewDelegate.m; sourceTree = "<group>"; };
 		A5CC12E92184A2A600A607E3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A5CC725B218DDD99001A4BDB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		A5DAAE1A21C7973B0012D559 /* DatabaseUpdater.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseUpdater.swift; sourceTree = "<group>"; };
 		A5DB9ABA217B74DB0061A810 /* RJTGradientView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RJTGradientView.h; sourceTree = "<group>"; };
 		A5DB9ABB217B74DB0061A810 /* RJTGradientView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RJTGradientView.m; sourceTree = "<group>"; };
 		A5DEBB27218EF5B800858616 /* RJTImageCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RJTImageCache.h; sourceTree = "<group>"; };
@@ -351,6 +356,7 @@
 			children = (
 				A56C0165217F25D000027DB3 /* RJTDatabaseUpdater.h */,
 				A56C0166217F25D000027DB3 /* RJTDatabaseUpdater.m */,
+				A5DAAE1A21C7973B0012D559 /* DatabaseUpdater.swift */,
 				A552F90721B03279002771E9 /* TranslationsUpdate.swift */,
 			);
 			path = Database;
@@ -389,6 +395,8 @@
 				A5A09547217C4696009743DF /* RJTAppCollectionView.m */,
 				A58659972192F70300A76A6C /* RJTCollectionLabelHeader.h */,
 				A58659982192F70300A76A6C /* RJTCollectionLabelHeader.m */,
+				A5196B7B21D0BF2200201DEF /* AppCollectionView.swift */,
+				A5196B7921D0BB3200201DEF /* CollectionHeaderLabel.swift */,
 			);
 			path = CollectionView;
 			sourceTree = "<group>";
@@ -652,7 +660,8 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-RJTranslate-App/Pods-RJTranslate-App-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-RJTranslate-App/Pods-RJTranslate-App-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/DZNEmptyDataSet/DZNEmptyDataSet.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/SSZipArchive/SSZipArchive.framework",
@@ -662,6 +671,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DZNEmptyDataSet.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SSZipArchive.framework",
@@ -669,7 +679,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RJTranslate-App/Pods-RJTranslate-App-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-RJTranslate-App/Pods-RJTranslate-App-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		89903D5BB42BA03CF256AFD7 /* [CP] Check Pods Manifest.lock */ = {
@@ -742,7 +752,7 @@
 			files = (
 				A5ADC0292184DB3100C33863 /* RJTAPIDownloadRequest.m in Sources */,
 				A5527FBB218F4C4000095251 /* RJTApplicationModel.m in Sources */,
-				A56C0167217F25D000027DB3 /* RJTDatabaseUpdater.m in Sources */,
+				A5196B7C21D0BF2200201DEF /* AppCollectionView.swift in Sources */,
 				A511A67C21B19FFC003D4244 /* PreferencesTableModel.swift in Sources */,
 				A522F1D0217AFC300085A5E4 /* RJTranslateController.m in Sources */,
 				A54EBFCE21B2997C0086B7DD /* AppCell.swift in Sources */,
@@ -774,7 +784,9 @@
 				A57CF73E217B50B9004A71F8 /* RJTNavigationBar.m in Sources */,
 				A57CF73B217AFFD0004A71F8 /* RJTApplicationEntity.m in Sources */,
 				A583C3B82193E1BE0072903B /* RJTCollectionViewDataSource.m in Sources */,
+				A5DAAE1B21C7973B0012D559 /* DatabaseUpdater.swift in Sources */,
 				A511A67821B185E7003D4244 /* PreferenceGroup.swift in Sources */,
+				A5196B7A21D0BB3200201DEF /* CollectionHeaderLabel.swift in Sources */,
 				A5E0BBB2218646A10094ECBC /* RJTHudProgressView.m in Sources */,
 				A5ACD6F52182DB7C0009DB9C /* RJTAPIRequest.m in Sources */,
 				A56FB1C42180B17B002F4175 /* RJTTickView.m in Sources */,

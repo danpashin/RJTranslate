@@ -9,6 +9,15 @@
 import Foundation
 import Firebase
 
+func appRecordError(_ description: String, _ args: CVarArg...)
+{
+    let errorDescription = String(format: description, args)
+    let error = NSError(domain: "ru.danpashin.rjtranslate.error", code: 0, userInfo: [NSLocalizedDescriptionKey:errorDescription])
+    
+    NSLog(description, args)
+    Crashlytics.sharedInstance().recordError(error)
+}
+
 @UIApplicationMain
 @objc(RJTAppDelegate) public class AppDelegate: UIResponder, UIApplicationDelegate, CrashlyticsDelegate {
     

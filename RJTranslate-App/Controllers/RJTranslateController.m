@@ -8,17 +8,15 @@
 
 #import "RJTranslateController.h"
 
-#import "RJTDatabaseUpdater.h"
+#import "RJTranslate-Swift.h"
 #import "RJTCollectionViewModel.h"
 
 #import "RJTAppCollectionView.h"
 #import "RJTHud.h"
 
-#import "NSTask.h"
+@interface RJTranslateController () <RJTSearchControllerDelegate, RJTAppCollectionViewDelegate, DatabaseUpdaterDelegate>
 
-@interface RJTranslateController () <RJTSearchControllerDelegate, RJTAppCollectionViewDelegate, RJTDatabaseUpdaterDelegate>
-
-@property (strong, nonatomic) RJTDatabaseUpdater *databaseUpdater;
+@property (strong, nonatomic) DatabaseUpdater *databaseUpdater;
 @property (strong, nonatomic) RJTCollectionViewModel *collectionViewModel;
 
 @property (weak, nonatomic) RJTHud *hud;
@@ -43,7 +41,7 @@
         self.navigationItem.titleView = self.searchController.searchBar;
     }
     
-    self.databaseUpdater = [[RJTDatabaseUpdater alloc] initWithDelegate:self];
+    self.databaseUpdater = [[DatabaseUpdater alloc] initWithDelegate:self];
     [self.databaseUpdater checkTranslationsVersion:^(TranslationsUpdate * _Nullable updateModel, NSError * _Nullable error) {
         if (!error && updateModel.canUpdate)
             [self.collectionView showUpdateCell:YES];
@@ -66,7 +64,7 @@
     hud.detailText = NSLocalizedString(@"downloating_localization...", @"");
     self.hud = hud;
     
-    [self.databaseUpdater performDatabaseUpdate];
+    [self.databaseUpdater performUpdate];
 }
 
 - (IBAction)actionPresentPreferences
@@ -126,16 +124,16 @@
 
 
 #pragma mark -
-#pragma mark RJTDatabaseUpdaterDelegate
+#pragma mark DatabaseUpdaterDelegate
 #pragma mark -
 
-- (void)databaseUpdaterDidStartUpdatingDatabase:(RJTDatabaseUpdater *)databaseUpdater
+- (void)databaseUpdaterDidStartUpdatingDatabase:(DatabaseUpdater *)databaseUpdater
 {
     self.hud.progress = 0.75f;
     self.hud.detailText = NSLocalizedString(@"updating_database...", @"");
 }
 
-- (void)databaseUpdater:(RJTDatabaseUpdater *)databaseUpdater finishedUpdateWithModels:(NSArray <RJTApplicationModel *> *)models
+- (void)databaseUpdater:(DatabaseUpdater *)databaseUpdater finishedUpdate:(NSArray <RJTApplicationModel *> *)models
 {
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [self.hud hideAnimated:YES];
@@ -145,7 +143,7 @@
     });
 }
 
-- (void)databaseUpdater:(RJTDatabaseUpdater *)databaseUpdater failedUpdateWithError:(NSError *)error
+- (void)databaseUpdater:(DatabaseUpdater *)databaseUpdater failed:(NSError *)error
 {
     self.hud.style = RJTHudStyleTextOnly;
     self.hud.text = NSLocalizedString(@"failed_to_update", @"");
@@ -153,7 +151,7 @@
     [self.hud hideAfterDelay:2.0f];
 }
 
-- (void)databaseUpdater:(RJTDatabaseUpdater *)databaseUpdater updateProgress:(double)progress
+- (void)databaseUpdater:(DatabaseUpdater *)databaseUpdater updateProgress:(double)progress
 {
     self.hud.progress = (CGFloat)progress;
 }
