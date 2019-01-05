@@ -32,6 +32,7 @@
 		A53CC73521E0C38A00848785 /* HTTPTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53CC73421E0C38A00848785 /* HTTPTask.swift */; };
 		A53CC73721E0C52200848785 /* HTTPRequestBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53CC73621E0C52200848785 /* HTTPRequestBuilder.swift */; };
 		A53CC73821E113CD00848785 /* RJTAppCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = A5A09547217C4696009743DF /* RJTAppCollectionView.m */; };
+		A53CC73A21E1285E00848785 /* HTTPClientDelegateObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53CC73921E1285E00848785 /* HTTPClientDelegateObject.swift */; };
 		A545D85E21847AE90072674C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A545D86021847AE90072674C /* Localizable.strings */; };
 		A54EBFAC21B2725C0086B7DD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54EBFAB21B2725C0086B7DD /* AppDelegate.swift */; };
 		A54EBFCC21B293880086B7DD /* Tracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54EBFCB21B293880086B7DD /* Tracker.swift */; };
@@ -122,6 +123,7 @@
 		A53CC73221E0C34200848785 /* HTTPClientFacilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClientFacilities.swift; sourceTree = "<group>"; };
 		A53CC73421E0C38A00848785 /* HTTPTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPTask.swift; sourceTree = "<group>"; };
 		A53CC73621E0C52200848785 /* HTTPRequestBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPRequestBuilder.swift; sourceTree = "<group>"; };
+		A53CC73921E1285E00848785 /* HTTPClientDelegateObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClientDelegateObject.swift; sourceTree = "<group>"; };
 		A545D86321847B120072674C /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A54A335D21B3CBA40064D648 /* TranslateMainController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslateMainController.swift; sourceTree = "<group>"; };
 		A54ADB1C217BB0CF00D32EB7 /* RJTApplicationModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RJTApplicationModel.h; sourceTree = "<group>"; };
@@ -372,6 +374,7 @@
 			children = (
 				A53CC72E21E0BE4A00848785 /* HTTPClient.swift */,
 				A53CC73421E0C38A00848785 /* HTTPTask.swift */,
+				A53CC73921E1285E00848785 /* HTTPClientDelegateObject.swift */,
 				A53CC73221E0C34200848785 /* HTTPClientFacilities.swift */,
 				A53CC73621E0C52200848785 /* HTTPRequestBuilder.swift */,
 			);
@@ -744,6 +747,7 @@
 				A522F1D0217AFC300085A5E4 /* RJTranslateController.m in Sources */,
 				A53CC72D21E0BAB000848785 /* UpdateDownloader.swift in Sources */,
 				A54EBFCE21B2997C0086B7DD /* AppCell.swift in Sources */,
+				A53CC73A21E1285E00848785 /* HTTPClientDelegateObject.swift in Sources */,
 				A5E0BBB3218646A10094ECBC /* RJTHud.m in Sources */,
 				A5BFB4A62189B267001A9D82 /* RJTAppIcon.m in Sources */,
 				A58659962192CCE600A76A6C /* RJTSupport.m in Sources */,
