@@ -7,8 +7,6 @@
 //
 
 import Foundation
-import Alamofire
-import SSZipArchive
 import Crashlytics
 
 @objc protocol DatabaseUpdaterDelegate {
@@ -41,25 +39,13 @@ import Crashlytics
 }
 
 
-@objc class DatabaseUpdater : NSObject, SSZipArchiveDelegate {
+@objc class DatabaseUpdater : NSObject {
     
     /// Делегат для объекта-обработчика статуса обновления.
     @objc public private(set) var delegate: DatabaseUpdaterDelegate
     private var currentUpdate: TranslationsUpdate?
     
-    private var downloadProgress: Double = 0.0 {
-        didSet {
-            let progress = downloadProgress / 2.0 + unzipProgress / 2.0
-            self.delegate.databaseUpdater?(self, updateProgress: progress)
-        }
-    }
-    
-    private var unzipProgress: Double = 0.0 {
-        didSet {
-            let progress = downloadProgress / 2.0 + unzipProgress / 2.0
-            self.delegate.databaseUpdater?(self, updateProgress: progress)
-        }
-    }
+    private var updateDownloader: UpdateDownloader?
     
     /// Выполняет инициализацию апдейтера.
     ///
@@ -73,7 +59,7 @@ import Crashlytics
         if self.currentUpdate?.archiveURL?.absoluteString.count ?? 0 > 0 {
             self.downloadUpdate()
         } else {
-            self.checkTranslationsVersion { (updateModel:TranslationsUpdate?, error: Error?) in
+            self.checkTranslationsVersion { (updateModel: TranslationsUpdate?, error: NSError?) in
                 if error != nil {
                     self.delegate.databaseUpdater(self, failed: error!)
                 } else {
@@ -87,62 +73,43 @@ import Crashlytics
     /// Проверяет версию локализации приложений.
     ///
     /// - Parameter completion: Блок вызывается в конце проверки.
-    @objc public func checkTranslationsVersion(_ completion: @escaping (TranslationsUpdate?, Error?) -> Void) {
-        
-        DispatchQueue.global().async {
-            let url = RJTAPI.apiURL
+    @objc public func checkTranslationsVersion(_ completion: @escaping (TranslationsUpdate?, NSError?) -> Void) {
             
-            Alamofire.request(url.absoluteString)
-                .validate(statusCode: 200..<400)
-                .validate(contentType: ["application/json"])
-                
-                .responseJSON { response in
-                if (response.error != nil) {
-                    completion(nil, response.error)
-                    return
-                }
-                
-                guard let json = response.result.value as? Dictionary<String, Any> else {
-                    print("\(String(describing: response.result.value))")
-                    let error = NSError(domain: "ru.danpashin.rjtranslate.parsing", code: 0, userInfo: [NSLocalizedDescriptionKey : "Can not parse response."])
-                    completion(nil, error)
-                    return
-                }
-                
-                let errorDict = json["error"] as? Dictionary<String, Any>
-                if errorDict != nil {
-                    let errorCode = errorDict!["code"] as? NSNumber
-                    let errorDescription = errorDict!["description"] as? String ?? ""
-                    let serverError = NSError(domain: "ru.danpashin.rjtranslate.server", code: errorCode?.intValue ?? 0, userInfo: [NSLocalizedDescriptionKey: errorDescription])
-                    completion(nil, serverError)
-                } else {
-                    if let translationDict = json["translation"] as? Dictionary<String, Any> {
-                        self.currentUpdate = TranslationsUpdate(dictionary: translationDict)
-                        completion(self.currentUpdate, nil)
-                    } else {
-                        appRecordError("Can not parse update json.")
-                        
-                        let error = NSError(domain: "ru.danpashin.error", code: 0, userInfo: nil)
-                        completion(nil, error)
-                    }
-                }
-            }
-        }
-    }
-    
-    private func downloadUpdate() {
-        self.currentUpdate?.download({ (progress:Progress) in
-            self.downloadProgress += progress.fractionCompleted
-        }, completion: { (error:Error?, tempURL:URL?) in
-            if error != nil {
-                appRecordError("Error while downloading update: \(String(describing: error))")
+        HTTPClient.shared.json(HTTPClient.apiURL)?.completion({ (json: [String : AnyHashable]?, error: NSError?) in
+            if json == nil || error != nil {
+                completion(nil, error)
                 return
             }
             
-            let destinationPath = NSTemporaryDirectory().appending("translations")
-            try? FileManager.default.createDirectory(atPath: destinationPath, withIntermediateDirectories: false, attributes: nil)
-            
-            SSZipArchive.unzipFile(atPath: tempURL!.path , toDestination: destinationPath, delegate: self)
+            let errorDict = json!["error"] as? Dictionary<String, Any>
+            if errorDict != nil {
+                let errorCode = errorDict!["code"] as? NSNumber
+                let errorDescription = errorDict!["description"] as? String ?? ""
+                let serverError = NSError(domain: "ru.danpashin.rjtranslate.server", code: errorCode?.intValue ?? 0, userInfo: [NSLocalizedDescriptionKey: errorDescription])
+                completion(nil, serverError)
+            } else {
+                if let translationDict = json!["translation"] as? Dictionary<String, Any> {
+                    self.currentUpdate = TranslationsUpdate(dictionary: translationDict)
+                    completion(self.currentUpdate, nil)
+                } else {
+                    appRecordError("Can not parse update json.")
+                    
+                    let error = NSError(domain: "ru.danpashin.error", code: 0, userInfo: nil)
+                    completion(nil, error)
+                }
+            }
+        })
+    }
+    
+    private func downloadUpdate() {
+        guard let update = self.currentUpdate else { return }
+        
+        self.updateDownloader = UpdateDownloader()
+        self.updateDownloader?.downloadAndUnzipUpdate(update, progress: { (progress: Double) in
+            self.delegate.databaseUpdater?(self, updateProgress: progress)
+        }, completion: { (unzippedFolder: String?, error: NSError?) in
+            if error != nil || unzippedFolder == nil { return }
+            self.processFolder(unzippedFolder!)
         })
     }
     
@@ -182,16 +149,5 @@ import Crashlytics
             }
         }
         
-    }
-    
-    // MARK: - SSZipArchiveDelegate -
-    public func zipArchiveProgressEvent(_ loaded: UInt64, total: UInt64) {
-        self.unzipProgress = Double(loaded / total);
-    }
-    
-    public func zipArchiveDidUnzipArchive(atPath path: String, zipInfo: unz_global_info, unzippedPath: String) {
-        DispatchQueue.global(qos: .`default`).async {
-            self.processFolder(unzippedPath)
-        }
     }
 }

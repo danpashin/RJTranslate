@@ -13,7 +13,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @class RJTAppCollectionView;
-@protocol RJTAppCollectionViewDelegate <NSObject>
+@protocol RJTAppCollectionViewDelegateProtocol <NSObject>
 
 - (void)collectionViewRequestedDownloadingTranslations:(RJTAppCollectionView *)collectionView;
 - (void)collectionView:(RJTAppCollectionView *)collectionView didUpdateModel:(RJTApplicationModel *)appModel;
@@ -35,7 +35,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  Устанавливает кастомный делегат для объекта.
  */
-@property (weak, nonatomic) id <RJTAppCollectionViewDelegate> customDelegate;
+@property (weak, nonatomic) id <RJTAppCollectionViewDelegateProtocol> customDelegate;
 
 /**
  Модель, используемая для коллекции.

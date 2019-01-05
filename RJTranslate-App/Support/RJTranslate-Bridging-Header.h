@@ -10,12 +10,11 @@
 
 
 #import "RJTAppCollectionView.h"
-#import "RJTDatabaseUpdater.h"
 #import "RJTCollectionViewModel.h"
 #import "RJTCollectionViewLayout.h"
 #import "RJTCollectionViewEmptyDataSource.h"
+#import "RJTCollectionViewEmptyDataSource.h"
+#import "RJTAppCollectionViewDelegate.h"
 #import "RJTHud.h"
-
-#import "RJTAPI.h"
 
 #import <sys/utsname.h>

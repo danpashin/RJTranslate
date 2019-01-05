@@ -14,8 +14,6 @@ target 'RJTranslate-App' do
   pod 'Firebase/Core'
   pod 'Fabric'
   pod 'Crashlytics'
-
-  pod 'Alamofire'
 end
 
 post_install do |installer|

@@ -65,11 +65,13 @@
     if (section == 0)
         return (NSInteger)self.showUpdateHeader;
     
+    RJTCollectionViewModel *model = self.collectionView.model;
+    
     if (section == 1)
-        return self.collectionModel.currentDataSource.installedAppsModels.count;
+        return model.currentDataSource.installedAppsModels.count;
 
     if (section == 2)
-        return self.collectionModel.currentDataSource.uninstalledAppsModels.count;
+        return model.currentDataSource.uninstalledAppsModels.count;
     
     return 0;
 }
@@ -90,10 +92,12 @@
     
     RJTAppCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"appCell"
                                                                  forIndexPath:indexPath];
+    
+    RJTCollectionViewModel *model = self.collectionView.model;
     if (indexPath.section == 1)
-        cell.model = self.collectionModel.currentDataSource.installedAppsModels[indexPath.row];
+        cell.model = model.currentDataSource.installedAppsModels[indexPath.row];
     else if (indexPath.section == 2)
-        cell.model = self.collectionModel.currentDataSource.uninstalledAppsModels[indexPath.row];
+        cell.model = model.currentDataSource.uninstalledAppsModels[indexPath.row];
     
     return cell;
 }
@@ -145,7 +149,7 @@
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(RJTCollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section
 {
-    RJTCollectionViewDataSource *dataSource = self.collectionModel.currentDataSource;
+    RJTCollectionViewDataSource *dataSource = self.collectionView.model.currentDataSource;
     if (section == 1 && dataSource.installedAppsModels.count > 0) {
         return CGSizeMake(CGRectGetWidth(collectionView.frame), 52.0f);
     }
@@ -162,7 +166,7 @@
     if (section == 0 && self.showUpdateHeader)
         return UIEdgeInsetsMake(10.0, 0.0f, 0.0, 0.0f);
     
-    RJTCollectionViewDataSource *dataSource = self.collectionModel.currentDataSource;
+    RJTCollectionViewDataSource *dataSource = self.collectionView.model.currentDataSource;
     if ((section == 1 && dataSource.installedAppsModels.count > 0) || section == 2) {
         return UIEdgeInsetsMake(10.0f, 0.0f, 10.0f, 0.0f);
     } else if (section == 1 || section == 2)

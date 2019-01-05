@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import Alamofire
 
 @objc class TranslationsUpdate: NSObject {
     
@@ -42,34 +41,6 @@ import Alamofire
     
     public func saveUpdate() {
         UserDefaults.standard.set(self.hashSum, forKey: TranslationsUpdate.updatePreferenceKey)
-    }
-    
-    /// Выполняет загрузку архива из удаленного источника.
-    ///
-    /// - Parameters:
-    ///   - progress: Прогресс загрузки. Вызывается на основном потоке.
-    ///   - completion: Замыкание, в которое возвращается ошибка (если есть) и адрес загруженного архива.
-    public func download(_ progress: @escaping(Progress) -> Void,
-                         completion: @escaping(Error?, URL?) -> Void) {
-        guard let url = self.archiveURL else {
-            appRecordError("Archive URL is nil")
-            return
-        }
-        
-        let downloadDestination = DownloadRequest.suggestedDownloadDestination(for: .cachesDirectory)
-        
-        Alamofire.download(url, to: downloadDestination)
-            .validate(statusCode: 200..<400)
-            .downloadProgress(closure: progress)
-            .response { (response:DefaultDownloadResponse) in
-                if let error = response.error {
-                    completion(error, nil)
-                    return
-                }
-                
-                self.saveUpdate()
-                completion(nil, response.destinationURL)
-        }
     }
 }
 

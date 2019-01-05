@@ -8,7 +8,7 @@
 
 import Foundation
 
-@objc protocol AppCollectionViewDelegate: NSObjectProtocol {
+@objc protocol AppCollectionViewDelegateProtocol: NSObjectProtocol {
 
     /// Вызывается, когда пользователь нажимает на кнопку загрузки переводов.
     ///
@@ -31,21 +31,21 @@ import Foundation
 }
 
 
-class AppCollectionView : UICollectionView {
+@objc class AppCollectionView : UICollectionView {
     
     /// Контроллер поиска. Нужен для определения показа фонового вида.
-    weak public var searchController: SearchController?
+    @objc weak public var searchController: SearchController?
     
     /// Устанавливает кастомный делегат для объекта.
-    weak public var customDelegate: AppCollectionViewDelegate?
+    @objc weak public var customDelegate: AppCollectionViewDelegateProtocol?
     
     /// Модель, используемая для коллекции.
-    public private(set) var model: RJTCollectionViewModel?
+    @objc public var model: RJTCollectionViewModel?
     
     
-//    internal var collectionViewLayout: UICollectionViewLayout {
-//
-//    }
+    @objc public var layout: RJTCollectionViewLayout? {
+        return (self.collectionViewLayout as! RJTCollectionViewLayout)
+    }
     
     private var delegateObject: RJTAppCollectionViewDelegate?
     private var emptyDataSourceObject: RJTCollectionViewEmptyDataSource?
@@ -57,30 +57,36 @@ class AppCollectionView : UICollectionView {
         self.alwaysBounceVertical = true
         self.allowsMultipleSelection = true
         
-//        self.delegateObject = RJTAppCollectionViewDelegate()
+        self.delegateObject = RJTAppCollectionViewDelegate.init(collectionView: self)
+        self.emptyDataSourceObject = RJTCollectionViewEmptyDataSource.init(collectionView: self)
     }
     
     /// Выполняет анимированную перезагрузку ячеек коллекции.
-    public func reload() {
+    @objc public func reload() {
         DispatchQueue.main.async {
-            
+            self.reloadSections(IndexSet(0...3))
+            self.reloadEmptyDataSet()
         }
     }
     
     /// Показывает/скрывает ячейку с обновлением.
     ///
     /// - Parameter show: YES - показывает, NO - скрывает.
-    public func showUpdateCell(_ show: Bool) {
-        
+    @objc public func showUpdateCell(_ show: Bool) {
+        if (self.delegateObject?.showUpdateHeader != show) {
+            self.delegateObject?.showUpdateHeader = show;
+            self.reload()
+        }
     }
     
-    public func updateLayoutToSize(_ size: CGSize) {
-        
+    @objc public func updateLayoutToSize(_ size: CGSize) {
+        self.layout?.itemSize = self.layout?.itemSize(fromCollectionFrame: CGRect(x: 0.0, y: 0.0, width: size.width, height: size.height)) ?? CGSize.zero
+        self.layout?.invalidateLayout()
     }
     
     @available(*, unavailable)
     override func reloadData() {
-        fatalError()
+        super.reloadData()
     }
     
 }

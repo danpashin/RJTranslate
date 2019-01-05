@@ -14,7 +14,7 @@
 #import "RJTAppCollectionView.h"
 #import "RJTHud.h"
 
-@interface RJTranslateController () <RJTSearchControllerDelegate, RJTAppCollectionViewDelegate, DatabaseUpdaterDelegate>
+@interface RJTranslateController () <RJTSearchControllerDelegate, RJTAppCollectionViewDelegateProtocol, DatabaseUpdaterDelegate>
 
 @property (strong, nonatomic) DatabaseUpdater *databaseUpdater;
 @property (strong, nonatomic) RJTCollectionViewModel *collectionViewModel;
