@@ -12,9 +12,14 @@ import Foundation
 class HTTPClientDelegateObject: NSObject, URLSessionDownloadDelegate, URLSessionDataDelegate {
     
     weak public private(set) var client: HTTPClient?
+    public private(set) var utilityQueue: OperationQueue
     
     public init(client: HTTPClient) {
         self.client = client
+        
+        self.utilityQueue = OperationQueue()
+        self.utilityQueue.name = "ru.danpashin.rjtranslate.network"
+        self.utilityQueue.qualityOfService = .utility
     }
     
     
@@ -45,13 +50,23 @@ class HTTPClientDelegateObject: NSObject, URLSessionDownloadDelegate, URLSession
             return
         }
         
+        let responseCodeValid = (200...399) ~= httpResponse.statusCode
+        
         if let jsonTask = task as? HTTPJSONTask {
-            let shouldLoad = (httpResponse.mimeType?.contains("json") ?? false && (200...399) ~= httpResponse.statusCode)
+            let shouldLoad = (httpResponse.mimeType?.contains("json") ?? false && responseCodeValid)
             completionHandler(shouldLoad ? .allow : .cancel)
             
             if !shouldLoad {
-                let error = appRecordError("Load of json task if forbidden")
+                let error = appRecordError("Response code (%i) or mime type (%@) is invalid for json task", 
+                                           httpResponse.statusCode, httpResponse.mimeType ?? "")
                 jsonTask.completionClosure?(nil, error)
+            }
+        } else if let downloadTask = task as? HTTPDownloadTask {
+            completionHandler(responseCodeValid ? .becomeDownload : .cancel)
+            
+            if !responseCodeValid {
+                let error = appRecordError("Response code (%i) is invalid for download task", httpResponse.statusCode)
+                downloadTask.completionClosure?(nil, error)
             }
         }
     }
@@ -62,6 +77,10 @@ class HTTPClientDelegateObject: NSObject, URLSessionDownloadDelegate, URLSession
         if let jsonTask = task as? HTTPJSONTask {
             jsonTask.responseData.append(data)
         }
+    }
+    
+    public func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didBecome downloadTask: URLSessionDownloadTask) {
+        downloadTask.resume()
     }
     
     

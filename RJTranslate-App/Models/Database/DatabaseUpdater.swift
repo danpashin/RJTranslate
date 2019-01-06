@@ -81,22 +81,11 @@ import Crashlytics
                 return
             }
             
-            let errorDict = json!["error"] as? Dictionary<String, Any>
-            if errorDict != nil {
-                let errorCode = errorDict!["code"] as? NSNumber
-                let errorDescription = errorDict!["description"] as? String ?? ""
-                let serverError = NSError(domain: "ru.danpashin.rjtranslate.server", code: errorCode?.intValue ?? 0, userInfo: [NSLocalizedDescriptionKey: errorDescription])
-                completion(nil, serverError)
+            let response = TranslationServerResponse(json: json)
+            if response.error != nil {
+                completion(nil, response.error!.asNSError())
             } else {
-                if let translationDict = json!["translation"] as? Dictionary<String, Any> {
-                    self.currentUpdate = TranslationsUpdate(dictionary: translationDict)
-                    completion(self.currentUpdate, nil)
-                } else {
-                    appRecordError("Can not parse update json.")
-                    
-                    let error = NSError(domain: "ru.danpashin.error", code: 0, userInfo: nil)
-                    completion(nil, error)
-                }
+                self.currentUpdate = response.translation
             }
         })
     }

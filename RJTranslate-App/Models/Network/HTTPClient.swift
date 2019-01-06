@@ -40,7 +40,8 @@ class HTTPClient {
         self.configuration!.httpAdditionalHeaders = ["User-Agent": self.defaultUserAgent]
         
         self.delegateObject = HTTPClientDelegateObject(client: self)
-        self.session = URLSession(configuration: self.configuration!, delegate: self.delegateObject, delegateQueue: nil)
+        self.session = URLSession(configuration: self.configuration!, delegate: self.delegateObject, 
+                                  delegateQueue: self.delegateObject?.utilityQueue)
     }
     
     /// Выполняет удаление задания с указанным идентификатором
@@ -66,11 +67,11 @@ class HTTPClient {
         let requestBuilder = HTTPRequestBuilder(url: url, httpMethod: httpMethod, arguments: arguments)
         guard let request = requestBuilder.buildRequest() else { return nil }
         
-        let downloadTask = self.session!.downloadTask(with: request)
+        let dataTask = self.session!.dataTask(with: request)
         
-        let httpTask = HTTPDownloadTask(request: request, sessionTask: downloadTask)
-        self.activeTasks[downloadTask.taskIdentifier] = httpTask
-        downloadTask.resume()
+        let httpTask = HTTPDownloadTask(request: request, sessionTask: dataTask)
+        self.activeTasks[dataTask.taskIdentifier] = httpTask
+        dataTask.resume()
         
         return httpTask
     }

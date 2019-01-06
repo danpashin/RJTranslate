@@ -153,7 +153,7 @@
 
 - (void)databaseUpdater:(DatabaseUpdater *)databaseUpdater updateProgress:(double)progress
 {
-    self.hud.progress = (CGFloat)progress;
+    [self.hud setProgress:progress animated:YES];
 }
 
 @end

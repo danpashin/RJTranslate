@@ -63,6 +63,7 @@
 		A5BFB4A42189B267001A9D82 /* RJTAppIcon.h in Headers */ = {isa = PBXBuildFile; fileRef = A5BFB4A22189B267001A9D82 /* RJTAppIcon.h */; };
 		A5BFB4A62189B267001A9D82 /* RJTAppIcon.m in Sources */ = {isa = PBXBuildFile; fileRef = A5BFB4A32189B267001A9D82 /* RJTAppIcon.m */; };
 		A5C1FB3B21B258A1007BB861 /* PreferencesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C1FB3A21B258A1007BB861 /* PreferencesController.swift */; };
+		A5C4F89521E28D3F000FAC48 /* APIResponses.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C4F89421E28D3F000FAC48 /* APIResponses.swift */; };
 		A5C7DA8421935D310086BE40 /* RJTAppCollectionViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A5C7DA8321935D310086BE40 /* RJTAppCollectionViewDelegate.m */; };
 		A5CC12EA2184A2A600A607E3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A5CC12E92184A2A600A607E3 /* GoogleService-Info.plist */; };
 		A5DAAE1B21C7973B0012D559 /* DatabaseUpdater.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DAAE1A21C7973B0012D559 /* DatabaseUpdater.swift */; };
@@ -165,6 +166,7 @@
 		A5C107DA217E56F900989BDB /* RJTranslate.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = RJTranslate.bundle; sourceTree = "<group>"; };
 		A5C107DD217E56F900989BDB /* RJTranslate.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = RJTranslate.plist; sourceTree = "<group>"; };
 		A5C1FB3A21B258A1007BB861 /* PreferencesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesController.swift; sourceTree = "<group>"; };
+		A5C4F89421E28D3F000FAC48 /* APIResponses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIResponses.swift; sourceTree = "<group>"; };
 		A5C7DA8221935D310086BE40 /* RJTAppCollectionViewDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RJTAppCollectionViewDelegate.h; sourceTree = "<group>"; };
 		A5C7DA8321935D310086BE40 /* RJTAppCollectionViewDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RJTAppCollectionViewDelegate.m; sourceTree = "<group>"; };
 		A5CC12E92184A2A600A607E3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -377,6 +379,7 @@
 				A53CC73921E1285E00848785 /* HTTPClientDelegateObject.swift */,
 				A53CC73221E0C34200848785 /* HTTPClientFacilities.swift */,
 				A53CC73621E0C52200848785 /* HTTPRequestBuilder.swift */,
+				A5C4F89421E28D3F000FAC48 /* APIResponses.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -753,6 +756,7 @@
 				A58659962192CCE600A76A6C /* RJTSupport.m in Sources */,
 				A5C7DA8421935D310086BE40 /* RJTAppCollectionViewDelegate.m in Sources */,
 				A526FD982198969F00E1A434 /* UIColor+RJT_Private.m in Sources */,
+				A5C4F89521E28D3F000FAC48 /* APIResponses.swift in Sources */,
 				A5BC885521B2ACCC00D5C5CF /* SearchController.swift in Sources */,
 				A5C1FB3B21B258A1007BB861 /* PreferencesController.swift in Sources */,
 				A54EBFCC21B293880086B7DD /* Tracker.swift in Sources */,

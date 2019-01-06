@@ -8,7 +8,7 @@
 
 import Foundation
 
-@objc class TranslationsUpdate: NSObject {
+@objc public class TranslationsUpdate: NSObject {
     
     /// Флаг определяет, должно ли производится обновление на данный момент.
     @objc public private(set) var canUpdate: Bool = false
