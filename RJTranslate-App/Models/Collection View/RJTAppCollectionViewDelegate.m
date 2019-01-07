@@ -27,6 +27,7 @@
         _collectionView = collectionView;
         collectionView.delegate = self;
         collectionView.dataSource = self;
+        collectionView.prefetchDataSource = self;
         
         [collectionView registerClass:[RJTCollectionLabelHeader class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"header"];
         
@@ -36,7 +37,7 @@
     return self;
 }
 
-- (void)appCell:(RJTAppCell *)appCell setSelected:(BOOL)selected
+- (void)appCell:(AppCell *)appCell setSelected:(BOOL)selected
 {
     [appCell updateSelection:selected animated:YES];
     
@@ -90,7 +91,7 @@
     }
     
     
-    RJTAppCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"appCell"
+    AppCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"appCell"
                                                                  forIndexPath:indexPath];
     
     RJTCollectionViewModel *model = self.collectionView.model;
@@ -104,8 +105,8 @@
 
 - (void)collectionView:(UICollectionView *)collectionView willDisplayCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    if ([cell isKindOfClass:[RJTAppCell class]]) {
-        RJTAppCell *appCell = (RJTAppCell *)cell;
+    if ([cell isKindOfClass:[AppCell class]]) {
+        AppCell *appCell = (AppCell *)cell;
         
         if (appCell.model.enableTranslation) {
             [collectionView selectItemAtIndexPath:indexPath animated:NO scrollPosition:UICollectionViewScrollPositionNone];
@@ -119,17 +120,17 @@
 {
     UICollectionViewCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
     
-    if ([cell isKindOfClass:[RJTAppCell class]]) {
-        [self appCell:(RJTAppCell *)cell setSelected:YES];
+    if ([cell isKindOfClass:[AppCell class]]) {
+        [self appCell:(AppCell *)cell setSelected:YES];
     }
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    RJTAppCell *cell = (RJTAppCell *)[collectionView cellForItemAtIndexPath:indexPath];
+    AppCell *cell = (AppCell *)[collectionView cellForItemAtIndexPath:indexPath];
     
-    if ([cell isKindOfClass:[RJTAppCell class]]) {
-        [self appCell:(RJTAppCell *)cell setSelected:NO];
+    if ([cell isKindOfClass:[AppCell class]]) {
+        [self appCell:(AppCell *)cell setSelected:NO];
     }
 }
 
@@ -184,5 +185,10 @@
     return size;
 }
 
+
+- (void)collectionView:(UICollectionView *)collectionView prefetchItemsAtIndexPaths:(nonnull NSArray<NSIndexPath *> *)indexPaths
+{
+    NSLog(@"%@", indexPaths);
+}
 
 @end

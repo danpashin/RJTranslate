@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <DZNEmptyDataSet/UIScrollView+EmptyDataSet.h>
+#import "RJTEmptyViewType.h"
 @class RJTAppCollectionView;
 
 NS_ASSUME_NONNULL_BEGIN
@@ -17,6 +18,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (instancetype)initWithCollectionView:(RJTAppCollectionView *)collectionView;
 
 @property (weak, nonatomic, readonly) RJTAppCollectionView *collectionView;
+
+@property (assign, nonatomic) RJTEmptyViewType type;
 
 @end
 

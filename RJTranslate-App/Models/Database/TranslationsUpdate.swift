@@ -21,7 +21,7 @@ import Foundation
     
     private static let updatePreferenceKey = "latestTranslationsUpdateHash"
     
-    init(dictionary: Dictionary<AnyHashable, Any>?) {
+    init(dictionary: [String : AnyHashable]?) {
         if dictionary == nil {
             return
         }

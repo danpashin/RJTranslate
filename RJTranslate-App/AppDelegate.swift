@@ -21,15 +21,15 @@ func appRecordError(_ description: String, _ args: CVarArg...) -> NSError {
 }
 
 @UIApplicationMain
-@objc(RJTAppDelegate) public class AppDelegate: UIResponder, UIApplicationDelegate, CrashlyticsDelegate {
+public class AppDelegate: UIResponder, UIApplicationDelegate, CrashlyticsDelegate {
     
-    @objc public var window: UIWindow?
+    public var window: UIWindow?
     
     /// Трекер событий приложения.
     @objc public private(set) var tracker: Tracker?
     
     /// Дефолтная база данных.
-    @objc public private(set) var defaultDatabase: RJTDatabase?
+    @objc public private(set) var defaultDatabase: RJTDatabaseFacade?
     
     public func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         FirebaseConfiguration.shared.setLoggerLevel(.min)
@@ -40,7 +40,7 @@ func appRecordError(_ description: String, _ args: CVarArg...) -> NSError {
         let enableStats: Bool = (enableStatsPrefs?.boolValue) ?? true
         self.enableTracker(enableStats)
         
-        self.defaultDatabase = RJTDatabase.default()
+        self.defaultDatabase = RJTDatabaseFacade()
         
         return true
     }

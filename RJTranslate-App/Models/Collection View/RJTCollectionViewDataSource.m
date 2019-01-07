@@ -15,6 +15,8 @@
 {
     self = [super init];
     if (self) {
+        _rawModels = appModels;
+        
         NSMutableArray *installedAppsModels = [NSMutableArray array];
         _installedAppsModels = installedAppsModels;
         

@@ -21,13 +21,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic, readonly) RJTCollectionViewDataSource *currentDataSource;
 
 /**
- База данных.
- 
- @warning Не должна использоваться напрямую!
- */
-//@property (strong, nonatomic, readonly) RJTDatabase *database;
-
-/**
  Выполняет инициализацию модели для конкретной коллекции.
 
  @param collectionView Коллекция, для которой выполняется инициализация модели.

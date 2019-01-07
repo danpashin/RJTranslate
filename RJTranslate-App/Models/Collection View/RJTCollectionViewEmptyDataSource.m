@@ -98,8 +98,7 @@
 
 - (UIImage *)imageForEmptyDataSet:(UIScrollView *)scrollView
 {
-    RJTSearchController *searchController = self.collectionView.searchController;
-    if (!searchController.performingSearch)
+    if (self.type == RJTEmptyViewTypeNoData)
         return [UIImage imageNamed:@"translationIcon"];
     
     return nil;
@@ -109,10 +108,9 @@
 {
     NSString *titleString = @"";
     
-    RJTSearchController *searchController = self.collectionView.searchController;
-    if (searchController.performingSearch && searchController.searchText.length > 0)
+    if (self.type == RJTEmptyViewTypeNoSearchResults)
         titleString = NSLocalizedString(@"cannot_find_any_results", @"");
-    else if (!searchController.performingSearch)
+    else if (self.type == RJTEmptyViewTypeNoData)
         titleString = NSLocalizedString(@"no_translations_downloaded", @"");
     
     NSDictionary *attributes = @{NSFontAttributeName: [UIFont boldSystemFontOfSize:[UIFont labelFontSize] * 1.5f],
@@ -125,11 +123,12 @@
 {
     NSString *titleString = @"";
     
-    RJTSearchController *searchController = self.collectionView.searchController;
-    if (searchController.performingSearch && searchController.searchText.length > 0)
+    if (self.type == RJTEmptyViewTypeNoSearchResults)
         titleString = NSLocalizedString(@"change_search_request_and_try_again", @"");
-    else if (!searchController.performingSearch)
+    else if (self.type == RJTEmptyViewTypeNoData)
         titleString = NSLocalizedString(@"tap_button_to_download_available", @"");
+    else if (self.type == RJTEmptyViewTypeLoading)
+        titleString = NSLocalizedString(@"loading_data...", @"");
     
     NSDictionary *attributes = @{NSFontAttributeName: [UIFont systemFontOfSize:[UIFont labelFontSize]],
                                  NSForegroundColorAttributeName: [UIColor grayColor]};
@@ -138,7 +137,7 @@
 
 - (NSAttributedString *)buttonTitleForEmptyDataSet:(UIScrollView *)scrollView forState:(UIControlState)state
 {
-    if (self.collectionView.searchController.performingSearch)
+    if (self.type != RJTEmptyViewTypeNoData)
         return nil;
     
     NSDictionary *attributes = @{NSFontAttributeName: [UIFont preferredFontForTextStyle:UIFontTextStyleTitle3],
@@ -159,7 +158,7 @@
 
 - (void)emptyDataSet:(UIScrollView *)scrollView didTapButton:(UIButton *)button
 {
-    if (!self.collectionView.searchController.performingSearch)
+    if (self.type == RJTEmptyViewTypeNoData)
         [self.collectionView.customDelegate collectionViewRequestedDownloadingTranslations:self.collectionView];
 }
 

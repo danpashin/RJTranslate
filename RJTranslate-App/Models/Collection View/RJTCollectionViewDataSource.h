@@ -23,6 +23,8 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (nonatomic, readonly) NSArray <RJTApplicationModel *> *uninstalledAppsModels;
 
+@property (nonatomic, readonly) NSArray <RJTApplicationModel *> *rawModels;
+
 
 /**
  Выполняет инициализацию и разделение моделей в датасорсе.

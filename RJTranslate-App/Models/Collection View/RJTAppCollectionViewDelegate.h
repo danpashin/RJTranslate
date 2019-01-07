@@ -13,15 +13,15 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface RJTAppCollectionViewDelegate : NSObject <UICollectionViewDelegateFlowLayout, UICollectionViewDataSource>
-
-- (instancetype)initWithCollectionView:(RJTAppCollectionView *)collectionView;
+@interface RJTAppCollectionViewDelegate : NSObject <UICollectionViewDelegateFlowLayout, UICollectionViewDataSource, UICollectionViewDataSourcePrefetching>
 
 @property (weak, nonatomic, readonly) RJTAppCollectionView *collectionView;
 
 @property (assign, nonatomic) BOOL showUpdateHeader;
 @property (weak, nonatomic, readonly) RJTUpdateHeaderView *updateHeader;
 
+
+- (instancetype)initWithCollectionView:(RJTAppCollectionView *)collectionView;
 
 @end
 

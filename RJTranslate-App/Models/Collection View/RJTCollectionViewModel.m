@@ -8,7 +8,7 @@
 
 #import "RJTCollectionViewModel.h"
 
-#import "RJTDatabase.h"
+#import "RJTDatabaseFacade.h"
 #import "RJTApplicationModel.h"
 #import "RJTCollectionViewDataSource.h"
 
@@ -26,7 +26,7 @@
 
 
 @interface RJTCollectionViewModel ()
-@property (weak, nonatomic) RJTDatabase *database;
+@property (weak, nonatomic) RJTDatabaseFacade *database;
 @property (weak, nonatomic) RJTAppCollectionView *collectionView;
 
 @property (strong, nonatomic) RJTCollectionViewDataSource *allModelsDataSource;
@@ -54,6 +54,7 @@
 
 - (void)beginSearch
 {
+    [self.collectionView updateEmptyViewToType:RJTEmptyViewTypeNoSearchResults];
     self.allModelsDataSource = self.currentDataSource;
 }
 
@@ -103,7 +104,11 @@
 
 - (void)loadDatabaseModels
 {
+    [self.collectionView updateEmptyViewToType:RJTEmptyViewTypeLoading];
     [self.database fetchAllAppModelsWithCompletion:^(NSArray<RJTApplicationModel *> * _Nonnull allModels) {
+        if (allModels.count == 0)
+            [self.collectionView updateEmptyViewToType:RJTEmptyViewTypeNoData animated:YES];
+        
         [self updateCollectionWithModels:allModels]; 
     }];
 }

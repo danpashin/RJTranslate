@@ -56,4 +56,27 @@
     [self.collectionViewLayout invalidateLayout];
 }
 
+- (void)updateEmptyViewToType:(RJTEmptyViewType)type
+{
+    [self updateEmptyViewToType:type animated:NO];
+}
+
+- (void)updateEmptyViewToType:(RJTEmptyViewType)type animated:(BOOL)animated
+{
+    if (self.emptyDataSourceObject.type == type)
+        return;
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        self.emptyDataSourceObject.type = type;
+        
+        if (!animated) {
+            [self reloadEmptyDataSet];
+        } else {
+            [UIView transitionWithView:self duration:0.3 options:UIViewAnimationOptionTransitionCrossDissolve animations:^{
+                [self reloadEmptyDataSet];
+            } completion:nil];
+        }
+    });
+}
+
 @end

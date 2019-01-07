@@ -5,6 +5,7 @@
 #import "RJTColors.h"
 #import "RJTApplicationModel.h"
 #import "RJTDatabase.h"
+#import "RJTDatabaseFacade.h"
 #import "RJTTickView.h"
 #import "RJTGradientView.h"
 

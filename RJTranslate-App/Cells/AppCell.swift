@@ -9,10 +9,16 @@
 import Foundation
 import UIKit
 
-@objc(RJTAppCell) public class AppCell: UICollectionViewCell {
+@objc public class AppCell: TouchResponsiveCollectionCell {
     @objc public var model: RJTApplicationModel? {
         didSet {
             updateForNewModel()
+        }
+    }
+    
+    override public var bounds: CGRect {
+        didSet {
+            self.layer.shadowPath = UIBezierPath(roundedRect: self.bounds, cornerRadius: self.layer.cornerRadius).cgPath
         }
     }
     
@@ -23,42 +29,48 @@ import UIKit
     
     public override func awakeFromNib() {
         super.awakeFromNib()
-        nameLabel?.textColor = RJTColors.textPrimaryColor
+        self.nameLabel?.textColor = RJTColors.textPrimaryColor
         
         self.layer.cornerRadius = 10.0
-        iconView?.layer.masksToBounds = true
-        iconView?.layer.cornerRadius = 11.0
-        iconView?.tintColor = RJTColors.textDetailColor
+        self.iconView?.layer.masksToBounds = true
+        self.iconView?.layer.cornerRadius = 11.0
+        self.iconView?.tintColor = RJTColors.textDetailColor
         
-        updateSelection(false, animated: false)
+        self.updateSelection(false, animated: false)
+        
+        self.layer.shadowColor = UIColor.black.cgColor
+        self.layer.shadowOffset = CGSize.zero
+        self.layer.shadowRadius = 4.0
+        self.layer.shadowOpacity = 0.05
+        self.layer.masksToBounds = false
     }
     
     @objc public func updateSelection(_ selected: Bool, animated: Bool) {
-        tickView?.setEnabled(selected, animated: animated)
+        self.tickView?.setEnabled(selected, animated: animated)
     }
     
     public override func prepareForReuse() {
         super.prepareForReuse()
         
-        model = nil
-        updateSelection(false, animated: false)
+        self.model = nil
+        self.updateSelection(false, animated: false)
     }
     
     private func updateForNewModel() {
         self.nameLabel?.text = model?.displayedName
         
-        if model?.bundleIdentifier?.count ?? 0 > 0 && model?.executableName?.count ?? 0 > 0 {
-            identifierLabel?.text = String(format: "%@ - %@", model?.executableName ?? "", model?.bundleIdentifier ?? "");
+        if self.model?.bundleIdentifier?.count ?? 0 > 0 && model?.executableName?.count ?? 0 > 0 {
+            self.identifierLabel?.text = String(format: "%@ - %@", self.model?.executableName ?? "", self.model?.bundleIdentifier ?? "");
         } else if model?.bundleIdentifier?.count ?? 0 > 0 {
-            identifierLabel?.text = model?.bundleIdentifier;
+            self.identifierLabel?.text = self.model?.bundleIdentifier;
         } else {
-            identifierLabel?.text = model?.executableName;
+            self.identifierLabel?.text = model?.executableName;
         }
         
-        if model == nil {
-            iconView?.image = UIImage(named: "icon_template")
+        if self.model == nil {
+            self.iconView?.image = UIImage(named: "icon_template")
         } else {
-            model?.icon?.load(completion: { icon in
+            self.model?.icon?.load(completion: { icon in
                 let iconImage: UIImage? = icon ?? UIImage(named: "icon_template")
                 
                 DispatchQueue.main.async {

@@ -10,6 +10,7 @@
 
 #import "RJTranslate-Swift.h"
 #import "RJTCollectionViewModel.h"
+#import "RJTCollectionViewDataSource.h"
 
 #import "RJTAppCollectionView.h"
 #import "RJTHud.h"
@@ -33,19 +34,29 @@
     self.title = NSLocalizedString(@"available_translations", @"");
     
     self.searchController = [[RJTSearchController alloc] initWithDelegate:self];
-    self.collectionView.searchController = self.searchController;
     
     if (@available(iOS 11.0, *)) {
         self.navigationItem.searchController = self.searchController;
     } else {
         self.navigationItem.titleView = self.searchController.searchBar;
     }
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
     
-    self.databaseUpdater = [[DatabaseUpdater alloc] initWithDelegate:self];
-    [self.databaseUpdater checkTranslationsVersion:^(TranslationsUpdate * _Nullable updateModel, NSError * _Nullable error) {
-        if (!error && updateModel.canUpdate)
-            [self.collectionView showUpdateCell:YES];
-    }];
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        self.databaseUpdater = [[DatabaseUpdater alloc] initWithDelegate:self];
+        [self.databaseUpdater checkTranslationsVersion:^(TranslationsUpdate * _Nullable updateModel, NSError * _Nullable error) {
+            
+            RJTCollectionViewDataSource *dataSource = self.collectionView.model.currentDataSource;
+            
+            if (!error && updateModel.canUpdate && dataSource.rawModels.count > 0)
+                [self.collectionView showUpdateCell:YES];
+        }];
+    });
 }
 
 - (void)setCollectionView:(RJTAppCollectionView *)collectionView
@@ -135,8 +146,9 @@
 
 - (void)databaseUpdater:(DatabaseUpdater *)databaseUpdater finishedUpdate:(NSArray <RJTApplicationModel *> *)models
 {
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [self.hud hideAnimated:YES];
+    [self.hud hideAnimated:YES];
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [self.collectionView showUpdateCell:NO];
         
         [self.collectionViewModel loadDatabaseModels];

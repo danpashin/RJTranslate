@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import Crashlytics
 
 @objc protocol DatabaseUpdaterDelegate {
     /// Метод вызывается, когда апдейтер закончил обрабатывать модели приложений.

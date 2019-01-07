@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "RJTEmptyViewType.h"
 @class RJTApplicationModel, RJTSearchController, RJTCollectionViewUpdateCell;
 @class RJTCollectionViewModel;
 
@@ -26,11 +27,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 @interface RJTAppCollectionView : UICollectionView
-
-/**
- Устанавливает контроллер поиска. Нужен для определения показа фонового вида.
- */
-@property (weak, nonatomic, nullable) RJTSearchController *searchController;
 
 /**
  Устанавливает кастомный делегат для объекта.
@@ -56,6 +52,10 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)showUpdateCell:(BOOL)shouldShow;
 
 - (void)updateLayoutToSize:(CGSize)size;
+
+- (void)updateEmptyViewToType:(RJTEmptyViewType)type;
+
+- (void)updateEmptyViewToType:(RJTEmptyViewType)type animated:(BOOL)animated;
 
 - (void)reloadData NS_UNAVAILABLE;
 
