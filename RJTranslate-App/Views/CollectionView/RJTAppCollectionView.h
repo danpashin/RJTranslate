@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "RJTEmptyViewType.h"
+#import "EmptyViewType.h"
+
 @class RJTApplicationModel, RJTSearchController, RJTCollectionViewUpdateCell;
 @class RJTCollectionViewModel;
 
@@ -53,9 +54,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)updateLayoutToSize:(CGSize)size;
 
-- (void)updateEmptyViewToType:(RJTEmptyViewType)type;
+- (void)updateEmptyViewToType:(EmptyViewType)type NS_SWIFT_NAME(updateEmptyView(to:));
 
-- (void)updateEmptyViewToType:(RJTEmptyViewType)type animated:(BOOL)animated;
+- (void)updateEmptyViewToType:(EmptyViewType)type animated:(BOOL)animated NS_SWIFT_NAME(updateEmptyView(to:animated:));
 
 - (void)reloadData NS_UNAVAILABLE;
 

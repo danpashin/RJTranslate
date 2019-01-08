@@ -20,7 +20,9 @@ NS_ASSUME_NONNULL_BEGIN
  @param entity Сущность базы данных для копирования.
  @return Возвращает экземпляр класса для дальнейшей работы.
  */
-+ (RJTApplicationModel *)copyFromEntity:(RJTApplicationEntity *)entity;
++ (instancetype)copyFromEntity:(RJTApplicationEntity *)entity;
+
++ (instancetype)copyFromEntity:(RJTApplicationEntity *)entity lightweight:(BOOL)lightweight;
 
 /**
  Выполняет парсинг модели из словаря.
@@ -28,7 +30,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param dictionary Словарь для парсинга.
  @return  Возвращает экземпляр класса для дальнейшей работы. Может вернуть nil, если парсинг прошел неуспешно.
  */
-+ (RJTApplicationModel * _Nullable)from:(NSDictionary *)dictionary;
++ (instancetype _Nullable)from:(NSDictionary *)dictionary;
 
 /**
  Отображаемое пользователю имя приложения.
@@ -71,9 +73,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (assign, nonatomic, readonly) BOOL forceLocalize;
 
 /**
- Флаг определяет, существует ли необходимый бинарник в файловой системе.
+ Флаг определяет, существует ли приложение в файловой системе.
  */
-@property (assign, nonatomic, readonly) BOOL executableExists;
+@property (assign, nonatomic, readonly) BOOL appInstalled;
 
 @end
 

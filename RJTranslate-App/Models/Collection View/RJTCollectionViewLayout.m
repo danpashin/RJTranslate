@@ -27,7 +27,7 @@
 
 - (CGSize)itemSizeFromCollectionFrame:(CGRect)collectionViewFrame
 {
-    return CGSizeMake(CGRectGetWidth(collectionViewFrame) - 24.0f, 72.0f);
+    return CGSizeMake(CGRectGetWidth(collectionViewFrame) - 24.0f, AppCell.defaultHeight);
 }
 
 - (void)finalizeCollectionViewUpdates

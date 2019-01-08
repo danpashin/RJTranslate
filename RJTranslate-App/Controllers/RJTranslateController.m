@@ -8,7 +8,6 @@
 
 #import "RJTranslateController.h"
 
-#import "RJTranslate-Swift.h"
 #import "RJTCollectionViewModel.h"
 #import "RJTCollectionViewDataSource.h"
 

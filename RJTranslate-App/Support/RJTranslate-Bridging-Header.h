@@ -4,7 +4,6 @@
 
 #import "RJTColors.h"
 #import "RJTApplicationModel.h"
-#import "RJTDatabase.h"
 #import "RJTDatabaseFacade.h"
 #import "RJTTickView.h"
 #import "RJTGradientView.h"
@@ -19,3 +18,5 @@
 #import "RJTHud.h"
 
 #import <sys/utsname.h>
+
+#import "RJTAppCollectionView.h"

@@ -119,7 +119,7 @@ import Foundation
                 continue
             }
             
-            guard let model = RJTApplicationModel.from(translationDict as! [AnyHashable : Any]) else {
+            guard let model = RJTApplicationModel.from(translationDict as! [String : AnyHashable]) else {
                 appRecordError("Can not parse model for file %@", fileName)
                 continue
             }

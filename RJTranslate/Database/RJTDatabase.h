@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <CoreData/NSPersistentContainer.h>
 
 
 NS_ASSUME_NONNULL_BEGIN
@@ -21,17 +20,23 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (instancetype _Nullable)defaultDatabase;
 
-
+/**
+ Флаг определяет, может ли в базу данных вестись запись.
+ */
 @property (assign, nonatomic, readonly) BOOL readOnly;
 
-- (void)saveContext:(NSManagedObjectContext *)context;
+/**
+ Выполняет сохранение главного контекста в постоянное хранилище.
+ */
+- (void)saveContext;
 
-- (void)saveBackgroundContext;
+/**
+ Выполняет указанный блок в фоновом режиме.
 
+ @param block Блок для выполнения.
+ */
 - (void)performBackgroundTask:(void (^)(NSManagedObjectContext * _Nonnull))block;
 
-@property (strong, readonly) NSManagedObjectContext *viewContext NS_UNAVAILABLE;
-- (NSManagedObjectContext *)newBackgroundContext NS_RETURNS_RETAINED NS_UNAVAILABLE;
 @end
 
 NS_ASSUME_NONNULL_END

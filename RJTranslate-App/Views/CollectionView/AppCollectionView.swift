@@ -57,8 +57,8 @@ import Foundation
         self.alwaysBounceVertical = true
         self.allowsMultipleSelection = true
         
-        self.delegateObject = RJTAppCollectionViewDelegate.init(collectionView: self)
-        self.emptyDataSourceObject = RJTCollectionViewEmptyDataSource.init(collectionView: self)
+        self.delegateObject = RJTAppCollectionViewDelegate(collectionView: self)
+        self.emptyDataSourceObject = RJTCollectionViewEmptyDataSource(collectionView: self)
     }
     
     /// Выполняет анимированную перезагрузку ячеек коллекции.

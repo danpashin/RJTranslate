@@ -98,7 +98,7 @@
 
 - (UIImage *)imageForEmptyDataSet:(UIScrollView *)scrollView
 {
-    if (self.type == RJTEmptyViewTypeNoData)
+    if (self.type == EmptyViewTypeNoData)
         return [UIImage imageNamed:@"translationIcon"];
     
     return nil;
@@ -108,9 +108,9 @@
 {
     NSString *titleString = @"";
     
-    if (self.type == RJTEmptyViewTypeNoSearchResults)
+    if (self.type == EmptyViewTypeNoSearchResults)
         titleString = NSLocalizedString(@"cannot_find_any_results", @"");
-    else if (self.type == RJTEmptyViewTypeNoData)
+    else if (self.type == EmptyViewTypeNoData)
         titleString = NSLocalizedString(@"no_translations_downloaded", @"");
     
     NSDictionary *attributes = @{NSFontAttributeName: [UIFont boldSystemFontOfSize:[UIFont labelFontSize] * 1.5f],
@@ -123,11 +123,11 @@
 {
     NSString *titleString = @"";
     
-    if (self.type == RJTEmptyViewTypeNoSearchResults)
+    if (self.type == EmptyViewTypeNoSearchResults)
         titleString = NSLocalizedString(@"change_search_request_and_try_again", @"");
-    else if (self.type == RJTEmptyViewTypeNoData)
+    else if (self.type == EmptyViewTypeNoData)
         titleString = NSLocalizedString(@"tap_button_to_download_available", @"");
-    else if (self.type == RJTEmptyViewTypeLoading)
+    else if (self.type == EmptyViewTypeLoading)
         titleString = NSLocalizedString(@"loading_data...", @"");
     
     NSDictionary *attributes = @{NSFontAttributeName: [UIFont systemFontOfSize:[UIFont labelFontSize]],
@@ -137,7 +137,7 @@
 
 - (NSAttributedString *)buttonTitleForEmptyDataSet:(UIScrollView *)scrollView forState:(UIControlState)state
 {
-    if (self.type != RJTEmptyViewTypeNoData)
+    if (self.type != EmptyViewTypeNoData)
         return nil;
     
     NSDictionary *attributes = @{NSFontAttributeName: [UIFont preferredFontForTextStyle:UIFontTextStyleTitle3],
@@ -158,7 +158,7 @@
 
 - (void)emptyDataSet:(UIScrollView *)scrollView didTapButton:(UIButton *)button
 {
-    if (self.type == RJTEmptyViewTypeNoData)
+    if (self.type == EmptyViewTypeNoData)
         [self.collectionView.customDelegate collectionViewRequestedDownloadingTranslations:self.collectionView];
 }
 

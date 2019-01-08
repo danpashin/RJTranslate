@@ -27,7 +27,6 @@
         _collectionView = collectionView;
         collectionView.delegate = self;
         collectionView.dataSource = self;
-        collectionView.prefetchDataSource = self;
         
         [collectionView registerClass:[RJTCollectionLabelHeader class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"header"];
         
@@ -183,12 +182,6 @@
         size.height -= 10.0f;
     
     return size;
-}
-
-
-- (void)collectionView:(UICollectionView *)collectionView prefetchItemsAtIndexPaths:(nonnull NSArray<NSIndexPath *> *)indexPaths
-{
-    NSLog(@"%@", indexPaths);
 }
 
 @end

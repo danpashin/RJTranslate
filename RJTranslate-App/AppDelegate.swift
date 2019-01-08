@@ -9,17 +9,6 @@
 import Foundation
 import Firebase
 
-@discardableResult
-func appRecordError(_ description: String, _ args: CVarArg...) -> NSError {
-    let errorDescription = String(format: description, args)
-    let error = NSError(domain: "ru.danpashin.rjtranslate.error", code: 0, userInfo: [NSLocalizedDescriptionKey:errorDescription])
-    
-    NSLog(description, args)
-    Crashlytics.sharedInstance().recordError(error)
-    
-    return error
-}
-
 @UIApplicationMain
 public class AppDelegate: UIResponder, UIApplicationDelegate, CrashlyticsDelegate {
     
@@ -46,18 +35,10 @@ public class AppDelegate: UIResponder, UIApplicationDelegate, CrashlyticsDelegat
     }
     
     public func enableTracker(_ enable: Bool) {
-        tracker = enable ? Tracker.init() : nil
+        tracker = enable ? Tracker() : nil
     
         AnalyticsConfiguration.shared().setAnalyticsCollectionEnabled(enable)
     }
-    
-//    - (void)flushCacheIfNeeded
-//    {
-//    [[RJTImageCache sharedCache] countSizeWithCompletion:^(NSUInteger cacheSize) {
-//    if (cacheSize > 20 * 1024 * 1024)
-//    [[RJTImageCache sharedCache] flush];
-//    }];
-//    }
     
     // MARK: -
     // MARK: CrashlyticsDelegate
@@ -68,26 +49,5 @@ public class AppDelegate: UIResponder, UIApplicationDelegate, CrashlyticsDelegat
         let sendReports: Bool = (sendReportsPrefs?.boolValue) ?? true
         
         completionHandler(sendReports)
-    }
-}
-
-@objc extension UIApplication {
-    @objc public var appDelegate: AppDelegate {
-        
-        var delegateObject: AppDelegate?  = nil
-        
-        if Thread.isMainThread {
-            delegateObject = self.delegate as? AppDelegate
-        } else {
-            DispatchQueue.main.sync {
-                delegateObject = self.delegate as? AppDelegate
-            }
-        }
-        
-        return delegateObject!
-    }
-    
-    @objc public class var applicationDelegate: AppDelegate {
-        return UIApplication.shared.appDelegate
     }
 }

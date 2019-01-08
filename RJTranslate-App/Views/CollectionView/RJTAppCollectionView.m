@@ -56,12 +56,12 @@
     [self.collectionViewLayout invalidateLayout];
 }
 
-- (void)updateEmptyViewToType:(RJTEmptyViewType)type
+- (void)updateEmptyViewToType:(EmptyViewType)type
 {
     [self updateEmptyViewToType:type animated:NO];
 }
 
-- (void)updateEmptyViewToType:(RJTEmptyViewType)type animated:(BOOL)animated
+- (void)updateEmptyViewToType:(EmptyViewType)type animated:(BOOL)animated
 {
     if (self.emptyDataSourceObject.type == type)
         return;

@@ -11,10 +11,10 @@ import Foundation
 @objc(RJTCollectionViewUpdateCell) public class CollectionUpdateCell: UICollectionViewCell {
     
     /// Основной лейбл хэдера.
-    @objc public private(set) var textLabel: UILabel = UILabel.init()
+    @objc public private(set) var textLabel: UILabel = UILabel()
     
     /// Дополнительный лейбл.
-    @objc public private(set) var detailedTextLabel: UILabel = UILabel.init()
+    @objc public private(set) var detailedTextLabel: UILabel = UILabel()
     
     override public func awakeFromNib() {
         super.awakeFromNib()
@@ -27,7 +27,7 @@ import Foundation
         detailedTextLabel.textColor = UIColor.white
         detailedTextLabel.font = UIFont.preferredFont(forTextStyle: .callout)
         
-        let stackView = UIStackView.init(arrangedSubviews: [textLabel, detailedTextLabel])
+        let stackView = UIStackView(arrangedSubviews: [textLabel, detailedTextLabel])
         stackView.axis = .vertical
         stackView.distribution = .fill
         stackView.alignment = .center

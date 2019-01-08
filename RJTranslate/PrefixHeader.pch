@@ -9,7 +9,7 @@
 #import "RJTColors.h"
 
 #ifdef BUILD_APP
-#import "RJTranslate-Swift.h"
+#import <RJTranslate-Swift.h>
 #endif
 
 @class NSError, NSString;

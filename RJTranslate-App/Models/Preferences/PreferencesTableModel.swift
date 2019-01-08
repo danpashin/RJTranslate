@@ -31,11 +31,11 @@ class PreferencesTableModel: NSObject, UITableViewDelegate, UITableViewDataSourc
     }
     
     private func createPreferences() {
-        let sendStatsPrefs = SwitchPreference.init(key: "send_statistics", defaultValue: NSNumber(value: true),
-                                                   title: NSLocalizedString("send_statistics", comment: ""))
+        let sendStatsPrefs = SwitchPreference(key: "send_statistics", defaultValue: NSNumber(value: true),
+                                              title: NSLocalizedString("send_statistics", comment: ""))
         
-        let sendCrashPrefs = SwitchPreference.init(key: "send_crashlogs", defaultValue: NSNumber(value: true),
-                                                   title: NSLocalizedString("send_statistics", comment: ""))
+        let sendCrashPrefs = SwitchPreference(key: "send_crashlogs", defaultValue: NSNumber(value: true),
+                                              title: NSLocalizedString("send_crashlogs", comment: ""))
         
         groups = [
             createGroup(title: "statistics", footer: "send_statistics_footer",
@@ -52,7 +52,7 @@ class PreferencesTableModel: NSObject, UITableViewDelegate, UITableViewDataSourc
         let localizedTitle = NSLocalizedString(title ?? "", comment: "")
         let localizedFooter = NSLocalizedString(footer ?? "", comment: "")
         
-        return PreferenceGroup.init(title: localizedTitle, footerText: localizedFooter, preferences: [preference])
+        return PreferenceGroup(title: localizedTitle, footerText: localizedFooter, preferences: [preference])
     }
     
     
@@ -73,7 +73,7 @@ class PreferencesTableModel: NSObject, UITableViewDelegate, UITableViewDataSourc
         
         var cell: UITableViewCell? = nil
         if preference.category == .Text {
-            cell = UITableViewCell.init(style: .value1, reuseIdentifier: "staticTextCell")
+            cell = UITableViewCell(style: .value1, reuseIdentifier: "staticTextCell")
         } else if preference.category == .Switch {
             cell = SwitchCell.init(model: preference as! SwitchPreference, reuseIdentifier: "switchCell")
         }

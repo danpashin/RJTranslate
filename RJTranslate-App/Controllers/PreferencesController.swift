@@ -24,7 +24,7 @@ import Foundation
     override func loadView() {
         super.loadView()
         
-        model = PreferencesTableModel.init(tableView: self.tableView, delegate: self)
+        model = PreferencesTableModel(tableView: self.tableView, delegate: self)
     }
     
     override func viewDidLoad() {

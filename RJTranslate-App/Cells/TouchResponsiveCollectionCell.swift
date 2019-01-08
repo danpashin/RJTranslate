@@ -36,7 +36,6 @@ public class TouchResponsiveCollectionCell: UICollectionViewCell {
     private func updateState(_ state: AppCellState, animated: Bool = true) {
         if self.state != state {
             self.state = state
-            print("Updating cell state to type \(state.asString)")
             
             let scaleTransformCoefficient = CGFloat((state == .pressed) ? 0.95 : 1.0)
             

@@ -45,9 +45,8 @@
         
         NSMutableArray <RJTApplicationModel *> *allModels = [NSMutableArray array];
         for (RJTApplicationEntity *entity in result) {
-            RJTApplicationModel *model = [RJTApplicationModel copyFromEntity:entity];
-            if (model)
-                [allModels addObject:model];
+            RJTApplicationModel *model = [RJTApplicationModel copyFromEntity:entity lightweight:YES];
+            [allModels addObject:model];
         }
         
         completion(allModels);
@@ -61,9 +60,8 @@
     [self fetchAppEntitiesWithPredicate:predicate completion:^(NSArray<RJTApplicationEntity *> * _Nonnull appEntities) {
         NSMutableArray <RJTApplicationModel *> *models = [NSMutableArray array];
         for (RJTApplicationEntity *entity in appEntities) {
-            RJTApplicationModel *model = [RJTApplicationModel copyFromEntity:entity];
-            if (model)
-                [models addObject:model];
+            RJTApplicationModel *model = [RJTApplicationModel copyFromEntity:entity lightweight:YES];
+            [models addObject:model];
         }
         
         completion(models);
@@ -127,7 +125,7 @@
         [entity copyPropertiesFrom:appModel];
         
         if (saveContext)
-            [self.database saveContext:entity.managedObjectContext];
+            [self.database saveContext];
     }];
 }
 
@@ -198,7 +196,7 @@
             }
         }
         
-        [self.database saveBackgroundContext];
+        [self.database saveContext];
         
         if (completion)
             completion();

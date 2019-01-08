@@ -10,6 +10,9 @@ import Foundation
 import UIKit
 
 @objc public class AppCell: TouchResponsiveCollectionCell {
+    
+    @objc public static let defaultHeight: CGFloat = 72.0
+    
     @objc public var model: RJTApplicationModel? {
         didSet {
             updateForNewModel()

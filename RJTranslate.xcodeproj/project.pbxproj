@@ -78,6 +78,9 @@
 		A5E80C8921E3317700150B5D /* RJTDatabaseFacade.m in Sources */ = {isa = PBXBuildFile; fileRef = A5E80C8621E3300500150B5D /* RJTDatabaseFacade.m */; };
 		A5E80C8B21E360ED00150B5D /* RJTranslate.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A535340F217A584500E08881 /* RJTranslate.xcdatamodeld */; };
 		A5E80C8D21E365C300150B5D /* TouchResponsiveCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E80C8C21E365C300150B5D /* TouchResponsiveCollectionCell.swift */; };
+		A5E80C8F21E387E100150B5D /* ApplicationConviniences.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E80C8E21E387E100150B5D /* ApplicationConviniences.swift */; };
+		A5E80C9D21E3BA8200150B5D /* TranslationsFetchSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E80C9C21E3BA8200150B5D /* TranslationsFetchSettings.swift */; };
+		A5E80C9F21E3C5E300150B5D /* TranslationsFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E80C9E21E3C5E300150B5D /* TranslationsFetcher.swift */; };
 		A5F40123218F7DBE00046C58 /* RJTApplicationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A54ADB1D217BB0CF00D32EB7 /* RJTApplicationModel.m */; };
 		A5F40124218F7DC000046C58 /* RJTAppIcon.m in Sources */ = {isa = PBXBuildFile; fileRef = A5BFB4A32189B267001A9D82 /* RJTAppIcon.m */; };
 		A5F40125218F7DC200046C58 /* RJTImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = A5DEBB28218EF5B900858616 /* RJTImageCache.m */; };
@@ -160,6 +163,7 @@
 		A5A0954C217C73E8009743DF /* RJTCollectionViewLayout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RJTCollectionViewLayout.h; sourceTree = "<group>"; };
 		A5A0954D217C73E8009743DF /* RJTCollectionViewLayout.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RJTCollectionViewLayout.m; sourceTree = "<group>"; };
 		A5ADC02F218508A400C33863 /* Cydia_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Cydia_icon.png; sourceTree = "<group>"; };
+		A5B74C1B21E493CE0058C71A /* EmptyViewType.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EmptyViewType.h; sourceTree = "<group>"; };
 		A5BC885421B2ACCC00D5C5CF /* SearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchController.swift; sourceTree = "<group>"; };
 		A5BFB49D2189B1EB001A9D82 /* RJTAppIconEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RJTAppIconEntity.m; sourceTree = "<group>"; };
 		A5BFB49E2189B1EB001A9D82 /* RJTAppIconEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RJTAppIconEntity.h; sourceTree = "<group>"; };
@@ -181,8 +185,6 @@
 		A5DB9ABB217B74DB0061A810 /* RJTGradientView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RJTGradientView.m; sourceTree = "<group>"; };
 		A5DEBB27218EF5B800858616 /* RJTImageCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RJTImageCache.h; sourceTree = "<group>"; };
 		A5DEBB28218EF5B900858616 /* RJTImageCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RJTImageCache.m; sourceTree = "<group>"; };
-		A5DEBB2B218EFC5C00858616 /* RJTManagedObjectContext.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RJTManagedObjectContext.h; sourceTree = "<group>"; };
-		A5DEBB2C218EFC5C00858616 /* RJTManagedObjectContext.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RJTManagedObjectContext.m; sourceTree = "<group>"; };
 		A5E0BBAE218646A10094ECBC /* RJTHud.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RJTHud.h; sourceTree = "<group>"; };
 		A5E0BBAF218646A10094ECBC /* RJTHudProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RJTHudProgressView.h; sourceTree = "<group>"; };
 		A5E0BBB0218646A10094ECBC /* RJTHudProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RJTHudProgressView.m; sourceTree = "<group>"; };
@@ -191,8 +193,10 @@
 		A5E6276621961BEF005BAA69 /* RJTCollectionViewEmptyDataSource.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RJTCollectionViewEmptyDataSource.m; sourceTree = "<group>"; };
 		A5E80C8521E3300500150B5D /* RJTDatabaseFacade.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RJTDatabaseFacade.h; sourceTree = "<group>"; };
 		A5E80C8621E3300500150B5D /* RJTDatabaseFacade.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RJTDatabaseFacade.m; sourceTree = "<group>"; };
-		A5E80C8A21E33D2000150B5D /* RJTEmptyViewType.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RJTEmptyViewType.h; sourceTree = "<group>"; };
 		A5E80C8C21E365C300150B5D /* TouchResponsiveCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouchResponsiveCollectionCell.swift; sourceTree = "<group>"; };
+		A5E80C8E21E387E100150B5D /* ApplicationConviniences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationConviniences.swift; sourceTree = "<group>"; };
+		A5E80C9C21E3BA8200150B5D /* TranslationsFetchSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslationsFetchSettings.swift; sourceTree = "<group>"; };
+		A5E80C9E21E3C5E300150B5D /* TranslationsFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslationsFetcher.swift; sourceTree = "<group>"; };
 		A61C30E9AF7AB8D12AD7B49C /* Pods-RJTranslate-App.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RJTranslate-App.release.xcconfig"; path = "Pods/Target Support Files/Pods-RJTranslate-App/Pods-RJTranslate-App.release.xcconfig"; sourceTree = "<group>"; };
 		CC0CE3AB29A7AC8854CC9D3A /* Pods_RJTranslate_App.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RJTranslate_App.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F1725EBC7642136E98BE5351 /* Pods-RJTranslate.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RJTranslate.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RJTranslate/Pods-RJTranslate.debug.xcconfig"; sourceTree = "<group>"; };
@@ -245,6 +249,7 @@
 			isa = PBXGroup;
 			children = (
 				A54EBFAB21B2725C0086B7DD /* AppDelegate.swift */,
+				A5E80C8E21E387E100150B5D /* ApplicationConviniences.swift */,
 				A5DB9AC0217B7FF50061A810 /* Controllers */,
 				A5DB9ABF217B75DF0061A810 /* Views */,
 				A54ADB20217BB6EB00D32EB7 /* Cells */,
@@ -356,8 +361,6 @@
 				A535341B217A5A2800E08881 /* RJTDatabase.m */,
 				A5E80C8521E3300500150B5D /* RJTDatabaseFacade.h */,
 				A5E80C8621E3300500150B5D /* RJTDatabaseFacade.m */,
-				A5DEBB2B218EFC5C00858616 /* RJTManagedObjectContext.h */,
-				A5DEBB2C218EFC5C00858616 /* RJTManagedObjectContext.m */,
 			);
 			path = Database;
 			sourceTree = "<group>";
@@ -368,6 +371,7 @@
 				A5DAAE1A21C7973B0012D559 /* DatabaseUpdater.swift */,
 				A552F90721B03279002771E9 /* TranslationsUpdate.swift */,
 				A53CC72C21E0BAAF00848785 /* UpdateDownloader.swift */,
+				A5E80C9C21E3BA8200150B5D /* TranslationsFetchSettings.swift */,
 			);
 			path = Database;
 			sourceTree = "<group>";
@@ -399,6 +403,7 @@
 		A5ADC02E2184F32100C33863 /* CollectionView */ = {
 			isa = PBXGroup;
 			children = (
+				A5B74C1B21E493CE0058C71A /* EmptyViewType.h */,
 				A5A09546217C4696009743DF /* RJTAppCollectionView.h */,
 				A5A09547217C4696009743DF /* RJTAppCollectionView.m */,
 				A58659972192F70300A76A6C /* RJTCollectionLabelHeader.h */,
@@ -472,7 +477,6 @@
 		A5D815592195984100EB3633 /* Collection View */ = {
 			isa = PBXGroup;
 			children = (
-				A5E80C8A21E33D2000150B5D /* RJTEmptyViewType.h */,
 				A5A0954C217C73E8009743DF /* RJTCollectionViewLayout.h */,
 				A5A0954D217C73E8009743DF /* RJTCollectionViewLayout.m */,
 				A5C7DA8221935D310086BE40 /* RJTAppCollectionViewDelegate.h */,
@@ -483,6 +487,7 @@
 				A5E6276621961BEF005BAA69 /* RJTCollectionViewEmptyDataSource.m */,
 				A526FD9921989A9900E1A434 /* RJTCollectionViewModel.h */,
 				A526FD9A21989A9900E1A434 /* RJTCollectionViewModel.m */,
+				A5E80C9E21E3C5E300150B5D /* TranslationsFetcher.swift */,
 			);
 			path = "Collection View";
 			sourceTree = "<group>";
@@ -759,10 +764,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				A53CC73521E0C38A00848785 /* HTTPTask.swift in Sources */,
+				A5E80C9F21E3C5E300150B5D /* TranslationsFetcher.swift in Sources */,
 				A5E80C8B21E360ED00150B5D /* RJTranslate.xcdatamodeld in Sources */,
 				A5527FBB218F4C4000095251 /* RJTApplicationModel.m in Sources */,
 				A5E80C8D21E365C300150B5D /* TouchResponsiveCollectionCell.swift in Sources */,
 				A511A67C21B19FFC003D4244 /* PreferencesTableModel.swift in Sources */,
+				A5E80C8F21E387E100150B5D /* ApplicationConviniences.swift in Sources */,
 				A522F1D0217AFC300085A5E4 /* RJTranslateController.m in Sources */,
 				A53CC72D21E0BAB000848785 /* UpdateDownloader.swift in Sources */,
 				A54EBFCE21B2997C0086B7DD /* AppCell.swift in Sources */,
@@ -796,6 +803,7 @@
 				A57CF73E217B50B9004A71F8 /* RJTNavigationBar.m in Sources */,
 				A57CF73B217AFFD0004A71F8 /* RJTApplicationEntity.m in Sources */,
 				A583C3B82193E1BE0072903B /* RJTCollectionViewDataSource.m in Sources */,
+				A5E80C9D21E3BA8200150B5D /* TranslationsFetchSettings.swift in Sources */,
 				A5DAAE1B21C7973B0012D559 /* DatabaseUpdater.swift in Sources */,
 				A511A67821B185E7003D4244 /* PreferenceGroup.swift in Sources */,
 				A5196B7A21D0BB3200201DEF /* CollectionHeaderLabel.swift in Sources */,
@@ -881,7 +889,7 @@
 					"BUILD_APP=1",
 				);
 				INFOPLIST_FILE = "RJTranslate-App/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -910,7 +918,7 @@
 					"BUILD_APP=1",
 				);
 				INFOPLIST_FILE = "RJTranslate-App/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

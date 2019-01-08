@@ -21,6 +21,8 @@
 
 @property (assign, nonatomic, readwrite) BOOL forceLocalize;
 
+@property (assign, nonatomic, readwrite) BOOL appInstalled;
+
 @end
 
 @implementation RJTApplicationModel
@@ -37,13 +39,21 @@ static NSString *const kRJTForceLocalizeKey = @"Force";
 
 + (instancetype)copyFromEntity:(RJTApplicationEntity *)entity
 {
+    return [self copyFromEntity:entity lightweight:NO];
+}
+
++ (instancetype)copyFromEntity:(RJTApplicationEntity *)entity lightweight:(BOOL)lightweight
+{
     RJTApplicationModel *model = [RJTApplicationModel new];
     model.displayedName = [entity.displayedName copy];
     model.bundleIdentifier = [entity.bundleIdentifier copy];
     model.executableName = [entity.executableName copy];
     model.executablePath = [entity.executablePath copy];
     
-    model.translation = [entity.translation copy];
+    if (!lightweight) {
+        model.translation = [entity.translation copy];
+    }
+    
     model.enableTranslation = entity.enableTranslation;
     model.forceLocalize = entity.forceLocalize;
     
@@ -90,13 +100,15 @@ static NSString *const kRJTForceLocalizeKey = @"Force";
     return YES;
 }
 
-
-- (BOOL)executableExists
+- (BOOL)appInstalled
 {
-    if (self.executablePath.length == 0)
-        return NO;
+    if (self.executablePath.length > 0) {
+        return (access(self.executablePath.UTF8String, F_OK) == 0);
+    } else if (self.bundleIdentifier.length > 0) {
+        return [NSBundle bundleWithIdentifier:self.bundleIdentifier] ? YES : NO;
+    }
     
-    return (access(self.executablePath.UTF8String, F_OK) == 0);
+    return NO;
 }
 
 @end

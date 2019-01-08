@@ -21,7 +21,7 @@ import Foundation
         super.viewDidLoad()
         self.title = NSLocalizedString("available_translations", comment: "")
         
-        self.searchController = SearchController.init(delegate: self)
+        self.searchController = SearchController(delegate: self)
         self.collectionView.searchController = self.searchController
     }
 }

@@ -23,11 +23,9 @@
 @property (strong, nonatomic) NSPersistentStoreCoordinator *psCoordinator;
 
 @property (strong, nonatomic) NSManagedObjectContext *backgroundContext;
-//@property (strong, nonatomic) NSManagedObjectContext *mainContext;
 @end
 
 @implementation RJTDatabase
-@dynamic viewContext;
 
 + (NSURL *)defaultDirectoryURL
 {
@@ -126,7 +124,7 @@
     }] startImmediately:self.wasLoadedSuccessfully];
 }
 
-- (void)saveContext:(NSManagedObjectContext *)context
+- (void)saveContext
 {
     dispatch_async(self.serialBackgroundQueue, ^{
         if (self.readOnly) {
@@ -139,11 +137,6 @@
             RJTErrorLog(error, @"Error while saving context: %@, %@", error, error.userInfo);
         }
     });
-}
-
-- (void)saveBackgroundContext
-{
-    [self saveContext:self.backgroundContext];
 }
 
 @end
