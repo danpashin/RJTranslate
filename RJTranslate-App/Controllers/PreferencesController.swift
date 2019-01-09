@@ -17,6 +17,7 @@ import Foundation
         super.init(style: .grouped)
     }
     
+    @available(*, unavailable)
     required init?(coder aDecoder: NSCoder) {
         fatalError("Use init(style:) instead")
     }

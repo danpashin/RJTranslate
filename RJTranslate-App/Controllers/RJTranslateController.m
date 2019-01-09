@@ -14,13 +14,13 @@
 #import "RJTAppCollectionView.h"
 #import "RJTHud.h"
 
-@interface RJTranslateController () <RJTSearchControllerDelegate, RJTAppCollectionViewDelegateProtocol, DatabaseUpdaterDelegate>
+@interface RJTranslateController () <SearchControllerDelegate, RJTAppCollectionViewDelegateProtocol, DatabaseUpdaterDelegate>
 
 @property (strong, nonatomic) DatabaseUpdater *databaseUpdater;
 @property (strong, nonatomic) RJTCollectionViewModel *collectionViewModel;
 
 @property (weak, nonatomic) RJTHud *hud;
-@property (strong, nonatomic) RJTSearchController *searchController;
+@property (strong, nonatomic) id <SearchControllerRequired> searchController;
 @property (weak, nonatomic) IBOutlet RJTAppCollectionView *collectionView;
 
 @end
@@ -32,12 +32,15 @@
     [super viewDidLoad];
     self.title = NSLocalizedString(@"available_translations", @"");
     
-    self.searchController = [[RJTSearchController alloc] initWithDelegate:self];
     
     if (@available(iOS 11.0, *)) {
-        self.navigationItem.searchController = self.searchController;
+        self.searchController = [[ModernSearchController alloc] initWithDelegate:self];
+        self.navigationItem.searchController = (ModernSearchController *)self.searchController;
     } else {
-        self.navigationItem.titleView = self.searchController.searchBar;
+        ObsoleteSearchController *obsoleteSearch = [[ObsoleteSearchController alloc] initWithDelegate:self];
+        self.searchController = obsoleteSearch;
+        
+        self.navigationItem.titleView = [obsoleteSearch createSearchBarForView:self.navigationController.navigationBar];
     }
 }
 
@@ -95,18 +98,18 @@
 #pragma mark UISearchResultsUpdating, UISearchControllerDelegate 
 #pragma mark -
 
-- (void)willPresentSearchController:(RJTSearchController *)searchController
+- (void)willPresentSearchController:(id <SearchControllerRequired>)searchController
 {
     [self.collectionViewModel beginSearch];
 }
 
-- (void)searchController:(RJTSearchController *)searchController didUpdateSearchText:(NSString *)searchText
+- (void)searchController:(id <SearchControllerRequired>)searchController didUpdateSearchText:(NSString *)searchText
 {
     [self.collectionView showUpdateCell:NO];
     [self.collectionViewModel performSearchWithText:searchText];
 }
 
-- (void)willDismissSearchController:(RJTSearchController *)searchController
+- (void)willDismissSearchController:(id <SearchControllerRequired>)searchController
 {
     [self.collectionViewModel endSearch];
 }
@@ -164,7 +167,7 @@
 
 - (void)databaseUpdater:(DatabaseUpdater *)databaseUpdater updateProgress:(double)progress
 {
-    [self.hud setProgress:progress animated:YES];
+    [self.hud setProgress:(CGFloat)progress animated:YES];
 }
 
 @end

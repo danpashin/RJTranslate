@@ -49,14 +49,19 @@
 		A57C40AC218A061300885834 /* RJTOperationQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = A57C40A9218A029200885834 /* RJTOperationQueue.m */; };
 		A57CF73A217AFFC8004A71F8 /* RJTDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = A535341B217A5A2800E08881 /* RJTDatabase.m */; };
 		A57CF73B217AFFD0004A71F8 /* RJTApplicationEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = A5353414217A595200E08881 /* RJTApplicationEntity.m */; };
-		A57CF73E217B50B9004A71F8 /* RJTNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = A57CF73D217B50B9004A71F8 /* RJTNavigationBar.m */; };
 		A583C3B82193E1BE0072903B /* RJTCollectionViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = A583C3B72193E1BE0072903B /* RJTCollectionViewDataSource.m */; };
 		A58659952192CCE600A76A6C /* RJTSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = A58659942192CCE600A76A6C /* RJTSupport.m */; };
 		A58659962192CCE600A76A6C /* RJTSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = A58659942192CCE600A76A6C /* RJTSupport.m */; };
 		A58659992192F70300A76A6C /* RJTCollectionLabelHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = A58659982192F70300A76A6C /* RJTCollectionLabelHeader.m */; };
 		A5A0954E217C73E8009743DF /* RJTCollectionViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = A5A0954D217C73E8009743DF /* RJTCollectionViewLayout.m */; };
 		A5ADC030218508A400C33863 /* Cydia_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = A5ADC02F218508A400C33863 /* Cydia_icon.png */; };
-		A5BC885521B2ACCC00D5C5CF /* SearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BC885421B2ACCC00D5C5CF /* SearchController.swift */; };
+		A5B74C2021E4A9600058C71A /* RJTDatabaseFacade.h in Headers */ = {isa = PBXBuildFile; fileRef = A5E80C8521E3300500150B5D /* RJTDatabaseFacade.h */; };
+		A5B74C2121E4A9600058C71A /* RJTDatabaseFacade.m in Sources */ = {isa = PBXBuildFile; fileRef = A5E80C8621E3300500150B5D /* RJTDatabaseFacade.m */; };
+		A5B74C2521E4CD6E0058C71A /* ObsoleteSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B74C2421E4CD6E0058C71A /* ObsoleteSearchController.swift */; };
+		A5B74C2721E4CDA10058C71A /* SearchConveniences.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B74C2621E4CDA10058C71A /* SearchConveniences.swift */; };
+		A5B74C2A21E4D0390058C71A /* ButtonedSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B74C2921E4D0390058C71A /* ButtonedSearchBar.swift */; };
+		A5B74C2C21E4D14A0058C71A /* NavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B74C2B21E4D14A0058C71A /* NavigationBar.swift */; };
+		A5BC885521B2ACCC00D5C5CF /* ModernSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BC885421B2ACCC00D5C5CF /* ModernSearchController.swift */; };
 		A5BFB49F2189B1EB001A9D82 /* RJTAppIconEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = A5BFB49D2189B1EB001A9D82 /* RJTAppIconEntity.m */; };
 		A5BFB4A02189B1EB001A9D82 /* RJTAppIconEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = A5BFB49D2189B1EB001A9D82 /* RJTAppIconEntity.m */; };
 		A5BFB4A12189B1EB001A9D82 /* RJTAppIconEntity.h in Headers */ = {isa = PBXBuildFile; fileRef = A5BFB49E2189B1EB001A9D82 /* RJTAppIconEntity.h */; };
@@ -73,14 +78,10 @@
 		A5E0BBB3218646A10094ECBC /* RJTHud.m in Sources */ = {isa = PBXBuildFile; fileRef = A5E0BBB1218646A10094ECBC /* RJTHud.m */; };
 		A5E62763219618D1005BAA69 /* RJTGradientView.m in Sources */ = {isa = PBXBuildFile; fileRef = A5DB9ABB217B74DB0061A810 /* RJTGradientView.m */; };
 		A5E6276721961BEF005BAA69 /* RJTCollectionViewEmptyDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = A5E6276621961BEF005BAA69 /* RJTCollectionViewEmptyDataSource.m */; };
-		A5E80C8721E3300500150B5D /* RJTDatabaseFacade.h in Headers */ = {isa = PBXBuildFile; fileRef = A5E80C8521E3300500150B5D /* RJTDatabaseFacade.h */; };
-		A5E80C8821E3300500150B5D /* RJTDatabaseFacade.m in Sources */ = {isa = PBXBuildFile; fileRef = A5E80C8621E3300500150B5D /* RJTDatabaseFacade.m */; };
 		A5E80C8921E3317700150B5D /* RJTDatabaseFacade.m in Sources */ = {isa = PBXBuildFile; fileRef = A5E80C8621E3300500150B5D /* RJTDatabaseFacade.m */; };
 		A5E80C8B21E360ED00150B5D /* RJTranslate.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A535340F217A584500E08881 /* RJTranslate.xcdatamodeld */; };
 		A5E80C8D21E365C300150B5D /* TouchResponsiveCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E80C8C21E365C300150B5D /* TouchResponsiveCollectionCell.swift */; };
 		A5E80C8F21E387E100150B5D /* ApplicationConviniences.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E80C8E21E387E100150B5D /* ApplicationConviniences.swift */; };
-		A5E80C9D21E3BA8200150B5D /* TranslationsFetchSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E80C9C21E3BA8200150B5D /* TranslationsFetchSettings.swift */; };
-		A5E80C9F21E3C5E300150B5D /* TranslationsFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E80C9E21E3C5E300150B5D /* TranslationsFetcher.swift */; };
 		A5F40123218F7DBE00046C58 /* RJTApplicationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A54ADB1D217BB0CF00D32EB7 /* RJTApplicationModel.m */; };
 		A5F40124218F7DC000046C58 /* RJTAppIcon.m in Sources */ = {isa = PBXBuildFile; fileRef = A5BFB4A32189B267001A9D82 /* RJTAppIcon.m */; };
 		A5F40125218F7DC200046C58 /* RJTImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = A5DEBB28218EF5B900858616 /* RJTImageCache.m */; };
@@ -150,8 +151,6 @@
 		A5763DA021823B4300C7F82A /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		A57C40A8218A029200885834 /* RJTOperationQueue.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RJTOperationQueue.h; sourceTree = "<group>"; };
 		A57C40A9218A029200885834 /* RJTOperationQueue.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RJTOperationQueue.m; sourceTree = "<group>"; };
-		A57CF73C217B50B9004A71F8 /* RJTNavigationBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RJTNavigationBar.h; sourceTree = "<group>"; };
-		A57CF73D217B50B9004A71F8 /* RJTNavigationBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RJTNavigationBar.m; sourceTree = "<group>"; };
 		A583C3B62193E1BE0072903B /* RJTCollectionViewDataSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RJTCollectionViewDataSource.h; sourceTree = "<group>"; };
 		A583C3B72193E1BE0072903B /* RJTCollectionViewDataSource.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RJTCollectionViewDataSource.m; sourceTree = "<group>"; };
 		A58659942192CCE600A76A6C /* RJTSupport.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RJTSupport.m; sourceTree = "<group>"; };
@@ -164,7 +163,11 @@
 		A5A0954D217C73E8009743DF /* RJTCollectionViewLayout.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RJTCollectionViewLayout.m; sourceTree = "<group>"; };
 		A5ADC02F218508A400C33863 /* Cydia_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Cydia_icon.png; sourceTree = "<group>"; };
 		A5B74C1B21E493CE0058C71A /* EmptyViewType.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EmptyViewType.h; sourceTree = "<group>"; };
-		A5BC885421B2ACCC00D5C5CF /* SearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchController.swift; sourceTree = "<group>"; };
+		A5B74C2421E4CD6E0058C71A /* ObsoleteSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObsoleteSearchController.swift; sourceTree = "<group>"; };
+		A5B74C2621E4CDA10058C71A /* SearchConveniences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchConveniences.swift; sourceTree = "<group>"; };
+		A5B74C2921E4D0390058C71A /* ButtonedSearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonedSearchBar.swift; sourceTree = "<group>"; };
+		A5B74C2B21E4D14A0058C71A /* NavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBar.swift; sourceTree = "<group>"; };
+		A5BC885421B2ACCC00D5C5CF /* ModernSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModernSearchController.swift; sourceTree = "<group>"; };
 		A5BFB49D2189B1EB001A9D82 /* RJTAppIconEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RJTAppIconEntity.m; sourceTree = "<group>"; };
 		A5BFB49E2189B1EB001A9D82 /* RJTAppIconEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RJTAppIconEntity.h; sourceTree = "<group>"; };
 		A5BFB4A22189B267001A9D82 /* RJTAppIcon.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RJTAppIcon.h; sourceTree = "<group>"; };
@@ -414,6 +417,16 @@
 			path = CollectionView;
 			sourceTree = "<group>";
 		};
+		A5B74C2821E4CDA80058C71A /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				A5B74C2621E4CDA10058C71A /* SearchConveniences.swift */,
+				A5BC885421B2ACCC00D5C5CF /* ModernSearchController.swift */,
+				A5B74C2421E4CD6E0058C71A /* ObsoleteSearchController.swift */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
 		A5C107D3217E56F900989BDB /* Package */ = {
 			isa = PBXGroup;
 			children = (
@@ -496,8 +509,7 @@
 			isa = PBXGroup;
 			children = (
 				A5ADC02E2184F32100C33863 /* CollectionView */,
-				A57CF73C217B50B9004A71F8 /* RJTNavigationBar.h */,
-				A57CF73D217B50B9004A71F8 /* RJTNavigationBar.m */,
+				A5B74C2B21E4D14A0058C71A /* NavigationBar.swift */,
 				A5DB9ABA217B74DB0061A810 /* RJTGradientView.h */,
 				A5DB9ABB217B74DB0061A810 /* RJTGradientView.m */,
 				A56FB1C22180B17B002F4175 /* RJTTickView.h */,
@@ -506,6 +518,7 @@
 				A5E0BBB1218646A10094ECBC /* RJTHud.m */,
 				A5E0BBAF218646A10094ECBC /* RJTHudProgressView.h */,
 				A5E0BBB0218646A10094ECBC /* RJTHudProgressView.m */,
+				A5B74C2921E4D0390058C71A /* ButtonedSearchBar.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -516,8 +529,8 @@
 				A522F1CE217AFC300085A5E4 /* RJTranslateController.h */,
 				A522F1CF217AFC300085A5E4 /* RJTranslateController.m */,
 				A54A335D21B3CBA40064D648 /* TranslateMainController.swift */,
-				A5BC885421B2ACCC00D5C5CF /* SearchController.swift */,
 				A5C1FB3A21B258A1007BB861 /* PreferencesController.swift */,
+				A5B74C2821E4CDA80058C71A /* Search */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -532,7 +545,7 @@
 				A5763DA121823B4300C7F82A /* PrefixHeader.pch in Headers */,
 				A5BFB4A12189B1EB001A9D82 /* RJTAppIconEntity.h in Headers */,
 				A535341C217A5A2800E08881 /* RJTDatabase.h in Headers */,
-				A5E80C8721E3300500150B5D /* RJTDatabaseFacade.h in Headers */,
+				A5B74C2021E4A9600058C71A /* RJTDatabaseFacade.h in Headers */,
 				A5353417217A595200E08881 /* RJTApplicationEntity.h in Headers */,
 				A57C40AA218A029200885834 /* RJTOperationQueue.h in Headers */,
 				A5BFB4A42189B267001A9D82 /* RJTAppIcon.h in Headers */,
@@ -764,7 +777,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				A53CC73521E0C38A00848785 /* HTTPTask.swift in Sources */,
-				A5E80C9F21E3C5E300150B5D /* TranslationsFetcher.swift in Sources */,
 				A5E80C8B21E360ED00150B5D /* RJTranslate.xcdatamodeld in Sources */,
 				A5527FBB218F4C4000095251 /* RJTApplicationModel.m in Sources */,
 				A5E80C8D21E365C300150B5D /* TouchResponsiveCollectionCell.swift in Sources */,
@@ -780,7 +792,7 @@
 				A5C7DA8421935D310086BE40 /* RJTAppCollectionViewDelegate.m in Sources */,
 				A526FD982198969F00E1A434 /* UIColor+RJT_Private.m in Sources */,
 				A5C4F89521E28D3F000FAC48 /* APIResponses.swift in Sources */,
-				A5BC885521B2ACCC00D5C5CF /* SearchController.swift in Sources */,
+				A5BC885521B2ACCC00D5C5CF /* ModernSearchController.swift in Sources */,
 				A5C1FB3B21B258A1007BB861 /* PreferencesController.swift in Sources */,
 				A54EBFCC21B293880086B7DD /* Tracker.swift in Sources */,
 				A5515BD921AE9D2F00C7BFC4 /* SwitchCell.swift in Sources */,
@@ -796,15 +808,17 @@
 				A57C40AC218A061300885834 /* RJTOperationQueue.m in Sources */,
 				A5E62763219618D1005BAA69 /* RJTGradientView.m in Sources */,
 				A552F90821B03279002771E9 /* TranslationsUpdate.swift in Sources */,
+				A5B74C2721E4CDA10058C71A /* SearchConveniences.swift in Sources */,
 				A56FB1C12180ADA0002F4175 /* RJTColors.m in Sources */,
 				A511A67A21B18ABA003D4244 /* Preference.swift in Sources */,
 				A5BFB4A02189B1EB001A9D82 /* RJTAppIconEntity.m in Sources */,
 				A53CC73821E113CD00848785 /* RJTAppCollectionView.m in Sources */,
-				A57CF73E217B50B9004A71F8 /* RJTNavigationBar.m in Sources */,
 				A57CF73B217AFFD0004A71F8 /* RJTApplicationEntity.m in Sources */,
 				A583C3B82193E1BE0072903B /* RJTCollectionViewDataSource.m in Sources */,
-				A5E80C9D21E3BA8200150B5D /* TranslationsFetchSettings.swift in Sources */,
+				A5B74C2A21E4D0390058C71A /* ButtonedSearchBar.swift in Sources */,
 				A5DAAE1B21C7973B0012D559 /* DatabaseUpdater.swift in Sources */,
+				A5B74C2C21E4D14A0058C71A /* NavigationBar.swift in Sources */,
+				A5B74C2521E4CD6E0058C71A /* ObsoleteSearchController.swift in Sources */,
 				A511A67821B185E7003D4244 /* PreferenceGroup.swift in Sources */,
 				A5196B7A21D0BB3200201DEF /* CollectionHeaderLabel.swift in Sources */,
 				A5E0BBB2218646A10094ECBC /* RJTHudProgressView.m in Sources */,
@@ -820,7 +834,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A5BFB49F2189B1EB001A9D82 /* RJTAppIconEntity.m in Sources */,
-				A5E80C8821E3300500150B5D /* RJTDatabaseFacade.m in Sources */,
+				A5B74C2121E4A9600058C71A /* RJTDatabaseFacade.m in Sources */,
 				A5353411217A584500E08881 /* RJTranslate.xcdatamodeld in Sources */,
 				A535341D217A5A2800E08881 /* RJTDatabase.m in Sources */,
 				A57C40AB218A029200885834 /* RJTOperationQueue.m in Sources */,
@@ -976,7 +990,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPYING_PRESERVES_HFS_DATA = YES;
-				CURRENT_PROJECT_VERSION = 0.10;
+				CURRENT_PROJECT_VERSION = 0.11;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = VW97WHTS78;
@@ -1078,7 +1092,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPYING_PRESERVES_HFS_DATA = YES;
-				CURRENT_PROJECT_VERSION = 0.10;
+				CURRENT_PROJECT_VERSION = 0.11;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = VW97WHTS78;

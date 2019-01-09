@@ -13,7 +13,7 @@
 #import <CaptainHook/CaptainHook.h>
 
 #import <UIKit/UIKit.h>
-#import "RJTDatabase.h"
+#import "RJTDatabaseFacade.h"
 #import "RJTApplicationEntity.h"
 
 
@@ -53,7 +53,7 @@ CHConstructor
     
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(bundleIdentifier == %@ OR executableName == %@) AND enableTranslation == 1", bundleIdentifier, executableName];
     
-    RJTDatabase *localDatabase = [RJTDatabase defaultDatabase];
+    RJTDatabaseFacade *localDatabase = [RJTDatabaseFacade new];
     [localDatabase fetchAppEntitiesWithPredicate:predicate completion:^(NSArray<RJTApplicationEntity *> * _Nonnull entities) {
         RJTLog(@"Found localzations: %@ for bundleIdentifier: %@", entities, bundleIdentifier);
         if (entities.count >= 1) {

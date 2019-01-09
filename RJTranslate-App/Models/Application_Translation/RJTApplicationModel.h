@@ -77,6 +77,9 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (assign, nonatomic, readonly) BOOL appInstalled;
 
+
+@property (assign, nonatomic, readonly) BOOL lightweightModel;
+
 @end
 
 NS_ASSUME_NONNULL_END

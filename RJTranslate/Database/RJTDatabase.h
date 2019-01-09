@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
+@class NSManagedObjectContext;
 
 NS_ASSUME_NONNULL_BEGIN
 

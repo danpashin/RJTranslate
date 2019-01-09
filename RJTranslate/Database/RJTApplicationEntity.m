@@ -39,9 +39,11 @@
     self.executableName = [appModel.executableName copy];
     self.executablePath = [appModel.executablePath copy];
     
-    self.translation = [appModel.translation copy];
-    self.enableTranslation = appModel.enableTranslation;
+    if (!appModel.lightweightModel) {
+        self.translation = [appModel.translation copy];
+    }
     
+    self.enableTranslation = appModel.enableTranslation;
     self.forceLocalize = appModel.forceLocalize;
     
     if (!self.icon)

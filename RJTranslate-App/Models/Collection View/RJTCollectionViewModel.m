@@ -54,7 +54,7 @@
 
 - (void)beginSearch
 {
-    [self.collectionView updateEmptyViewToType:RJTEmptyViewTypeNoSearchResults];
+    [self.collectionView updateEmptyViewToType:EmptyViewTypeNoSearchResults];
     self.allModelsDataSource = self.currentDataSource;
 }
 
@@ -104,10 +104,10 @@
 
 - (void)loadDatabaseModels
 {
-    [self.collectionView updateEmptyViewToType:RJTEmptyViewTypeLoading];
+    [self.collectionView updateEmptyViewToType:EmptyViewTypeLoading];
     [self.database fetchAllAppModelsWithCompletion:^(NSArray<RJTApplicationModel *> * _Nonnull allModels) {
         if (allModels.count == 0)
-            [self.collectionView updateEmptyViewToType:RJTEmptyViewTypeNoData animated:YES];
+            [self.collectionView updateEmptyViewToType:EmptyViewTypeNoData animated:YES];
         
         [self updateCollectionWithModels:allModels]; 
     }];

@@ -8,11 +8,7 @@
 
 import Foundation
 
-@objc(RJTSearchControllerDelegate) public protocol SearchControllerDelegate: UISearchControllerDelegate {
-    @objc optional func searchController(_ searchController: SearchController, didUpdateSearchText searchText: String)
-}
-
-@objc(RJTSearchController) public class SearchController: UISearchController, UISearchBarDelegate {
+@objc public class ModernSearchController: UISearchController, UISearchBarDelegate, SearchControllerRequired {
     
     /// Определяет, должен ли затемняться фон при начале поиска. По умолчанию, true.
     @objc public var dimBackground = true
@@ -23,27 +19,18 @@ import Foundation
     /// Определет, выполняется ли поиск в данный момент.
     @objc public private(set) var performingSearch: Bool = false
     
-    private weak var searchDelegate: SearchControllerDelegate?
+    public weak var searchDelegate: SearchControllerDelegate?
     
     
     @available(*, unavailable)
     required init?(coder aDecoder: NSCoder) {
         fatalError("Use init(delegate:) instead")
     }
-    @available(*, unavailable)
-    override public init(searchResultsController: UIViewController?) {
-        fatalError("Use init(delegate:) instead")
-    }
-    
-    @available(*, unavailable)
-    override public init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-    }
     
     /// Выполняет инициализацию контроллера поиска.
     ///
     /// - Parameter delegate: Устанавливает делегат для объекта.
-    @objc public init(delegate: SearchControllerDelegate) {
+    @objc required public init(delegate: SearchControllerDelegate) {
         super.init(searchResultsController: nil)
         
         self.searchDelegate = delegate
@@ -51,17 +38,6 @@ import Foundation
         
         self.dimsBackgroundDuringPresentation = false
         self.searchBar.delegate = self
-        
-        if #available(iOS 11.0, *) {
-        } else {
-            self.hidesNavigationBarDuringPresentation = false
-            
-            let searchField: UITextField? = self.searchBar.searchTextField
-            searchField?.layer.cornerRadius = 8.0
-            searchField?.layer.masksToBounds = false
-            searchField?.backgroundColor = UIColor(red: 0.0, green: 0.027, blue: 0.098, alpha: 0.08)
-            
-        }
     }
     
     private func showDimmingView(_ show: Bool) {
@@ -99,11 +75,5 @@ import Foundation
         self.searchText = ""
         self.performingSearch = false
         self.showDimmingView(false)
-    }
-}
-
-public extension UISearchBar {
-    public var searchTextField: UITextField? {
-        return self.value(forKey: "searchField") as? UITextField
     }
 }

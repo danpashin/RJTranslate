@@ -24,7 +24,7 @@
         _uninstalledAppsModels = uninstalledAppsModels;
         
         [appModels enumerateObjectsUsingBlock:^(RJTApplicationModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            if (obj.executableExists) {
+            if (obj.appInstalled) {
                 [installedAppsModels addObject:obj];
             } else {
                 [uninstalledAppsModels addObject:obj];

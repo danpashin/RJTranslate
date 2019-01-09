@@ -23,6 +23,8 @@
 
 @property (assign, nonatomic, readwrite) BOOL appInstalled;
 
+@property (assign, nonatomic, readwrite) BOOL lightweightModel;
+
 @end
 
 @implementation RJTApplicationModel
@@ -50,6 +52,7 @@ static NSString *const kRJTForceLocalizeKey = @"Force";
     model.executableName = [entity.executableName copy];
     model.executablePath = [entity.executablePath copy];
     
+    model.lightweightModel = lightweight;
     if (!lightweight) {
         model.translation = [entity.translation copy];
     }
