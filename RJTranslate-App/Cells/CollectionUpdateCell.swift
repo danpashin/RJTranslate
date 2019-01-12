@@ -8,7 +8,7 @@
 
 import Foundation
 
-@objc(RJTCollectionViewUpdateCell) public class CollectionUpdateCell: UICollectionViewCell {
+@objc(RJTCollectionViewUpdateCell) class CollectionUpdateCell: UICollectionViewCell {
     
     /// Основной лейбл хэдера.
     @objc public private(set) var textLabel: UILabel = UILabel()
@@ -38,7 +38,7 @@ import Foundation
         stackView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         stackView.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
         
-        let gradientView = RJTGradientView.default
+        let gradientView = GradientView.default()
         self.insertSubview(gradientView, at: 0)
         
         gradientView.translatesAutoresizingMaskIntoConstraints = false

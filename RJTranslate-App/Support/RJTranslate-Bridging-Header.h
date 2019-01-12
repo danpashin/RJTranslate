@@ -6,13 +6,11 @@
 #import "RJTApplicationModel.h"
 #import "RJTDatabaseFacade.h"
 #import "RJTTickView.h"
-#import "RJTGradientView.h"
 
 
 #import "RJTAppCollectionView.h"
 #import "RJTCollectionViewModel.h"
 #import "RJTCollectionViewLayout.h"
-#import "RJTCollectionViewEmptyDataSource.h"
 #import "RJTCollectionViewEmptyDataSource.h"
 #import "RJTAppCollectionViewDelegate.h"
 #import "RJTHud.h"

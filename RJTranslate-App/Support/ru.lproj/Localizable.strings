@@ -18,6 +18,8 @@
 // Поиск
 "cannot_find_any_results" = "К сожалению, по вашему запросу ничего не найдено";
 "change_search_request_and_try_again" = "Измените поисковой запрос и попробуйте снова";
+"cancel" = "Отменить";
+"search" = "Поиск";
 
 "no_translations_downloaded" = "Нет установленных переводов";
 "tap_button_to_download_available" = "Нажмите на кнопку ниже, чтобы выполнить установку доступных";

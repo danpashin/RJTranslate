@@ -7,9 +7,7 @@
 //
 
 #import "RJTCollectionViewEmptyDataSource.h"
-//#import "RJTSearchController.h"
 
-#import "RJTGradientView.h"
 #import "RJTAppCollectionView.h"
 
 #import "UIColor+RJT_Private.h"
@@ -69,7 +67,7 @@
         UIGraphicsBeginImageContextWithOptions(imageSize, NO, [UIScreen mainScreen].scale);
         CGContextRef context = UIGraphicsGetCurrentContext();
         
-        RJTGradientView *gradientView = [RJTGradientView defaultGradientView];
+        GradientView *gradientView = [GradientView defaultGradientView];
         gradientView.frame = (CGRect){{0, 0}, imageSize};
         gradientView.layer.cornerRadius = 10.0;
         

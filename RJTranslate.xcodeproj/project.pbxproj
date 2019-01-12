@@ -13,6 +13,7 @@
 		A511A67C21B19FFC003D4244 /* PreferencesTableModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A511A67B21B19FFC003D4244 /* PreferencesTableModel.swift */; };
 		A517965F217D1A9400B87596 /* RJTApplicationModel.h in Headers */ = {isa = PBXBuildFile; fileRef = A54ADB1C217BB0CF00D32EB7 /* RJTApplicationModel.h */; };
 		A5196B7A21D0BB3200201DEF /* CollectionHeaderLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5196B7921D0BB3200201DEF /* CollectionHeaderLabel.swift */; };
+		A521637321EA5EE100815C8B /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A521637221EA5EE100815C8B /* GradientView.swift */; };
 		A522F1D0217AFC300085A5E4 /* RJTranslateController.m in Sources */ = {isa = PBXBuildFile; fileRef = A522F1CF217AFC300085A5E4 /* RJTranslateController.m */; };
 		A522F1D3217AFC300085A5E4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A522F1D1217AFC300085A5E4 /* Main.storyboard */; };
 		A522F1D5217AFC310085A5E4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A522F1D4217AFC310085A5E4 /* Assets.xcassets */; };
@@ -76,7 +77,6 @@
 		A5DEBB31218F0EF000858616 /* RJTImageCache.h in Headers */ = {isa = PBXBuildFile; fileRef = A5DEBB27218EF5B800858616 /* RJTImageCache.h */; };
 		A5E0BBB2218646A10094ECBC /* RJTHudProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = A5E0BBB0218646A10094ECBC /* RJTHudProgressView.m */; };
 		A5E0BBB3218646A10094ECBC /* RJTHud.m in Sources */ = {isa = PBXBuildFile; fileRef = A5E0BBB1218646A10094ECBC /* RJTHud.m */; };
-		A5E62763219618D1005BAA69 /* RJTGradientView.m in Sources */ = {isa = PBXBuildFile; fileRef = A5DB9ABB217B74DB0061A810 /* RJTGradientView.m */; };
 		A5E6276721961BEF005BAA69 /* RJTCollectionViewEmptyDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = A5E6276621961BEF005BAA69 /* RJTCollectionViewEmptyDataSource.m */; };
 		A5E80C8921E3317700150B5D /* RJTDatabaseFacade.m in Sources */ = {isa = PBXBuildFile; fileRef = A5E80C8621E3300500150B5D /* RJTDatabaseFacade.m */; };
 		A5E80C8B21E360ED00150B5D /* RJTranslate.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A535340F217A584500E08881 /* RJTranslate.xcdatamodeld */; };
@@ -108,6 +108,7 @@
 		A511A67B21B19FFC003D4244 /* PreferencesTableModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesTableModel.swift; sourceTree = "<group>"; };
 		A5196B7921D0BB3200201DEF /* CollectionHeaderLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionHeaderLabel.swift; sourceTree = "<group>"; };
 		A5196B7B21D0BF2200201DEF /* AppCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCollectionView.swift; sourceTree = "<group>"; };
+		A521637221EA5EE100815C8B /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		A522F1C9217AFC300085A5E4 /* RJTranslate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RJTranslate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A522F1CE217AFC300085A5E4 /* RJTranslateController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RJTranslateController.h; sourceTree = "<group>"; };
 		A522F1CF217AFC300085A5E4 /* RJTranslateController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RJTranslateController.m; sourceTree = "<group>"; };
@@ -184,8 +185,6 @@
 		A5CC12E92184A2A600A607E3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A5CC725B218DDD99001A4BDB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A5DAAE1A21C7973B0012D559 /* DatabaseUpdater.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseUpdater.swift; sourceTree = "<group>"; };
-		A5DB9ABA217B74DB0061A810 /* RJTGradientView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RJTGradientView.h; sourceTree = "<group>"; };
-		A5DB9ABB217B74DB0061A810 /* RJTGradientView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RJTGradientView.m; sourceTree = "<group>"; };
 		A5DEBB27218EF5B800858616 /* RJTImageCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RJTImageCache.h; sourceTree = "<group>"; };
 		A5DEBB28218EF5B900858616 /* RJTImageCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RJTImageCache.m; sourceTree = "<group>"; };
 		A5E0BBAE218646A10094ECBC /* RJTHud.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RJTHud.h; sourceTree = "<group>"; };
@@ -510,8 +509,7 @@
 			children = (
 				A5ADC02E2184F32100C33863 /* CollectionView */,
 				A5B74C2B21E4D14A0058C71A /* NavigationBar.swift */,
-				A5DB9ABA217B74DB0061A810 /* RJTGradientView.h */,
-				A5DB9ABB217B74DB0061A810 /* RJTGradientView.m */,
+				A521637221EA5EE100815C8B /* GradientView.swift */,
 				A56FB1C22180B17B002F4175 /* RJTTickView.h */,
 				A56FB1C32180B17B002F4175 /* RJTTickView.m */,
 				A5E0BBAE218646A10094ECBC /* RJTHud.h */,
@@ -781,6 +779,7 @@
 				A5527FBB218F4C4000095251 /* RJTApplicationModel.m in Sources */,
 				A5E80C8D21E365C300150B5D /* TouchResponsiveCollectionCell.swift in Sources */,
 				A511A67C21B19FFC003D4244 /* PreferencesTableModel.swift in Sources */,
+				A521637321EA5EE100815C8B /* GradientView.swift in Sources */,
 				A5E80C8F21E387E100150B5D /* ApplicationConviniences.swift in Sources */,
 				A522F1D0217AFC300085A5E4 /* RJTranslateController.m in Sources */,
 				A53CC72D21E0BAB000848785 /* UpdateDownloader.swift in Sources */,
@@ -806,7 +805,6 @@
 				A5E6276721961BEF005BAA69 /* RJTCollectionViewEmptyDataSource.m in Sources */,
 				A526FD9B21989A9900E1A434 /* RJTCollectionViewModel.m in Sources */,
 				A57C40AC218A061300885834 /* RJTOperationQueue.m in Sources */,
-				A5E62763219618D1005BAA69 /* RJTGradientView.m in Sources */,
 				A552F90821B03279002771E9 /* TranslationsUpdate.swift in Sources */,
 				A5B74C2721E4CDA10058C71A /* SearchConveniences.swift in Sources */,
 				A56FB1C12180ADA0002F4175 /* RJTColors.m in Sources */,

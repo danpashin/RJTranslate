@@ -8,7 +8,7 @@
 
 import Foundation
 
-@objc public class ButtonedSearchBar: UIView {
+@objc class ButtonedSearchBar: UIView {
     
     public weak var delegate: UISearchBarDelegate? {
         didSet {
@@ -39,27 +39,21 @@ import Foundation
     }
     
     private func commonInit() {
-        self.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        self.layer.cornerRadius = 10.0
-        
-        self.stackView.autoresizingMask = self.autoresizingMask
+        self.stackView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.stackView.axis = .horizontal
-        self.stackView.alignment = .fill
-//        self.stackView.distribution = .fillEqually
         self.stackView.spacing = 8.0
         self.stackView.frame = self.bounds
         self.addSubview(self.stackView)
         
-        self.searchBar.frame = self.bounds
+        self.searchBar.layer.cornerRadius = 16.0
+        self.searchBar.layer.masksToBounds = true
         self.searchBar.searchBarStyle = .minimal
-        self.searchBar.autoresizingMask = self.autoresizingMask
+        self.searchBar.placeholder = NSLocalizedString("search", comment: "Search bar placeholder")
         self.stackView.addArrangedSubview(self.searchBar)
         
-        
         self.cancelButton.isHidden = true
-        self.cancelButton.setTitle("Отменить", for: .normal)
+        self.cancelButton.setTitle(NSLocalizedString("cancel", comment: "Cancel search"), for: .normal)
         self.cancelButton.addTarget(self, action: #selector(endSearch), for: .touchUpInside)
-        self.cancelButton.autoresizingMask = self.autoresizingMask
         self.stackView.addArrangedSubview(self.cancelButton)
     }
     
@@ -70,8 +64,9 @@ import Foundation
     }
     
     @objc public func endSearch() {
-        self.showCancelButton = false
-        self.searchBar.endEditing(false)
+        self.searchBar.text = ""
+        self.searchBar.resignFirstResponder()
+        self.delegate?.searchBarCancelButtonClicked?(self.searchBar)
     }
     
 }

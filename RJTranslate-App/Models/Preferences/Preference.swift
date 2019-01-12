@@ -9,8 +9,8 @@
 import Foundation
 
 enum PreferenceCategory: Int {
-    case Text = 0
-    case Switch = 1
+    case text
+    case `switch`
 }
 
 class Preference {
@@ -22,7 +22,7 @@ class Preference {
     
     /// Тип настройки. По умолчанию - текст.
     public var category: PreferenceCategory {
-        return .Text
+        return .text
     }
 }
 
@@ -67,6 +67,6 @@ class StorablePreference: Preference, CustomStringConvertible {
 
 class SwitchPreference: StorablePreference {
     override var category: PreferenceCategory {
-        return .Switch
+        return .switch
     }
 }

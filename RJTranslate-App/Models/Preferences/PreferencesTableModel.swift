@@ -72,9 +72,9 @@ class PreferencesTableModel: NSObject, UITableViewDelegate, UITableViewDataSourc
         let preference = groups[indexPath.section].preferences[indexPath.row]
         
         var cell: UITableViewCell? = nil
-        if preference.category == .Text {
+        if preference.category == .text {
             cell = UITableViewCell(style: .value1, reuseIdentifier: "staticTextCell")
-        } else if preference.category == .Switch {
+        } else if preference.category == .switch {
             cell = SwitchCell.init(model: preference as! SwitchPreference, reuseIdentifier: "switchCell")
         }
         

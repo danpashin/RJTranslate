@@ -18,6 +18,8 @@
 // Поиск
 "cannot_find_any_results" = "Unfortunately, we can't find anything";
 "change_search_request_and_try_again" = "Change your search and try again";
+"cancel" = "Cancel";
+"search" = "Search";
 
 "no_translations_downloaded" = "No translations installed";
 "tap_button_to_download_available" = "Tap the button below to install available";

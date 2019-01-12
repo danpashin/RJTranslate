@@ -16,6 +16,8 @@ import Foundation
     
     @objc public private(set) var searchBar: ButtonedSearchBar?
     
+    private var dimmed: Bool = true
+    
     /// Определет, выполняется ли, поиск в данный момент.
     @objc public private(set) var performingSearch: Bool = false {
         didSet {
@@ -44,18 +46,63 @@ import Foundation
     override public func viewDidLoad() {
         super.viewDidLoad()
         
-        print("\(String(describing: self.view.superview))")
+        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(dimmingViewTapped))
+        self.view.addGestureRecognizer(tapRecognizer)
     }
     
+    /// Выполняет презентацию контроллера на экране
     private func present() {
+//        self.searchDelegate?.willPresentSearchController?(self)
+        if self.performingSearch {
+            self.dismiss()
+        }
+        
+        self.performingSearch = true
+        
         if let navbar = UINavigationBar.getFirstBar() {
             navbar.superview?.insertSubview(self.view, belowSubview: navbar)
         }
+//        self.searchDelegate?.didPresentSearchController?(self)
     }
     
-    private func dismiss() {
-        self.view.removeFromSuperview()
-        self.view = nil
+    /// Удаляет контроллер с экрана
+    private func dismiss(_ notifyDelegate: Bool = true) {
+        if self.performingSearch {
+            if notifyDelegate {
+//                self.searchDelegate?.willDismissSearchController?(self)
+            }
+            
+            self.searchBar?.endEditing(true)
+            self.performingSearch = false
+            
+            self.view.removeFromSuperview()
+            self.view = nil
+            
+            if notifyDelegate {
+//                self.searchDelegate?.didDismissSearchController?(self)
+            }
+        }
+    }
+    
+    private func updateDimming(_ shouldDim: Bool) {
+        self.dimmed = shouldDim
+        if shouldDim {
+            self.viewIfLoaded?.isHidden = false
+        }
+        
+        UIView.animate(withDuration: 0.15, animations: { 
+            self.viewIfLoaded?.backgroundColor = UIColor(white: 0.0, alpha: shouldDim ? 0.3 : 0.0)
+        }) { (animated: Bool) in
+            if !shouldDim {
+                self.viewIfLoaded?.isHidden = true
+            }
+        }
+    }
+    
+    @objc private func dimmingViewTapped() {
+        if self.performingSearch && self.dimmed {
+            self.dismiss(false)
+        }
     }
     
     
@@ -63,67 +110,38 @@ import Foundation
     // MARK: UISearchBarDelegate
     // MARK: -
     
-    public func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
-        self.present()
-//       let rootController = UIApplication.shared.keyWindow?.rootViewController
-        
-//        rootController?.present(self, animated: true, completion: nil)
-//        rootController.
-        
-        return true
-    }
-    
     public func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-        self.performingSearch = true
-//        self.showDimmingView(true)
+        if !self.performingSearch {
+            self.present()
+        }
+        
+        if self.searchText.count == 0 {
+            self.updateDimming(true)
+        }
     }
     
     public func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
-        UIApplication.applicationDelegate.tracker?.trackSearchEvent(self.searchText)
-        
-        self.dismiss()
+        if self.searchText.count > 0 {
+            UIApplication.applicationDelegate.tracker?.trackSearchEvent(self.searchText)
+        } else {
+            self.dismiss()
+        }
     }
     
     public func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         self.searchText = searchText
         
-//        self.showDimmingView((searchText.count == 0))
+        self.updateDimming((searchText.count == 0))
         self.searchDelegate?.searchController?(self, didUpdateSearchText: searchText)
     }
     
     public func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         self.searchText = ""
-        self.performingSearch = false
-//        self.showDimmingView(false)
+        self.dismiss()
     }
     
-}
-
-public extension UINavigationBar {
-    static func getFirstBar() -> UINavigationBar? {
-        let window = UIApplication.shared.keyWindow
-        
-        let view: UIView? = window
-        while ((view?.subviews) != nil) {
-            for subview in view!.subviews {
-                if subview is UINavigationBar {
-                    return subview as? UINavigationBar
-                }
-            }
-        }
-        
-        return nil
+    public func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
     }
     
-    static func recursiveSearchView(_ view: UIView, viewType: AnyObject) -> UIView? {
-        while view.subviews.count > 0 {
-            for subview in view.subviews {
-                if subview is viewType {
-
-                }
-            }
-        }
-        
-        return nil
-    }
 }

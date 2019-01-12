@@ -37,7 +37,7 @@ func appRecordError(_ description: String, _ args: CVarArg...) -> NSError {
         return delegateObject!
     }
     
-    @objc public class var applicationDelegate: AppDelegate {
+    @objc public static var applicationDelegate: AppDelegate {
         return UIApplication.shared.appDelegate
     }
 }

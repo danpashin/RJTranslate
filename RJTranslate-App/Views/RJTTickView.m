@@ -18,7 +18,7 @@
 
 + (Class)layerClass
 {
-    return [CAShapeLayer  class];
+    return [CAShapeLayer class];
 }
 
 - (instancetype)initWithFrame:(CGRect)frame

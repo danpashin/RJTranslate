@@ -8,7 +8,7 @@
 
 import Foundation
 
-@objc public class ModernSearchController: UISearchController, UISearchBarDelegate, SearchControllerRequired {
+@objc class ModernSearchController: UISearchController, UISearchBarDelegate, SearchControllerRequired {
     
     /// Определяет, должен ли затемняться фон при начале поиска. По умолчанию, true.
     @objc public var dimBackground = true
@@ -25,6 +25,10 @@ import Foundation
     @available(*, unavailable)
     required init?(coder aDecoder: NSCoder) {
         fatalError("Use init(delegate:) instead")
+    }
+    
+    public override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     }
     
     /// Выполняет инициализацию контроллера поиска.
