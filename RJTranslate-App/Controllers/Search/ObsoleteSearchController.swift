@@ -52,7 +52,7 @@ import Foundation
     
     /// Выполняет презентацию контроллера на экране
     private func present() {
-//        self.searchDelegate?.willPresentSearchController?(self)
+        self.searchDelegate?.willPresentSearchController?(self)
         if self.performingSearch {
             self.dismiss()
         }
@@ -62,14 +62,14 @@ import Foundation
         if let navbar = UINavigationBar.getFirstBar() {
             navbar.superview?.insertSubview(self.view, belowSubview: navbar)
         }
-//        self.searchDelegate?.didPresentSearchController?(self)
+        self.searchDelegate?.didPresentSearchController?(self)
     }
     
     /// Удаляет контроллер с экрана
     private func dismiss(_ notifyDelegate: Bool = true) {
         if self.performingSearch {
             if notifyDelegate {
-//                self.searchDelegate?.willDismissSearchController?(self)
+                self.searchDelegate?.willDismissSearchController?(self)
             }
             
             self.searchBar?.endEditing(true)
@@ -79,7 +79,7 @@ import Foundation
             self.view = nil
             
             if notifyDelegate {
-//                self.searchDelegate?.didDismissSearchController?(self)
+                self.searchDelegate?.didDismissSearchController?(self)
             }
         }
     }
