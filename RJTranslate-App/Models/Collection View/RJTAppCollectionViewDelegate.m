@@ -9,8 +9,6 @@
 #import "RJTAppCollectionViewDelegate.h"
 #import "RJTApplicationModel.h"
 #import "RJTCollectionViewModel.h"
-#import "RJTCollectionViewLayout.h"
-#import "RJTCollectionViewDataSource.h"
 
 #import "RJTCollectionLabelHeader.h"
 

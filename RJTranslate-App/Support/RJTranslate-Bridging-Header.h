@@ -10,7 +10,6 @@
 
 #import "RJTAppCollectionView.h"
 #import "RJTCollectionViewModel.h"
-#import "RJTCollectionViewLayout.h"
 #import "RJTCollectionViewEmptyDataSource.h"
 #import "RJTAppCollectionViewDelegate.h"
 #import "RJTHud.h"

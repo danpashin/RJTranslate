@@ -7,7 +7,6 @@
 //
 
 #import "RJTAppCollectionViewDelegate.h"
-#import "RJTCollectionViewLayout.h"
 #import "RJTCollectionViewEmptyDataSource.h"
 
 
@@ -52,7 +51,7 @@
 
 - (void)updateLayoutToSize:(CGSize)size
 {
-    self.collectionViewLayout.itemSize = [self.collectionViewLayout itemSizeFromCollectionFrame:(CGRect){{0, 0}, size}];
+    self.collectionViewLayout.itemSize = [self.collectionViewLayout itemSizeFromCollectionViewFrame:(CGRect){{0, 0}, size}];
     [self.collectionViewLayout invalidateLayout];
 }
 

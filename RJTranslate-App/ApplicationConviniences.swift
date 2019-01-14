@@ -41,3 +41,17 @@ func appRecordError(_ description: String, _ args: CVarArg...) -> NSError {
         return UIApplication.shared.appDelegate
     }
 }
+
+public func heapAddress(of object: AnyObject) -> String {
+    return String(format: "%p", unsafeBitCast(object, to: Int.self))
+}
+
+public func className(of object: AnyObject) -> String {
+    return String(describing: type(of: object))
+}
+
+public func classInfo(of object: AnyObject) -> String {
+    let clsName = className(of: object)
+    let address = heapAddress(of: object)
+    return "\(clsName): \(address)"
+}

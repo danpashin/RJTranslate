@@ -10,10 +10,8 @@
 
 #import "RJTDatabaseFacade.h"
 #import "RJTApplicationModel.h"
-#import "RJTCollectionViewDataSource.h"
 
 #import "RJTAppCollectionView.h"
-#import "RJTCollectionViewLayout.h"
 
 #import <spawn.h>
 
@@ -124,7 +122,7 @@
 - (void)updateDataSourceObject:(RJTCollectionViewDataSource *)dataSourceObject
 {
     [self performOnMainThread:^{
-        [self.collectionView.collectionViewLayout dataSourceChangedFrom:self.currentDataSource toNew:dataSourceObject];
+        [self.collectionView.collectionViewLayout dataSourceChangedFrom:self.currentDataSource to:dataSourceObject];
         self.currentDataSource = dataSourceObject;
         [self.collectionView reload];
     }];

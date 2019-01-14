@@ -9,7 +9,6 @@
 #import "RJTranslateController.h"
 
 #import "RJTCollectionViewModel.h"
-#import "RJTCollectionViewDataSource.h"
 
 #import "RJTAppCollectionView.h"
 #import "RJTHud.h"
