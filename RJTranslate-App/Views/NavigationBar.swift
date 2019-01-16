@@ -12,6 +12,6 @@ class NavigationBar: UINavigationBar {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        self.tintColor = RJTColors.navTintColor
+        self.tintColor = ColorScheme.default.navTintColor
     }
 }

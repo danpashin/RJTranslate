@@ -19,7 +19,6 @@
 		A522F1D3217AFC300085A5E4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A522F1D1217AFC300085A5E4 /* Main.storyboard */; };
 		A522F1D5217AFC310085A5E4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A522F1D4217AFC310085A5E4 /* Assets.xcassets */; };
 		A522F1D8217AFC310085A5E4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A522F1D6217AFC310085A5E4 /* LaunchScreen.storyboard */; };
-		A526FD982198969F00E1A434 /* UIColor+RJT_Private.m in Sources */ = {isa = PBXBuildFile; fileRef = A526FD972198969F00E1A434 /* UIColor+RJT_Private.m */; };
 		A526FD9B21989A9900E1A434 /* RJTCollectionViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A526FD9A21989A9900E1A434 /* RJTCollectionViewModel.m */; };
 		A52D551D21EBC552003EDEE4 /* AppCollectionEmptySource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52D551C21EBC552003EDEE4 /* AppCollectionEmptySource.swift */; };
 		A52D551F21EBC703003EDEE4 /* GradientImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52D551E21EBC703003EDEE4 /* GradientImage.swift */; };
@@ -42,10 +41,11 @@
 		A54EBFCC21B293880086B7DD /* Tracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54EBFCB21B293880086B7DD /* Tracker.swift */; };
 		A54EBFCE21B2997C0086B7DD /* AppCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54EBFCD21B2997C0086B7DD /* AppCell.swift */; };
 		A54EBFD021B2A1150086B7DD /* CollectionUpdateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54EBFCF21B2A1150086B7DD /* CollectionUpdateCell.swift */; };
+		A54F28C921EF2FB7002075C5 /* ColorScheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54F28C821EF2FB7002075C5 /* ColorScheme.swift */; };
+		A54F28CB21EF3A5A002075C5 /* UIColorConveniences.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54F28CA21EF3A5A002075C5 /* UIColorConveniences.swift */; };
 		A5515BD921AE9D2F00C7BFC4 /* SwitchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5515BD821AE9D2F00C7BFC4 /* SwitchCell.swift */; };
 		A5527FBB218F4C4000095251 /* RJTApplicationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A54ADB1D217BB0CF00D32EB7 /* RJTApplicationModel.m */; };
 		A552F90821B03279002771E9 /* TranslationsUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A552F90721B03279002771E9 /* TranslationsUpdate.swift */; };
-		A56FB1C12180ADA0002F4175 /* RJTColors.m in Sources */ = {isa = PBXBuildFile; fileRef = A56FB1C02180ADA0002F4175 /* RJTColors.m */; };
 		A56FB1C42180B17B002F4175 /* RJTTickView.m in Sources */ = {isa = PBXBuildFile; fileRef = A56FB1C32180B17B002F4175 /* RJTTickView.m */; };
 		A5763DA121823B4300C7F82A /* PrefixHeader.pch in Headers */ = {isa = PBXBuildFile; fileRef = A5763DA021823B4300C7F82A /* PrefixHeader.pch */; };
 		A57C40AA218A029200885834 /* RJTOperationQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = A57C40A8218A029200885834 /* RJTOperationQueue.h */; };
@@ -79,7 +79,6 @@
 		A5DEBB31218F0EF000858616 /* RJTImageCache.h in Headers */ = {isa = PBXBuildFile; fileRef = A5DEBB27218EF5B800858616 /* RJTImageCache.h */; };
 		A5E0BBB2218646A10094ECBC /* RJTHudProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = A5E0BBB0218646A10094ECBC /* RJTHudProgressView.m */; };
 		A5E0BBB3218646A10094ECBC /* RJTHud.m in Sources */ = {isa = PBXBuildFile; fileRef = A5E0BBB1218646A10094ECBC /* RJTHud.m */; };
-		A5E6276721961BEF005BAA69 /* RJTCollectionViewEmptyDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = A5E6276621961BEF005BAA69 /* RJTCollectionViewEmptyDataSource.m */; };
 		A5E80C8921E3317700150B5D /* RJTDatabaseFacade.m in Sources */ = {isa = PBXBuildFile; fileRef = A5E80C8621E3300500150B5D /* RJTDatabaseFacade.m */; };
 		A5E80C8B21E360ED00150B5D /* RJTranslate.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A535340F217A584500E08881 /* RJTranslate.xcdatamodeld */; };
 		A5E80C8D21E365C300150B5D /* TouchResponsiveCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E80C8C21E365C300150B5D /* TouchResponsiveCollectionCell.swift */; };
@@ -119,8 +118,6 @@
 		A522F1D4217AFC310085A5E4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A522F1D7217AFC310085A5E4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A522F1D9217AFC310085A5E4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A526FD962198969F00E1A434 /* UIColor+RJT_Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIColor+RJT_Private.h"; sourceTree = "<group>"; };
-		A526FD972198969F00E1A434 /* UIColor+RJT_Private.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIColor+RJT_Private.m"; sourceTree = "<group>"; };
 		A526FD9921989A9900E1A434 /* RJTCollectionViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RJTCollectionViewModel.h; sourceTree = "<group>"; };
 		A526FD9A21989A9900E1A434 /* RJTCollectionViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RJTCollectionViewModel.m; sourceTree = "<group>"; };
 		A52D551C21EBC552003EDEE4 /* AppCollectionEmptySource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCollectionEmptySource.swift; sourceTree = "<group>"; };
@@ -148,10 +145,10 @@
 		A54EBFCB21B293880086B7DD /* Tracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tracker.swift; sourceTree = "<group>"; };
 		A54EBFCD21B2997C0086B7DD /* AppCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCell.swift; sourceTree = "<group>"; };
 		A54EBFCF21B2A1150086B7DD /* CollectionUpdateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionUpdateCell.swift; sourceTree = "<group>"; };
+		A54F28C821EF2FB7002075C5 /* ColorScheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorScheme.swift; sourceTree = "<group>"; };
+		A54F28CA21EF3A5A002075C5 /* UIColorConveniences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorConveniences.swift; sourceTree = "<group>"; };
 		A5515BD821AE9D2F00C7BFC4 /* SwitchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchCell.swift; sourceTree = "<group>"; };
 		A552F90721B03279002771E9 /* TranslationsUpdate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslationsUpdate.swift; sourceTree = "<group>"; };
-		A56FB1BF2180ADA0002F4175 /* RJTColors.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RJTColors.h; sourceTree = "<group>"; };
-		A56FB1C02180ADA0002F4175 /* RJTColors.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RJTColors.m; sourceTree = "<group>"; };
 		A56FB1C22180B17B002F4175 /* RJTTickView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RJTTickView.h; sourceTree = "<group>"; };
 		A56FB1C32180B17B002F4175 /* RJTTickView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RJTTickView.m; sourceTree = "<group>"; };
 		A5763DA021823B4300C7F82A /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
@@ -193,8 +190,6 @@
 		A5E0BBAF218646A10094ECBC /* RJTHudProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RJTHudProgressView.h; sourceTree = "<group>"; };
 		A5E0BBB0218646A10094ECBC /* RJTHudProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RJTHudProgressView.m; sourceTree = "<group>"; };
 		A5E0BBB1218646A10094ECBC /* RJTHud.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RJTHud.m; sourceTree = "<group>"; };
-		A5E6276521961BEF005BAA69 /* RJTCollectionViewEmptyDataSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RJTCollectionViewEmptyDataSource.h; sourceTree = "<group>"; };
-		A5E6276621961BEF005BAA69 /* RJTCollectionViewEmptyDataSource.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RJTCollectionViewEmptyDataSource.m; sourceTree = "<group>"; };
 		A5E80C8521E3300500150B5D /* RJTDatabaseFacade.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RJTDatabaseFacade.h; sourceTree = "<group>"; };
 		A5E80C8621E3300500150B5D /* RJTDatabaseFacade.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RJTDatabaseFacade.m; sourceTree = "<group>"; };
 		A5E80C8C21E365C300150B5D /* TouchResponsiveCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouchResponsiveCollectionCell.swift; sourceTree = "<group>"; };
@@ -331,13 +326,11 @@
 				A57C40AF218A0F6600885834 /* Application_Translation */,
 				A57C40AE218A0F5800885834 /* Database */,
 				A5D815592195984100EB3633 /* Collection View */,
-				A56FB1BF2180ADA0002F4175 /* RJTColors.h */,
-				A56FB1C02180ADA0002F4175 /* RJTColors.m */,
+				A54F28C821EF2FB7002075C5 /* ColorScheme.swift */,
 				A5DEBB27218EF5B800858616 /* RJTImageCache.h */,
 				A5DEBB28218EF5B900858616 /* RJTImageCache.m */,
 				A54EBFCB21B293880086B7DD /* Tracker.swift */,
-				A526FD962198969F00E1A434 /* UIColor+RJT_Private.h */,
-				A526FD972198969F00E1A434 /* UIColor+RJT_Private.m */,
+				A54F28CA21EF3A5A002075C5 /* UIColorConveniences.swift */,
 				A5370DD821A4019B009A2BA5 /* Preferences */,
 			);
 			path = Models;
@@ -495,8 +488,6 @@
 				A5C7DA8221935D310086BE40 /* RJTAppCollectionViewDelegate.h */,
 				A5C7DA8321935D310086BE40 /* RJTAppCollectionViewDelegate.m */,
 				A5DB00AE21EB238F0009AB0E /* AppCollectionDataSource.swift */,
-				A5E6276521961BEF005BAA69 /* RJTCollectionViewEmptyDataSource.h */,
-				A5E6276621961BEF005BAA69 /* RJTCollectionViewEmptyDataSource.m */,
 				A52D551C21EBC552003EDEE4 /* AppCollectionEmptySource.swift */,
 				A52D551E21EBC703003EDEE4 /* GradientImage.swift */,
 				A526FD9921989A9900E1A434 /* RJTCollectionViewModel.h */,
@@ -793,7 +784,6 @@
 				A521020321EB2E6300D95AA8 /* AppCollectionLayout.swift in Sources */,
 				A58659962192CCE600A76A6C /* RJTSupport.m in Sources */,
 				A5C7DA8421935D310086BE40 /* RJTAppCollectionViewDelegate.m in Sources */,
-				A526FD982198969F00E1A434 /* UIColor+RJT_Private.m in Sources */,
 				A5C4F89521E28D3F000FAC48 /* APIResponses.swift in Sources */,
 				A5BC885521B2ACCC00D5C5CF /* ModernSearchController.swift in Sources */,
 				A5C1FB3B21B258A1007BB861 /* PreferencesController.swift in Sources */,
@@ -805,18 +795,18 @@
 				A53CC73721E0C52200848785 /* HTTPRequestBuilder.swift in Sources */,
 				A54EBFAC21B2725C0086B7DD /* AppDelegate.swift in Sources */,
 				A54EBFD021B2A1150086B7DD /* CollectionUpdateCell.swift in Sources */,
+				A54F28CB21EF3A5A002075C5 /* UIColorConveniences.swift in Sources */,
 				A5E80C8921E3317700150B5D /* RJTDatabaseFacade.m in Sources */,
-				A5E6276721961BEF005BAA69 /* RJTCollectionViewEmptyDataSource.m in Sources */,
 				A526FD9B21989A9900E1A434 /* RJTCollectionViewModel.m in Sources */,
 				A57C40AC218A061300885834 /* RJTOperationQueue.m in Sources */,
 				A552F90821B03279002771E9 /* TranslationsUpdate.swift in Sources */,
 				A5B74C2721E4CDA10058C71A /* SearchConveniences.swift in Sources */,
 				A52D551D21EBC552003EDEE4 /* AppCollectionEmptySource.swift in Sources */,
-				A56FB1C12180ADA0002F4175 /* RJTColors.m in Sources */,
 				A511A67A21B18ABA003D4244 /* Preference.swift in Sources */,
 				A5BFB4A02189B1EB001A9D82 /* RJTAppIconEntity.m in Sources */,
 				A53CC73821E113CD00848785 /* RJTAppCollectionView.m in Sources */,
 				A57CF73B217AFFD0004A71F8 /* RJTApplicationEntity.m in Sources */,
+				A54F28C921EF2FB7002075C5 /* ColorScheme.swift in Sources */,
 				A5B74C2A21E4D0390058C71A /* ButtonedSearchBar.swift in Sources */,
 				A5DAAE1B21C7973B0012D559 /* DatabaseUpdater.swift in Sources */,
 				A5B74C2C21E4D14A0058C71A /* NavigationBar.swift in Sources */,

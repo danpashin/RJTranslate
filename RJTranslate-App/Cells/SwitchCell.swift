@@ -30,7 +30,7 @@ class SwitchCell : UITableViewCell {
         
         switchView = UISwitch.init()
         switchView?.addTarget(self, action: #selector(switchTrigerred), for: .valueChanged)
-        switchView?.onTintColor = RJTColors.navTintColor
+        switchView?.onTintColor = ColorScheme.default.navTintColor
         self.accessoryView = switchView
         
         defer {

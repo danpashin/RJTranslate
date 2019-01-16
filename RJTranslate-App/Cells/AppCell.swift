@@ -32,12 +32,12 @@ import UIKit
     
     public override func awakeFromNib() {
         super.awakeFromNib()
-        self.nameLabel?.textColor = RJTColors.textPrimaryColor
+        self.nameLabel?.textColor = ColorScheme.default.textPrimaryColor
         
         self.layer.cornerRadius = 10.0
         self.iconView?.layer.masksToBounds = true
         self.iconView?.layer.cornerRadius = 11.0
-        self.iconView?.tintColor = RJTColors.textDetailColor
+        self.iconView?.tintColor = ColorScheme.default.textDetailColor
         
         self.updateSelection(false, animated: false)
         

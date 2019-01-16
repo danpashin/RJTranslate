@@ -21,7 +21,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         _label = [UILabel new];
-        self.label.textColor = RJTColors.headerColor;
+        self.label.textColor = ColorScheme.defaultScheme.headerLabelColor;
         self.label.font = [UIFont systemFontOfSize:[UIFont labelFontSize] + 4.0f weight:UIFontWeightBold];
         [self addSubview:self.label];
         

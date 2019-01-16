@@ -20,7 +20,10 @@ import Foundation
     
     @objc(defaultGradientView) public static func `default`() -> GradientView {
         let gradientView = GradientView()
-        gradientView.layer.colors = [RJTColors.accentSecondaryColor.cgColor, RJTColors.accentMainColor.cgColor]
+        gradientView.layer.colors = [
+            ColorScheme.default.accentSecondaryColor.cgColor,
+            ColorScheme.default.accentMainColor.cgColor
+        ]
         gradientView.layer.startPoint = CGPoint(x: 0.5, y: 0.0)
         gradientView.layer.endPoint = CGPoint(x: 0.5, y: 1.0)
     

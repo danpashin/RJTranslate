@@ -7,7 +7,6 @@
 //
 
 #import "RJTAppCollectionViewDelegate.h"
-#import "RJTCollectionViewEmptyDataSource.h"
 
 
 @interface RJTAppCollectionView ()
@@ -15,7 +14,7 @@
 @property (nonatomic, strong) RJTCollectionViewLayout *collectionViewLayout;
 
 @property (strong, nonatomic) RJTAppCollectionViewDelegate *delegateObject;
-@property (strong, nonatomic) RJTCollectionViewEmptyDataSource *emptyDataSourceObject;
+@property (strong, nonatomic) AppCollectionEmptySource *emptySourceObject;
 @end
 
 @implementation RJTAppCollectionView
@@ -30,7 +29,7 @@
     self.allowsMultipleSelection = YES;
     
     self.delegateObject = [[RJTAppCollectionViewDelegate alloc] initWithCollectionView:self];
-    self.emptyDataSourceObject = [[RJTCollectionViewEmptyDataSource alloc] initWithCollectionView:self];
+    self.emptySourceObject = [[AppCollectionEmptySource alloc] initWithCollectionView:self];
 }
 
 - (void)reload
@@ -62,11 +61,11 @@
 
 - (void)updateEmptyViewToType:(EmptyViewType)type animated:(BOOL)animated
 {
-    if (self.emptyDataSourceObject.type == type)
+    if (self.emptySourceObject.type == type)
         return;
     
     dispatch_async(dispatch_get_main_queue(), ^{
-        self.emptyDataSourceObject.type = type;
+        self.emptySourceObject.type = type;
         
         if (!animated) {
             [self reloadEmptyDataSet];

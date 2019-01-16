@@ -24,7 +24,7 @@ class CollectionHeaderLabel : UICollectionReusableView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        self.label.textColor = RJTColors.headerColor
+        self.label.textColor = ColorScheme.default.headerLabelColor
         self.label.font = UIFont.systemFont(ofSize: UIFont.labelFontSize + 4.0,
                                             weight: .bold)
         
