@@ -14,22 +14,25 @@ import Foundation
     
     
     /// Основной цвет приложения.
-    @objc public let accentMainColor = UIColor.rgb(r: 95.0, g: 111.0, b: 237.0)
+    @objc(accentMainColor) public let accentMain = UIColor.rgb(r: 95.0, g: 111.0, b: 237.0)
     
     /// Дополнительный цвет приложения.
-    @objc public let accentSecondaryColor = UIColor.rgb(r: 117.0, g: 133.0, b: 220.0)
+    @objc(accentSecondaryColor) public let accentSecondary = UIColor.rgb(r: 117.0, g: 133.0, b: 220.0)
     
     /// Оттенок бара навигации.
-    @objc public let headerLabelColor = UIColor(white: CGFloat(0.1), alpha: CGFloat(1.0))
+    @objc(headerLabelColor) public let headerLabel = UIColor(white: 0.1, alpha: CGFloat(1.0))
     
     /// Цвет текста заголовков.
-    @objc public let navTintColor = UIColor.rgb(r: 95.0, g: 111.0, b: 237.0)
+    @objc(navTintColor) public let navTint = UIColor.rgb(r: 95.0, g: 111.0, b: 237.0)
     
     /// Цвет основных подписей.
-    @objc public let textPrimaryColor = UIColor(white: CGFloat(0.05), alpha: CGFloat(1.0))
+    @objc(textPrimaryColor) public let textPrimary = UIColor(white: 0.05, alpha: 1.0)
     
     /// Цвет детальных подписей.
-    @objc public let textDetailColor = UIColor(white: CGFloat(0.83), alpha: CGFloat(1.0))
+    @objc(textDetailColor) public let textDetail = UIColor(white: 0.83, alpha: 1.0)
+    
+    /// Цвет текста заголовков.
+    @objc(switchOnTintColor) public let switchOnTint = UIColor.rgb(r: 95.0, g: 111.0, b: 237.0)
 }
 
 fileprivate extension UIColor {

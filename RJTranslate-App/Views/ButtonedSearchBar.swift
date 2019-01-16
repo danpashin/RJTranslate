@@ -8,7 +8,7 @@
 
 import Foundation
 
-@objc class ButtonedSearchBar: UIView {
+class ButtonedSearchBar: UIView {
     
     public weak var delegate: UISearchBarDelegate? {
         didSet {

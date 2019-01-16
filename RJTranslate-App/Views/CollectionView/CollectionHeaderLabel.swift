@@ -8,10 +8,10 @@
 
 import Foundation
 
-class CollectionHeaderLabel : UICollectionReusableView {
+@objc class CollectionHeaderLabel : UICollectionReusableView {
     
     /// Текст лейбла.
-    public var text: String? {
+    @objc public var text: String? {
         didSet {
             self.label.text = text
             self.separatorView.isHidden = (text?.count ?? 0 > 0)
@@ -24,7 +24,7 @@ class CollectionHeaderLabel : UICollectionReusableView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        self.label.textColor = ColorScheme.default.headerLabelColor
+        self.label.textColor = ColorScheme.default.headerLabel
         self.label.font = UIFont.systemFont(ofSize: UIFont.labelFontSize + 4.0,
                                             weight: .bold)
         

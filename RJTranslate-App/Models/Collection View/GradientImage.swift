@@ -8,22 +8,22 @@
 
 import Foundation
 
-@objc protocol GradientImageRendererDelegate : NSObjectProtocol {
+protocol GradientImageRendererDelegate : AnyObject {
     func renderer(_ renderer: GradientImageRenderer, didEndRenderingNormalImage normalImage: UIImage?, selectedImage: UIImage?)
 }
 
-@objc class GradientImageRenderer : NSObject {
+class GradientImageRenderer {
     
     /// Скругление углов отрендеренного изображения. По умолчанию, 10.
-    @objc public let cornerRadius: CGFloat = 10.0
+    public let cornerRadius: CGFloat = 10.0
     
     /// Изображение для нормального состояния.
-    @objc public private(set) var normalImage: UIImage?
+    public private(set) var normalImage: UIImage?
     
     /// Изображение для выбранного состояния.
-    @objc public private(set) var selectedImage: UIImage?
+    public private(set) var selectedImage: UIImage?
     
-    @objc public weak var delegate: GradientImageRendererDelegate?
+    public weak var delegate: GradientImageRendererDelegate?
     
     private var gradient: GradientView
     private var selectedGradient: GradientView
@@ -31,21 +31,24 @@ import Foundation
     /// Размеры изображения для рендеринга.
     private var size: CGSize
     
-    @objc(rendering) public private(set) var isRendering = false
+    public private(set) var isRendering = false
     
     private let renderingQueue = DispatchQueue(label: "ru.danpashin.rjtranslate.image.rendering", qos: .utility)
     
-    @objc public init(size: CGSize) {
+    public init(size: CGSize) {
         self.size = size
         
-        self.gradient = GradientView.default()
-        self.selectedGradient = GradientView.default()
-        self.selectedGradient.layer.colors = [
-            ColorScheme.default.accentSecondaryColor.darker.cgColor,
-            ColorScheme.default.accentMainColor.darker.cgColor
-        ]
+        let frame = CGRect(origin: CGPoint.zero, size: size)
         
-        super.init()
+        self.gradient = GradientView.default()
+        self.gradient.frame = frame
+        
+        self.selectedGradient = GradientView.default()
+        self.selectedGradient.frame = frame
+        self.selectedGradient.layer.colors = [
+            ColorScheme.default.accentSecondary.darker.cgColor,
+            ColorScheme.default.accentMain.darker.cgColor
+        ]
         
         NotificationCenter.default.addObserver(self, selector: #selector(didReceiveMemoryWarning), name: UIApplication.didReceiveMemoryWarningNotification, object: nil)
     }
@@ -56,7 +59,7 @@ import Foundation
     }
     
     /// Выполняет рендеринг всех типов изображений в фоновом режиме. Вызывает делегат по окончании.
-    @objc public func renderAllImages() {
+    public func renderAllImages() {
         self.isRendering = true
         
         let group = DispatchGroup()
@@ -84,10 +87,14 @@ import Foundation
         UIGraphicsBeginImageContextWithOptions(self.size, false, UIScreen.main.scale)
         guard let context = UIGraphicsGetCurrentContext() else { return nil }
         
-        gradient.frame = CGRect(origin: CGPoint.zero, size: self.size)
-        gradient.layer.cornerRadius = self.cornerRadius
+        let gradientLayer: CAGradientLayer = {
+            DispatchQueue.main.sync {
+                return gradient.layer
+            }
+        }()
+        gradientLayer.cornerRadius = self.cornerRadius
         
-        gradient.layer.render(in: context)
+        gradientLayer.render(in: context)
         let image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         

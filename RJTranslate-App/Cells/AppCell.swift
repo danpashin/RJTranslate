@@ -28,16 +28,16 @@ import UIKit
     @IBOutlet private weak var iconView: UIImageView?
     @IBOutlet private weak var nameLabel: UILabel?
     @IBOutlet private weak var identifierLabel: UILabel?
-    @IBOutlet private weak var tickView: RJTTickView?
+    @IBOutlet private weak var tickView: TickView?
     
     public override func awakeFromNib() {
         super.awakeFromNib()
-        self.nameLabel?.textColor = ColorScheme.default.textPrimaryColor
+        self.nameLabel?.textColor = ColorScheme.default.textPrimary
         
         self.layer.cornerRadius = 10.0
         self.iconView?.layer.masksToBounds = true
         self.iconView?.layer.cornerRadius = 11.0
-        self.iconView?.tintColor = ColorScheme.default.textDetailColor
+        self.iconView?.tintColor = ColorScheme.default.textDetail
         
         self.updateSelection(false, animated: false)
         

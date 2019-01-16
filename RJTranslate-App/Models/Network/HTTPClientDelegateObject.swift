@@ -96,7 +96,13 @@ class HTTPClientDelegateObject: NSObject, URLSessionDownloadDelegate, URLSession
         let destination = URL(fileURLWithPath: stringNewLocation!).appendingPathComponent(fileName!)
         
         do {
-            try FileManager.default.moveItem(at: location, to: destination)
+            let fileManager = FileManager.default
+            
+            if fileManager.fileExists(atPath: destination.path) {
+                try? fileManager.removeItem(at: destination)
+            }
+            
+            try fileManager.moveItem(at: location, to: destination)
         } catch let exceptionError {
             let error = NSError(domain: NSCocoaErrorDomain, code: 0, 
                                 userInfo: [NSLocalizedDescriptionKey: exceptionError.localizedDescription])

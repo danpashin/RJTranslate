@@ -8,21 +8,21 @@
 
 import Foundation
 
-@objc class GradientView: UIView {
+class GradientView: UIView {
     
     override public static var layerClass: AnyClass {
         return CAGradientLayer.self
     }
     
-    @objc override public var layer: CAGradientLayer {
+    override public var layer: CAGradientLayer {
         return super.layer as! CAGradientLayer
     }
     
-    @objc(defaultGradientView) public static func `default`() -> GradientView {
+    public static func `default`() -> GradientView {
         let gradientView = GradientView()
         gradientView.layer.colors = [
-            ColorScheme.default.accentSecondaryColor.cgColor,
-            ColorScheme.default.accentMainColor.cgColor
+            ColorScheme.default.accentSecondary.cgColor,
+            ColorScheme.default.accentMain.cgColor
         ]
         gradientView.layer.startPoint = CGPoint(x: 0.5, y: 0.0)
         gradientView.layer.endPoint = CGPoint(x: 0.5, y: 1.0)

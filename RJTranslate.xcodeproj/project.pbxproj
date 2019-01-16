@@ -43,10 +43,10 @@
 		A54EBFD021B2A1150086B7DD /* CollectionUpdateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54EBFCF21B2A1150086B7DD /* CollectionUpdateCell.swift */; };
 		A54F28C921EF2FB7002075C5 /* ColorScheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54F28C821EF2FB7002075C5 /* ColorScheme.swift */; };
 		A54F28CB21EF3A5A002075C5 /* UIColorConveniences.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54F28CA21EF3A5A002075C5 /* UIColorConveniences.swift */; };
+		A54F28CD21EF4F55002075C5 /* TickView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54F28CC21EF4F55002075C5 /* TickView.swift */; };
 		A5515BD921AE9D2F00C7BFC4 /* SwitchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5515BD821AE9D2F00C7BFC4 /* SwitchCell.swift */; };
 		A5527FBB218F4C4000095251 /* RJTApplicationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A54ADB1D217BB0CF00D32EB7 /* RJTApplicationModel.m */; };
 		A552F90821B03279002771E9 /* TranslationsUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A552F90721B03279002771E9 /* TranslationsUpdate.swift */; };
-		A56FB1C42180B17B002F4175 /* RJTTickView.m in Sources */ = {isa = PBXBuildFile; fileRef = A56FB1C32180B17B002F4175 /* RJTTickView.m */; };
 		A5763DA121823B4300C7F82A /* PrefixHeader.pch in Headers */ = {isa = PBXBuildFile; fileRef = A5763DA021823B4300C7F82A /* PrefixHeader.pch */; };
 		A57C40AA218A029200885834 /* RJTOperationQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = A57C40A8218A029200885834 /* RJTOperationQueue.h */; };
 		A57C40AB218A029200885834 /* RJTOperationQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = A57C40A9218A029200885834 /* RJTOperationQueue.m */; };
@@ -55,7 +55,6 @@
 		A57CF73B217AFFD0004A71F8 /* RJTApplicationEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = A5353414217A595200E08881 /* RJTApplicationEntity.m */; };
 		A58659952192CCE600A76A6C /* RJTSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = A58659942192CCE600A76A6C /* RJTSupport.m */; };
 		A58659962192CCE600A76A6C /* RJTSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = A58659942192CCE600A76A6C /* RJTSupport.m */; };
-		A58659992192F70300A76A6C /* RJTCollectionLabelHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = A58659982192F70300A76A6C /* RJTCollectionLabelHeader.m */; };
 		A5ADC030218508A400C33863 /* Cydia_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = A5ADC02F218508A400C33863 /* Cydia_icon.png */; };
 		A5B74C2021E4A9600058C71A /* RJTDatabaseFacade.h in Headers */ = {isa = PBXBuildFile; fileRef = A5E80C8521E3300500150B5D /* RJTDatabaseFacade.h */; };
 		A5B74C2121E4A9600058C71A /* RJTDatabaseFacade.m in Sources */ = {isa = PBXBuildFile; fileRef = A5E80C8621E3300500150B5D /* RJTDatabaseFacade.m */; };
@@ -147,16 +146,13 @@
 		A54EBFCF21B2A1150086B7DD /* CollectionUpdateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionUpdateCell.swift; sourceTree = "<group>"; };
 		A54F28C821EF2FB7002075C5 /* ColorScheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorScheme.swift; sourceTree = "<group>"; };
 		A54F28CA21EF3A5A002075C5 /* UIColorConveniences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorConveniences.swift; sourceTree = "<group>"; };
+		A54F28CC21EF4F55002075C5 /* TickView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TickView.swift; sourceTree = "<group>"; };
 		A5515BD821AE9D2F00C7BFC4 /* SwitchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchCell.swift; sourceTree = "<group>"; };
 		A552F90721B03279002771E9 /* TranslationsUpdate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslationsUpdate.swift; sourceTree = "<group>"; };
-		A56FB1C22180B17B002F4175 /* RJTTickView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RJTTickView.h; sourceTree = "<group>"; };
-		A56FB1C32180B17B002F4175 /* RJTTickView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RJTTickView.m; sourceTree = "<group>"; };
 		A5763DA021823B4300C7F82A /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		A57C40A8218A029200885834 /* RJTOperationQueue.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RJTOperationQueue.h; sourceTree = "<group>"; };
 		A57C40A9218A029200885834 /* RJTOperationQueue.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RJTOperationQueue.m; sourceTree = "<group>"; };
 		A58659942192CCE600A76A6C /* RJTSupport.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RJTSupport.m; sourceTree = "<group>"; };
-		A58659972192F70300A76A6C /* RJTCollectionLabelHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RJTCollectionLabelHeader.h; sourceTree = "<group>"; };
-		A58659982192F70300A76A6C /* RJTCollectionLabelHeader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RJTCollectionLabelHeader.m; sourceTree = "<group>"; };
 		A58AFD72217DF975008A900C /* sign.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = sign.entitlements; sourceTree = SOURCE_ROOT; };
 		A5A09546217C4696009743DF /* RJTAppCollectionView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RJTAppCollectionView.h; sourceTree = "<group>"; };
 		A5A09547217C4696009743DF /* RJTAppCollectionView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RJTAppCollectionView.m; sourceTree = "<group>"; };
@@ -403,8 +399,6 @@
 				A5B74C1B21E493CE0058C71A /* EmptyViewType.h */,
 				A5A09546217C4696009743DF /* RJTAppCollectionView.h */,
 				A5A09547217C4696009743DF /* RJTAppCollectionView.m */,
-				A58659972192F70300A76A6C /* RJTCollectionLabelHeader.h */,
-				A58659982192F70300A76A6C /* RJTCollectionLabelHeader.m */,
 				A5196B7B21D0BF2200201DEF /* AppCollectionView.swift */,
 				A5196B7921D0BB3200201DEF /* CollectionHeaderLabel.swift */,
 			);
@@ -503,8 +497,7 @@
 				A5ADC02E2184F32100C33863 /* CollectionView */,
 				A5B74C2B21E4D14A0058C71A /* NavigationBar.swift */,
 				A521637221EA5EE100815C8B /* GradientView.swift */,
-				A56FB1C22180B17B002F4175 /* RJTTickView.h */,
-				A56FB1C32180B17B002F4175 /* RJTTickView.m */,
+				A54F28CC21EF4F55002075C5 /* TickView.swift */,
 				A5E0BBAE218646A10094ECBC /* RJTHud.h */,
 				A5E0BBB1218646A10094ECBC /* RJTHud.m */,
 				A5E0BBAF218646A10094ECBC /* RJTHudProgressView.h */,
@@ -772,6 +765,7 @@
 				A5527FBB218F4C4000095251 /* RJTApplicationModel.m in Sources */,
 				A5E80C8D21E365C300150B5D /* TouchResponsiveCollectionCell.swift in Sources */,
 				A511A67C21B19FFC003D4244 /* PreferencesTableModel.swift in Sources */,
+				A54F28CD21EF4F55002075C5 /* TickView.swift in Sources */,
 				A521637321EA5EE100815C8B /* GradientView.swift in Sources */,
 				A5E80C8F21E387E100150B5D /* ApplicationConviniences.swift in Sources */,
 				A522F1D0217AFC300085A5E4 /* RJTranslateController.m in Sources */,
@@ -789,7 +783,6 @@
 				A5C1FB3B21B258A1007BB861 /* PreferencesController.swift in Sources */,
 				A54EBFCC21B293880086B7DD /* Tracker.swift in Sources */,
 				A5515BD921AE9D2F00C7BFC4 /* SwitchCell.swift in Sources */,
-				A58659992192F70300A76A6C /* RJTCollectionLabelHeader.m in Sources */,
 				A57CF73A217AFFC8004A71F8 /* RJTDatabase.m in Sources */,
 				A5DEBB29218EF5B900858616 /* RJTImageCache.m in Sources */,
 				A53CC73721E0C52200848785 /* HTTPRequestBuilder.swift in Sources */,
@@ -816,7 +809,6 @@
 				A5E0BBB2218646A10094ECBC /* RJTHudProgressView.m in Sources */,
 				A53CC72F21E0BE4A00848785 /* HTTPClient.swift in Sources */,
 				A52D551F21EBC703003EDEE4 /* GradientImage.swift in Sources */,
-				A56FB1C42180B17B002F4175 /* RJTTickView.m in Sources */,
 				A53CC73321E0C34200848785 /* HTTPClientFacilities.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

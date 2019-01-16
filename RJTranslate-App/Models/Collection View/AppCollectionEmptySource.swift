@@ -81,7 +81,7 @@ import DZNEmptyDataSet
         
         let attributes = [
             NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: CGFloat(UIFont.labelFontSize * 1.5)),
-            NSAttributedString.Key.foregroundColor: ColorScheme.default.headerLabelColor
+            NSAttributedString.Key.foregroundColor: ColorScheme.default.headerLabel
         ]
         
         return NSAttributedString(string: titleString, attributes: attributes)

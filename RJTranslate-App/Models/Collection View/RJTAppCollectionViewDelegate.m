@@ -10,8 +10,6 @@
 #import "RJTApplicationModel.h"
 #import "RJTCollectionViewModel.h"
 
-#import "RJTCollectionLabelHeader.h"
-
 @interface RJTAppCollectionViewDelegate ()
 @property (weak, nonatomic) RJTCollectionViewModel *collectionModel;
 @end
@@ -26,7 +24,7 @@
         collectionView.delegate = self;
         collectionView.dataSource = self;
         
-        [collectionView registerClass:[RJTCollectionLabelHeader class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"header"];
+        [collectionView registerClass:[CollectionHeaderLabel class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"header"];
         
         self.collectionModel = collectionView.model;
     }
@@ -135,7 +133,7 @@
                     viewForSupplementaryElementOfKind:(NSString *)kind
                                           atIndexPath:(NSIndexPath *)indexPath
 {
-    RJTCollectionLabelHeader *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:kind
+    CollectionHeaderLabel *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:kind
                                                                               withReuseIdentifier:@"header"
                                                                                      forIndexPath:indexPath];
     if (indexPath.section == 1) {
