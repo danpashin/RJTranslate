@@ -96,7 +96,11 @@ class DatabaseUpdater : NSObject {
         self.updateDownloader?.downloadAndUnzipUpdate(update, progress: { (progress: Double) in
             self.delegate.databaseUpdater?(self, updateProgress: progress)
         }, completion: { (unzippedFolder: String?, error: NSError?) in
-            if error != nil || unzippedFolder == nil { return }
+            if error != nil || unzippedFolder == nil {
+                let nsError = NSError(domain: NSCocoaErrorDomain, code: -40, userInfo: [:])
+                self.delegate.databaseUpdater(self, failed: error ?? nsError)
+                return 
+            }
             self.processFolder(unzippedFolder!)
         })
     }

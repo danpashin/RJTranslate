@@ -15,7 +15,7 @@ func appRecordError(_ description: String, _ args: CVarArg...) -> NSError {
     let error = NSError(domain: "ru.danpashin.rjtranslate.error", code: -1, userInfo: [NSLocalizedDescriptionKey:errorDescription])
     
     NSLog(description, args)
-    Crashlytics.sharedInstance().recordError(error)
+//    Crashlytics.sharedInstance().recordError(error)
     
     return error
 }

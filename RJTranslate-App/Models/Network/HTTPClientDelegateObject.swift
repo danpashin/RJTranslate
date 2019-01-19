@@ -28,12 +28,24 @@ class HTTPClientDelegateObject: NSObject, URLSessionDownloadDelegate, URLSession
     
     public func urlSession(_ session: URLSession, task sessionTask: URLSessionTask, didCompleteWithError error: Error?) {
         guard let task = self.client?.activeTasks[sessionTask.taskIdentifier] else { return }
+        self.client?.removeTask(identifier: sessionTask.taskIdentifier)
         
         if let jsonTask = task as? HTTPJSONTask {
-            jsonTask.serialize()
+            if error == nil {
+                jsonTask.serialize()
+            } else {
+                let nsError = NSError(domain: NSCocoaErrorDomain, code: -30,
+                                      userInfo: [NSLocalizedDescriptionKey: error?.localizedDescription ?? ""])
+                jsonTask.completionClosure?(nil, nsError)
+            }
+        } else if let downloadTask = task as? HTTPDownloadTask {
+            if error != nil {
+                let nsError = NSError(domain: NSCocoaErrorDomain, code: -30,
+                                      userInfo: [NSLocalizedDescriptionKey: error?.localizedDescription ?? ""])
+                downloadTask.completionClosure?(nil, nsError)
+            }
         }
         
-        self.client?.removeTask(identifier: sessionTask.taskIdentifier)
     }
     
     
