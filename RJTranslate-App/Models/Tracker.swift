@@ -9,9 +9,9 @@
 import Foundation
 import Firebase
 
-@objc(RJTTracker) public class Tracker: NSObject {
+public class Tracker {
     
-    @objc public func trackSearchEvent(_ event: String) {
+    public func trackSearchEvent(_ event: String) {
         if event.count == 0 {
             return
         }
@@ -21,7 +21,7 @@ import Firebase
         }
     }
     
-    @objc public func trackSelectTranslation(name: String) {
+    public func trackSelectTranslation(name: String) {
         if name.count == 0 {
             return
         }

@@ -8,7 +8,7 @@
 
 import Foundation
 
-@objc(RJTCollectionViewLayout) class AppCollectionLayout : UICollectionViewFlowLayout, AppCollectionDataSourceChange {
+class AppCollectionLayout : UICollectionViewFlowLayout, AppCollectionDataSourceChange {
     
     private var oldDataSource: AppCollectionDataSource?
     private weak var currentDataSource: AppCollectionDataSource?
@@ -29,8 +29,8 @@ import Foundation
     } 
     
     @available(*, deprecated, message: "should move to collection view")
-    @objc public func itemSizeFromCollectionViewFrame(_ collectionFrame: CGRect) -> CGSize {
-        return CGSize(width: collectionFrame.width - 24.0, height: AppCell.defaultHeight)
+    public func itemSizeFromCollectionViewFrame(_ collectionFrame: CGRect) -> CGSize {
+        return CGSize(width: collectionFrame.width - 24.0, height: AppCollectionCell.defaultHeight)
     }
     
     override public func finalizeCollectionViewUpdates() {
@@ -39,7 +39,7 @@ import Foundation
         self.oldDataSource = nil
     }
     
-    @objc public func dataSourceChanged(from oldDataSource: AppCollectionDataSource?, to newDatasource: AppCollectionDataSource?) {
+    public func dataSourceChanged(from oldDataSource: AppCollectionDataSource?, to newDatasource: AppCollectionDataSource?) {
         self.oldDataSource = oldDataSource
         self.currentDataSource = newDatasource
     }

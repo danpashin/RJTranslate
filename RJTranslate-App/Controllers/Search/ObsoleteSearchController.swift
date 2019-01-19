@@ -9,17 +9,17 @@
 import Foundation
 
 
-@objc class ObsoleteSearchController: UIViewController, SearchControllerRequired, UISearchBarDelegate {
-    @objc public private(set) var searchText: String = ""
+class ObsoleteSearchController: UIViewController, SearchControllerRequired, UISearchBarDelegate {
+    public private(set) var searchText: String = ""
     
-    @objc public private(set) weak var searchDelegate: SearchControllerDelegate?
+    public private(set) weak var searchDelegate: SearchControllerDelegate?
     
-    @objc public private(set) var searchBar: ButtonedSearchBar?
+    public private(set) var searchBar: ButtonedSearchBar?
     
     private var dimmed: Bool = true
     
     /// Определет, выполняется ли, поиск в данный момент.
-    @objc public private(set) var performingSearch: Bool = false {
+    public private(set) var performingSearch: Bool = false {
         didSet {
             self.searchBar?.showCancelButton = self.performingSearch
         }
@@ -37,7 +37,7 @@ import Foundation
         self.modalPresentationStyle = .overFullScreen
     }
     
-    @objc public func createSearchBarForView(_ view: UIView) -> ButtonedSearchBar {
+    public func createSearchBarForView(_ view: UIView) -> ButtonedSearchBar {
         self.searchBar = ButtonedSearchBar(frame: view.bounds)
         self.searchBar?.delegate = self
         return self.searchBar!

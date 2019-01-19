@@ -6,8 +6,6 @@
 
 #import "RJTApplicationModel.h"
 #import "RJTDatabaseFacade.h"
-#import "RJTCollectionViewModel.h"
-#import "RJTAppCollectionViewDelegate.h"
+#import "RJTPosixWrapper.h"
 
-#import "RJTAppCollectionView.h"
 #import "RJTHud.h"

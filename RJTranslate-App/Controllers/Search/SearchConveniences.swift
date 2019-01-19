@@ -13,15 +13,15 @@ import Foundation
 // MARK: Protocols
 // MARK: -
 
-@objc public protocol SearchControllerRequired : NSObjectProtocol {
+@objc public protocol SearchControllerRequired {
     var searchText: String { get }
     
-    weak var searchDelegate: SearchControllerDelegate? { get }
+    var searchDelegate: SearchControllerDelegate? { get }
     
     init(delegate: SearchControllerDelegate)
 }
 
-@objc public protocol SearchControllerDelegate: UISearchControllerDelegate {
+@objc public protocol SearchControllerDelegate {
     
     /// Вызывается перед показом контроллера поиска.
     ///

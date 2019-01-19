@@ -8,10 +8,10 @@
 
 import Foundation
 
-@objc class CollectionHeaderLabel : UICollectionReusableView {
+class CollectionHeaderLabel : UICollectionReusableView {
     
     /// Текст лейбла.
-    @objc public var text: String? {
+    public var text: String? {
         didSet {
             self.label.text = text
             self.separatorView.isHidden = (text?.count ?? 0 > 0)

@@ -86,7 +86,7 @@ class HTTPClient {
     public func json(_ url: URLTransformable,
                      httpMethod: HTTPMethod = .get,
                      arguments:[String: AnyHashable] = [:]
-        ) -> HTTPJSONTask? {
+        ) -> HTTPJSONTask {
         
         let requestBuilder = HTTPRequestBuilder(url: url, httpMethod: httpMethod, arguments: arguments)
         let request = requestBuilder.buildRequest()

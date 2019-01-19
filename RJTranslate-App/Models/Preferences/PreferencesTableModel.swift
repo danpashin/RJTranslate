@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol PrefsTableModelDelegate: NSObjectProtocol {
+protocol PrefsTableModelDelegate: class {
     func userDidSetPreferenceValue(_ value: Any?, forKey key: String)
 }
 

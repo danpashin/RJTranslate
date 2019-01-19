@@ -8,25 +8,26 @@
 
 import Foundation
 
-@objc class ModernSearchController: UISearchController, UISearchBarDelegate, SearchControllerRequired {
+class ModernSearchController: UISearchController, UISearchBarDelegate, SearchControllerRequired, UISearchControllerDelegate {
     
     /// Определяет, должен ли затемняться фон при начале поиска. По умолчанию, true.
-    @objc public var dimBackground = true
+    public var dimBackground = true
     
     ///  Возвращает текст поиска, который набирается пользователем.
-    @objc public private(set) var searchText: String = ""
+    public private(set) var searchText: String = ""
     
     /// Определет, выполняется ли поиск в данный момент.
-    @objc public private(set) var performingSearch: Bool = false
+    public private(set) var performingSearch: Bool = false
     
     public weak var searchDelegate: SearchControllerDelegate?
     
     
     @available(*, unavailable)
     required init?(coder aDecoder: NSCoder) {
-        fatalError("Use init(delegate:) instead")
+        super.init(coder: aDecoder)
     }
     
+    @available(*, unavailable)
     public override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     }
@@ -34,11 +35,11 @@ import Foundation
     /// Выполняет инициализацию контроллера поиска.
     ///
     /// - Parameter delegate: Устанавливает делегат для объекта.
-    @objc required public init(delegate: SearchControllerDelegate) {
+    required public init(delegate: SearchControllerDelegate) {
         super.init(searchResultsController: nil)
         
         self.searchDelegate = delegate
-        self.delegate = delegate
+        self.delegate = self
         
         self.dimsBackgroundDuringPresentation = false
         self.searchBar.delegate = self
@@ -79,5 +80,25 @@ import Foundation
         self.searchText = ""
         self.performingSearch = false
         self.showDimmingView(false)
+    }
+    
+    
+    // MARK: -
+    // MARK: UISearchControllerDelegate
+    
+    public func willPresentSearchController(_ searchController: UISearchController) {
+        self.searchDelegate?.willPresentSearchController?(self)
+    }
+    
+    public func didPresentSearchController(_ searchController: UISearchController) {
+        self.searchDelegate?.didPresentSearchController?(self)
+    }
+    
+    public func willDismissSearchController(_ searchController: UISearchController) {
+        self.searchDelegate?.willDismissSearchController?(self)
+    }
+    
+    public func didDismissSearchController(_ searchController: UISearchController) {
+        self.searchDelegate?.didDismissSearchController?(self)
     }
 }

@@ -15,13 +15,11 @@
 		A5196B7A21D0BB3200201DEF /* CollectionHeaderLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5196B7921D0BB3200201DEF /* CollectionHeaderLabel.swift */; };
 		A521020321EB2E6300D95AA8 /* AppCollectionLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = A521020221EB2E6300D95AA8 /* AppCollectionLayout.swift */; };
 		A521637321EA5EE100815C8B /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A521637221EA5EE100815C8B /* GradientView.swift */; };
-		A522F1D0217AFC300085A5E4 /* RJTranslateController.m in Sources */ = {isa = PBXBuildFile; fileRef = A522F1CF217AFC300085A5E4 /* RJTranslateController.m */; };
 		A522F1D3217AFC300085A5E4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A522F1D1217AFC300085A5E4 /* Main.storyboard */; };
 		A522F1D5217AFC310085A5E4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A522F1D4217AFC310085A5E4 /* Assets.xcassets */; };
 		A522F1D8217AFC310085A5E4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A522F1D6217AFC310085A5E4 /* LaunchScreen.storyboard */; };
-		A526FD9B21989A9900E1A434 /* RJTCollectionViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A526FD9A21989A9900E1A434 /* RJTCollectionViewModel.m */; };
 		A52D551D21EBC552003EDEE4 /* AppCollectionEmptySource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52D551C21EBC552003EDEE4 /* AppCollectionEmptySource.swift */; };
-		A52D551F21EBC703003EDEE4 /* GradientImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52D551E21EBC703003EDEE4 /* GradientImage.swift */; };
+		A52D551F21EBC703003EDEE4 /* GradientImageRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52D551E21EBC703003EDEE4 /* GradientImageRenderer.swift */; };
 		A53533FF217A57ED00E08881 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A53533FE217A57ED00E08881 /* Foundation.framework */; };
 		A5353402217A57ED00E08881 /* RJTranslate.m in Sources */ = {isa = PBXBuildFile; fileRef = A5353401217A57ED00E08881 /* RJTranslate.m */; };
 		A5353411217A584500E08881 /* RJTranslate.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A535340F217A584500E08881 /* RJTranslate.xcdatamodeld */; };
@@ -38,7 +36,7 @@
 		A545D85E21847AE90072674C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A545D86021847AE90072674C /* Localizable.strings */; };
 		A54EBFAC21B2725C0086B7DD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54EBFAB21B2725C0086B7DD /* AppDelegate.swift */; };
 		A54EBFCC21B293880086B7DD /* Tracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54EBFCB21B293880086B7DD /* Tracker.swift */; };
-		A54EBFCE21B2997C0086B7DD /* AppCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54EBFCD21B2997C0086B7DD /* AppCell.swift */; };
+		A54EBFCE21B2997C0086B7DD /* AppCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54EBFCD21B2997C0086B7DD /* AppCollectionCell.swift */; };
 		A54EBFD021B2A1150086B7DD /* CollectionUpdateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54EBFCF21B2A1150086B7DD /* CollectionUpdateCell.swift */; };
 		A54F28C921EF2FB7002075C5 /* ColorScheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54F28C821EF2FB7002075C5 /* ColorScheme.swift */; };
 		A54F28CB21EF3A5A002075C5 /* UIColorConveniences.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54F28CA21EF3A5A002075C5 /* UIColorConveniences.swift */; };
@@ -46,15 +44,22 @@
 		A5515BD921AE9D2F00C7BFC4 /* SwitchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5515BD821AE9D2F00C7BFC4 /* SwitchCell.swift */; };
 		A5527FBB218F4C4000095251 /* RJTApplicationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A54ADB1D217BB0CF00D32EB7 /* RJTApplicationModel.m */; };
 		A552F90821B03279002771E9 /* TranslationsUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A552F90721B03279002771E9 /* TranslationsUpdate.swift */; };
+		A57104CE21F30D3600C829DD /* FeaturedController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57104CD21F30D3600C829DD /* FeaturedController.swift */; };
+		A57104D021F311DC00C829DD /* AppCollectionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A581C57F21F0A9A700DD2662 /* AppCollectionDelegate.swift */; };
+		A57104D121F320C000C829DD /* TranslateMainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54A335D21B3CBA40064D648 /* TranslateMainController.swift */; };
+		A57104D221F32C2600C829DD /* AppCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5196B7B21D0BF2200201DEF /* AppCollectionView.swift */; };
+		A57104D521F3327100C829DD /* RJTPosixWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = A57104D421F3327100C829DD /* RJTPosixWrapper.m */; };
+		A57104D721F3368300C829DD /* AppCollectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57104D621F3368300C829DD /* AppCollectionModel.swift */; };
 		A5763DA121823B4300C7F82A /* PrefixHeader.pch in Headers */ = {isa = PBXBuildFile; fileRef = A5763DA021823B4300C7F82A /* PrefixHeader.pch */; };
 		A57C40AA218A029200885834 /* RJTOperationQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = A57C40A8218A029200885834 /* RJTOperationQueue.h */; };
 		A57C40AB218A029200885834 /* RJTOperationQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = A57C40A9218A029200885834 /* RJTOperationQueue.m */; };
 		A57C40AC218A061300885834 /* RJTOperationQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = A57C40A9218A029200885834 /* RJTOperationQueue.m */; };
 		A57CF73A217AFFC8004A71F8 /* RJTDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = A535341B217A5A2800E08881 /* RJTDatabase.m */; };
 		A57CF73B217AFFD0004A71F8 /* RJTApplicationEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = A5353414217A595200E08881 /* RJTApplicationEntity.m */; };
-		A581C58121F1C40200DD2662 /* RJTAppCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = A5A09547217C4696009743DF /* RJTAppCollectionView.m */; };
 		A58659952192CCE600A76A6C /* RJTSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = A58659942192CCE600A76A6C /* RJTSupport.m */; };
 		A58659962192CCE600A76A6C /* RJTSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = A58659942192CCE600A76A6C /* RJTSupport.m */; };
+		A59521E521F3480900E5F130 /* RJTImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = A5DEBB28218EF5B900858616 /* RJTImageCache.m */; };
+		A59521E621F3480900E5F130 /* RJTImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = A5DEBB28218EF5B900858616 /* RJTImageCache.m */; };
 		A5ADC030218508A400C33863 /* Cydia_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = A5ADC02F218508A400C33863 /* Cydia_icon.png */; };
 		A5B74C2021E4A9600058C71A /* RJTDatabaseFacade.h in Headers */ = {isa = PBXBuildFile; fileRef = A5E80C8521E3300500150B5D /* RJTDatabaseFacade.h */; };
 		A5B74C2121E4A9600058C71A /* RJTDatabaseFacade.m in Sources */ = {isa = PBXBuildFile; fileRef = A5E80C8621E3300500150B5D /* RJTDatabaseFacade.m */; };
@@ -70,11 +75,9 @@
 		A5BFB4A62189B267001A9D82 /* RJTAppIcon.m in Sources */ = {isa = PBXBuildFile; fileRef = A5BFB4A32189B267001A9D82 /* RJTAppIcon.m */; };
 		A5C1FB3B21B258A1007BB861 /* PreferencesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C1FB3A21B258A1007BB861 /* PreferencesController.swift */; };
 		A5C4F89521E28D3F000FAC48 /* APIResponses.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C4F89421E28D3F000FAC48 /* APIResponses.swift */; };
-		A5C7DA8421935D310086BE40 /* RJTAppCollectionViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A5C7DA8321935D310086BE40 /* RJTAppCollectionViewDelegate.m */; };
 		A5CC12EA2184A2A600A607E3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A5CC12E92184A2A600A607E3 /* GoogleService-Info.plist */; };
 		A5DAAE1B21C7973B0012D559 /* DatabaseUpdater.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DAAE1A21C7973B0012D559 /* DatabaseUpdater.swift */; };
 		A5DB00AF21EB238F0009AB0E /* AppCollectionDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DB00AE21EB238F0009AB0E /* AppCollectionDataSource.swift */; };
-		A5DEBB29218EF5B900858616 /* RJTImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = A5DEBB28218EF5B900858616 /* RJTImageCache.m */; };
 		A5DEBB31218F0EF000858616 /* RJTImageCache.h in Headers */ = {isa = PBXBuildFile; fileRef = A5DEBB27218EF5B800858616 /* RJTImageCache.h */; };
 		A5E0BBB2218646A10094ECBC /* RJTHudProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = A5E0BBB0218646A10094ECBC /* RJTHudProgressView.m */; };
 		A5E0BBB3218646A10094ECBC /* RJTHud.m in Sources */ = {isa = PBXBuildFile; fileRef = A5E0BBB1218646A10094ECBC /* RJTHud.m */; };
@@ -84,7 +87,6 @@
 		A5E80C8F21E387E100150B5D /* ApplicationConviniences.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E80C8E21E387E100150B5D /* ApplicationConviniences.swift */; };
 		A5F40123218F7DBE00046C58 /* RJTApplicationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A54ADB1D217BB0CF00D32EB7 /* RJTApplicationModel.m */; };
 		A5F40124218F7DC000046C58 /* RJTAppIcon.m in Sources */ = {isa = PBXBuildFile; fileRef = A5BFB4A32189B267001A9D82 /* RJTAppIcon.m */; };
-		A5F40125218F7DC200046C58 /* RJTImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = A5DEBB28218EF5B900858616 /* RJTImageCache.m */; };
 		AD7B4BAE3F32AE9E9BB8B28C /* libPods-RJTranslate.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D4BDA7DE4D4549AE0118813 /* libPods-RJTranslate.a */; };
 /* End PBXBuildFile section */
 
@@ -111,16 +113,12 @@
 		A521020221EB2E6300D95AA8 /* AppCollectionLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCollectionLayout.swift; sourceTree = "<group>"; };
 		A521637221EA5EE100815C8B /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		A522F1C9217AFC300085A5E4 /* RJTranslate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RJTranslate.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		A522F1CE217AFC300085A5E4 /* RJTranslateController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RJTranslateController.h; sourceTree = "<group>"; };
-		A522F1CF217AFC300085A5E4 /* RJTranslateController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RJTranslateController.m; sourceTree = "<group>"; };
 		A522F1D2217AFC300085A5E4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A522F1D4217AFC310085A5E4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A522F1D7217AFC310085A5E4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A522F1D9217AFC310085A5E4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A526FD9921989A9900E1A434 /* RJTCollectionViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RJTCollectionViewModel.h; sourceTree = "<group>"; };
-		A526FD9A21989A9900E1A434 /* RJTCollectionViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RJTCollectionViewModel.m; sourceTree = "<group>"; };
 		A52D551C21EBC552003EDEE4 /* AppCollectionEmptySource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCollectionEmptySource.swift; sourceTree = "<group>"; };
-		A52D551E21EBC703003EDEE4 /* GradientImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientImage.swift; sourceTree = "<group>"; };
+		A52D551E21EBC703003EDEE4 /* GradientImageRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientImageRenderer.swift; sourceTree = "<group>"; };
 		A532DCBF21AE81AF001A7CA5 /* RJTranslate-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RJTranslate-Bridging-Header.h"; sourceTree = "<group>"; };
 		A53533FB217A57ED00E08881 /* RJTranslate.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = RJTranslate.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		A53533FE217A57ED00E08881 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -142,23 +140,24 @@
 		A54ADB1D217BB0CF00D32EB7 /* RJTApplicationModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RJTApplicationModel.m; sourceTree = "<group>"; };
 		A54EBFAB21B2725C0086B7DD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A54EBFCB21B293880086B7DD /* Tracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tracker.swift; sourceTree = "<group>"; };
-		A54EBFCD21B2997C0086B7DD /* AppCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCell.swift; sourceTree = "<group>"; };
+		A54EBFCD21B2997C0086B7DD /* AppCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCollectionCell.swift; sourceTree = "<group>"; };
 		A54EBFCF21B2A1150086B7DD /* CollectionUpdateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionUpdateCell.swift; sourceTree = "<group>"; };
 		A54F28C821EF2FB7002075C5 /* ColorScheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorScheme.swift; sourceTree = "<group>"; };
 		A54F28CA21EF3A5A002075C5 /* UIColorConveniences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorConveniences.swift; sourceTree = "<group>"; };
 		A54F28CC21EF4F55002075C5 /* TickView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TickView.swift; sourceTree = "<group>"; };
 		A5515BD821AE9D2F00C7BFC4 /* SwitchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchCell.swift; sourceTree = "<group>"; };
 		A552F90721B03279002771E9 /* TranslationsUpdate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslationsUpdate.swift; sourceTree = "<group>"; };
+		A57104CD21F30D3600C829DD /* FeaturedController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturedController.swift; sourceTree = "<group>"; };
+		A57104D321F3327100C829DD /* RJTPosixWrapper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RJTPosixWrapper.h; sourceTree = "<group>"; };
+		A57104D421F3327100C829DD /* RJTPosixWrapper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RJTPosixWrapper.m; sourceTree = "<group>"; };
+		A57104D621F3368300C829DD /* AppCollectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCollectionModel.swift; sourceTree = "<group>"; };
 		A5763DA021823B4300C7F82A /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		A57C40A8218A029200885834 /* RJTOperationQueue.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RJTOperationQueue.h; sourceTree = "<group>"; };
 		A57C40A9218A029200885834 /* RJTOperationQueue.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RJTOperationQueue.m; sourceTree = "<group>"; };
 		A581C57F21F0A9A700DD2662 /* AppCollectionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCollectionDelegate.swift; sourceTree = "<group>"; };
 		A58659942192CCE600A76A6C /* RJTSupport.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RJTSupport.m; sourceTree = "<group>"; };
 		A58AFD72217DF975008A900C /* sign.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = sign.entitlements; sourceTree = SOURCE_ROOT; };
-		A5A09546217C4696009743DF /* RJTAppCollectionView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RJTAppCollectionView.h; sourceTree = "<group>"; };
-		A5A09547217C4696009743DF /* RJTAppCollectionView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RJTAppCollectionView.m; sourceTree = "<group>"; };
 		A5ADC02F218508A400C33863 /* Cydia_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Cydia_icon.png; sourceTree = "<group>"; };
-		A5B74C1B21E493CE0058C71A /* EmptyViewType.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EmptyViewType.h; sourceTree = "<group>"; };
 		A5B74C2421E4CD6E0058C71A /* ObsoleteSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObsoleteSearchController.swift; sourceTree = "<group>"; };
 		A5B74C2621E4CDA10058C71A /* SearchConveniences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchConveniences.swift; sourceTree = "<group>"; };
 		A5B74C2921E4D0390058C71A /* ButtonedSearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonedSearchBar.swift; sourceTree = "<group>"; };
@@ -175,8 +174,6 @@
 		A5C107DD217E56F900989BDB /* RJTranslate.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = RJTranslate.plist; sourceTree = "<group>"; };
 		A5C1FB3A21B258A1007BB861 /* PreferencesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesController.swift; sourceTree = "<group>"; };
 		A5C4F89421E28D3F000FAC48 /* APIResponses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIResponses.swift; sourceTree = "<group>"; };
-		A5C7DA8221935D310086BE40 /* RJTAppCollectionViewDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RJTAppCollectionViewDelegate.h; sourceTree = "<group>"; };
-		A5C7DA8321935D310086BE40 /* RJTAppCollectionViewDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RJTAppCollectionViewDelegate.m; sourceTree = "<group>"; };
 		A5CC12E92184A2A600A607E3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A5CC725B218DDD99001A4BDB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A5DAAE1A21C7973B0012D559 /* DatabaseUpdater.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseUpdater.swift; sourceTree = "<group>"; };
@@ -234,6 +231,8 @@
 			isa = PBXGroup;
 			children = (
 				A532DCBF21AE81AF001A7CA5 /* RJTranslate-Bridging-Header.h */,
+				A57104D321F3327100C829DD /* RJTPosixWrapper.h */,
+				A57104D421F3327100C829DD /* RJTPosixWrapper.m */,
 				A545D86021847AE90072674C /* Localizable.strings */,
 				A5ADC02F218508A400C33863 /* Cydia_icon.png */,
 				A5089FA12188C8580073E83C /* UIImage+Private.h */,
@@ -336,7 +335,7 @@
 		A54ADB20217BB6EB00D32EB7 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				A54EBFCD21B2997C0086B7DD /* AppCell.swift */,
+				A54EBFCD21B2997C0086B7DD /* AppCollectionCell.swift */,
 				A5E80C8C21E365C300150B5D /* TouchResponsiveCollectionCell.swift */,
 				A54EBFCF21B2A1150086B7DD /* CollectionUpdateCell.swift */,
 				A5515BD821AE9D2F00C7BFC4 /* SwitchCell.swift */,
@@ -397,9 +396,6 @@
 		A5ADC02E2184F32100C33863 /* CollectionView */ = {
 			isa = PBXGroup;
 			children = (
-				A5B74C1B21E493CE0058C71A /* EmptyViewType.h */,
-				A5A09546217C4696009743DF /* RJTAppCollectionView.h */,
-				A5A09547217C4696009743DF /* RJTAppCollectionView.m */,
 				A5196B7B21D0BF2200201DEF /* AppCollectionView.swift */,
 				A5196B7921D0BB3200201DEF /* CollectionHeaderLabel.swift */,
 			);
@@ -480,14 +476,11 @@
 			isa = PBXGroup;
 			children = (
 				A521020221EB2E6300D95AA8 /* AppCollectionLayout.swift */,
-				A5C7DA8221935D310086BE40 /* RJTAppCollectionViewDelegate.h */,
-				A5C7DA8321935D310086BE40 /* RJTAppCollectionViewDelegate.m */,
 				A581C57F21F0A9A700DD2662 /* AppCollectionDelegate.swift */,
 				A5DB00AE21EB238F0009AB0E /* AppCollectionDataSource.swift */,
 				A52D551C21EBC552003EDEE4 /* AppCollectionEmptySource.swift */,
-				A52D551E21EBC703003EDEE4 /* GradientImage.swift */,
-				A526FD9921989A9900E1A434 /* RJTCollectionViewModel.h */,
-				A526FD9A21989A9900E1A434 /* RJTCollectionViewModel.m */,
+				A52D551E21EBC703003EDEE4 /* GradientImageRenderer.swift */,
+				A57104D621F3368300C829DD /* AppCollectionModel.swift */,
 				A5E80C9E21E3C5E300150B5D /* TranslationsFetcher.swift */,
 			);
 			path = "Collection View";
@@ -512,9 +505,8 @@
 		A5DB9AC0217B7FF50061A810 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				A522F1CE217AFC300085A5E4 /* RJTranslateController.h */,
-				A522F1CF217AFC300085A5E4 /* RJTranslateController.m */,
 				A54A335D21B3CBA40064D648 /* TranslateMainController.swift */,
+				A57104CD21F30D3600C829DD /* FeaturedController.swift */,
 				A5C1FB3A21B258A1007BB861 /* PreferencesController.swift */,
 				A5B74C2821E4CDA80058C71A /* Search */,
 			);
@@ -762,7 +754,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A581C58121F1C40200DD2662 /* RJTAppCollectionView.m in Sources */,
+				A57104D721F3368300C829DD /* AppCollectionModel.swift in Sources */,
 				A53CC73521E0C38A00848785 /* HTTPTask.swift in Sources */,
 				A5E80C8B21E360ED00150B5D /* RJTranslate.xcdatamodeld in Sources */,
 				A5527FBB218F4C4000095251 /* RJTApplicationModel.m in Sources */,
@@ -771,36 +763,36 @@
 				A54F28CD21EF4F55002075C5 /* TickView.swift in Sources */,
 				A521637321EA5EE100815C8B /* GradientView.swift in Sources */,
 				A5E80C8F21E387E100150B5D /* ApplicationConviniences.swift in Sources */,
-				A522F1D0217AFC300085A5E4 /* RJTranslateController.m in Sources */,
 				A53CC72D21E0BAB000848785 /* UpdateDownloader.swift in Sources */,
 				A5DB00AF21EB238F0009AB0E /* AppCollectionDataSource.swift in Sources */,
-				A54EBFCE21B2997C0086B7DD /* AppCell.swift in Sources */,
+				A54EBFCE21B2997C0086B7DD /* AppCollectionCell.swift in Sources */,
 				A53CC73A21E1285E00848785 /* HTTPClientDelegateObject.swift in Sources */,
 				A5E0BBB3218646A10094ECBC /* RJTHud.m in Sources */,
 				A5BFB4A62189B267001A9D82 /* RJTAppIcon.m in Sources */,
 				A521020321EB2E6300D95AA8 /* AppCollectionLayout.swift in Sources */,
 				A58659962192CCE600A76A6C /* RJTSupport.m in Sources */,
-				A5C7DA8421935D310086BE40 /* RJTAppCollectionViewDelegate.m in Sources */,
 				A5C4F89521E28D3F000FAC48 /* APIResponses.swift in Sources */,
 				A5BC885521B2ACCC00D5C5CF /* ModernSearchController.swift in Sources */,
 				A5C1FB3B21B258A1007BB861 /* PreferencesController.swift in Sources */,
 				A54EBFCC21B293880086B7DD /* Tracker.swift in Sources */,
 				A5515BD921AE9D2F00C7BFC4 /* SwitchCell.swift in Sources */,
 				A57CF73A217AFFC8004A71F8 /* RJTDatabase.m in Sources */,
-				A5DEBB29218EF5B900858616 /* RJTImageCache.m in Sources */,
 				A53CC73721E0C52200848785 /* HTTPRequestBuilder.swift in Sources */,
 				A54EBFAC21B2725C0086B7DD /* AppDelegate.swift in Sources */,
 				A54EBFD021B2A1150086B7DD /* CollectionUpdateCell.swift in Sources */,
 				A54F28CB21EF3A5A002075C5 /* UIColorConveniences.swift in Sources */,
 				A5E80C8921E3317700150B5D /* RJTDatabaseFacade.m in Sources */,
-				A526FD9B21989A9900E1A434 /* RJTCollectionViewModel.m in Sources */,
 				A57C40AC218A061300885834 /* RJTOperationQueue.m in Sources */,
 				A552F90821B03279002771E9 /* TranslationsUpdate.swift in Sources */,
 				A5B74C2721E4CDA10058C71A /* SearchConveniences.swift in Sources */,
 				A52D551D21EBC552003EDEE4 /* AppCollectionEmptySource.swift in Sources */,
 				A511A67A21B18ABA003D4244 /* Preference.swift in Sources */,
 				A5BFB4A02189B1EB001A9D82 /* RJTAppIconEntity.m in Sources */,
+				A57104D021F311DC00C829DD /* AppCollectionDelegate.swift in Sources */,
+				A57104D521F3327100C829DD /* RJTPosixWrapper.m in Sources */,
 				A57CF73B217AFFD0004A71F8 /* RJTApplicationEntity.m in Sources */,
+				A59521E521F3480900E5F130 /* RJTImageCache.m in Sources */,
+				A57104CE21F30D3600C829DD /* FeaturedController.swift in Sources */,
 				A54F28C921EF2FB7002075C5 /* ColorScheme.swift in Sources */,
 				A5B74C2A21E4D0390058C71A /* ButtonedSearchBar.swift in Sources */,
 				A5DAAE1B21C7973B0012D559 /* DatabaseUpdater.swift in Sources */,
@@ -808,9 +800,11 @@
 				A5B74C2521E4CD6E0058C71A /* ObsoleteSearchController.swift in Sources */,
 				A511A67821B185E7003D4244 /* PreferenceGroup.swift in Sources */,
 				A5196B7A21D0BB3200201DEF /* CollectionHeaderLabel.swift in Sources */,
+				A57104D121F320C000C829DD /* TranslateMainController.swift in Sources */,
 				A5E0BBB2218646A10094ECBC /* RJTHudProgressView.m in Sources */,
 				A53CC72F21E0BE4A00848785 /* HTTPClient.swift in Sources */,
-				A52D551F21EBC703003EDEE4 /* GradientImage.swift in Sources */,
+				A52D551F21EBC703003EDEE4 /* GradientImageRenderer.swift in Sources */,
+				A57104D221F32C2600C829DD /* AppCollectionView.swift in Sources */,
 				A53CC73321E0C34200848785 /* HTTPClientFacilities.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -819,6 +813,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A59521E621F3480900E5F130 /* RJTImageCache.m in Sources */,
 				A5BFB49F2189B1EB001A9D82 /* RJTAppIconEntity.m in Sources */,
 				A5B74C2121E4A9600058C71A /* RJTDatabaseFacade.m in Sources */,
 				A5353411217A584500E08881 /* RJTranslate.xcdatamodeld in Sources */,
@@ -827,7 +822,6 @@
 				A58659952192CCE600A76A6C /* RJTSupport.m in Sources */,
 				A5353418217A595200E08881 /* RJTApplicationEntity.m in Sources */,
 				A5F40123218F7DBE00046C58 /* RJTApplicationModel.m in Sources */,
-				A5F40125218F7DC200046C58 /* RJTImageCache.m in Sources */,
 				A5353402217A57ED00E08881 /* RJTranslate.m in Sources */,
 				A5F40124218F7DC000046C58 /* RJTAppIcon.m in Sources */,
 			);
@@ -943,7 +937,6 @@
 				CLANG_ANALYZER_SECURITY_INSECUREAPI_RAND = YES;
 				CLANG_ANALYZER_SECURITY_INSECUREAPI_STRCPY = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_ENABLE_OBJC_WEAK = YES;
@@ -1045,7 +1038,6 @@
 				CLANG_ANALYZER_SECURITY_INSECUREAPI_RAND = YES;
 				CLANG_ANALYZER_SECURITY_INSECUREAPI_STRCPY = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_ENABLE_OBJC_WEAK = YES;

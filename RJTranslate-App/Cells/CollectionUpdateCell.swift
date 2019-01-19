@@ -8,13 +8,13 @@
 
 import Foundation
 
-@objc class CollectionUpdateCell: UICollectionViewCell {
+class CollectionUpdateCell: UICollectionViewCell {
     
     /// Основной лейбл хэдера.
-    @objc public private(set) var textLabel: UILabel = UILabel()
+    public private(set) var textLabel: UILabel = UILabel()
     
     /// Дополнительный лейбл.
-    @objc public private(set) var detailedTextLabel: UILabel = UILabel()
+    public private(set) var detailedTextLabel: UILabel = UILabel()
     
     override public func awakeFromNib() {
         super.awakeFromNib()

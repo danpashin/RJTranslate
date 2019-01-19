@@ -8,11 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-#ifdef BUILD_APP
-//@import Firebase;
-#endif
-
-
 void RJTErrorLogInternal(NSError *error, NSString *format, ...)
 {
     va_list args;

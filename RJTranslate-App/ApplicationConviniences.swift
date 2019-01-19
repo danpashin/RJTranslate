@@ -21,8 +21,8 @@ func appRecordError(_ description: String, _ args: CVarArg...) -> NSError {
 }
 
 
-@objc extension UIApplication {
-    @objc public var appDelegate: AppDelegate {
+extension UIApplication {
+    public var appDelegate: AppDelegate {
         
         var delegateObject: AppDelegate?  = nil
         
@@ -37,7 +37,7 @@ func appRecordError(_ description: String, _ args: CVarArg...) -> NSError {
         return delegateObject!
     }
     
-    @objc public static var applicationDelegate: AppDelegate {
+    public static var applicationDelegate: AppDelegate {
         return UIApplication.shared.appDelegate
     }
 }

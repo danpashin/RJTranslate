@@ -35,7 +35,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  Отображаемое пользователю имя приложения.
  */
-@property (strong, nonatomic, readonly, nullable) NSString *displayedName;
+@property (strong, nonatomic, readonly) NSString *displayedName;
 
 /**
  Уникальный идентификатор бандла приложения.

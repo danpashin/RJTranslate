@@ -15,10 +15,10 @@ public class AppDelegate: UIResponder, UIApplicationDelegate, CrashlyticsDelegat
     public var window: UIWindow?
     
     /// Трекер событий приложения.
-    @objc public private(set) var tracker: Tracker?
+    public private(set) var tracker: Tracker?
     
     /// Дефолтная база данных.
-    @objc public private(set) var defaultDatabase: RJTDatabaseFacade?
+    public private(set) var defaultDatabase: RJTDatabaseFacade?
     
     public func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         FirebaseConfiguration.shared.setLoggerLevel(.min)

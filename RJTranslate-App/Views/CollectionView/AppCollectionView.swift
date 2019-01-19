@@ -8,7 +8,7 @@
 
 import Foundation
 
-@objc protocol AppCollectionViewDelegateProtocol: NSObjectProtocol {
+@objc protocol AppCollectionViewDelegateProtocol {
 
     /// Вызывается, когда пользователь нажимает на кнопку загрузки переводов.
     ///
@@ -31,24 +31,21 @@ import Foundation
 }
 
 
-@objc class AppCollectionView : UICollectionView {
-    
-    /// Контроллер поиска. Нужен для определения показа фонового вида.
-    @objc weak public var searchController: SearchController?
+class AppCollectionView : UICollectionView {
     
     /// Устанавливает кастомный делегат для объекта.
-    @objc weak public var customDelegate: AppCollectionViewDelegateProtocol?
+    weak public var customDelegate: AppCollectionViewDelegateProtocol?
     
     /// Модель, используемая для коллекции.
-    @objc public var model: RJTCollectionViewModel?
+    public var model: AppCollectionModel?
     
     
-    @objc public var layout: RJTCollectionViewLayout? {
-        return (self.collectionViewLayout as! RJTCollectionViewLayout)
+    public var layout: AppCollectionLayout? {
+        return self.collectionViewLayout as? AppCollectionLayout
     }
     
-    private var delegateObject: RJTAppCollectionViewDelegate?
-    private var emptyDataSourceObject: RJTCollectionViewEmptyDataSource?
+    private var delegateObject: AppCollectionDelegate?
+    private var emptyDataSourceObject: AppCollectionEmptySource?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -57,32 +54,52 @@ import Foundation
         self.alwaysBounceVertical = true
         self.allowsMultipleSelection = true
         
-        self.delegateObject = RJTAppCollectionViewDelegate(collectionView: self)
-        self.emptyDataSourceObject = RJTCollectionViewEmptyDataSource(collectionView: self)
+        self.delegateObject = AppCollectionDelegate(collectionView: self)
+        self.emptyDataSourceObject = AppCollectionEmptySource(collectionView: self)
     }
     
     /// Выполняет анимированную перезагрузку ячеек коллекции.
-    @objc public func reload() {
+    public func reload() {
         DispatchQueue.main.async {
-            self.reloadSections(IndexSet(0...3))
+            self.reloadSections(NSIndexSet(indexesIn: NSRange(location: 0, length: 3)) as IndexSet)
             self.reloadEmptyDataSet()
         }
     }
+
     
     /// Показывает/скрывает ячейку с обновлением.
     ///
     /// - Parameter show: YES - показывает, NO - скрывает.
-    @objc public func showUpdateCell(_ show: Bool) {
+    public func showUpdateCell(_ show: Bool) {
         if (self.delegateObject?.showUpdateHeader != show) {
             self.delegateObject?.showUpdateHeader = show;
             self.reload()
         }
     }
     
-    @objc public func updateLayoutToSize(_ size: CGSize) {
-        self.layout?.itemSize = self.layout?.itemSize(fromCollectionFrame: CGRect(x: 0.0, y: 0.0, width: size.width, height: size.height)) ?? CGSize.zero
+    public func updateLayoutToSize(_ size: CGSize) {
+        self.layout?.itemSize = self.layout?.itemSizeFromCollectionViewFrame(CGRect(origin: CGPoint.zero, size: size)) ?? CGSize.zero
         self.layout?.invalidateLayout()
     }
+    
+    public func updateEmptyView(to type: EmptyViewType, animated: Bool = false) {
+        if self.emptyDataSourceObject?.type == type {
+            return
+        }
+        
+        DispatchQueue.main.async {
+            self.emptyDataSourceObject?.type = type
+            
+            if !animated {
+                self.reloadEmptyDataSet()
+            } else {
+                UIView.transition(with: self, duration: 0.3, options: [.transitionCrossDissolve], animations: {
+                    self.reloadEmptyDataSet()
+                })
+            }
+        }
+    }
+    
     
     @available(*, unavailable)
     override func reloadData() {

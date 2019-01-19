@@ -6,6 +6,7 @@
   Copyright © 2018 Даниил. All rights reserved.
 */
 
+"Translations.Installed.Title" = "Установленные";
 "available_translations" = "Доступные переводы";
 "translations_update_is_available" = "Доступно обновление переводов";
 "tap_to_download" = "Нажмите, чтобы загрузить";

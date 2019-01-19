@@ -38,10 +38,10 @@ import Foundation
 }
 
 
-@objc class DatabaseUpdater : NSObject {
+class DatabaseUpdater : NSObject {
     
     /// Делегат для объекта-обработчика статуса обновления.
-    @objc public private(set) var delegate: DatabaseUpdaterDelegate
+    public private(set) var delegate: DatabaseUpdaterDelegate
     private var currentUpdate: TranslationsUpdate?
     
     private var updateDownloader: UpdateDownloader?
@@ -49,12 +49,12 @@ import Foundation
     /// Выполняет инициализацию апдейтера.
     ///
     /// - Parameter delegate: Делегат для объекта-обработчика статуса обновления.
-    @objc init(delegate: DatabaseUpdaterDelegate) {
+    init(delegate: DatabaseUpdaterDelegate) {
         self.delegate = delegate;
     }
     
     /// Выполняет загрузку и последующую обработку моделей приложений.
-    @objc public func performUpdate() {
+    public func performUpdate() {
         if self.currentUpdate?.archiveURL?.absoluteString.count ?? 0 > 0 {
             self.downloadUpdate()
         } else {
@@ -72,9 +72,9 @@ import Foundation
     /// Проверяет версию локализации приложений.
     ///
     /// - Parameter completion: Блок вызывается в конце проверки.
-    @objc public func checkTranslationsVersion(_ completion: @escaping (TranslationsUpdate?, NSError?) -> Void) {
+    public func checkTranslationsVersion(_ completion: @escaping (TranslationsUpdate?, NSError?) -> Void) {
             
-        HTTPClient.shared.json(HTTPClient.apiURL)?.completion({ (json: [String : AnyHashable]?, error: NSError?) in
+        HTTPClient.shared.json(HTTPClient.apiURL).completion({ (json: [String : AnyHashable]?, error: NSError?) in
             if json == nil || error != nil {
                 completion(nil, error)
                 return

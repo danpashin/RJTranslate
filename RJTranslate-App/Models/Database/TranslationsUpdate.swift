@@ -8,10 +8,10 @@
 
 import Foundation
 
-@objc public class TranslationsUpdate: NSObject {
+public class TranslationsUpdate {
     
     /// Флаг определяет, должно ли производится обновление на данный момент.
-    @objc public private(set) var canUpdate: Bool = false
+    public private(set) var canUpdate: Bool = false
     
     /// Содержит хэш-сумму обновления.
     public private(set) var hashSum: String?
@@ -44,9 +44,9 @@ import Foundation
     }
 }
 
-//extension TranslationsUpdate: CustomStringConvertible {
-//    var description: String {
-//        return String(format: "<%@ url: '%@'; hash: '%@'>", NSStringFromClass(type(of: self)),
-//                      String(describing: archiveURL), hashSum ?? "")
-//    }
-//}
+extension TranslationsUpdate: CustomStringConvertible {
+    public var description: String {
+        return String(format: "<%@ url: '%@'; hash: '%@'>", classInfo(of: self),
+                      String(describing: self.archiveURL), String(describing: self.hashSum))
+    }
+}

@@ -19,10 +19,10 @@ public func MAX(a: CGFloat, b: CGFloat) -> CGFloat {
     return (a > b) ? a : b
 }
 
-@objc public extension UIColor {
+public extension UIColor {
     
     /// Выполняет изменение цвета на более темный.
-    @objc public var darker: UIColor {
+    public var darker: UIColor {
         var red: CGFloat = 0
         var green: CGFloat = 0
         var blue: CGFloat = 0

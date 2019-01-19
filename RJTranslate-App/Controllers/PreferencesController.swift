@@ -8,7 +8,7 @@
 
 import Foundation
 
-@objc(RJTPreferencesController) class PreferencesController: UITableViewController, PrefsTableModelDelegate {
+class PreferencesController: UITableViewController, PrefsTableModelDelegate {
     
     /// Модель таблицы
     private var model: PreferencesTableModel?
@@ -19,7 +19,7 @@ import Foundation
     
     @available(*, unavailable)
     required init?(coder aDecoder: NSCoder) {
-        fatalError("Use init(style:) instead")
+        super.init(coder: aDecoder)
     }
     
     override func loadView() {

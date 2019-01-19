@@ -1,5 +1,5 @@
 //
-//  AppCell.swift
+//  AppCollectionCell.swift
 //  RJTranslate-App
 //
 //  Created by Даниил on 01/12/2018.
@@ -9,11 +9,11 @@
 import Foundation
 import UIKit
 
-@objc class AppCell: TouchResponsiveCollectionCell {
+class AppCollectionCell: TouchResponsiveCollectionCell {
     
-    @objc public static let defaultHeight: CGFloat = 72.0
+    public static let defaultHeight: CGFloat = 72.0
     
-    @objc public var model: RJTApplicationModel? {
+    public var model: RJTApplicationModel? {
         didSet {
             updateForNewModel()
         }
@@ -48,7 +48,7 @@ import UIKit
         self.layer.masksToBounds = false
     }
     
-    @objc public func updateSelection(_ selected: Bool, animated: Bool) {
+    public func updateSelection(_ selected: Bool, animated: Bool) {
         self.tickView?.setEnabled(selected, animated: animated)
     }
     

@@ -9,11 +9,18 @@
 import Foundation
 import DZNEmptyDataSet
 
-@objc class AppCollectionEmptySource: NSObject, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate, GradientImageRendererDelegate {
+enum EmptyViewType : Int {
+    case loading
+    case noSearchResults
+    case noData
+}
+
+
+class AppCollectionEmptySource: NSObject, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate, GradientImageRendererDelegate {
     
-    @objc public private(set) weak var collectionView: RJTAppCollectionView?
+    public private(set) weak var collectionView: AppCollectionView?
     
-    @objc public var type: EmptyViewType = .loading
+    public var type: EmptyViewType = .loading
     
     private var imageRenderer: GradientImageRenderer
     
@@ -25,7 +32,7 @@ import DZNEmptyDataSet
         }
     }
     
-    @objc public init(collectionView: RJTAppCollectionView) {
+    public init(collectionView: AppCollectionView) {
         let buttonSize = CGSize(width: UIScreen.main.bounds.width, height: CGFloat(44.0))
         self.imageRenderer = GradientImageRenderer(size: buttonSize);
         
