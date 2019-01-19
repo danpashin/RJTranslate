@@ -25,24 +25,24 @@ class PreferencesController: UITableViewController, PrefsTableModelDelegate {
     override func loadView() {
         super.loadView()
         
-        model = PreferencesTableModel(tableView: self.tableView, delegate: self)
+        self.model = PreferencesTableModel(tableView: self.tableView, delegate: self)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.title = NSLocalizedString("preferences", comment: "")
+        self.title = NSLocalizedString("Preferences.Title", comment: "")
     }
     
     
-    // MARK: - PrefsTableModelDelegate -
+    // MARK: -
+    // MARK: PrefsTableModelDelegate
     
-    func userDidSetPreferenceValue(_ value: Any?, forKey key: String) {
-        let delegate = UIApplication.shared.appDelegate
+    func userDidSetPreferenceValue(_ value: AnyHashable?, forKey key: String) {
         
         if key == "send_statistics" {
             let enabled: Bool = (value as? NSNumber)?.boolValue ?? true
-            delegate.enableTracker(enabled)
+            UIApplication.applicationDelegate.enableTracker(enabled)
         }
     }
 }

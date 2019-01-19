@@ -26,11 +26,10 @@
 "tap_button_to_download_available" = "Нажмите на кнопку ниже, чтобы выполнить установку доступных";
 "download" = "Загрузить";
 
-"installed" = "Установленные";
 
 
 // Настройки
-"preferences" = "Настройки";
+"Preferences.Title" = "Настройки";
 
 "statistics" = "Статистика";
 "send_statistics" = "Отправлять статистику";

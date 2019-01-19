@@ -3,6 +3,7 @@
 //
 
 #import <sys/utsname.h>
+#import <CommonCrypto/CommonCrypto.h>
 
 #import "RJTApplicationModel.h"
 #import "RJTDatabaseFacade.h"

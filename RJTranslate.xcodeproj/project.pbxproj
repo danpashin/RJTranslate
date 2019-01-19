@@ -60,6 +60,7 @@
 		A58659962192CCE600A76A6C /* RJTSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = A58659942192CCE600A76A6C /* RJTSupport.m */; };
 		A59521E521F3480900E5F130 /* RJTImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = A5DEBB28218EF5B900858616 /* RJTImageCache.m */; };
 		A59521E621F3480900E5F130 /* RJTImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = A5DEBB28218EF5B900858616 /* RJTImageCache.m */; };
+		A59521FB21F3A08600E5F130 /* HTTPClientPinning.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59521FA21F3A08600E5F130 /* HTTPClientPinning.swift */; };
 		A5ADC030218508A400C33863 /* Cydia_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = A5ADC02F218508A400C33863 /* Cydia_icon.png */; };
 		A5B74C2021E4A9600058C71A /* RJTDatabaseFacade.h in Headers */ = {isa = PBXBuildFile; fileRef = A5E80C8521E3300500150B5D /* RJTDatabaseFacade.h */; };
 		A5B74C2121E4A9600058C71A /* RJTDatabaseFacade.m in Sources */ = {isa = PBXBuildFile; fileRef = A5E80C8621E3300500150B5D /* RJTDatabaseFacade.m */; };
@@ -157,6 +158,7 @@
 		A581C57F21F0A9A700DD2662 /* AppCollectionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCollectionDelegate.swift; sourceTree = "<group>"; };
 		A58659942192CCE600A76A6C /* RJTSupport.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RJTSupport.m; sourceTree = "<group>"; };
 		A58AFD72217DF975008A900C /* sign.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = sign.entitlements; sourceTree = SOURCE_ROOT; };
+		A59521FA21F3A08600E5F130 /* HTTPClientPinning.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClientPinning.swift; sourceTree = "<group>"; };
 		A5ADC02F218508A400C33863 /* Cydia_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Cydia_icon.png; sourceTree = "<group>"; };
 		A5B74C2421E4CD6E0058C71A /* ObsoleteSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObsoleteSearchController.swift; sourceTree = "<group>"; };
 		A5B74C2621E4CDA10058C71A /* SearchConveniences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchConveniences.swift; sourceTree = "<group>"; };
@@ -387,6 +389,7 @@
 				A53CC73421E0C38A00848785 /* HTTPTask.swift */,
 				A53CC73921E1285E00848785 /* HTTPClientDelegateObject.swift */,
 				A53CC73221E0C34200848785 /* HTTPClientFacilities.swift */,
+				A59521FA21F3A08600E5F130 /* HTTPClientPinning.swift */,
 				A53CC73621E0C52200848785 /* HTTPRequestBuilder.swift */,
 				A5C4F89421E28D3F000FAC48 /* APIResponses.swift */,
 			);
@@ -754,6 +757,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A59521FB21F3A08600E5F130 /* HTTPClientPinning.swift in Sources */,
 				A57104D721F3368300C829DD /* AppCollectionModel.swift in Sources */,
 				A53CC73521E0C38A00848785 /* HTTPTask.swift in Sources */,
 				A5E80C8B21E360ED00150B5D /* RJTranslate.xcdatamodeld in Sources */,

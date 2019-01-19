@@ -22,6 +22,19 @@ class HTTPClientDelegateObject: NSObject, URLSessionDownloadDelegate, URLSession
         self.utilityQueue.qualityOfService = .utility
     }
     
+    public func urlSession(_ session: URLSession, didReceive challenge: URLAuthenticationChallenge, completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) {
+        
+        if challenge.protectionSpace.authenticationMethod == NSURLAuthenticationMethodServerTrust {
+            let serverTrust = challenge.protectionSpace.serverTrust
+            if HTTPClientPinning.validateServerTrust(serverTrust) {
+                completionHandler(.useCredential, URLCredential(trust: serverTrust!))
+                return
+            }
+        }
+        
+        completionHandler(.cancelAuthenticationChallenge, nil)
+    }
+    
     
     // MARK: -
     // MARK: URLSessionTaskDelegate

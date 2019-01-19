@@ -78,7 +78,6 @@ class AppCollectionView : UICollectionView {
     }
     
     public func updateLayoutToSize(_ size: CGSize) {
-        self.layout?.itemSize = self.layout?.itemSizeFromCollectionViewFrame(CGRect(origin: CGPoint.zero, size: size)) ?? CGSize.zero
         self.layout?.invalidateLayout()
     }
     

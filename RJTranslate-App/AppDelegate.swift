@@ -35,7 +35,7 @@ public class AppDelegate: UIResponder, UIApplicationDelegate, CrashlyticsDelegat
     }
     
     public func enableTracker(_ enable: Bool) {
-        tracker = enable ? Tracker() : nil
+        self.tracker = enable ? Tracker() : nil
     
         AnalyticsConfiguration.shared().setAnalyticsCollectionEnabled(enable)
     }

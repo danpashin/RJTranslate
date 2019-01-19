@@ -9,7 +9,7 @@
 import Foundation
 
 protocol PrefsTableModelDelegate: class {
-    func userDidSetPreferenceValue(_ value: Any?, forKey key: String)
+    func userDidSetPreferenceValue(_ value: AnyHashable?, forKey key: String)
 }
 
 class PreferencesTableModel: NSObject, UITableViewDelegate, UITableViewDataSource {
@@ -24,7 +24,7 @@ class PreferencesTableModel: NSObject, UITableViewDelegate, UITableViewDataSourc
         
         super.init()
         
-        createPreferences()
+        self.createPreferences()
         
         tableView.delegate = self
         tableView.dataSource = self
@@ -37,7 +37,7 @@ class PreferencesTableModel: NSObject, UITableViewDelegate, UITableViewDataSourc
         let sendCrashPrefs = SwitchPreference(key: "send_crashlogs", defaultValue: NSNumber(value: true),
                                               title: NSLocalizedString("send_crashlogs", comment: ""))
         
-        groups = [
+        self.groups = [
             createGroup(title: "statistics", footer: "send_statistics_footer",
                         preference: sendStatsPrefs as Preference),
             
@@ -61,15 +61,15 @@ class PreferencesTableModel: NSObject, UITableViewDelegate, UITableViewDataSourc
     // MARK: -
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return groups.count
+        return self.groups.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return groups[section].preferences.count
+        return self.groups[section].preferences.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let preference = groups[indexPath.section].preferences[indexPath.row]
+        let preference = self.groups[indexPath.section].preferences[indexPath.row]
         
         var cell: UITableViewCell? = nil
         if preference.category == .text {
@@ -83,7 +83,7 @@ class PreferencesTableModel: NSObject, UITableViewDelegate, UITableViewDataSourc
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return groups[section].title
+        return self.groups[section].title
     }
     
     func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {

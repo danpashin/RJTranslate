@@ -26,11 +26,6 @@ class AppCollectionLayout : UICollectionViewFlowLayout, AppCollectionDataSourceC
     
     private func commonInit() {
         self.sectionInset = UIEdgeInsets(top: 0.0, left: 0.0, bottom: 20.0, right: 0.0)
-    } 
-    
-    @available(*, deprecated, message: "should move to collection view")
-    public func itemSizeFromCollectionViewFrame(_ collectionFrame: CGRect) -> CGSize {
-        return CGSize(width: collectionFrame.width - 24.0, height: AppCollectionCell.defaultHeight)
     }
     
     override public func finalizeCollectionViewUpdates() {

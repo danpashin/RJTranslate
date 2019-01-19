@@ -11,7 +11,7 @@ import UIKit
 
 class AppCollectionCell: TouchResponsiveCollectionCell {
     
-    public static let defaultHeight: CGFloat = 72.0
+    public static let defaultHeight: CGFloat = 76.0
     
     public var model: RJTApplicationModel? {
         didSet {

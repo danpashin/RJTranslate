@@ -159,18 +159,12 @@ class AppCollectionDelegate : NSObject, UICollectionViewDelegateFlowLayout, UICo
         return .zero
     }
 
-    
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        
-        if let layout = collectionViewLayout as? AppCollectionLayout {
-            var size = layout.itemSize
-            if indexPath.section == 0 && self.showUpdateHeader {
-                size.height -= 10.0
-            }
-            
-            return size
+        var size = CGSize(width: collectionView.frame.width - 24.0, height: AppCollectionCell.defaultHeight)
+        if indexPath.section == 0 && self.showUpdateHeader {
+            size.height = 60.0
         }
         
-        return .zero
+        return size
     }
 }
