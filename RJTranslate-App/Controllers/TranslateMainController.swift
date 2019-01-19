@@ -25,6 +25,20 @@ class TranslateMainController: UIViewController, SearchControllerDelegate, AppCo
         }
     }
     
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+        self.commonInit()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        self.commonInit()
+    }
+    
+    private func commonInit() {
+        self.databaseUpdater = DatabaseUpdater(delegate: self)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = NSLocalizedString("Translations.Installed.Title", comment: "")
@@ -43,16 +57,13 @@ class TranslateMainController: UIViewController, SearchControllerDelegate, AppCo
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        let checkUpdatesOnce = {
-            self.databaseUpdater = DatabaseUpdater(delegate: self)
+        DispatchQueue.once(token: "ru.danpashin.rjtranslate.updates.once") {
             self.databaseUpdater?.checkTranslationsVersion({ (updateModel: TranslationsUpdate?, error: NSError?) in
-                let dataSource = self.collectionView?.model?.currentDataSource
-                if error == nil && updateModel?.canUpdate ?? false && dataSource?.rawModels.count ?? 0 > 0 {
+                if error == nil && updateModel?.canUpdate ?? false {
                     self.collectionView?.showUpdateCell(true)
                 }
             })
         }
-        _ = checkUpdatesOnce
     }
     
     public override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -66,7 +77,7 @@ class TranslateMainController: UIViewController, SearchControllerDelegate, AppCo
         hud.detailText = NSLocalizedString("downloating_localization...", comment: "")
         self.hud = hud
         
-        self.databaseUpdater?.performUpdate()
+        self.databaseUpdater!.performUpdate()
     }
     
     
