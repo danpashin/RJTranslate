@@ -8,26 +8,26 @@
 
 import Foundation
 
-class CollectionUpdateCell: UICollectionViewCell {
+@objc class CollectionUpdateCell: UICollectionViewCell {
     
     /// Основной лейбл хэдера.
-    public private(set) var textLabel: UILabel = UILabel()
+    @objc public private(set) var textLabel: UILabel = UILabel()
     
     /// Дополнительный лейбл.
-    public private(set) var detailedTextLabel: UILabel = UILabel()
+    @objc public private(set) var detailedTextLabel: UILabel = UILabel()
     
     override public func awakeFromNib() {
         super.awakeFromNib()
         
         self.layer.cornerRadius = 8.0
         
-        textLabel.textColor = UIColor.white
-        textLabel.font = UIFont.preferredFont(forTextStyle: .headline)
+        self.textLabel.textColor = UIColor.white
+        self.textLabel.font = UIFont.preferredFont(forTextStyle: .headline)
         
-        detailedTextLabel.textColor = UIColor.white
-        detailedTextLabel.font = UIFont.preferredFont(forTextStyle: .callout)
+        self.detailedTextLabel.textColor = UIColor.white
+        self.detailedTextLabel.font = UIFont.preferredFont(forTextStyle: .callout)
         
-        let stackView = UIStackView(arrangedSubviews: [textLabel, detailedTextLabel])
+        let stackView = UIStackView(arrangedSubviews: [self.textLabel, self.detailedTextLabel])
         stackView.axis = .vertical
         stackView.distribution = .fill
         stackView.alignment = .center

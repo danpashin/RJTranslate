@@ -11,11 +11,11 @@ import Foundation
 
 class HTTPTask {
     
-    public private(set) var sessionTask: URLSessionTask
+    public private(set) var sessionTask: URLSessionTask?
     
-    public private(set) var request: URLRequest
+    public private(set) var request: URLRequest?
     
-    init(request: URLRequest, sessionTask: URLSessionTask) {
+    init(request: URLRequest?, sessionTask: URLSessionTask?) {
         self.request = request
         self.sessionTask = sessionTask
     }

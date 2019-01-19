@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "EmptyViewType.h"
 
-@class RJTApplicationModel, RJTSearchController, RJTCollectionViewUpdateCell;
+@class RJTApplicationModel, RJTSearchController, CollectionUpdateCell;
 @class RJTCollectionViewModel;
 
 NS_ASSUME_NONNULL_BEGIN
@@ -21,7 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)collectionView:(RJTAppCollectionView *)collectionView didUpdateModel:(RJTApplicationModel *)appModel;
 
 @optional
-- (void)collectionView:(RJTAppCollectionView *)collectionView didLoadUpdateCell:(RJTCollectionViewUpdateCell *)updateCell;
+- (void)collectionView:(RJTAppCollectionView *)collectionView didLoadUpdateCell:(CollectionUpdateCell *)updateCell;
 
 @end
 

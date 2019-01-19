@@ -76,7 +76,7 @@
                                    cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath
 {
     if (indexPath.section == 0) {
-        RJTCollectionViewUpdateCell *updateCell = (RJTCollectionViewUpdateCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"updateCell"
+        CollectionUpdateCell *updateCell = (CollectionUpdateCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"updateCell"
                                                                                                                            forIndexPath:indexPath];
         
         if ([self.collectionView.customDelegate respondsToSelector:@selector(collectionView:didLoadUpdateCell:)])

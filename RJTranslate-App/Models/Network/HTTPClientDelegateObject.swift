@@ -90,7 +90,7 @@ class HTTPClientDelegateObject: NSObject, URLSessionDownloadDelegate, URLSession
     public func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didFinishDownloadingTo location: URL) {
         guard let task = self.client?.activeTasks[downloadTask.taskIdentifier] as? HTTPDownloadTask else { return }
         
-        let fileName = task.request.url?.lastPathComponent
+        let fileName = task.request?.url?.lastPathComponent
         let stringNewLocation = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true).first
         
         let destination = URL(fileURLWithPath: stringNewLocation!).appendingPathComponent(fileName!)

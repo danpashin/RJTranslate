@@ -62,10 +62,10 @@ class HTTPClient {
     public func download(_ url: URLTransformable,
                          httpMethod: HTTPMethod = .get,
                          arguments:[String: AnyHashable] = [:]
-        ) -> HTTPDownloadTask? {
+        ) -> HTTPDownloadTask {
         
         let requestBuilder = HTTPRequestBuilder(url: url, httpMethod: httpMethod, arguments: arguments)
-        guard let request = requestBuilder.buildRequest() else { return nil }
+        let request = requestBuilder.buildRequest()
         
         let dataTask = self.session!.dataTask(with: request)
         
@@ -89,7 +89,7 @@ class HTTPClient {
         ) -> HTTPJSONTask? {
         
         let requestBuilder = HTTPRequestBuilder(url: url, httpMethod: httpMethod, arguments: arguments)
-        guard let request = requestBuilder.buildRequest() else { return nil }
+        let request = requestBuilder.buildRequest()
         
         let dataTask = self.session!.dataTask(with: request)
         

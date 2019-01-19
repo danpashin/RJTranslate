@@ -34,8 +34,8 @@ class HTTPRequestBuilder {
     /// Выполняет построение запроса из предоставленных данных.
     ///
     /// - Returns: Возвращает класс запроса либо nil
-    public func buildRequest() -> URLRequest?  {
-        guard var urlComponents = URLComponents(string: self.url.asString()) else { return nil }
+    public func buildRequest() -> URLRequest  {
+        var urlComponents = URLComponents(string: self.url.asString())
         
         let stringParameters = NSMutableString()
         let sortedKeys = self.arguments.keys.sorted(by: <)
@@ -49,16 +49,16 @@ class HTTPRequestBuilder {
         
         var bodyData: Data? = nil
         if self.httpMethod == .get {
-            urlComponents.query = stringParameters as String
+            urlComponents?.query = stringParameters as String
         } else {
             let query = stringParameters.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)
             bodyData = query?.data(using: .utf8)
         }
         
-        var request = URLRequest(url: urlComponents.url!)
+        var request = URLRequest(url: urlComponents?.url ?? URL(string: "")!)
         request.httpMethod = self.stringFromMethod(self.httpMethod)
         request.httpBody = bodyData
-        return request as URLRequest
+        return request
     }
     
     private func stringFromMethod(_ method : HTTPMethod) -> String {

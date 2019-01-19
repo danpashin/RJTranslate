@@ -127,7 +127,7 @@
     [self.collectionViewModel updateModel:appModel];
 }
 
-- (void)collectionView:(RJTAppCollectionView *)collectionView didLoadUpdateCell:(RJTCollectionViewUpdateCell *)updateCell
+- (void)collectionView:(RJTAppCollectionView *)collectionView didLoadUpdateCell:(CollectionUpdateCell *)updateCell
 {
     updateCell.textLabel.text = NSLocalizedString(@"translations_update_is_available", @"");
     updateCell.detailedTextLabel.text = NSLocalizedString(@"tap_to_download", @"");

@@ -53,7 +53,7 @@ class UpdateDownloader: NSObject, SSZipArchiveDelegate {
             self.progressClosure = progress
             self.completionClosure = completion
             
-            HTTPClient.shared.download(url)?
+            HTTPClient.shared.download(url)
                 .progress({ (progress: Double) in
                     self.downloadProgress = progress
                 })
