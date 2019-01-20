@@ -38,4 +38,15 @@ public extension UIColor {
         
         return self
     }
+    
+    /// Создает цвет из указанных значений RGB.
+    ///
+    /// - Parameters:
+    ///   - r: Значение красного в пределах от 0 до 255.
+    ///   - g: Значение зеленого в пределах от 0 до 255.
+    ///   - b: Значение синего в пределах от 0 до 255.
+    ///   - a: Значение прозрачности в пределах от 0 до 255.
+    public convenience init(r: CGFloat, g: CGFloat, b: CGFloat, a: CGFloat = 255.0) {
+        self.init(red: r / 255.0, green: g / 255.0, blue: b / 255.0, alpha: a / 255.0)
+    }
 }

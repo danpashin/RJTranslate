@@ -16,6 +16,7 @@ class FeaturedController: UIViewController, SearchControllerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.view.backgroundColor = ColorScheme.default.background
         self.title = NSLocalizedString("Translations.Search.Title", comment: "")
         
         if #available(iOS 11.0, *) {

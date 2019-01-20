@@ -43,7 +43,7 @@ class AppCollectionCell: TouchResponsiveCollectionCell {
         
         self.layer.shadowColor = UIColor.black.cgColor
         self.layer.shadowOffset = CGSize.zero
-        self.layer.shadowRadius = 4.0
+        self.layer.shadowRadius = 5.0
         self.layer.shadowOpacity = 0.05
         self.layer.masksToBounds = false
     }

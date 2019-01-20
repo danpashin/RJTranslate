@@ -31,6 +31,7 @@ class PreferencesController: UITableViewController, PrefsTableModelDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.tableView.backgroundColor = ColorScheme.default.background
         self.title = NSLocalizedString("Preferences.Title", comment: "")
     }
     

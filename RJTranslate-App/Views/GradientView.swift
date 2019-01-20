@@ -11,22 +11,10 @@ import Foundation
 class GradientView: UIView {
     
     override public static var layerClass: AnyClass {
-        return CAGradientLayer.self
+        return GradientLayer.self
     }
     
-    override public var layer: CAGradientLayer {
-        return super.layer as! CAGradientLayer
-    }
-    
-    public static func `default`() -> GradientView {
-        let gradientView = GradientView()
-        gradientView.layer.colors = [
-            ColorScheme.default.accentSecondary.cgColor,
-            ColorScheme.default.accentMain.cgColor
-        ]
-        gradientView.layer.startPoint = CGPoint(x: 0.5, y: 0.0)
-        gradientView.layer.endPoint = CGPoint(x: 0.5, y: 1.0)
-    
-        return gradientView
+    override public var layer: GradientLayer {
+        return super.layer as! GradientLayer
     }
 }

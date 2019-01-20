@@ -14,7 +14,7 @@
 		A517965F217D1A9400B87596 /* RJTApplicationModel.h in Headers */ = {isa = PBXBuildFile; fileRef = A54ADB1C217BB0CF00D32EB7 /* RJTApplicationModel.h */; };
 		A5196B7A21D0BB3200201DEF /* CollectionHeaderLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5196B7921D0BB3200201DEF /* CollectionHeaderLabel.swift */; };
 		A521020321EB2E6300D95AA8 /* AppCollectionLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = A521020221EB2E6300D95AA8 /* AppCollectionLayout.swift */; };
-		A521637321EA5EE100815C8B /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A521637221EA5EE100815C8B /* GradientView.swift */; };
+		A521637321EA5EE100815C8B /* GradientLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A521637221EA5EE100815C8B /* GradientLayer.swift */; };
 		A522F1D3217AFC300085A5E4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A522F1D1217AFC300085A5E4 /* Main.storyboard */; };
 		A522F1D5217AFC310085A5E4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A522F1D4217AFC310085A5E4 /* Assets.xcassets */; };
 		A522F1D8217AFC310085A5E4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A522F1D6217AFC310085A5E4 /* LaunchScreen.storyboard */; };
@@ -77,6 +77,10 @@
 		A5C1FB3B21B258A1007BB861 /* PreferencesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C1FB3A21B258A1007BB861 /* PreferencesController.swift */; };
 		A5C4F89521E28D3F000FAC48 /* APIResponses.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C4F89421E28D3F000FAC48 /* APIResponses.swift */; };
 		A5CC12EA2184A2A600A607E3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A5CC12E92184A2A600A607E3 /* GoogleService-Info.plist */; };
+		A5D2D4BB21F4638A003F0D4F /* Tabbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D2D4BA21F4638A003F0D4F /* Tabbar.swift */; };
+		A5D2D4BD21F46CC5003F0D4F /* UIImageConveniences.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D2D4BC21F46CC5003F0D4F /* UIImageConveniences.swift */; };
+		A5D2D4C521F4776A003F0D4F /* Swizzlng.m in Sources */ = {isa = PBXBuildFile; fileRef = A5D2D4C321F476C9003F0D4F /* Swizzlng.m */; };
+		A5D2D4C721F48B7F003F0D4F /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D2D4C621F48B7F003F0D4F /* GradientView.swift */; };
 		A5DAAE1B21C7973B0012D559 /* DatabaseUpdater.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DAAE1A21C7973B0012D559 /* DatabaseUpdater.swift */; };
 		A5DB00AF21EB238F0009AB0E /* AppCollectionDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DB00AE21EB238F0009AB0E /* AppCollectionDataSource.swift */; };
 		A5DEBB31218F0EF000858616 /* RJTImageCache.h in Headers */ = {isa = PBXBuildFile; fileRef = A5DEBB27218EF5B800858616 /* RJTImageCache.h */; };
@@ -112,7 +116,7 @@
 		A5196B7921D0BB3200201DEF /* CollectionHeaderLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionHeaderLabel.swift; sourceTree = "<group>"; };
 		A5196B7B21D0BF2200201DEF /* AppCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCollectionView.swift; sourceTree = "<group>"; };
 		A521020221EB2E6300D95AA8 /* AppCollectionLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCollectionLayout.swift; sourceTree = "<group>"; };
-		A521637221EA5EE100815C8B /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
+		A521637221EA5EE100815C8B /* GradientLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientLayer.swift; sourceTree = "<group>"; };
 		A522F1C9217AFC300085A5E4 /* RJTranslate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RJTranslate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A522F1D2217AFC300085A5E4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A522F1D4217AFC310085A5E4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -178,6 +182,10 @@
 		A5C4F89421E28D3F000FAC48 /* APIResponses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIResponses.swift; sourceTree = "<group>"; };
 		A5CC12E92184A2A600A607E3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A5CC725B218DDD99001A4BDB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		A5D2D4BA21F4638A003F0D4F /* Tabbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tabbar.swift; sourceTree = "<group>"; };
+		A5D2D4BC21F46CC5003F0D4F /* UIImageConveniences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageConveniences.swift; sourceTree = "<group>"; };
+		A5D2D4C321F476C9003F0D4F /* Swizzlng.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Swizzlng.m; sourceTree = "<group>"; };
+		A5D2D4C621F48B7F003F0D4F /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		A5DAAE1A21C7973B0012D559 /* DatabaseUpdater.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseUpdater.swift; sourceTree = "<group>"; };
 		A5DB00AE21EB238F0009AB0E /* AppCollectionDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCollectionDataSource.swift; sourceTree = "<group>"; };
 		A5DEBB27218EF5B800858616 /* RJTImageCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RJTImageCache.h; sourceTree = "<group>"; };
@@ -235,6 +243,7 @@
 				A532DCBF21AE81AF001A7CA5 /* RJTranslate-Bridging-Header.h */,
 				A57104D321F3327100C829DD /* RJTPosixWrapper.h */,
 				A57104D421F3327100C829DD /* RJTPosixWrapper.m */,
+				A5D2D4C321F476C9003F0D4F /* Swizzlng.m */,
 				A545D86021847AE90072674C /* Localizable.strings */,
 				A5ADC02F218508A400C33863 /* Cydia_icon.png */,
 				A5089FA12188C8580073E83C /* UIImage+Private.h */,
@@ -325,10 +334,12 @@
 				A57C40AE218A0F5800885834 /* Database */,
 				A5D815592195984100EB3633 /* Collection View */,
 				A54F28C821EF2FB7002075C5 /* ColorScheme.swift */,
+				A52D551E21EBC703003EDEE4 /* GradientImageRenderer.swift */,
 				A5DEBB27218EF5B800858616 /* RJTImageCache.h */,
 				A5DEBB28218EF5B900858616 /* RJTImageCache.m */,
 				A54EBFCB21B293880086B7DD /* Tracker.swift */,
 				A54F28CA21EF3A5A002075C5 /* UIColorConveniences.swift */,
+				A5D2D4BC21F46CC5003F0D4F /* UIImageConveniences.swift */,
 				A5370DD821A4019B009A2BA5 /* Preferences */,
 			);
 			path = Models;
@@ -482,7 +493,6 @@
 				A581C57F21F0A9A700DD2662 /* AppCollectionDelegate.swift */,
 				A5DB00AE21EB238F0009AB0E /* AppCollectionDataSource.swift */,
 				A52D551C21EBC552003EDEE4 /* AppCollectionEmptySource.swift */,
-				A52D551E21EBC703003EDEE4 /* GradientImageRenderer.swift */,
 				A57104D621F3368300C829DD /* AppCollectionModel.swift */,
 				A5E80C9E21E3C5E300150B5D /* TranslationsFetcher.swift */,
 			);
@@ -494,7 +504,9 @@
 			children = (
 				A5ADC02E2184F32100C33863 /* CollectionView */,
 				A5B74C2B21E4D14A0058C71A /* NavigationBar.swift */,
-				A521637221EA5EE100815C8B /* GradientView.swift */,
+				A5D2D4BA21F4638A003F0D4F /* Tabbar.swift */,
+				A521637221EA5EE100815C8B /* GradientLayer.swift */,
+				A5D2D4C621F48B7F003F0D4F /* GradientView.swift */,
 				A54F28CC21EF4F55002075C5 /* TickView.swift */,
 				A5E0BBAE218646A10094ECBC /* RJTHud.h */,
 				A5E0BBB1218646A10094ECBC /* RJTHud.m */,
@@ -765,7 +777,7 @@
 				A5E80C8D21E365C300150B5D /* TouchResponsiveCollectionCell.swift in Sources */,
 				A511A67C21B19FFC003D4244 /* PreferencesTableModel.swift in Sources */,
 				A54F28CD21EF4F55002075C5 /* TickView.swift in Sources */,
-				A521637321EA5EE100815C8B /* GradientView.swift in Sources */,
+				A521637321EA5EE100815C8B /* GradientLayer.swift in Sources */,
 				A5E80C8F21E387E100150B5D /* ApplicationConviniences.swift in Sources */,
 				A53CC72D21E0BAB000848785 /* UpdateDownloader.swift in Sources */,
 				A5DB00AF21EB238F0009AB0E /* AppCollectionDataSource.swift in Sources */,
@@ -779,6 +791,7 @@
 				A5BC885521B2ACCC00D5C5CF /* ModernSearchController.swift in Sources */,
 				A5C1FB3B21B258A1007BB861 /* PreferencesController.swift in Sources */,
 				A54EBFCC21B293880086B7DD /* Tracker.swift in Sources */,
+				A5D2D4C521F4776A003F0D4F /* Swizzlng.m in Sources */,
 				A5515BD921AE9D2F00C7BFC4 /* SwitchCell.swift in Sources */,
 				A57CF73A217AFFC8004A71F8 /* RJTDatabase.m in Sources */,
 				A53CC73721E0C52200848785 /* HTTPRequestBuilder.swift in Sources */,
@@ -794,8 +807,11 @@
 				A5BFB4A02189B1EB001A9D82 /* RJTAppIconEntity.m in Sources */,
 				A57104D021F311DC00C829DD /* AppCollectionDelegate.swift in Sources */,
 				A57104D521F3327100C829DD /* RJTPosixWrapper.m in Sources */,
+				A5D2D4C721F48B7F003F0D4F /* GradientView.swift in Sources */,
 				A57CF73B217AFFD0004A71F8 /* RJTApplicationEntity.m in Sources */,
 				A59521E521F3480900E5F130 /* RJTImageCache.m in Sources */,
+				A5D2D4BD21F46CC5003F0D4F /* UIImageConveniences.swift in Sources */,
+				A5D2D4BB21F4638A003F0D4F /* Tabbar.swift in Sources */,
 				A57104CE21F30D3600C829DD /* FeaturedController.swift in Sources */,
 				A54F28C921EF2FB7002075C5 /* ColorScheme.swift in Sources */,
 				A5B74C2A21E4D0390058C71A /* ButtonedSearchBar.swift in Sources */,

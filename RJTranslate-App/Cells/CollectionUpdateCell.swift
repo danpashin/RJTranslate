@@ -38,7 +38,8 @@ class CollectionUpdateCell: UICollectionViewCell {
         stackView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         stackView.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
         
-        let gradientView = GradientView.default()
+        
+        let gradientView = GradientView()
         self.insertSubview(gradientView, at: 0)
         
         gradientView.translatesAutoresizingMaskIntoConstraints = false

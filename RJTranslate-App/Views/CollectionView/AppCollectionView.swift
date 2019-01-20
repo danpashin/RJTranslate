@@ -50,6 +50,7 @@ class AppCollectionView : UICollectionView {
     override func awakeFromNib() {
         super.awakeFromNib()
         self.updateLayoutToSize(UIScreen.main.bounds.size)
+        self.backgroundColor = ColorScheme.default.background
         
         self.alwaysBounceVertical = true
         self.allowsMultipleSelection = true
@@ -61,7 +62,9 @@ class AppCollectionView : UICollectionView {
     /// Выполняет анимированную перезагрузку ячеек коллекции.
     public func reload() {
         DispatchQueue.main.async {
-            self.reloadSections(NSIndexSet(indexesIn: NSRange(location: 0, length: 3)) as IndexSet)
+            if self.numberOfSections > 0 {
+                self.reloadSections(NSIndexSet(indexesIn: NSRange(location: 0, length: self.numberOfSections)) as IndexSet)
+            }
             self.reloadEmptyDataSet()
         }
     }

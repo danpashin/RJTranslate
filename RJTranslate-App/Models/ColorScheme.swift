@@ -8,35 +8,32 @@
 
 import Foundation
 
-class ColorScheme {
+struct ColorScheme {
     
-    public static var `default`: ColorScheme = ColorScheme()
+    public static let `default`: ColorScheme = ColorScheme()
     
     
     /// Основной цвет приложения.
-    public let accentMain = UIColor.rgb(r: 95.0, g: 111.0, b: 237.0)
+    public private(set) var accentMain = UIColor(r: 95.0, g: 111.0, b: 237.0)
     
     /// Дополнительный цвет приложения.
-    public let accentSecondary = UIColor.rgb(r: 117.0, g: 133.0, b: 220.0)
+    public private(set) var accentSecondary = UIColor(r: 117.0, g: 133.0, b: 220.0)
     
     /// Оттенок бара навигации.
-    public let headerLabel = UIColor(white: 0.1, alpha: CGFloat(1.0))
+    public private(set) var headerLabel = UIColor(white: 0.1, alpha: 1.0)
     
     /// Цвет текста заголовков.
-    public let navTint = UIColor.rgb(r: 95.0, g: 111.0, b: 237.0)
+    public private(set) var navTint = UIColor(r: 95.0, g: 111.0, b: 237.0)
     
     /// Цвет основных подписей.
-    public let textPrimary = UIColor(white: 0.05, alpha: 1.0)
+    public private(set) var textPrimary = UIColor(white: 0.05, alpha: 1.0)
     
     /// Цвет детальных подписей.
-    public let textDetail = UIColor(white: 0.83, alpha: 1.0)
+    public private(set) var textDetail = UIColor(white: 0.83, alpha: 1.0)
     
     /// Цвет текста заголовков.
-    public let switchOnTint = UIColor.rgb(r: 95.0, g: 111.0, b: 237.0)
-}
-
-fileprivate extension UIColor {
-    fileprivate static func rgb(r: Double, g: Double, b: Double, a: Double = 255.0) -> UIColor {
-        return UIColor(red: CGFloat(r / 255.0), green: CGFloat(g / 255.0), blue: CGFloat(b / 255.0), alpha: CGFloat(a / 255.0))
-    }
+    public private(set) var switchOnTint = UIColor(r: 95.0, g: 111.0, b: 237.0)
+    
+    /// Цвет фона.
+    public private(set) var background = UIColor(r: 240.0, g: 241.0, b: 244.0)
 }
