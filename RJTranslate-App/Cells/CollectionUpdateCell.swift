@@ -11,10 +11,10 @@ import Foundation
 class CollectionUpdateCell: UICollectionViewCell {
     
     /// Основной лейбл хэдера.
-    public private(set) var textLabel: UILabel = UILabel()
+    public private(set) var textLabel = UILabel()
     
     /// Дополнительный лейбл.
-    public private(set) var detailedTextLabel: UILabel = UILabel()
+    public private(set) var detailedTextLabel = UILabel()
     
     override public func awakeFromNib() {
         super.awakeFromNib()

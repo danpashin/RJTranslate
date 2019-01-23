@@ -9,25 +9,12 @@
 import Foundation
 import UIKit
 
-class FeaturedController: UIViewController, SearchControllerDelegate {
-    
-    private var searchController: SearchControllerRequired?
-    
-    private var searchResultsController = LiveSearchResultsController()
+class FeaturedController: LiveSearchResultsController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.view.backgroundColor = ColorScheme.default.background
-        self.title = NSLocalizedString("Translations.Search.Title", comment: "")
-        
-        if #available(iOS 11.0, *) {
-            self.searchController = ModernSearchController(delegate: self)
-            self.navigationItem.searchController = self.searchController as! ModernSearchController
-        }
-    }
-    
-    public func searchController(_ searchController: SearchControllerRequired, didUpdateSearchText searchText: String) {
-        
+        self.title = NSLocalizedString("Translations.Featured.Title", comment: "")
     }
 }

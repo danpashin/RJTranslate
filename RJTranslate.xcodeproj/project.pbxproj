@@ -20,6 +20,10 @@
 		A522F1D8217AFC310085A5E4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A522F1D6217AFC310085A5E4 /* LaunchScreen.storyboard */; };
 		A52D551D21EBC552003EDEE4 /* AppCollectionEmptySource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52D551C21EBC552003EDEE4 /* AppCollectionEmptySource.swift */; };
 		A52D551F21EBC703003EDEE4 /* GradientImageRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52D551E21EBC703003EDEE4 /* GradientImageRenderer.swift */; };
+		A53225CE21F88F3300AB7D46 /* SearchResultsTableModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53225CD21F88F3300AB7D46 /* SearchResultsTableModel.swift */; };
+		A53225D021F8AE9A00AB7D46 /* LiveSearchOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53225CF21F8AE9A00AB7D46 /* LiveSearchOperation.swift */; };
+		A53225D221F8D4D600AB7D46 /* AsynchronousOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53225D121F8D4D600AB7D46 /* AsynchronousOperation.swift */; };
+		A53225D421F8E4C100AB7D46 /* SearchResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53225D321F8E4C100AB7D46 /* SearchResultCell.swift */; };
 		A53533FF217A57ED00E08881 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A53533FE217A57ED00E08881 /* Foundation.framework */; };
 		A5353402217A57ED00E08881 /* RJTranslate.m in Sources */ = {isa = PBXBuildFile; fileRef = A5353401217A57ED00E08881 /* RJTranslate.m */; };
 		A5353411217A584500E08881 /* RJTranslate.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A535340F217A584500E08881 /* RJTranslate.xcdatamodeld */; };
@@ -61,7 +65,7 @@
 		A59521E521F3480900E5F130 /* RJTImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = A5DEBB28218EF5B900858616 /* RJTImageCache.m */; };
 		A59521E621F3480900E5F130 /* RJTImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = A5DEBB28218EF5B900858616 /* RJTImageCache.m */; };
 		A59521FB21F3A08600E5F130 /* HTTPClientPinning.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59521FA21F3A08600E5F130 /* HTTPClientPinning.swift */; };
-		A5975EB021F72B9D00D25FFA /* SearchResultTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5975EAF21F72B9D00D25FFA /* SearchResultTableView.swift */; };
+		A5975EB021F72B9D00D25FFA /* SearchResultsTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5975EAF21F72B9D00D25FFA /* SearchResultsTableView.swift */; };
 		A5975EB421F7300300D25FFA /* LiveSearchResultsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5975EB321F7300300D25FFA /* LiveSearchResultsController.swift */; };
 		A5ADC030218508A400C33863 /* Cydia_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = A5ADC02F218508A400C33863 /* Cydia_icon.png */; };
 		A5B74C2021E4A9600058C71A /* RJTDatabaseFacade.h in Headers */ = {isa = PBXBuildFile; fileRef = A5E80C8521E3300500150B5D /* RJTDatabaseFacade.h */; };
@@ -126,6 +130,10 @@
 		A522F1D9217AFC310085A5E4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A52D551C21EBC552003EDEE4 /* AppCollectionEmptySource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCollectionEmptySource.swift; sourceTree = "<group>"; };
 		A52D551E21EBC703003EDEE4 /* GradientImageRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientImageRenderer.swift; sourceTree = "<group>"; };
+		A53225CD21F88F3300AB7D46 /* SearchResultsTableModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsTableModel.swift; sourceTree = "<group>"; };
+		A53225CF21F8AE9A00AB7D46 /* LiveSearchOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveSearchOperation.swift; sourceTree = "<group>"; };
+		A53225D121F8D4D600AB7D46 /* AsynchronousOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsynchronousOperation.swift; sourceTree = "<group>"; };
+		A53225D321F8E4C100AB7D46 /* SearchResultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultCell.swift; sourceTree = "<group>"; };
 		A532DCBF21AE81AF001A7CA5 /* RJTranslate-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RJTranslate-Bridging-Header.h"; sourceTree = "<group>"; };
 		A53533FB217A57ED00E08881 /* RJTranslate.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = RJTranslate.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		A53533FE217A57ED00E08881 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -165,7 +173,7 @@
 		A58659942192CCE600A76A6C /* RJTSupport.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RJTSupport.m; sourceTree = "<group>"; };
 		A58AFD72217DF975008A900C /* sign.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = sign.entitlements; sourceTree = SOURCE_ROOT; };
 		A59521FA21F3A08600E5F130 /* HTTPClientPinning.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClientPinning.swift; sourceTree = "<group>"; };
-		A5975EAF21F72B9D00D25FFA /* SearchResultTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultTableView.swift; sourceTree = "<group>"; };
+		A5975EAF21F72B9D00D25FFA /* SearchResultsTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsTableView.swift; sourceTree = "<group>"; };
 		A5975EB321F7300300D25FFA /* LiveSearchResultsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveSearchResultsController.swift; sourceTree = "<group>"; };
 		A5ADC02F218508A400C33863 /* Cydia_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Cydia_icon.png; sourceTree = "<group>"; };
 		A5B74C2421E4CD6E0058C71A /* ObsoleteSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObsoleteSearchController.swift; sourceTree = "<group>"; };
@@ -344,6 +352,9 @@
 				A54EBFCB21B293880086B7DD /* Tracker.swift */,
 				A54F28CA21EF3A5A002075C5 /* UIColorConveniences.swift */,
 				A5D2D4BC21F46CC5003F0D4F /* UIImageConveniences.swift */,
+				A53225CD21F88F3300AB7D46 /* SearchResultsTableModel.swift */,
+				A53225D121F8D4D600AB7D46 /* AsynchronousOperation.swift */,
+				A53225CF21F8AE9A00AB7D46 /* LiveSearchOperation.swift */,
 				A5370DD821A4019B009A2BA5 /* Preferences */,
 			);
 			path = Models;
@@ -356,6 +367,7 @@
 				A5E80C8C21E365C300150B5D /* TouchResponsiveCollectionCell.swift */,
 				A54EBFCF21B2A1150086B7DD /* CollectionUpdateCell.swift */,
 				A5515BD821AE9D2F00C7BFC4 /* SwitchCell.swift */,
+				A53225D321F8E4C100AB7D46 /* SearchResultCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -426,6 +438,7 @@
 				A5B74C2621E4CDA10058C71A /* SearchConveniences.swift */,
 				A5BC885421B2ACCC00D5C5CF /* ModernSearchController.swift */,
 				A5B74C2421E4CD6E0058C71A /* ObsoleteSearchController.swift */,
+				A5975EB321F7300300D25FFA /* LiveSearchResultsController.swift */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -507,7 +520,7 @@
 			isa = PBXGroup;
 			children = (
 				A5ADC02E2184F32100C33863 /* CollectionView */,
-				A5975EAF21F72B9D00D25FFA /* SearchResultTableView.swift */,
+				A5975EAF21F72B9D00D25FFA /* SearchResultsTableView.swift */,
 				A5B74C2B21E4D14A0058C71A /* NavigationBar.swift */,
 				A5D2D4BA21F4638A003F0D4F /* Tabbar.swift */,
 				A521637221EA5EE100815C8B /* GradientLayer.swift */,
@@ -527,7 +540,6 @@
 			children = (
 				A54A335D21B3CBA40064D648 /* TranslateMainController.swift */,
 				A57104CD21F30D3600C829DD /* FeaturedController.swift */,
-				A5975EB321F7300300D25FFA /* LiveSearchResultsController.swift */,
 				A5C1FB3A21B258A1007BB861 /* PreferencesController.swift */,
 				A5B74C2821E4CDA80058C71A /* Search */,
 			);
@@ -782,6 +794,7 @@
 				A5527FBB218F4C4000095251 /* RJTApplicationModel.m in Sources */,
 				A5E80C8D21E365C300150B5D /* TouchResponsiveCollectionCell.swift in Sources */,
 				A511A67C21B19FFC003D4244 /* PreferencesTableModel.swift in Sources */,
+				A53225D421F8E4C100AB7D46 /* SearchResultCell.swift in Sources */,
 				A54F28CD21EF4F55002075C5 /* TickView.swift in Sources */,
 				A521637321EA5EE100815C8B /* GradientLayer.swift in Sources */,
 				A5E80C8F21E387E100150B5D /* ApplicationConviniences.swift in Sources */,
@@ -794,13 +807,15 @@
 				A521020321EB2E6300D95AA8 /* AppCollectionLayout.swift in Sources */,
 				A58659962192CCE600A76A6C /* RJTSupport.m in Sources */,
 				A5C4F89521E28D3F000FAC48 /* APIResponses.swift in Sources */,
+				A53225D021F8AE9A00AB7D46 /* LiveSearchOperation.swift in Sources */,
 				A5BC885521B2ACCC00D5C5CF /* ModernSearchController.swift in Sources */,
+				A53225CE21F88F3300AB7D46 /* SearchResultsTableModel.swift in Sources */,
 				A5975EB421F7300300D25FFA /* LiveSearchResultsController.swift in Sources */,
 				A5C1FB3B21B258A1007BB861 /* PreferencesController.swift in Sources */,
 				A54EBFCC21B293880086B7DD /* Tracker.swift in Sources */,
 				A5D2D4C521F4776A003F0D4F /* Swizzlng.m in Sources */,
 				A5515BD921AE9D2F00C7BFC4 /* SwitchCell.swift in Sources */,
-				A5975EB021F72B9D00D25FFA /* SearchResultTableView.swift in Sources */,
+				A5975EB021F72B9D00D25FFA /* SearchResultsTableView.swift in Sources */,
 				A57CF73A217AFFC8004A71F8 /* RJTDatabase.m in Sources */,
 				A53CC73721E0C52200848785 /* HTTPRequestBuilder.swift in Sources */,
 				A54EBFAC21B2725C0086B7DD /* AppDelegate.swift in Sources */,
@@ -820,6 +835,7 @@
 				A59521E521F3480900E5F130 /* RJTImageCache.m in Sources */,
 				A5D2D4BD21F46CC5003F0D4F /* UIImageConveniences.swift in Sources */,
 				A5D2D4BB21F4638A003F0D4F /* Tabbar.swift in Sources */,
+				A53225D221F8D4D600AB7D46 /* AsynchronousOperation.swift in Sources */,
 				A57104CE21F30D3600C829DD /* FeaturedController.swift in Sources */,
 				A54F28C921EF2FB7002075C5 /* ColorScheme.swift in Sources */,
 				A5B74C2A21E4D0390058C71A /* ButtonedSearchBar.swift in Sources */,

@@ -22,7 +22,7 @@ class AppCollectionEmptySource: NSObject, DZNEmptyDataSetSource, DZNEmptyDataSet
     
     public var type: EmptyViewType = .loading
     
-    private var imageRenderer: GradientImageRenderer
+    private var imageRenderer: GradientImageRenderer!
     
     private var shouldReloadAfterRendering = false {
         didSet {
@@ -33,11 +33,10 @@ class AppCollectionEmptySource: NSObject, DZNEmptyDataSetSource, DZNEmptyDataSet
     }
     
     public init(collectionView: AppCollectionView) {
-        let buttonSize = CGSize(width: UIScreen.main.bounds.width, height: CGFloat(44.0))
-        self.imageRenderer = GradientImageRenderer(size: buttonSize);
-        
         super.init()
         
+        let buttonSize = CGSize(width: UIScreen.main.bounds.width, height: CGFloat(44.0))
+        self.imageRenderer = GradientImageRenderer(size: buttonSize);
         self.imageRenderer.delegate = self
         
         self.collectionView = collectionView

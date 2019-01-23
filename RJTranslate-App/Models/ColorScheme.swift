@@ -20,7 +20,7 @@ struct ColorScheme {
     public private(set) var accentSecondary = UIColor(r: 117.0, g: 133.0, b: 220.0)
     
     /// Оттенок бара навигации.
-    public private(set) var headerLabel = UIColor(white: 0.1, alpha: 1.0)
+    public private(set) var headerLabel = UIColor(white: 0.0, alpha: 1.0)
     
     /// Цвет текста заголовков.
     public private(set) var navTint = UIColor(r: 95.0, g: 111.0, b: 237.0)

@@ -19,7 +19,7 @@ class ModernSearchController: UISearchController, UISearchBarDelegate, SearchCon
     /// Определет, выполняется ли поиск в данный момент.
     public private(set) var performingSearch: Bool = false
     
-    public weak var searchDelegate: SearchControllerDelegate?
+    public weak var searchDelegate: SearchControllerDelegate!
     
     
     @available(*, unavailable)

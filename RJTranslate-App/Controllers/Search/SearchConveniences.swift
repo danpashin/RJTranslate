@@ -16,7 +16,7 @@ import Foundation
 @objc public protocol SearchControllerRequired {
     var searchText: String { get }
     
-    var searchDelegate: SearchControllerDelegate? { get }
+    var searchDelegate: SearchControllerDelegate! { get }
     
     init(delegate: SearchControllerDelegate)
 }

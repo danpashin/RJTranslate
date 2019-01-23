@@ -195,21 +195,7 @@
                     <view key="view" contentMode="scaleToFill" id="uMG-gV-Evl">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bfz-vu-f7q">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
-                                <connections>
-                                    <segue destination="KCk-5X-cNw" kind="embed" id="f1z-fK-Kcj"/>
-                                </connections>
-                            </containerView>
-                        </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="fGz-wO-LbW" firstAttribute="trailing" secondItem="Bfz-vu-f7q" secondAttribute="trailing" id="9AR-HN-miW"/>
-                            <constraint firstItem="Bfz-vu-f7q" firstAttribute="leading" secondItem="fGz-wO-LbW" secondAttribute="leading" id="FZI-dn-omo"/>
-                            <constraint firstItem="Bfz-vu-f7q" firstAttribute="top" secondItem="uMG-gV-Evl" secondAttribute="top" id="Raa-fZ-Vae"/>
-                            <constraint firstItem="fGz-wO-LbW" firstAttribute="bottom" secondItem="Bfz-vu-f7q" secondAttribute="bottom" id="Vya-v4-xNU"/>
-                        </constraints>
                         <viewLayoutGuide key="safeArea" id="fGz-wO-LbW"/>
                     </view>
                     <navigationItem key="navigationItem" largeTitleDisplayMode="always" id="UrW-Aw-li0"/>
@@ -251,36 +237,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                        <sections>
-                            <tableViewSection id="XPH-vp-0Lc">
-                                <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="hXM-fA-Ng2">
-                                        <rect key="frame" x="0.0" y="35" width="375" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="hXM-fA-Ng2" id="fOW-wR-FBh">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="xzD-qu-rKH">
-                                        <rect key="frame" x="0.0" y="79" width="375" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="xzD-qu-rKH" id="w97-i6-4UV">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="nLu-Jp-20r">
-                                        <rect key="frame" x="0.0" y="123" width="375" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="nLu-Jp-20r" id="cUk-8Q-72i">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </cells>
-                            </tableViewSection>
-                        </sections>
+                        <sections/>
                         <connections>
                             <outlet property="dataSource" destination="dPR-Yj-bHJ" id="TJz-zA-KHf"/>
                             <outlet property="delegate" destination="dPR-Yj-bHJ" id="ARE-bD-4YZ"/>
@@ -291,20 +248,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bPy-IW-KW1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="86" y="1042"/>
-        </scene>
-        <!--Live Search Results Controller-->
-        <scene sceneID="9dZ-tf-YQK">
-            <objects>
-                <viewController id="KCk-5X-cNw" customClass="LiveSearchResultsController" customModule="RJTranslate" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="6Ug-rV-sLp">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="9c6-3H-OdM" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="932" y="336"/>
         </scene>
     </scenes>
     <resources>

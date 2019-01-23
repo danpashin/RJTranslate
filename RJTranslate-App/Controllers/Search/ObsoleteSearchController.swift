@@ -12,7 +12,7 @@ import Foundation
 class ObsoleteSearchController: UIViewController, SearchControllerRequired, UISearchBarDelegate {
     public private(set) var searchText: String = ""
     
-    public private(set) weak var searchDelegate: SearchControllerDelegate?
+    public private(set) weak var searchDelegate: SearchControllerDelegate!
     
     public private(set) var searchBar: ButtonedSearchBar?
     

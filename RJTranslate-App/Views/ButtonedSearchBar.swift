@@ -24,9 +24,9 @@ class ButtonedSearchBar: UIView {
         }
     }
     
-    private let stackView: UIStackView = UIStackView()
-    private let searchBar: UISearchBar = UISearchBar()
-    private let cancelButton: UIButton = UIButton()
+    private let stackView = UIStackView()
+    private let searchBar = UISearchBar()
+    private let cancelButton = UIButton()
     
     public override init(frame: CGRect) {
         super.init(frame: frame)

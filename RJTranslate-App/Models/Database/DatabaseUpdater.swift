@@ -44,7 +44,7 @@ class DatabaseUpdater : NSObject {
     public private(set) var delegate: DatabaseUpdaterDelegate
     private var currentUpdate: TranslationsUpdate?
     
-    private var updateDownloader: UpdateDownloader?
+    private var updateDownloader = UpdateDownloader()
     
     /// Выполняет инициализацию апдейтера.
     ///
@@ -82,7 +82,7 @@ class DatabaseUpdater : NSObject {
             
             let response = TranslationServerResponse(json: json)
             if response.error != nil {
-                completion(nil, response.error!.asNSError())
+                completion(nil, response.error!.nserror)
             } else {
                 self.currentUpdate = response.translation
             }
@@ -92,8 +92,7 @@ class DatabaseUpdater : NSObject {
     private func downloadUpdate() {
         guard let update = self.currentUpdate else { return }
         
-        self.updateDownloader = UpdateDownloader()
-        self.updateDownloader?.downloadAndUnzipUpdate(update, progress: { (progress: Double) in
+        self.updateDownloader.downloadAndUnzipUpdate(update, progress: { (progress: Double) in
             self.delegate.databaseUpdater?(self, updateProgress: progress)
         }, completion: { (unzippedFolder: String?, error: NSError?) in
             if error != nil || unzippedFolder == nil {

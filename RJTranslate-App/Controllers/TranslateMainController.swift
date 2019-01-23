@@ -10,18 +10,16 @@ import Foundation
 
 class TranslateMainController: UIViewController, SearchControllerDelegate, AppCollectionViewDelegateProtocol, DatabaseUpdaterDelegate  {
     
-    private var databaseUpdater: DatabaseUpdater?
-    private var collectionViewModel: AppCollectionModel?
+    private var databaseUpdater: DatabaseUpdater!
     
     private weak var hud: RJTHud?
-    private var searchController: SearchControllerRequired?
+    private var searchController: SearchControllerRequired!
     
     @IBOutlet
     private var collectionView: AppCollectionView! {
         didSet {
             self.collectionView.customDelegate = self
-            self.collectionViewModel = AppCollectionModel(collectionView: self.collectionView!)
-            self.collectionViewModel?.loadDatabaseModels()
+            self.collectionView.model.loadDatabaseModels()
         }
     }
     
@@ -58,7 +56,7 @@ class TranslateMainController: UIViewController, SearchControllerDelegate, AppCo
         super.viewDidAppear(animated)
         
         DispatchQueue.once(token: "ru.danpashin.rjtranslate.updates.once") {
-            self.databaseUpdater?.checkTranslationsVersion({ (updateModel: TranslationsUpdate?, error: NSError?) in
+            self.databaseUpdater.checkTranslationsVersion({ (updateModel: TranslationsUpdate?, error: NSError?) in
                 if error == nil && updateModel?.canUpdate ?? false {
                     self.collectionView?.showUpdateCell(true)
                 }
@@ -77,7 +75,7 @@ class TranslateMainController: UIViewController, SearchControllerDelegate, AppCo
         hud.detailText = NSLocalizedString("downloating_localization...", comment: "")
         self.hud = hud
         
-        self.databaseUpdater!.performUpdate()
+        self.databaseUpdater.performUpdate()
     }
     
     
@@ -85,16 +83,16 @@ class TranslateMainController: UIViewController, SearchControllerDelegate, AppCo
     // MARK: SearchControllerRequired
     
     public func willPresentSearchController(_ searchController: SearchControllerRequired) {
-        self.collectionViewModel?.beginSearch()
+        self.collectionView.model.beginSearch()
     }
     
     public func searchController(_ searchController: SearchControllerRequired, didUpdateSearchText searchText: String) {
         self.collectionView.showUpdateCell(false)
-        self.collectionViewModel?.performSearch(text: searchText)
+        self.collectionView.model.performSearch(text: searchText)
     }
     
     public func willDismissSearchController(_ searchController: SearchControllerRequired) {
-        self.collectionViewModel?.endSearch()
+        self.collectionView.model.endSearch()
     }
     
     
@@ -106,7 +104,7 @@ class TranslateMainController: UIViewController, SearchControllerDelegate, AppCo
     }
     
     public func collectionView(_ collectionView: AppCollectionView, didUpdateModel appModel: RJTApplicationModel) {
-        self.collectionViewModel?.updateModel(appModel)
+        self.collectionView.model.updateModel(appModel)
     }
     
     public func collectionView(_ collectionView: AppCollectionView, didLoadUpdateCell updateCell: CollectionUpdateCell) {
@@ -130,7 +128,7 @@ class TranslateMainController: UIViewController, SearchControllerDelegate, AppCo
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
             self.collectionView.showUpdateCell(false)
             
-            self.collectionViewModel?.loadDatabaseModels()
+            self.collectionView.model.loadDatabaseModels()
         })
     }
     

@@ -11,15 +11,15 @@ import UIKit
 
 class SwitchCell : UITableViewCell {
     
-    private var switchView : UISwitch?
+    private var switchView = UISwitch()
     
-    private var preferenceModel: SwitchPreference? {
+    private var preferenceModel: SwitchPreference! {
         didSet {
             DispatchQueue.global().async {
                 let switchEnabled: Bool = (self.preferenceModel?.value as! NSNumber).boolValue
                 
                 DispatchQueue.main.async {
-                    self.switchView?.isOn = switchEnabled
+                    self.switchView.isOn = switchEnabled
                 }
             }
         }
@@ -28,19 +28,18 @@ class SwitchCell : UITableViewCell {
     public init(model: SwitchPreference, reuseIdentifier: String?) {
         super.init(style: .default, reuseIdentifier: reuseIdentifier)
         
-        switchView = UISwitch.init()
-        switchView?.addTarget(self, action: #selector(switchTrigerred), for: .valueChanged)
-        switchView?.onTintColor = ColorScheme.default.switchOnTint
-        self.accessoryView = switchView
+        self.switchView.addTarget(self, action: #selector(self.switchTrigerred), for: .valueChanged)
+        self.switchView.onTintColor = ColorScheme.default.switchOnTint
+        self.accessoryView = self.switchView
         
         defer {
-            preferenceModel = model
+            self.preferenceModel = model
         }
     }
     
     @objc private func switchTrigerred(_ switchView: UISwitch) {
         let enabled = NSNumber(booleanLiteral: switchView.isOn)
-        self.preferenceModel?.save(value: enabled)
+        self.preferenceModel.save(value: enabled)
     }
     
     required public init?(coder aDecoder: NSCoder) {

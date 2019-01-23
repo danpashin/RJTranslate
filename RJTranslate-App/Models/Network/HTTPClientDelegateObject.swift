@@ -11,13 +11,12 @@ import Foundation
 
 class HTTPClientDelegateObject: NSObject, URLSessionDownloadDelegate, URLSessionDataDelegate {
     
-    weak public private(set) var client: HTTPClient?
-    public private(set) var utilityQueue: OperationQueue
+    weak public private(set) var client: HTTPClient!
+    public private(set) var utilityQueue = OperationQueue()
     
     public init(client: HTTPClient) {
         self.client = client
         
-        self.utilityQueue = OperationQueue()
         self.utilityQueue.name = "ru.danpashin.rjtranslate.network"
         self.utilityQueue.qualityOfService = .utility
     }

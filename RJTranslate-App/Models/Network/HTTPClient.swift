@@ -13,8 +13,8 @@ class HTTPClient {
     public static let shared: HTTPClient = HTTPClient()
     public static let apiURL: URLTransformable = URL(string: "https://api.rejail.ru/translation.php")!
     
-    private var session: URLSession?
-    private var configuration: URLSessionConfiguration?
+    public private(set) var session: URLSession!
+    private let configuration = URLSessionConfiguration.ephemeral
     private var delegateObject: HTTPClientDelegateObject?
     
     public private(set) var activeTasks : [Int: HTTPTask] = [:]
@@ -35,12 +35,11 @@ class HTTPClient {
     }
     
     public init() {
-        self.configuration = URLSessionConfiguration.ephemeral
-        self.configuration!.allowsCellularAccess = true
-        self.configuration!.httpAdditionalHeaders = ["User-Agent": self.defaultUserAgent]
+        self.configuration.allowsCellularAccess = true
+        self.configuration.httpAdditionalHeaders = ["User-Agent": self.defaultUserAgent]
         
         self.delegateObject = HTTPClientDelegateObject(client: self)
-        self.session = URLSession(configuration: self.configuration!, delegate: self.delegateObject, 
+        self.session = URLSession(configuration: self.configuration, delegate: self.delegateObject, 
                                   delegateQueue: self.delegateObject?.utilityQueue)
     }
     
@@ -51,6 +50,13 @@ class HTTPClient {
         self.activeTasks.removeValue(forKey: identifier)
     }
     
+    public func addTask(_ task: HTTPTask) {
+        if task.sessionTask != nil {
+            self.activeTasks[task.sessionTask!.taskIdentifier] = task
+            task.sessionTask!.resume()
+        }
+    }
+    
     /// Выполняет загрузку файла с удаленного сервера.
     ///
     /// - Parameters:
@@ -58,7 +64,6 @@ class HTTPClient {
     ///   - httpMethod: Метод запроса. По умолчанию, GET.
     ///   - arguments: Аргументы запроса. По умолчанию, пустой массив.
     /// - Returns: Возвращает объект запроса для дальнейшей работы.
-    @discardableResult
     public func download(_ url: URLTransformable,
                          httpMethod: HTTPMethod = .get,
                          arguments:[String: AnyHashable] = [:]
@@ -67,11 +72,10 @@ class HTTPClient {
         let requestBuilder = HTTPRequestBuilder(url: url, httpMethod: httpMethod, arguments: arguments)
         let request = requestBuilder.buildRequest()
         
-        let dataTask = self.session!.dataTask(with: request)
+        let dataTask = self.session.dataTask(with: request)
         
         let httpTask = HTTPDownloadTask(request: request, sessionTask: dataTask)
-        self.activeTasks[dataTask.taskIdentifier] = httpTask
-        dataTask.resume()
+        self.addTask(httpTask)
         
         return httpTask
     }
@@ -91,11 +95,10 @@ class HTTPClient {
         let requestBuilder = HTTPRequestBuilder(url: url, httpMethod: httpMethod, arguments: arguments)
         let request = requestBuilder.buildRequest()
         
-        let dataTask = self.session!.dataTask(with: request)
+        let dataTask = self.session.dataTask(with: request)
         
         let httpTask = HTTPJSONTask(request: request, sessionTask: dataTask)
-        self.activeTasks[dataTask.taskIdentifier] = httpTask
-        dataTask.resume()
+        self.addTask(httpTask)
         
         return httpTask
     }

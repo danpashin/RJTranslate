@@ -37,15 +37,31 @@ class AppCollectionView : UICollectionView {
     weak public var customDelegate: AppCollectionViewDelegateProtocol?
     
     /// Модель, используемая для коллекции.
-    public var model: AppCollectionModel?
+    public var model: AppCollectionModel!
     
     
     public var layout: AppCollectionLayout? {
         return self.collectionViewLayout as? AppCollectionLayout
     }
     
-    private var delegateObject: AppCollectionDelegate?
-    private var emptyDataSourceObject: AppCollectionEmptySource?
+    private var delegateObject: AppCollectionDelegate!
+    private var emptyDataSourceObject: AppCollectionEmptySource!
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        self.commonInit()
+    }
+    
+    override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {
+        super.init(frame: frame, collectionViewLayout: layout)
+        self.commonInit()
+    }
+    
+    private func commonInit() {
+        self.model = AppCollectionModel(collectionView: self)
+        self.delegateObject = AppCollectionDelegate(collectionView: self)
+        self.emptyDataSourceObject = AppCollectionEmptySource(collectionView: self)
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -54,9 +70,6 @@ class AppCollectionView : UICollectionView {
         
         self.alwaysBounceVertical = true
         self.allowsMultipleSelection = true
-        
-        self.delegateObject = AppCollectionDelegate(collectionView: self)
-        self.emptyDataSourceObject = AppCollectionEmptySource(collectionView: self)
     }
     
     /// Выполняет анимированную перезагрузку ячеек коллекции.

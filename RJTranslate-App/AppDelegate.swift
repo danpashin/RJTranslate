@@ -25,8 +25,8 @@ public class AppDelegate: UIResponder, UIApplicationDelegate, CrashlyticsDelegat
         Crashlytics.sharedInstance().delegate = self
         FirebaseApp.configure()
         
-        let enableStatsPrefs: NSNumber? = UserDefaults.standard.object(forKey: "send_statistics") as? NSNumber
-        let enableStats: Bool = (enableStatsPrefs?.boolValue) ?? true
+        let enableStatsPrefs = UserDefaults.standard.object(forKey: "send_statistics") as? NSNumber
+        let enableStats = (enableStatsPrefs?.boolValue) ?? true
         self.enableTracker(enableStats)
         
         self.defaultDatabase = RJTDatabaseFacade()
@@ -45,8 +45,8 @@ public class AppDelegate: UIResponder, UIApplicationDelegate, CrashlyticsDelegat
     // MARK: -
     
     public func crashlyticsDidDetectReport(forLastExecution report: CLSReport, completionHandler: @escaping (Bool) -> Void) {
-        let sendReportsPrefs: NSNumber? = UserDefaults.standard.object(forKey: "send_crashlogs") as? NSNumber
-        let sendReports: Bool = (sendReportsPrefs?.boolValue) ?? true
+        let sendReportsPrefs = UserDefaults.standard.object(forKey: "send_crashlogs") as? NSNumber
+        let sendReports = (sendReportsPrefs?.boolValue) ?? true
         
         completionHandler(sendReports)
     }
