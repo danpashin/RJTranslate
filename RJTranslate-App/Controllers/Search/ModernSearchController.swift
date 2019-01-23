@@ -50,7 +50,8 @@ class ModernSearchController: UISearchController, UISearchBarDelegate, SearchCon
             return
         }
         
-        UIView.animate(withDuration: 0.15, delay: 0.0, options: [], animations: {
+        UIView.animate(withDuration: 0.3, delay: 0.0,
+                       options: [.allowUserInteraction, .allowAnimatedContent], animations: {
             self.view.backgroundColor = UIColor(white: 0.0, alpha: show ? 0.3 : 0.0)
         }, completion: nil)
     }

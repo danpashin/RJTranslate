@@ -40,7 +40,7 @@ public class TouchResponsiveCollectionCell: UICollectionViewCell {
             let scaleTransformCoefficient = CGFloat((state == .pressed) ? 0.95 : 1.0)
             
             DispatchQueue.main.async {
-                UIView.animate(withDuration: 0.15, delay: 0.0, options: [.allowAnimatedContent, .allowAnimatedContent], animations: { 
+                UIView.animate(withDuration: 0.15, delay: 0.0, options: [.allowAnimatedContent, .allowAnimatedContent], animations: {
                     self.transform = CGAffineTransform(scaleX: scaleTransformCoefficient, y: scaleTransformCoefficient)
                 })
             }
@@ -55,7 +55,7 @@ public class TouchResponsiveCollectionCell: UICollectionViewCell {
     override public func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesEnded(touches, with: event)
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) { 
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
             self.updateState(.normal)
         }
     }

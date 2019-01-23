@@ -13,6 +13,8 @@ class FeaturedController: UIViewController, SearchControllerDelegate {
     
     private var searchController: SearchControllerRequired?
     
+    private var searchResultsController = LiveSearchResultsController()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -23,5 +25,9 @@ class FeaturedController: UIViewController, SearchControllerDelegate {
             self.searchController = ModernSearchController(delegate: self)
             self.navigationItem.searchController = self.searchController as! ModernSearchController
         }
+    }
+    
+    public func searchController(_ searchController: SearchControllerRequired, didUpdateSearchText searchText: String) {
+        
     }
 }

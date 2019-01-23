@@ -90,7 +90,7 @@ class ObsoleteSearchController: UIViewController, SearchControllerRequired, UISe
             self.viewIfLoaded?.isHidden = false
         }
         
-        UIView.animate(withDuration: 0.15, animations: { 
+        UIView.animate(withDuration: 0.3, animations: {
             self.viewIfLoaded?.backgroundColor = UIColor(white: 0.0, alpha: shouldDim ? 0.3 : 0.0)
         }) { (animated: Bool) in
             if !shouldDim {

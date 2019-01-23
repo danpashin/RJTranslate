@@ -61,6 +61,8 @@
 		A59521E521F3480900E5F130 /* RJTImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = A5DEBB28218EF5B900858616 /* RJTImageCache.m */; };
 		A59521E621F3480900E5F130 /* RJTImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = A5DEBB28218EF5B900858616 /* RJTImageCache.m */; };
 		A59521FB21F3A08600E5F130 /* HTTPClientPinning.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59521FA21F3A08600E5F130 /* HTTPClientPinning.swift */; };
+		A5975EB021F72B9D00D25FFA /* SearchResultTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5975EAF21F72B9D00D25FFA /* SearchResultTableView.swift */; };
+		A5975EB421F7300300D25FFA /* LiveSearchResultsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5975EB321F7300300D25FFA /* LiveSearchResultsController.swift */; };
 		A5ADC030218508A400C33863 /* Cydia_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = A5ADC02F218508A400C33863 /* Cydia_icon.png */; };
 		A5B74C2021E4A9600058C71A /* RJTDatabaseFacade.h in Headers */ = {isa = PBXBuildFile; fileRef = A5E80C8521E3300500150B5D /* RJTDatabaseFacade.h */; };
 		A5B74C2121E4A9600058C71A /* RJTDatabaseFacade.m in Sources */ = {isa = PBXBuildFile; fileRef = A5E80C8621E3300500150B5D /* RJTDatabaseFacade.m */; };
@@ -163,6 +165,8 @@
 		A58659942192CCE600A76A6C /* RJTSupport.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RJTSupport.m; sourceTree = "<group>"; };
 		A58AFD72217DF975008A900C /* sign.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = sign.entitlements; sourceTree = SOURCE_ROOT; };
 		A59521FA21F3A08600E5F130 /* HTTPClientPinning.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClientPinning.swift; sourceTree = "<group>"; };
+		A5975EAF21F72B9D00D25FFA /* SearchResultTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultTableView.swift; sourceTree = "<group>"; };
+		A5975EB321F7300300D25FFA /* LiveSearchResultsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveSearchResultsController.swift; sourceTree = "<group>"; };
 		A5ADC02F218508A400C33863 /* Cydia_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Cydia_icon.png; sourceTree = "<group>"; };
 		A5B74C2421E4CD6E0058C71A /* ObsoleteSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObsoleteSearchController.swift; sourceTree = "<group>"; };
 		A5B74C2621E4CDA10058C71A /* SearchConveniences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchConveniences.swift; sourceTree = "<group>"; };
@@ -503,6 +507,7 @@
 			isa = PBXGroup;
 			children = (
 				A5ADC02E2184F32100C33863 /* CollectionView */,
+				A5975EAF21F72B9D00D25FFA /* SearchResultTableView.swift */,
 				A5B74C2B21E4D14A0058C71A /* NavigationBar.swift */,
 				A5D2D4BA21F4638A003F0D4F /* Tabbar.swift */,
 				A521637221EA5EE100815C8B /* GradientLayer.swift */,
@@ -522,6 +527,7 @@
 			children = (
 				A54A335D21B3CBA40064D648 /* TranslateMainController.swift */,
 				A57104CD21F30D3600C829DD /* FeaturedController.swift */,
+				A5975EB321F7300300D25FFA /* LiveSearchResultsController.swift */,
 				A5C1FB3A21B258A1007BB861 /* PreferencesController.swift */,
 				A5B74C2821E4CDA80058C71A /* Search */,
 			);
@@ -789,10 +795,12 @@
 				A58659962192CCE600A76A6C /* RJTSupport.m in Sources */,
 				A5C4F89521E28D3F000FAC48 /* APIResponses.swift in Sources */,
 				A5BC885521B2ACCC00D5C5CF /* ModernSearchController.swift in Sources */,
+				A5975EB421F7300300D25FFA /* LiveSearchResultsController.swift in Sources */,
 				A5C1FB3B21B258A1007BB861 /* PreferencesController.swift in Sources */,
 				A54EBFCC21B293880086B7DD /* Tracker.swift in Sources */,
 				A5D2D4C521F4776A003F0D4F /* Swizzlng.m in Sources */,
 				A5515BD921AE9D2F00C7BFC4 /* SwitchCell.swift in Sources */,
+				A5975EB021F72B9D00D25FFA /* SearchResultTableView.swift in Sources */,
 				A57CF73A217AFFC8004A71F8 /* RJTDatabase.m in Sources */,
 				A53CC73721E0C52200848785 /* HTTPRequestBuilder.swift in Sources */,
 				A54EBFAC21B2725C0086B7DD /* AppDelegate.swift in Sources */,
