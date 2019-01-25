@@ -14,7 +14,7 @@ class LiveSearchOperation: AsynchronousOperation {
     private var searchText: String
     
     /// Результат выполненного запроса.
-    public private(set) var result: API.SearchResponse!
+    public private(set) var result: API.ResponseResult<[API.TranslationSummary]>?
     
     public init(searchText: String) {
         self.searchText = searchText
@@ -29,16 +29,12 @@ class LiveSearchOperation: AsynchronousOperation {
             return
         }
         
-        self.jsonTask = HTTPClient.shared.json(API.apiURL, arguments: ["action": "search", "name": self.searchText])
-            .completion({ (response: [String : AnyHashable]?, error: NSError?) in
-                if error == nil && response != nil {
-                    self.result = API.SearchResponse(json: response!, searchText: self.searchText)
-                } else {
-                    NSLog("Found error while searching live! %@", String(describing: error))
-                }
-                
-                self.state = .finished
-            })
+        self.jsonTask = API.TranslationSummary.search(text: self.searchText) {
+            (searchResult: API.ResponseResult<[API.TranslationSummary]>) in
+            self.result = searchResult
+            
+            self.state = .finished
+        }
     }
     
     /// Отменяет запрос и асинхронную операцию.

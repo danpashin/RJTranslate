@@ -11,7 +11,7 @@ import Foundation
 public class SearchResultCell: UITableViewCell {
     
     /// Результат поиска локализации.
-    public var result: API.SearchableTranslation? {
+    public var result: API.TranslationSummary? {
         didSet {
             self.updateName()
         }

@@ -17,7 +17,7 @@
 @property (strong, nonatomic, readwrite, nullable) NSString *executablePath;
 
 @property (strong, nonatomic, readwrite, nullable) NSDictionary *translation;
-@property (strong, nonatomic, readwrite, nullable) RJTAppIcon *icon;
+@property (strong, nonatomic, readwrite, nullable) NSString *iconPath;
 
 @property (assign, nonatomic, readwrite) BOOL forceLocalize;
 
@@ -35,7 +35,7 @@ static NSString *const kRJTExecutableNameKey = @"Executable Name";
 static NSString *const kRJTExecutablePathKey = @"Executable Path";
 
 static NSString *const kRJTTranslationsKey = @"Translations";
-static NSString *const kRJTIconKey = @"Icon";
+static NSString *const kRJTIconPathKey = @"Icon";
 
 static NSString *const kRJTForceLocalizeKey = @"Force";
 
@@ -60,13 +60,12 @@ static NSString *const kRJTForceLocalizeKey = @"Force";
     model.enableTranslation = entity.enableTranslation;
     model.forceLocalize = entity.forceLocalize;
     
-    model.icon = [RJTAppIcon copyFromEntity:entity.icon appModel:model];
-    
     return model;
 }
 
 + (instancetype)from:(NSDictionary *)dictionary
 {
+    NSLog(@"Creating model from: %@", dictionary);
     if (![dictionary[kRJTDisplayedNameKey] isKindOfClass:[NSString class]])
         return nil;
     
@@ -76,10 +75,20 @@ static NSString *const kRJTForceLocalizeKey = @"Force";
     model.executableName = dictionary[kRJTExecutableNameKey];
     model.executablePath = dictionary[kRJTExecutablePathKey];
     
-    model.translation = dictionary[kRJTTranslationsKey];
-    model.icon = [RJTAppIcon from:dictionary[kRJTIconKey] appModel:model];
+    model.iconPath = dictionary[kRJTIconPathKey];
     
     model.forceLocalize = [dictionary[kRJTForceLocalizeKey] boolValue];
+    
+    NSMutableDictionary *translation = [NSMutableDictionary dictionary];
+    for (NSDictionary *translatedLine in dictionary[kRJTTranslationsKey]) {
+        NSString *original = translatedLine[@"key"];
+        NSString *translated = translatedLine[@"string"];
+        if (!original || !translated)
+            continue;
+        
+        translation[original] = translated;
+    }
+    model.translation = translation;
     
     return model;
 }

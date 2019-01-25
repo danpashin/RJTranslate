@@ -9,15 +9,10 @@
 import Foundation
 
 public class SearchResultsTableModel: NSObject, UITableViewDelegate, UITableViewDataSource {
-    public private(set) var searhResults = [API.SearchableTranslation]() {
-        didSet {
-            DispatchQueue.main.async {
-                self.tableView?.reloadData()
-            }
-        }
-    }
     
-    public var tableView: SearchResultsTableView? {
+    public private(set) var searchResults = [API.TranslationSummary]()
+    
+    public weak var tableView: SearchResultsTableView? {
         didSet {
             self.tableView?.delegate = self
             self.tableView?.dataSource = self
@@ -36,8 +31,11 @@ public class SearchResultsTableModel: NSObject, UITableViewDelegate, UITableView
     ///
     /// - Parameter text: Текст для поиска.
     public func performSearch(text: String) {
-        self.searhResults.removeAll()
         self.syncOperationQueue.cancelAllOperations()
+        self.searchResults.removeAll()
+        
+        self.tableView?.reloadData()
+        self.tableView?.startRefreshing()
         
         let operation = LiveSearchOperation(searchText: text)
         operation.completionBlock = {
@@ -47,24 +45,39 @@ public class SearchResultsTableModel: NSObject, UITableViewDelegate, UITableView
         self.syncOperationQueue.addOperation(operation)
     }
     
-    private func updateForResult(_ result: API.SearchResponse) {
-        self.searhResults.removeAll()
-        self.searhResults.append(contentsOf: result.results)
+    private func updateForResult(_ result: API.ResponseResult<[API.TranslationSummary]>?) {
+        self.searchResults.removeAll()
+        
+        if let data = result?.data {
+            self.searchResults.append(contentsOf: data)
+        }
+        
+        self.tableView?.stopRefreshing()
+        self.tableView?.reloadData()
     }
     
     
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.searhResults.count
+        return self.searchResults.count
     }
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = SearchResultCell(style: .default, reuseIdentifier: "resultCell")
-        cell.result = self.searhResults[indexPath.row]
+        cell.result = self.searchResults[indexPath.row]
         
         return cell
     }
     
     public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 48.0
+    }
+    
+    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let result = self.searchResults[indexPath.row]
+        
+        let detailController = TranslationDetailController(translationSummary: result)
+        
+        let navController = UIApplication.applicationDelegate.currentNavigationController
+        navController?.pushViewController(detailController, animated: true)
     }
 }

@@ -20,6 +20,11 @@ public class AppDelegate: UIResponder, UIApplicationDelegate, CrashlyticsDelegat
     /// Дефолтная база данных.
     public private(set) var defaultDatabase: RJTDatabaseFacade?
     
+    public var currentNavigationController: UINavigationController? {
+        let tabbarController = UIApplication.shared.keyWindow?.rootViewController as? UITabBarController
+        return tabbarController?.selectedViewController as? UINavigationController
+    }
+    
     public func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         FirebaseConfiguration.shared.setLoggerLevel(.min)
         Crashlytics.sharedInstance().delegate = self

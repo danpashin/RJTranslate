@@ -17,7 +17,7 @@
 @dynamic enableTranslation;
 @dynamic displayedName;
 @dynamic executableName;
-@dynamic icon;
+@dynamic iconPath;
 @dynamic executablePath;
 @dynamic forceLocalize;
 
@@ -38,6 +38,7 @@
     self.displayedName = [appModel.displayedName copy];
     self.executableName = [appModel.executableName copy];
     self.executablePath = [appModel.executablePath copy];
+    self.iconPath = [appModel.iconPath copy];
     
     if (!appModel.lightweightModel) {
         self.translation = [appModel.translation copy];
@@ -45,11 +46,6 @@
     
     self.enableTranslation = appModel.enableTranslation;
     self.forceLocalize = appModel.forceLocalize;
-    
-    if (!self.icon)
-        self.icon = [RJTAppIconEntity insertIntoContext:self.managedObjectContext];
-    
-    [self.icon copyPropertiesFrom:appModel.icon];
 }
 
 @end

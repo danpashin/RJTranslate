@@ -11,7 +11,6 @@
 		A511A67821B185E7003D4244 /* PreferenceGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = A511A67721B185E7003D4244 /* PreferenceGroup.swift */; };
 		A511A67A21B18ABA003D4244 /* Preference.swift in Sources */ = {isa = PBXBuildFile; fileRef = A511A67921B18ABA003D4244 /* Preference.swift */; };
 		A511A67C21B19FFC003D4244 /* PreferencesTableModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A511A67B21B19FFC003D4244 /* PreferencesTableModel.swift */; };
-		A517965F217D1A9400B87596 /* RJTApplicationModel.h in Headers */ = {isa = PBXBuildFile; fileRef = A54ADB1C217BB0CF00D32EB7 /* RJTApplicationModel.h */; };
 		A5196B7A21D0BB3200201DEF /* CollectionHeaderLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5196B7921D0BB3200201DEF /* CollectionHeaderLabel.swift */; };
 		A521020321EB2E6300D95AA8 /* AppCollectionLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = A521020221EB2E6300D95AA8 /* AppCollectionLayout.swift */; };
 		A521637321EA5EE100815C8B /* GradientLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A521637221EA5EE100815C8B /* GradientLayer.swift */; };
@@ -48,6 +47,8 @@
 		A5515BD921AE9D2F00C7BFC4 /* SwitchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5515BD821AE9D2F00C7BFC4 /* SwitchCell.swift */; };
 		A5527FBB218F4C4000095251 /* RJTApplicationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A54ADB1D217BB0CF00D32EB7 /* RJTApplicationModel.m */; };
 		A552F90821B03279002771E9 /* TranslationsUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A552F90721B03279002771E9 /* TranslationsUpdate.swift */; };
+		A56FCF2621F9C12A006671A1 /* TranslationDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56FCF2521F9C12A006671A1 /* TranslationDetailController.swift */; };
+		A56FCF2821FA231A006671A1 /* RJTApplicationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56FCF2721FA231A006671A1 /* RJTApplicationModel.swift */; };
 		A57104CE21F30D3600C829DD /* FeaturedController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57104CD21F30D3600C829DD /* FeaturedController.swift */; };
 		A57104D021F311DC00C829DD /* AppCollectionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A581C57F21F0A9A700DD2662 /* AppCollectionDelegate.swift */; };
 		A57104D121F320C000C829DD /* TranslateMainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54A335D21B3CBA40064D648 /* TranslateMainController.swift */; };
@@ -75,14 +76,11 @@
 		A5B74C2A21E4D0390058C71A /* ButtonedSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B74C2921E4D0390058C71A /* ButtonedSearchBar.swift */; };
 		A5B74C2C21E4D14A0058C71A /* NavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B74C2B21E4D14A0058C71A /* NavigationBar.swift */; };
 		A5BC885521B2ACCC00D5C5CF /* ModernSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BC885421B2ACCC00D5C5CF /* ModernSearchController.swift */; };
-		A5BFB49F2189B1EB001A9D82 /* RJTAppIconEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = A5BFB49D2189B1EB001A9D82 /* RJTAppIconEntity.m */; };
-		A5BFB4A02189B1EB001A9D82 /* RJTAppIconEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = A5BFB49D2189B1EB001A9D82 /* RJTAppIconEntity.m */; };
-		A5BFB4A12189B1EB001A9D82 /* RJTAppIconEntity.h in Headers */ = {isa = PBXBuildFile; fileRef = A5BFB49E2189B1EB001A9D82 /* RJTAppIconEntity.h */; };
-		A5BFB4A42189B267001A9D82 /* RJTAppIcon.h in Headers */ = {isa = PBXBuildFile; fileRef = A5BFB4A22189B267001A9D82 /* RJTAppIcon.h */; };
-		A5BFB4A62189B267001A9D82 /* RJTAppIcon.m in Sources */ = {isa = PBXBuildFile; fileRef = A5BFB4A32189B267001A9D82 /* RJTAppIcon.m */; };
 		A5C1FB3B21B258A1007BB861 /* PreferencesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C1FB3A21B258A1007BB861 /* PreferencesController.swift */; };
 		A5C4F89521E28D3F000FAC48 /* APIResponses.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C4F89421E28D3F000FAC48 /* APIResponses.swift */; };
 		A5CC12EA2184A2A600A607E3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A5CC12E92184A2A600A607E3 /* GoogleService-Info.plist */; };
+		A5CFB64421FB72FA00D249B4 /* RJTApplicationModel.h in Headers */ = {isa = PBXBuildFile; fileRef = A54ADB1C217BB0CF00D32EB7 /* RJTApplicationModel.h */; };
+		A5CFB65921FB8AE700D249B4 /* PinningConveniences.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CFB65821FB8AE700D249B4 /* PinningConveniences.swift */; };
 		A5D2D4BB21F4638A003F0D4F /* Tabbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D2D4BA21F4638A003F0D4F /* Tabbar.swift */; };
 		A5D2D4BD21F46CC5003F0D4F /* UIImageConveniences.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D2D4BC21F46CC5003F0D4F /* UIImageConveniences.swift */; };
 		A5D2D4C521F4776A003F0D4F /* Swizzlng.m in Sources */ = {isa = PBXBuildFile; fileRef = A5D2D4C321F476C9003F0D4F /* Swizzlng.m */; };
@@ -95,9 +93,8 @@
 		A5E80C8921E3317700150B5D /* RJTDatabaseFacade.m in Sources */ = {isa = PBXBuildFile; fileRef = A5E80C8621E3300500150B5D /* RJTDatabaseFacade.m */; };
 		A5E80C8B21E360ED00150B5D /* RJTranslate.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A535340F217A584500E08881 /* RJTranslate.xcdatamodeld */; };
 		A5E80C8D21E365C300150B5D /* TouchResponsiveCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E80C8C21E365C300150B5D /* TouchResponsiveCollectionCell.swift */; };
-		A5E80C8F21E387E100150B5D /* ApplicationConviniences.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E80C8E21E387E100150B5D /* ApplicationConviniences.swift */; };
+		A5E80C8F21E387E100150B5D /* ApplicationConveniences.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E80C8E21E387E100150B5D /* ApplicationConveniences.swift */; };
 		A5F40123218F7DBE00046C58 /* RJTApplicationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A54ADB1D217BB0CF00D32EB7 /* RJTApplicationModel.m */; };
-		A5F40124218F7DC000046C58 /* RJTAppIcon.m in Sources */ = {isa = PBXBuildFile; fileRef = A5BFB4A32189B267001A9D82 /* RJTAppIcon.m */; };
 		AD7B4BAE3F32AE9E9BB8B28C /* libPods-RJTranslate.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D4BDA7DE4D4549AE0118813 /* libPods-RJTranslate.a */; };
 /* End PBXBuildFile section */
 
@@ -162,6 +159,8 @@
 		A54F28CC21EF4F55002075C5 /* TickView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TickView.swift; sourceTree = "<group>"; };
 		A5515BD821AE9D2F00C7BFC4 /* SwitchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchCell.swift; sourceTree = "<group>"; };
 		A552F90721B03279002771E9 /* TranslationsUpdate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslationsUpdate.swift; sourceTree = "<group>"; };
+		A56FCF2521F9C12A006671A1 /* TranslationDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslationDetailController.swift; sourceTree = "<group>"; };
+		A56FCF2721FA231A006671A1 /* RJTApplicationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RJTApplicationModel.swift; sourceTree = "<group>"; };
 		A57104CD21F30D3600C829DD /* FeaturedController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturedController.swift; sourceTree = "<group>"; };
 		A57104D321F3327100C829DD /* RJTPosixWrapper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RJTPosixWrapper.h; sourceTree = "<group>"; };
 		A57104D421F3327100C829DD /* RJTPosixWrapper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RJTPosixWrapper.m; sourceTree = "<group>"; };
@@ -181,10 +180,6 @@
 		A5B74C2921E4D0390058C71A /* ButtonedSearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonedSearchBar.swift; sourceTree = "<group>"; };
 		A5B74C2B21E4D14A0058C71A /* NavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBar.swift; sourceTree = "<group>"; };
 		A5BC885421B2ACCC00D5C5CF /* ModernSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModernSearchController.swift; sourceTree = "<group>"; };
-		A5BFB49D2189B1EB001A9D82 /* RJTAppIconEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RJTAppIconEntity.m; sourceTree = "<group>"; };
-		A5BFB49E2189B1EB001A9D82 /* RJTAppIconEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RJTAppIconEntity.h; sourceTree = "<group>"; };
-		A5BFB4A22189B267001A9D82 /* RJTAppIcon.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RJTAppIcon.h; sourceTree = "<group>"; };
-		A5BFB4A32189B267001A9D82 /* RJTAppIcon.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RJTAppIcon.m; sourceTree = "<group>"; };
 		A5C107D5217E56F900989BDB /* postinst */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = postinst; sourceTree = "<group>"; };
 		A5C107D6217E56F900989BDB /* postrm */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = postrm; sourceTree = "<group>"; };
 		A5C107D7217E56F900989BDB /* control */ = {isa = PBXFileReference; lastKnownFileType = text; path = control; sourceTree = "<group>"; };
@@ -194,6 +189,7 @@
 		A5C4F89421E28D3F000FAC48 /* APIResponses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIResponses.swift; sourceTree = "<group>"; };
 		A5CC12E92184A2A600A607E3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A5CC725B218DDD99001A4BDB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		A5CFB65821FB8AE700D249B4 /* PinningConveniences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinningConveniences.swift; sourceTree = "<group>"; };
 		A5D2D4BA21F4638A003F0D4F /* Tabbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tabbar.swift; sourceTree = "<group>"; };
 		A5D2D4BC21F46CC5003F0D4F /* UIImageConveniences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageConveniences.swift; sourceTree = "<group>"; };
 		A5D2D4C321F476C9003F0D4F /* Swizzlng.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Swizzlng.m; sourceTree = "<group>"; };
@@ -209,7 +205,7 @@
 		A5E80C8521E3300500150B5D /* RJTDatabaseFacade.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RJTDatabaseFacade.h; sourceTree = "<group>"; };
 		A5E80C8621E3300500150B5D /* RJTDatabaseFacade.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RJTDatabaseFacade.m; sourceTree = "<group>"; };
 		A5E80C8C21E365C300150B5D /* TouchResponsiveCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouchResponsiveCollectionCell.swift; sourceTree = "<group>"; };
-		A5E80C8E21E387E100150B5D /* ApplicationConviniences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationConviniences.swift; sourceTree = "<group>"; };
+		A5E80C8E21E387E100150B5D /* ApplicationConveniences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationConveniences.swift; sourceTree = "<group>"; };
 		A5E80C9C21E3BA8200150B5D /* TranslationsFetchSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslationsFetchSettings.swift; sourceTree = "<group>"; };
 		A5E80C9E21E3C5E300150B5D /* TranslationsFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslationsFetcher.swift; sourceTree = "<group>"; };
 		A61C30E9AF7AB8D12AD7B49C /* Pods-RJTranslate-App.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RJTranslate-App.release.xcconfig"; path = "Pods/Target Support Files/Pods-RJTranslate-App/Pods-RJTranslate-App.release.xcconfig"; sourceTree = "<group>"; };
@@ -267,7 +263,7 @@
 			isa = PBXGroup;
 			children = (
 				A54EBFAB21B2725C0086B7DD /* AppDelegate.swift */,
-				A5E80C8E21E387E100150B5D /* ApplicationConviniences.swift */,
+				A5E80C8E21E387E100150B5D /* ApplicationConveniences.swift */,
 				A5DB9AC0217B7FF50061A810 /* Controllers */,
 				A5DB9ABF217B75DF0061A810 /* Views */,
 				A54ADB20217BB6EB00D32EB7 /* Cells */,
@@ -377,8 +373,6 @@
 			children = (
 				A5353413217A595200E08881 /* RJTApplicationEntity.h */,
 				A5353414217A595200E08881 /* RJTApplicationEntity.m */,
-				A5BFB49E2189B1EB001A9D82 /* RJTAppIconEntity.h */,
-				A5BFB49D2189B1EB001A9D82 /* RJTAppIconEntity.m */,
 				A535341A217A5A2800E08881 /* RJTDatabase.h */,
 				A535341B217A5A2800E08881 /* RJTDatabase.m */,
 				A5E80C8521E3300500150B5D /* RJTDatabaseFacade.h */,
@@ -401,10 +395,9 @@
 		A57C40AF218A0F6600885834 /* Application_Translation */ = {
 			isa = PBXGroup;
 			children = (
-				A5BFB4A22189B267001A9D82 /* RJTAppIcon.h */,
-				A5BFB4A32189B267001A9D82 /* RJTAppIcon.m */,
 				A54ADB1C217BB0CF00D32EB7 /* RJTApplicationModel.h */,
 				A54ADB1D217BB0CF00D32EB7 /* RJTApplicationModel.m */,
+				A56FCF2721FA231A006671A1 /* RJTApplicationModel.swift */,
 			);
 			path = Application_Translation;
 			sourceTree = "<group>";
@@ -417,6 +410,7 @@
 				A53CC73921E1285E00848785 /* HTTPClientDelegateObject.swift */,
 				A53CC73221E0C34200848785 /* HTTPClientFacilities.swift */,
 				A59521FA21F3A08600E5F130 /* HTTPClientPinning.swift */,
+				A5CFB65821FB8AE700D249B4 /* PinningConveniences.swift */,
 				A53CC73621E0C52200848785 /* HTTPRequestBuilder.swift */,
 				A5C4F89421E28D3F000FAC48 /* APIResponses.swift */,
 			);
@@ -541,6 +535,7 @@
 				A54A335D21B3CBA40064D648 /* TranslateMainController.swift */,
 				A57104CD21F30D3600C829DD /* FeaturedController.swift */,
 				A5C1FB3A21B258A1007BB861 /* PreferencesController.swift */,
+				A56FCF2521F9C12A006671A1 /* TranslationDetailController.swift */,
 				A5B74C2821E4CDA80058C71A /* Search */,
 			);
 			path = Controllers;
@@ -553,14 +548,12 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A5CFB64421FB72FA00D249B4 /* RJTApplicationModel.h in Headers */,
 				A5763DA121823B4300C7F82A /* PrefixHeader.pch in Headers */,
-				A5BFB4A12189B1EB001A9D82 /* RJTAppIconEntity.h in Headers */,
 				A535341C217A5A2800E08881 /* RJTDatabase.h in Headers */,
 				A5B74C2021E4A9600058C71A /* RJTDatabaseFacade.h in Headers */,
 				A5353417217A595200E08881 /* RJTApplicationEntity.h in Headers */,
 				A57C40AA218A029200885834 /* RJTOperationQueue.h in Headers */,
-				A5BFB4A42189B267001A9D82 /* RJTAppIcon.h in Headers */,
-				A517965F217D1A9400B87596 /* RJTApplicationModel.h in Headers */,
 				A5DEBB31218F0EF000858616 /* RJTImageCache.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -793,17 +786,18 @@
 				A5E80C8B21E360ED00150B5D /* RJTranslate.xcdatamodeld in Sources */,
 				A5527FBB218F4C4000095251 /* RJTApplicationModel.m in Sources */,
 				A5E80C8D21E365C300150B5D /* TouchResponsiveCollectionCell.swift in Sources */,
+				A56FCF2621F9C12A006671A1 /* TranslationDetailController.swift in Sources */,
 				A511A67C21B19FFC003D4244 /* PreferencesTableModel.swift in Sources */,
 				A53225D421F8E4C100AB7D46 /* SearchResultCell.swift in Sources */,
 				A54F28CD21EF4F55002075C5 /* TickView.swift in Sources */,
 				A521637321EA5EE100815C8B /* GradientLayer.swift in Sources */,
-				A5E80C8F21E387E100150B5D /* ApplicationConviniences.swift in Sources */,
+				A5E80C8F21E387E100150B5D /* ApplicationConveniences.swift in Sources */,
 				A53CC72D21E0BAB000848785 /* UpdateDownloader.swift in Sources */,
 				A5DB00AF21EB238F0009AB0E /* AppCollectionDataSource.swift in Sources */,
 				A54EBFCE21B2997C0086B7DD /* AppCollectionCell.swift in Sources */,
 				A53CC73A21E1285E00848785 /* HTTPClientDelegateObject.swift in Sources */,
 				A5E0BBB3218646A10094ECBC /* RJTHud.m in Sources */,
-				A5BFB4A62189B267001A9D82 /* RJTAppIcon.m in Sources */,
+				A5CFB65921FB8AE700D249B4 /* PinningConveniences.swift in Sources */,
 				A521020321EB2E6300D95AA8 /* AppCollectionLayout.swift in Sources */,
 				A58659962192CCE600A76A6C /* RJTSupport.m in Sources */,
 				A5C4F89521E28D3F000FAC48 /* APIResponses.swift in Sources */,
@@ -820,6 +814,7 @@
 				A53CC73721E0C52200848785 /* HTTPRequestBuilder.swift in Sources */,
 				A54EBFAC21B2725C0086B7DD /* AppDelegate.swift in Sources */,
 				A54EBFD021B2A1150086B7DD /* CollectionUpdateCell.swift in Sources */,
+				A56FCF2821FA231A006671A1 /* RJTApplicationModel.swift in Sources */,
 				A54F28CB21EF3A5A002075C5 /* UIColorConveniences.swift in Sources */,
 				A5E80C8921E3317700150B5D /* RJTDatabaseFacade.m in Sources */,
 				A57C40AC218A061300885834 /* RJTOperationQueue.m in Sources */,
@@ -827,7 +822,6 @@
 				A5B74C2721E4CDA10058C71A /* SearchConveniences.swift in Sources */,
 				A52D551D21EBC552003EDEE4 /* AppCollectionEmptySource.swift in Sources */,
 				A511A67A21B18ABA003D4244 /* Preference.swift in Sources */,
-				A5BFB4A02189B1EB001A9D82 /* RJTAppIconEntity.m in Sources */,
 				A57104D021F311DC00C829DD /* AppCollectionDelegate.swift in Sources */,
 				A57104D521F3327100C829DD /* RJTPosixWrapper.m in Sources */,
 				A5D2D4C721F48B7F003F0D4F /* GradientView.swift in Sources */,
@@ -858,7 +852,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				A59521E621F3480900E5F130 /* RJTImageCache.m in Sources */,
-				A5BFB49F2189B1EB001A9D82 /* RJTAppIconEntity.m in Sources */,
 				A5B74C2121E4A9600058C71A /* RJTDatabaseFacade.m in Sources */,
 				A5353411217A584500E08881 /* RJTranslate.xcdatamodeld in Sources */,
 				A535341D217A5A2800E08881 /* RJTDatabase.m in Sources */,
@@ -867,7 +860,6 @@
 				A5353418217A595200E08881 /* RJTApplicationEntity.m in Sources */,
 				A5F40123218F7DBE00046C58 /* RJTApplicationModel.m in Sources */,
 				A5353402217A57ED00E08881 /* RJTranslate.m in Sources */,
-				A5F40124218F7DC000046C58 /* RJTAppIcon.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

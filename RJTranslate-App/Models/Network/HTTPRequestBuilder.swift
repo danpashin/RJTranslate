@@ -49,7 +49,15 @@ class HTTPRequestBuilder {
         
         var bodyData: Data? = nil
         if self.httpMethod == .get {
-            urlComponents?.query = stringParameters as String
+            if urlComponents?.query == nil {
+                urlComponents?.query = stringParameters as String
+            } else {
+                if urlComponents?.query?.last != "&" && stringParameters.length > 0 {
+                    urlComponents?.query?.append("&")
+                }
+                
+                urlComponents?.query?.append(contentsOf: stringParameters as String)
+            }
         } else {
             let query = stringParameters.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)
             bodyData = query?.data(using: .utf8)

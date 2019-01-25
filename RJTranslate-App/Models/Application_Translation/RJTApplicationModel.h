@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "RJTAppIcon.h"
+#import <UIKit/UIKit.h>
 @class RJTApplicationEntity;
 
 NS_ASSUME_NONNULL_BEGIN
@@ -57,10 +57,7 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (strong, nonatomic, readonly, nullable) NSDictionary *translation;
 
-/**
- Модель иконки приложения.
- */
-@property (strong, nonatomic, readonly, nullable) RJTAppIcon *icon;
+@property (strong, nonatomic, readonly, nullable) NSString *iconPath;
 
 /**
  Флаг определяет, должен ли перевод быть включен. Определяется самим пользователем.

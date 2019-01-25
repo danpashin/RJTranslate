@@ -80,7 +80,7 @@ class DatabaseUpdater : NSObject {
                 return
             }
             
-            let response = TranslationServerResponse(json: json)
+            let response = API.TranslationServerResponse(json: json)
             if response.error != nil {
                 completion(nil, response.error!.nserror)
             } else {

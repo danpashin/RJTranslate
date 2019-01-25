@@ -1,5 +1,5 @@
 //
-//  ApplicationConviniences.swift
+//  ApplicationConveniences.swift
 //  RJTranslate-App
 //
 //  Created by Даниил on 07/01/2019.

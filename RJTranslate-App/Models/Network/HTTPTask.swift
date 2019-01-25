@@ -9,7 +9,7 @@
 import Foundation
 
 
-class HTTPTask {
+public class HTTPTask {
     
     public private(set) var sessionTask: URLSessionTask?
     
@@ -22,7 +22,7 @@ class HTTPTask {
 }
 
 
-class HTTPDownloadTask: HTTPTask {
+public class HTTPDownloadTask: HTTPTask {
     public typealias downloadProgressClosure = (_ progress: Double) -> Void
     public typealias downloadCompletionClosure = (_ downloadedDataURL : URL?, _ error: NSError?) -> Void
     
@@ -46,7 +46,7 @@ class HTTPDownloadTask: HTTPTask {
 }
 
 
-class HTTPJSONTask: HTTPTask {
+public class HTTPJSONTask: HTTPTask {
     public typealias jsonCompletionClosure = (_ json : [String: AnyHashable]?, _ error: NSError?) -> Void
     
     public let responseData: NSMutableData = NSMutableData()

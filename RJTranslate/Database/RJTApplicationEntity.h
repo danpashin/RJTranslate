@@ -7,7 +7,8 @@
 //
 //
 
-#import "RJTAppIconEntity.h"
+#import <CoreData/NSManagedObject.h>
+#import <CoreData/NSFetchRequest.h>
 @class NSObject, RJTApplicationModel;
 
 
@@ -27,7 +28,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (assign, nonatomic) BOOL enableTranslation;
 @property (assign, nonatomic) BOOL forceLocalize;
 
-@property (nullable, nonatomic, retain) RJTAppIconEntity *icon;
+@property (nullable, nonatomic, retain) NSString *iconPath;
 
 - (void)copyPropertiesFrom:(RJTApplicationModel *)appModel;
 

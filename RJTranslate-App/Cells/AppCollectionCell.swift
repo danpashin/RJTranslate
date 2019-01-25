@@ -73,7 +73,7 @@ class AppCollectionCell: TouchResponsiveCollectionCell {
         if self.model == nil {
             self.iconView?.image = UIImage(named: "icon_template")
         } else {
-            self.model?.icon?.load(completion: { icon in
+            self.model?.loadIcon({ (icon: UIImage?) in
                 let iconImage: UIImage? = icon ?? UIImage(named: "icon_template")
                 
                 DispatchQueue.main.async {

@@ -16,8 +16,8 @@ public class LiveSearchResultsController : UIViewController, SearchControllerDel
     private var resultsPresented = false
     
     /// Таблица, используемая для показа результатов поиска.
-    private var resultsTableView = SearchResultsTableView()
-    private var searchController: SearchControllerRequired?
+    public let resultsTableView = SearchResultsTableView()
+    public private(set) var searchController: SearchControllerRequired?
     
     override public func viewDidLoad() {
         super.viewDidLoad()
