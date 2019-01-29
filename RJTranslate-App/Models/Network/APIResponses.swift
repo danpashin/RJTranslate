@@ -33,6 +33,7 @@ public struct API {
         public var error: API.SimpleError?
     }
     
+    /// Основная информация о переводе.
     public struct TranslationSummary {
         
         /// Имя локализации
@@ -47,7 +48,15 @@ public struct API {
 }
 
 public extension API.TranslationSummary {
-    static public func search(text searchText: String,
+    
+    /// Выполняет живой поиск перевода.
+    ///
+    /// - Parameters:
+    ///   - searchText: Текст для поиска.
+    ///   - completion: Блок, который вызывается после выполнения перевода.
+    /// - Returns: Возвращает таск запроса.
+    @discardableResult
+    static func search(text searchText: String,
                                      completion: @escaping (API.ResponseResult <[API.TranslationSummary]>) -> Void)
         -> HTTPJSONTask {
             let task = HTTPClient.shared.json(API.apiURL, arguments: ["action": "search", "name": searchText])

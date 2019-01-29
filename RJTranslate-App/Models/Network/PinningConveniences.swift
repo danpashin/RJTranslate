@@ -38,7 +38,7 @@ public func SHA256(data : Data) -> String {
 
 
 public extension SecCertificate {
-    public var publicKey: SecKey? {
+    var publicKey: SecKey? {
         var trust: SecTrust?
         let policy = SecPolicyCreateBasicX509()
         SecTrustCreateWithCertificates(self, policy, &trust)
@@ -55,7 +55,7 @@ public extension SecCertificate {
 }
 
 public extension SecKey {
-    public var keyHash: String {
+    var keyHash: String {
         var keySize = 2048
         
         if let attributes = SecKeyCopyAttributes(self) as? [String: AnyObject] {

@@ -62,7 +62,7 @@ public class HTTPJSONTask: HTTPTask {
     
     /// Выполняет сериализацию полученных данных и вызывает completionClosure.
     public func serialize() {
-        DispatchQueue(label: "ru.danpashin.rjtranslate.serialization").async {
+        DispatchQueue.global(qos: .default).async {
             var json: [String: AnyHashable]?
             
             do {

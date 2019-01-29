@@ -50,7 +50,8 @@ class GradientImageRenderer {
             ColorScheme.default.accentMain.darker.cgColor
         ]
         
-        NotificationCenter.default.addObserver(self, selector: #selector(self.didReceiveMemoryWarning), name: UIApplication.didReceiveMemoryWarningNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.didReceiveMemoryWarning), 
+                                               name: UIApplication.didReceiveMemoryWarningNotification, object: nil)
     }
     
     @objc private func didReceiveMemoryWarning() {

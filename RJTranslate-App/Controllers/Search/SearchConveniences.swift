@@ -43,7 +43,7 @@ import Foundation
     /// - Parameter searchController: Экземпляр контроллера поиска, отвечающий на протокол SearchControllerRequired.
     @objc optional func didDismissSearchController(_ searchController: SearchControllerRequired)
     
-    /// Вызыввается после ввода пользователем текста в баре поиска. 
+    /// Вызывается после ввода пользователем текста в баре поиска. 
     ///
     /// - Parameters:
     ///   - searchController: Экземпляр контроллера поиска, отвечающий на протокол SearchControllerRequired.
@@ -58,7 +58,7 @@ import Foundation
 // MARK: -
 
 public extension UINavigationBar {
-    public static func getFirstBar() -> UINavigationBar? {
+    static func getFirstBar() -> UINavigationBar? {
         guard let window = UIApplication.shared.keyWindow else { return nil }
         
         return self.recursiveSearch(in: window, viewType: UINavigationBar.self) as? UINavigationBar
@@ -66,7 +66,7 @@ public extension UINavigationBar {
 }
 
 public extension UIView {
-   public static func recursiveSearch(in view: UIView, viewType: AnyClass) -> UIView? {
+   static func recursiveSearch(in view: UIView, viewType: AnyClass) -> UIView? {
         for subview in view.subviews {
             if subview.isKind(of: viewType) {
                 return subview

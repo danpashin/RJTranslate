@@ -65,7 +65,6 @@ static NSString *const kRJTForceLocalizeKey = @"Force";
 
 + (instancetype)from:(NSDictionary *)dictionary
 {
-    NSLog(@"Creating model from: %@", dictionary);
     if (![dictionary[kRJTDisplayedNameKey] isKindOfClass:[NSString class]])
         return nil;
     
@@ -76,17 +75,23 @@ static NSString *const kRJTForceLocalizeKey = @"Force";
     model.executablePath = dictionary[kRJTExecutablePathKey];
     
     model.iconPath = dictionary[kRJTIconPathKey];
+    if (![model.iconPath isKindOfClass:[NSString class]])
+        model.iconPath = nil;
     
     model.forceLocalize = [dictionary[kRJTForceLocalizeKey] boolValue];
     
     NSMutableDictionary *translation = [NSMutableDictionary dictionary];
-    for (NSDictionary *translatedLine in dictionary[kRJTTranslationsKey]) {
-        NSString *original = translatedLine[@"key"];
-        NSString *translated = translatedLine[@"string"];
-        if (!original || !translated)
-            continue;
-        
-        translation[original] = translated;
+    if ([dictionary[kRJTTranslationsKey] isKindOfClass:[NSArray class]]) {
+        for (NSDictionary *translatedLine in dictionary[kRJTTranslationsKey]) {
+            NSString *original = translatedLine[@"key"];
+            NSString *translated = translatedLine[@"string"];
+            if (!original || !translated)
+                continue;
+            
+            translation[original] = translated;
+        }
+    } else {
+        translation = dictionary[kRJTTranslationsKey];
     }
     model.translation = translation;
     

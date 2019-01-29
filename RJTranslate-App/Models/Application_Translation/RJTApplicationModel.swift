@@ -9,7 +9,7 @@
 import Foundation
 
 public extension RJTApplicationModel {
-    public static func loadFullModel(from translationSummary: API.TranslationSummary,
+    static func loadFullModel(from translationSummary: API.TranslationSummary,
                                      completion: @escaping (RJTApplicationModel?, NSError?) -> Void) {
         HTTPClient.shared.json(translationSummary.url)
             .completion { (response: [String : AnyHashable]?, error: NSError?) in
@@ -31,10 +31,10 @@ public extension RJTApplicationModel {
         }
     }
     
-    public func loadIcon(_ completion: @escaping (_ icon: UIImage?) -> Void) {
+    func loadIcon(_ completion: @escaping (_ icon: UIImage?) -> Void) {
         DispatchQueue.global().async {
-            let cache = RJTImageCache.shared()
-            if let image = cache[self.displayedName] {
+            let cache = ImageCache.shared
+            if let image = cache.image(key: self.displayedName) {
                 completion(image)
                 return
             }
@@ -44,7 +44,8 @@ public extension RJTApplicationModel {
                                                           format: .default, scale: UIScreen.main.scale)
                 completion(image)
             } else {
-                completion(nil)
+                let defaultIcon = LICreateDefaultIcon(15)!
+                completion(UIImage(cgImage: defaultIcon.takeUnretainedValue()))
             }
         }
     }

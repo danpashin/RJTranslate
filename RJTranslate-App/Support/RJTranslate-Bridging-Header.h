@@ -4,11 +4,11 @@
 
 #import <sys/utsname.h>
 #import <CommonCrypto/CommonCrypto.h>
+#import <MobileIcons/MobileIcons.h>
 
 #import "RJTApplicationModel.h"
 #import "RJTDatabaseFacade.h"
 #import "RJTPosixWrapper.h"
-#import "RJTImageCache.h"
 #import "UIImage+Private.h"
 
 #import "RJTHud.h"

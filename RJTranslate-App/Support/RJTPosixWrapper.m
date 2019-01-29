@@ -16,16 +16,18 @@
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         char **args = malloc(command.count * sizeof(char *));
         
-        int lastArgIndex = 0;
+        int lastArgIndex = -1;
         for (NSString *argument in command) {
-            args[lastArgIndex] = (char *)argument.UTF8String;
             lastArgIndex++;
+            args[lastArgIndex] = (char *)argument.UTF8String;
         }
         
-        pid_t pid = 0;
-        int status = 0;
-        posix_spawn(&pid, args[0], NULL, NULL, args, NULL);
-        waitpid(pid, &status, 0);
+        if (lastArgIndex > -1) {
+            pid_t pid = 0;
+            int status = 0;
+            posix_spawn(&pid, args[0], NULL, NULL, args, NULL);
+            waitpid(pid, &status, 0);
+        }
         
         free(args);
     });

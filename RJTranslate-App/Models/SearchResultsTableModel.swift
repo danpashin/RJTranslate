@@ -57,6 +57,9 @@ public class SearchResultsTableModel: NSObject, UITableViewDelegate, UITableView
     }
     
     
+    // MARK: -
+    // MARK: UITableViewDataSource
+    
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.searchResults.count
     }
@@ -68,16 +71,22 @@ public class SearchResultsTableModel: NSObject, UITableViewDelegate, UITableView
         return cell
     }
     
+    
+    // MARK: -
+    // MARK: UITableViewDelegate
+    
     public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 48.0
     }
     
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let result = self.searchResults[indexPath.row]
+        UIApplication.hideKeyboard()
+        tableView.deselectRow(at: indexPath, animated: true)
         
+        let result = self.searchResults[indexPath.row]
         let detailController = TranslationDetailController(translationSummary: result)
         
         let navController = UIApplication.applicationDelegate.currentNavigationController
-        navController?.pushViewController(detailController, animated: true)
+        navController.pushViewController(detailController, animated: true)
     }
 }

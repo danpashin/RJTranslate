@@ -291,7 +291,7 @@ static CGFloat const RJTHudContentSize = 140.0f;
     
     CGFloat height = progressViewHeight + MAX(textSize.height, minLabelHeight) + MAX(detailTextSize.height, minLabelHeight);
     if (height > RJTHudContentSize)
-        height += 32.0;
+        height += (CGFloat)32.0;
     
     self.heightConstraint.constant = height;
     self.textLabelHeightConstraint.constant = textSize.height;

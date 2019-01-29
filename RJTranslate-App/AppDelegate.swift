@@ -20,12 +20,27 @@ public class AppDelegate: UIResponder, UIApplicationDelegate, CrashlyticsDelegat
     /// Дефолтная база данных.
     public private(set) var defaultDatabase: RJTDatabaseFacade?
     
-    public var currentNavigationController: UINavigationController? {
-        let tabbarController = UIApplication.shared.keyWindow?.rootViewController as? UITabBarController
-        return tabbarController?.selectedViewController as? UINavigationController
+    public var tabbarController: TabbarController {
+        return self.window!.rootViewController as! TabbarController
+    }
+    
+    public var currentNavigationController: NavigationController {
+        return self.tabbarController.selectedViewController as! NavigationController
     }
     
     public func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        self.defaultDatabase = RJTDatabaseFacade()
+        
+        self.setupAnalytics()
+        
+        HTTPClientPinning.addTrustFor(domain: "rejail.ru", keyHash: "IGnfBrtoEP6+a09tVsEwYH15Qvjyt9r40Y5pYCvlIbg=")
+        HTTPClientPinning.addTrustFor(domain: "api.rejail.ru", keyHash: "/7HcrFbhXchKnpl0XlNGwuOZmIVi53GOUnAYHACoD6s=")
+        HTTPClientPinning.addTrustFor(domain: "translations.rejail.ru", keyHash: "NAZrOsLKtF5drHMC0mE3+6ncFGHBD9LHUCWsJ+TSgXE=")
+        
+        return true
+    }
+    
+    private func setupAnalytics() {
         FirebaseConfiguration.shared.setLoggerLevel(.min)
         Crashlytics.sharedInstance().delegate = self
         FirebaseApp.configure()
@@ -33,15 +48,10 @@ public class AppDelegate: UIResponder, UIApplicationDelegate, CrashlyticsDelegat
         let enableStatsPrefs = UserDefaults.standard.object(forKey: "send_statistics") as? NSNumber
         let enableStats = (enableStatsPrefs?.boolValue) ?? true
         self.enableTracker(enableStats)
-        
-        self.defaultDatabase = RJTDatabaseFacade()
-        
-        return true
     }
     
     public func enableTracker(_ enable: Bool) {
         self.tracker = enable ? Tracker() : nil
-    
         AnalyticsConfiguration.shared().setAnalyticsCollectionEnabled(enable)
     }
     

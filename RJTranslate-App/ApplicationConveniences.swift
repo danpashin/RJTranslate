@@ -15,7 +15,7 @@ func appRecordError(_ description: String, _ args: CVarArg...) -> NSError {
     let error = NSError(domain: "ru.danpashin.rjtranslate.error", code: -1, userInfo: [NSLocalizedDescriptionKey:errorDescription])
     
     NSLog(description, args)
-//    Crashlytics.sharedInstance().recordError(error)
+    Crashlytics.sharedInstance().recordError(error)
     
     return error
 }
@@ -39,6 +39,11 @@ extension UIApplication {
     
     public static var applicationDelegate: AppDelegate {
         return UIApplication.shared.appDelegate
+    }
+    
+    /// Принудительно скрывает клавиатуру.
+    public static func hideKeyboard() {
+        self.shared.sendAction(#selector(UIApplication.resignFirstResponder), to: nil, from: nil, for: nil)
     }
 }
 
@@ -66,7 +71,7 @@ public extension DispatchQueue {
     /// - Parameters:
     ///   - token: A unique reverse DNS style name such as com.vectorform.<name> or a GUID
     ///   - block: Block to execute once
-    public class func once(token: String, block: () -> Void) {
+    class func once(token: String, block: () -> Void) {
         objc_sync_enter(self); defer { objc_sync_exit(self) }
         
         if _onceTracker.contains(token) {

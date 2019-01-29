@@ -22,7 +22,7 @@ public func MAX(a: CGFloat, b: CGFloat) -> CGFloat {
 public extension UIColor {
     
     /// Выполняет изменение цвета на более темный.
-    public var darker: UIColor {
+    var darker: UIColor {
         var red: CGFloat = 0
         var green: CGFloat = 0
         var blue: CGFloat = 0
@@ -46,7 +46,7 @@ public extension UIColor {
     ///   - g: Значение зеленого в пределах от 0 до 255.
     ///   - b: Значение синего в пределах от 0 до 255.
     ///   - a: Значение прозрачности в пределах от 0 до 255.
-    public convenience init(r: CGFloat, g: CGFloat, b: CGFloat, a: CGFloat = 255.0) {
+    convenience init(r: CGFloat, g: CGFloat, b: CGFloat, a: CGFloat = 255.0) {
         self.init(red: r / 255.0, green: g / 255.0, blue: b / 255.0, alpha: a / 255.0)
     }
 }

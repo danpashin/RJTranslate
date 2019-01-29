@@ -28,6 +28,10 @@ struct ColorScheme {
     /// Цвет основных подписей.
     public private(set) var textPrimary = UIColor(white: 0.05, alpha: 1.0)
     
+    public private(set) var textWhitePrimary = UIColor(white: 1.0, alpha: 1.0)
+    
+    public private(set) var textWhiteDetail = UIColor(white: 0.8, alpha: 1.0)
+    
     /// Цвет детальных подписей.
     public private(set) var textDetail = UIColor(white: 0.83, alpha: 1.0)
     

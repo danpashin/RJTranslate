@@ -43,6 +43,7 @@ class ModernSearchController: UISearchController, UISearchBarDelegate, SearchCon
         
         self.dimsBackgroundDuringPresentation = false
         self.searchBar.delegate = self
+        self.searchBar.tintColor = ColorScheme.default.navTint
     }
     
     private func showDimmingView(_ show: Bool) {

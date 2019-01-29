@@ -10,32 +10,34 @@ import Foundation
 
 class HTTPClientPinning {
     
-    private static let hashes: [String] = [
-        "/7HcrFbhXchKnpl0XlNGwuOZmIVi53GOUnAYHACoD6s=", // api.rejail.ru
-        "NAZrOsLKtF5drHMC0mE3+6ncFGHBD9LHUCWsJ+TSgXE="  // translations.rejail.ru
-    ]
+    public static var enablePinning = true
+    private static var hashes: [String: String] = [:]
     
-    public static func validateServerTrust(_ serverTrust: SecTrust?) -> Bool {
-        if serverTrust == nil {
-            return false
+    public static func validateServerTrust(_ serverTrust: SecTrust, domain: String) -> Bool {
+        if !self.enablePinning {
+            return true
         }
         
         var secresult = SecTrustResultType.invalid
-        let status = SecTrustEvaluate(serverTrust!, &secresult)
+        let status = SecTrustEvaluate(serverTrust, &secresult)
         if status != errSecSuccess {
             return false
         }
         
-        let certsCount = SecTrustGetCertificateCount(serverTrust!)
+        let certsCount = SecTrustGetCertificateCount(serverTrust)
         for i in (0..<certsCount) {
-            guard let serverCertificate = SecTrustGetCertificateAtIndex(serverTrust!, i) else { continue }
+            guard let serverCertificate = SecTrustGetCertificateAtIndex(serverTrust, i) else { continue }
             guard let publicKey = serverCertificate.publicKey else { continue }
             
-            if self.hashes.contains(publicKey.keyHash) {
+            if self.hashes[domain] == publicKey.keyHash {
                 return true
             }
         }
         
         return false
+    }
+    
+    public static func addTrustFor(domain: String, keyHash: String) {
+        self.hashes[domain] = keyHash
     }
 }

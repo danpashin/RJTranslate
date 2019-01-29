@@ -8,7 +8,9 @@
 
 import Foundation
 
-class Tabbar: UITabBar {
+public class Tabbar: UITabBar {
+    public let shadowView = UIView()
+    
     override public func awakeFromNib() {
         super.awakeFromNib()
         
@@ -22,15 +24,34 @@ class Tabbar: UITabBar {
     }
     
     private func addShadow() {
-        let shadowView = UIView()
-        shadowView.backgroundColor = UIColor(white: 0.0, alpha: 0.1)
-        shadowView.translatesAutoresizingMaskIntoConstraints = false
+        self.shadowView.backgroundColor = UIColor(white: 0.0, alpha: 0.1)
+        self.shadowView.translatesAutoresizingMaskIntoConstraints = false
         
-        self.addSubview(shadowView)
+        self.addSubview(self.shadowView)
         
-        shadowView.heightAnchor.constraint(equalToConstant: 1.0).isActive = true
-        shadowView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
-        shadowView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
-        shadowView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
+        self.shadowView.heightAnchor.constraint(equalToConstant: 1.0).isActive = true
+        self.shadowView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
+        self.shadowView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
+        self.shadowView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
+    }
+    
+    public func hideShadow(animated: Bool) {
+        if animated {
+            UIView.animate(withDuration: 0.2, delay: 0.0, options: [.allowAnimatedContent, .allowUserInteraction], animations: { 
+                self.shadowView.alpha = 0.0
+            })
+        } else {
+            self.shadowView.alpha = 0.0
+        }
+    }
+    
+    public func showShadow(animated: Bool) {
+        if animated {
+            UIView.animate(withDuration: 0.2, delay: 0.0, options: [.allowAnimatedContent, .allowUserInteraction], animations: { 
+                self.shadowView.alpha = 1.0
+            })
+        } else {
+            self.shadowView.alpha = 1.0
+        }
     }
 }

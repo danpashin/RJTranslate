@@ -11,7 +11,7 @@ import Foundation
 
 class HTTPClientDelegateObject: NSObject, URLSessionDownloadDelegate, URLSessionDataDelegate {
     
-    weak public private(set) var client: HTTPClient!
+    weak public private(set) var client: HTTPClient?
     public private(set) var utilityQueue = OperationQueue()
     
     public init(client: HTTPClient) {
@@ -21,13 +21,15 @@ class HTTPClientDelegateObject: NSObject, URLSessionDownloadDelegate, URLSession
         self.utilityQueue.qualityOfService = .utility
     }
     
-    public func urlSession(_ session: URLSession, didReceive challenge: URLAuthenticationChallenge, completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) {
+    public func urlSession(_ session: URLSession, didReceive challenge: URLAuthenticationChallenge, 
+                           completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) {
         
         if challenge.protectionSpace.authenticationMethod == NSURLAuthenticationMethodServerTrust {
-            let serverTrust = challenge.protectionSpace.serverTrust
-            if HTTPClientPinning.validateServerTrust(serverTrust) {
-                completionHandler(.useCredential, URLCredential(trust: serverTrust!))
-                return
+            if let serverTrust = challenge.protectionSpace.serverTrust {
+                if HTTPClientPinning.validateServerTrust(serverTrust, domain: challenge.protectionSpace.host) {
+                    completionHandler(.useCredential, URLCredential(trust: serverTrust))
+                    return
+                }
             }
         }
         
