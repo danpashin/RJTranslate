@@ -4,7 +4,6 @@
 
 #import <sys/utsname.h>
 #import <CommonCrypto/CommonCrypto.h>
-#import <MobileIcons/MobileIcons.h>
 
 #import "RJTApplicationModel.h"
 #import "RJTDatabaseFacade.h"

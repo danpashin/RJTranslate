@@ -14,6 +14,8 @@ import Foundation
 // MARK: -
 
 @objc public protocol SearchControllerRequired {
+    var dimBackground: Bool { get set }
+    
     var searchText: String { get }
     
     var searchDelegate: SearchControllerDelegate! { get }

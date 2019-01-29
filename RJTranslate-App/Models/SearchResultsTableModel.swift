@@ -8,9 +8,24 @@
 
 import Foundation
 
-public class SearchResultsTableModel: NSObject, UITableViewDelegate, UITableViewDataSource {
+public class SearchResultsTableModel: NSObject, UITableViewDelegate, UITableViewDataSource, UIViewControllerPreviewingDelegate {
+    
     
     public private(set) var searchResults = [API.TranslationSummary]()
+    
+    private var forceTouchPreviewContext: UIViewControllerPreviewing?
+    public weak var searchController: UIViewController? {
+        didSet {
+            if UIApplication.shared.keyWindow?.traitCollection.forceTouchCapability == .available {
+                if self.forceTouchPreviewContext != nil {
+                    oldValue?.unregisterForPreviewing(withContext: self.forceTouchPreviewContext!)
+                }
+                
+                self.forceTouchPreviewContext = self.searchController?.registerForPreviewing(with: self, 
+                                                                                             sourceView: self.tableView!)
+            }
+        }
+    }
     
     public weak var tableView: SearchResultsTableView? {
         didSet {
@@ -56,6 +71,13 @@ public class SearchResultsTableModel: NSObject, UITableViewDelegate, UITableView
         self.tableView?.reloadData()
     }
     
+    private func detailController(for indexPath: IndexPath) -> TranslationDetailController? {
+        if indexPath.row > self.searchResults.count - 1 { return nil }
+        
+        let result = self.searchResults[indexPath.row]
+        return TranslationDetailController(translationSummary: result)
+    }
+    
     
     // MARK: -
     // MARK: UITableViewDataSource
@@ -83,10 +105,25 @@ public class SearchResultsTableModel: NSObject, UITableViewDelegate, UITableView
         UIApplication.hideKeyboard()
         tableView.deselectRow(at: indexPath, animated: true)
         
-        let result = self.searchResults[indexPath.row]
-        let detailController = TranslationDetailController(translationSummary: result)
+        if let detailController = self.detailController(for: indexPath) {
+            let navController = UIApplication.applicationDelegate.currentNavigationController
+            navController.pushViewController(detailController, animated: true)
+        }
+    }
+    
+    
+    // MARK: -
+    // MARK: UIViewControllerPreviewingDelegate
+    
+    public func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
+        guard let indexPath = self.tableView?.indexPathForRow(at: location) else { return nil }
+        previewingContext.sourceRect = self.tableView!.rectForRow(at: indexPath)
         
+        return self.detailController(for: indexPath)
+    }
+    
+    public func previewingContext(_ previewingContext: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
         let navController = UIApplication.applicationDelegate.currentNavigationController
-        navController.pushViewController(detailController, animated: true)
+        navController.pushViewController(viewControllerToCommit, animated: true)
     }
 }

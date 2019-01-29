@@ -26,6 +26,8 @@
 "tap_button_to_download_available" = "Tap the button below to install available";
 "download" = "Download";
 
+// Детальная инфа о локализации
+"Translation.Install" = "Install";
 
 
 // Настройки

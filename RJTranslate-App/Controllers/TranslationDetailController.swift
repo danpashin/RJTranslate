@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class TranslationDetailController: UIViewController {
+public class TranslationDetailController: SimpleController {
     
     public private(set) var translationModel: RJTApplicationModel? {
         didSet {
@@ -42,12 +42,10 @@ public class TranslationDetailController: UIViewController {
     
     override public func viewDidLoad() {
         super.viewDidLoad()
+        self.view.backgroundColor = UIColor.white
         
         let navigationBar = UIApplication.applicationDelegate.currentNavigationController.navigationBar
         navigationBar.hideShadow()
-        
-        self.view.backgroundColor = ColorScheme.default.background
-        self.view.backgroundColor = UIColor.white
         
         if #available(iOS 11.0, *) {
             self.navigationItem.largeTitleDisplayMode = .never
@@ -128,7 +126,7 @@ public class TranslationDetailController: UIViewController {
         
         self.translationView?.titleLabel.text = translationModel.displayedName
         
-        translationModel.loadIcon { (icon: UIImage?) in
+        translationModel.loadIcon(big: true, completion: { (icon: UIImage?) in
             DispatchQueue.main.async {
                 self.translationView?.iconView.image = icon
             }
@@ -143,6 +141,6 @@ public class TranslationDetailController: UIViewController {
 //                    self.translationView?.iconView.layer.shadowColor = averageColor.withAlphaComponent(0.15).cgColor
 //                }
 //            }
-        }
+        })
     }
 }

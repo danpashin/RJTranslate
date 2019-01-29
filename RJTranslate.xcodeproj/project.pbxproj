@@ -48,7 +48,6 @@
 		A5527FBB218F4C4000095251 /* RJTApplicationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A54ADB1D217BB0CF00D32EB7 /* RJTApplicationModel.m */; };
 		A552F90821B03279002771E9 /* TranslationsUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A552F90721B03279002771E9 /* TranslationsUpdate.swift */; };
 		A56856BC21FDAD2B007D1B08 /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56856BB21FDAD2B007D1B08 /* ImageCache.swift */; };
-		A56856BE21FDD34E007D1B08 /* MobileIcons.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A56856BD21FDD34E007D1B08 /* MobileIcons.framework */; };
 		A56856C021FDD75C007D1B08 /* TabbarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56856BF21FDD75C007D1B08 /* TabbarController.swift */; };
 		A56856C221FDDF0E007D1B08 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56856C121FDDF0E007D1B08 /* NavigationController.swift */; };
 		A56856C421FDE821007D1B08 /* TranslationDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56856C321FDE821007D1B08 /* TranslationDetailView.swift */; };
@@ -96,6 +95,7 @@
 		A5E80C8B21E360ED00150B5D /* RJTranslate.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A535340F217A584500E08881 /* RJTranslate.xcdatamodeld */; };
 		A5E80C8D21E365C300150B5D /* TouchResponsiveCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E80C8C21E365C300150B5D /* TouchResponsiveCollectionCell.swift */; };
 		A5E80C8F21E387E100150B5D /* ApplicationConveniences.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E80C8E21E387E100150B5D /* ApplicationConveniences.swift */; };
+		A5EA75422200582400536C7C /* SimpleController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EA75412200582400536C7C /* SimpleController.swift */; };
 		A5F40123218F7DBE00046C58 /* RJTApplicationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A54ADB1D217BB0CF00D32EB7 /* RJTApplicationModel.m */; };
 		AD7B4BAE3F32AE9E9BB8B28C /* libPods-RJTranslate.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D4BDA7DE4D4549AE0118813 /* libPods-RJTranslate.a */; };
 /* End PBXBuildFile section */
@@ -162,7 +162,6 @@
 		A5515BD821AE9D2F00C7BFC4 /* SwitchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchCell.swift; sourceTree = "<group>"; };
 		A552F90721B03279002771E9 /* TranslationsUpdate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslationsUpdate.swift; sourceTree = "<group>"; };
 		A56856BB21FDAD2B007D1B08 /* ImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
-		A56856BD21FDD34E007D1B08 /* MobileIcons.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileIcons.framework; path = ../../../../opt/iOSOpenDev/Frameworks/MobileIcons.framework; sourceTree = "<group>"; };
 		A56856BF21FDD75C007D1B08 /* TabbarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabbarController.swift; sourceTree = "<group>"; };
 		A56856C121FDDF0E007D1B08 /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
 		A56856C321FDE821007D1B08 /* TranslationDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslationDetailView.swift; sourceTree = "<group>"; };
@@ -213,6 +212,7 @@
 		A5E80C8E21E387E100150B5D /* ApplicationConveniences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationConveniences.swift; sourceTree = "<group>"; };
 		A5E80C9C21E3BA8200150B5D /* TranslationsFetchSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslationsFetchSettings.swift; sourceTree = "<group>"; };
 		A5E80C9E21E3C5E300150B5D /* TranslationsFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslationsFetcher.swift; sourceTree = "<group>"; };
+		A5EA75412200582400536C7C /* SimpleController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleController.swift; sourceTree = "<group>"; };
 		A61C30E9AF7AB8D12AD7B49C /* Pods-RJTranslate-App.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RJTranslate-App.release.xcconfig"; path = "Pods/Target Support Files/Pods-RJTranslate-App/Pods-RJTranslate-App.release.xcconfig"; sourceTree = "<group>"; };
 		CC0CE3AB29A7AC8854CC9D3A /* Pods_RJTranslate_App.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RJTranslate_App.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F1725EBC7642136E98BE5351 /* Pods-RJTranslate.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RJTranslate.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RJTranslate/Pods-RJTranslate.debug.xcconfig"; sourceTree = "<group>"; };
@@ -224,7 +224,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				37CD14D8EF4E8005F2AED9F5 /* Pods_RJTranslate_App.framework in Frameworks */,
-				A56856BE21FDD34E007D1B08 /* MobileIcons.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -306,7 +305,6 @@
 		A53533FD217A57ED00E08881 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				A56856BD21FDD34E007D1B08 /* MobileIcons.framework */,
 				A53533FE217A57ED00E08881 /* Foundation.framework */,
 				4D4BDA7DE4D4549AE0118813 /* libPods-RJTranslate.a */,
 				CC0CE3AB29A7AC8854CC9D3A /* Pods_RJTranslate_App.framework */,
@@ -539,6 +537,7 @@
 		A5DB9AC0217B7FF50061A810 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				A5EA75412200582400536C7C /* SimpleController.swift */,
 				A56856BF21FDD75C007D1B08 /* TabbarController.swift */,
 				A56856C121FDDF0E007D1B08 /* NavigationController.swift */,
 				A54A335D21B3CBA40064D648 /* TranslateMainController.swift */,
@@ -844,6 +843,7 @@
 				A57104CE21F30D3600C829DD /* FeaturedController.swift in Sources */,
 				A54F28C921EF2FB7002075C5 /* ColorScheme.swift in Sources */,
 				A5B74C2A21E4D0390058C71A /* ButtonedSearchBar.swift in Sources */,
+				A5EA75422200582400536C7C /* SimpleController.swift in Sources */,
 				A5DAAE1B21C7973B0012D559 /* DatabaseUpdater.swift in Sources */,
 				A56856C221FDDF0E007D1B08 /* NavigationController.swift in Sources */,
 				A5B74C2C21E4D14A0058C71A /* NavigationBar.swift in Sources */,
@@ -1184,7 +1184,7 @@
 			buildSettings = {
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
-					"BUILD_TWEAK=1",
+					BUILD_TWEAK,
 				);
 				INSTALL_PATH = /Library/MobileSubstrate/DynamicLibraries;
 				STRIP_SWIFT_SYMBOLS = NO;
@@ -1197,7 +1197,7 @@
 			buildSettings = {
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
-					"BUILD_TWEAK=1",
+					BUILD_TWEAK,
 				);
 				INSTALL_PATH = /Library/MobileSubstrate/DynamicLibraries;
 				STRIP_SWIFT_SYMBOLS = NO;

@@ -10,6 +10,8 @@ import Foundation
 
 
 class ObsoleteSearchController: UIViewController, SearchControllerRequired, UISearchBarDelegate {
+    public var dimBackground: Bool = true
+    
     public private(set) var searchText: String = ""
     
     public private(set) weak var searchDelegate: SearchControllerDelegate!
@@ -85,6 +87,8 @@ class ObsoleteSearchController: UIViewController, SearchControllerRequired, UISe
     }
     
     private func updateDimming(_ shouldDim: Bool) {
+        if !self.dimBackground { return }
+        
         self.dimmed = shouldDim
         if shouldDim {
             self.viewIfLoaded?.isHidden = false

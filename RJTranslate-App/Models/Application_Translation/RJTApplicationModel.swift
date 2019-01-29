@@ -11,28 +11,30 @@ import Foundation
 public extension RJTApplicationModel {
     static func loadFullModel(from translationSummary: API.TranslationSummary,
                                      completion: @escaping (RJTApplicationModel?, NSError?) -> Void) {
-        HTTPClient.shared.json(translationSummary.url)
-            .completion { (response: [String : AnyHashable]?, error: NSError?) in
-                if response == nil {
-                    completion(nil, error)
-                    return
-                }
-                
-                if let responseDict = response?["response"] as? [[String: AnyHashable]] {
-                    if let translationDict = responseDict.first {
-                        let model = RJTApplicationModel.from(translationDict)
-                        completion(model, nil)
+        DispatchQueue.global(qos: .default).async {
+            HTTPClient.shared.json(translationSummary.url)
+                .completion { (response: [String : AnyHashable]?, error: NSError?) in
+                    if response == nil {
+                        completion(nil, error)
                         return
                     }
-                }
-                
-                let error = API.SimpleError(code: 0, description: "Could'nt parse translation response")
-                completion(nil, error.nserror)
+                    
+                    if let responseDict = response?["response"] as? [[String: AnyHashable]] {
+                        if let translationDict = responseDict.first {
+                            let model = RJTApplicationModel.from(translationDict)
+                            completion(model, nil)
+                            return
+                        }
+                    }
+                    
+                    let error = API.SimpleError(code: 0, description: "Could'nt parse translation response")
+                    completion(nil, error.nserror)
+            }
         }
     }
     
-    func loadIcon(_ completion: @escaping (_ icon: UIImage?) -> Void) {
-        DispatchQueue.global().async {
+    func loadIcon(big: Bool = false, completion: @escaping (_ icon: UIImage?) -> Void) {
+        DispatchQueue.global(qos: .default).async {
             let cache = ImageCache.shared
             if let image = cache.image(key: self.displayedName) {
                 completion(image)
@@ -44,8 +46,8 @@ public extension RJTApplicationModel {
                                                           format: .default, scale: UIScreen.main.scale)
                 completion(image)
             } else {
-                let defaultIcon = LICreateDefaultIcon(15)!
-                completion(UIImage(cgImage: defaultIcon.takeUnretainedValue()))
+                let iconName = big ? "app_default_icon_big" : "app_default_icon"
+                completion(UIImage(named: iconName))
             }
         }
     }

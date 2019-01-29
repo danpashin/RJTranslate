@@ -8,7 +8,7 @@
 
 import Foundation
 
-class TranslateMainController: UIViewController, SearchControllerDelegate, AppCollectionViewDelegateProtocol, DatabaseUpdaterDelegate  {
+class TranslateMainController: SimpleController, SearchControllerDelegate, AppCollectionViewDelegateProtocol, DatabaseUpdaterDelegate  {
     
     private var databaseUpdater: DatabaseUpdater!
     

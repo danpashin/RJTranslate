@@ -35,12 +35,22 @@ public class LiveSearchResultsController : UIViewController, SearchControllerDel
         
         if #available(iOS 11.0, *) {
             let modernSearch = ModernSearchController(delegate: self)
-            modernSearch.dimBackground = false
+            self.resultsTableView.model.searchController = modernSearch
             
             self.searchController = modernSearch
             self.navigationItem.searchController = self.searchController as! ModernSearchController
             self.navigationItem.hidesSearchBarWhenScrolling = false
+        } else {
+            let obsoleteSearch = ObsoleteSearchController(delegate: self)
+            self.searchController = obsoleteSearch
+            self.resultsTableView.model.searchController = obsoleteSearch
+            
+            if let navBar = self.navigationController?.navigationBar {
+                self.navigationItem.titleView = obsoleteSearch.createSearchBarForView(navBar)
+            }
         }
+        
+        self.searchController?.dimBackground = false
         
     }
     

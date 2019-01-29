@@ -29,9 +29,12 @@
 
 + (NSURL *)defaultDirectoryURL
 {
-//    NSString *documentsPath = @"/var/mobile/Library/Preferences/RJTranslate/";
+#if defined(BUILD_TWEAK) && defined(DEBUG)
+    NSString *documentsPath = @"/var/mobile/Library/Preferences/RJTranslate/";
+#else
     NSString *documentsPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject;
     documentsPath = [documentsPath stringByAppendingString:@"/RJTranslate/"];
+#endif
     if (![[NSFileManager defaultManager] fileExistsAtPath:documentsPath])
         [[NSFileManager defaultManager] createDirectoryAtPath:documentsPath withIntermediateDirectories:NO attributes:nil error:nil];
     
@@ -40,13 +43,15 @@
 
 + (NSURL *)defaultModelURL
 {
+#if !defined(BUILD_TWEAK) && defined(DEBUG)
     return [[NSBundle mainBundle] URLForResource:@"RJTranslate" withExtension:@"momd"];
-    
+#else
     NSString *appSupportPath = NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSLocalDomainMask, YES).firstObject;
     NSURL *url = [NSURL fileURLWithPath:[appSupportPath stringByAppendingString:@"/RJTranslate.bundle/RJTranslate.momd"]
                             isDirectory:YES];
     
     return url;
+#endif
 }
 
 + (instancetype _Nullable)defaultDatabase
