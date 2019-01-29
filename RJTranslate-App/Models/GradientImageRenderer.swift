@@ -54,6 +54,10 @@ class GradientImageRenderer {
                                                name: UIApplication.didReceiveMemoryWarningNotification, object: nil)
     }
     
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
     @objc private func didReceiveMemoryWarning() {
         self.normalImage = nil
         self.selectedImage = nil

@@ -45,11 +45,30 @@ public extension RJTApplicationModel {
                 let image = UIImage._applicationIconImage(forBundleIdentifier: self.bundleIdentifier!,
                                                           format: .default, scale: UIScreen.main.scale)
                 completion(image)
+            } else if let localIcon = self.loadLocalIcon() {
+                completion(localIcon)
             } else {
                 let iconName = big ? "app_default_icon_big" : "app_default_icon"
                 completion(UIImage(named: iconName))
             }
         }
+    }
+    
+    private func loadLocalIcon() -> UIImage? {
+        if self.iconPath?.count ?? 0 == 0 { return nil }
+        
+        if self.iconPath!.lowercased().contains("bundle") {
+            let bundlePath = URL(fileURLWithPath: self.iconPath!).deletingLastPathComponent().path
+            let bundle = Bundle(path: bundlePath)
+            
+            var imageName = URL(fileURLWithPath: self.iconPath!).deletingPathExtension().lastPathComponent
+            imageName = imageName.replacingOccurrences(of: "@2x", with: "")
+            imageName = imageName.replacingOccurrences(of: "@3x", with: "")
+            
+            return UIImage(named: imageName, in: bundle, compatibleWith: nil)
+        }
+        
+        return UIImage(contentsOfFile: self.iconPath!)
     }
 }
 

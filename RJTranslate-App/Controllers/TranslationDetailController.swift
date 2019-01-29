@@ -82,12 +82,12 @@ public class TranslationDetailController: SimpleController {
     }
     
     private func updateSummaryIfNeeded() {
-        let activityView = UIActivityIndicatorView(style: .gray)
-        activityView.center = self.view.center
-        activityView.startAnimating()
-        self.view.addSubview(activityView)
-        
         if self.translationModel == nil && self.translationSummary != nil {
+            let activityView = UIActivityIndicatorView(style: .gray)
+            activityView.center = self.view.center
+            activityView.startAnimating()
+            self.view.addSubview(activityView)
+            
             RJTApplicationModel.loadFullModel(from: self.translationSummary!) {
                 (model: RJTApplicationModel?, error: NSError?) in
                 DispatchQueue.main.async {
@@ -123,12 +123,20 @@ public class TranslationDetailController: SimpleController {
     
     private func performUIUpdate() {
         guard let translationModel = self.translationModel else { return }
+        guard let translationView = self.translationView else { return }
+         
+        translationView.titleLabel.text = translationModel.displayedName
         
-        self.translationView?.titleLabel.text = translationModel.displayedName
+        let updateStringDate = DateFormatter.localizedString(from: translationModel.updateDate, 
+                                                             dateStyle: .medium, timeStyle: .none)
+        let subtitleText = String(format: NSLocalizedString("Translation.Detail.Updated", comment: ""), updateStringDate)
+        translationView.subtitleLabel.text = subtitleText
         
         translationModel.loadIcon(big: true, completion: { (icon: UIImage?) in
             DispatchQueue.main.async {
-                self.translationView?.iconView.image = icon
+                UIView.transition(with: translationView, duration: 0.1, options: .transitionCrossDissolve, animations: { 
+                    self.translationView?.iconView.image = icon
+                })
             }
             
 //            if let averageColor = icon?.averageColor {

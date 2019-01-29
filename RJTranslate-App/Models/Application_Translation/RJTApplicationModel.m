@@ -18,6 +18,7 @@
 
 @property (strong, nonatomic, readwrite, nullable) NSDictionary *translation;
 @property (strong, nonatomic, readwrite, nullable) NSString *iconPath;
+@property (strong, nonatomic, readwrite, nullable) NSDate *updateDate;
 
 @property (assign, nonatomic, readwrite) BOOL forceLocalize;
 
@@ -33,6 +34,7 @@ static NSString *const kRJTDisplayedNameKey = @"Displayed Name";
 static NSString *const kRJTBundleIdentifierKey = @"Bundle Identifier";
 static NSString *const kRJTExecutableNameKey = @"Executable Name";
 static NSString *const kRJTExecutablePathKey = @"Executable Path";
+static NSString *const kRJTUpdateDateKey = @"Date";
 
 static NSString *const kRJTTranslationsKey = @"Translations";
 static NSString *const kRJTIconPathKey = @"Icon";
@@ -51,6 +53,7 @@ static NSString *const kRJTForceLocalizeKey = @"Force";
     model.bundleIdentifier = [entity.bundleIdentifier copy];
     model.executableName = [entity.executableName copy];
     model.executablePath = [entity.executablePath copy];
+    model.updateDate = [NSDate dateWithTimeIntervalSince1970:entity.remoteUpdated];
     
     model.lightweightModel = lightweight;
     if (!lightweight) {
@@ -73,6 +76,8 @@ static NSString *const kRJTForceLocalizeKey = @"Force";
     model.bundleIdentifier = dictionary[kRJTBundleIdentifierKey];
     model.executableName = dictionary[kRJTExecutableNameKey];
     model.executablePath = dictionary[kRJTExecutablePathKey];
+    model.updateDate = [NSDate dateWithTimeIntervalSince1970:[dictionary[kRJTUpdateDateKey] doubleValue]];
+    
     
     model.iconPath = dictionary[kRJTIconPathKey];
     if (![model.iconPath isKindOfClass:[NSString class]])

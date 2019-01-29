@@ -29,7 +29,7 @@
 
 + (NSURL *)defaultDirectoryURL
 {
-#if defined(BUILD_TWEAK) && defined(DEBUG)
+#if defined(BUILD_TWEAK)
     NSString *documentsPath = @"/var/mobile/Library/Preferences/RJTranslate/";
 #else
     NSString *documentsPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject;
@@ -43,7 +43,7 @@
 
 + (NSURL *)defaultModelURL
 {
-#if !defined(BUILD_TWEAK) && defined(DEBUG)
+#if !defined(BUILD_TWEAK)
     return [[NSBundle mainBundle] URLForResource:@"RJTranslate" withExtension:@"momd"];
 #else
     NSString *appSupportPath = NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSLocalDomainMask, YES).firstObject;
@@ -57,7 +57,7 @@
 + (instancetype _Nullable)defaultDatabase
 {
     __block RJTDatabase *defaultDatabase = nil;
-    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0);
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0);
     dispatch_sync(queue, ^{
         NSManagedObjectModel *model = [[NSManagedObjectModel alloc] initWithContentsOfURL:self.defaultModelURL];
         if (!model)

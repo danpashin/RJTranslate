@@ -20,6 +20,7 @@
 @dynamic iconPath;
 @dynamic executablePath;
 @dynamic forceLocalize;
+@dynamic remoteUpdated;
 
 + (NSFetchRequest<RJTApplicationEntity *> *)fetchRequest
 {

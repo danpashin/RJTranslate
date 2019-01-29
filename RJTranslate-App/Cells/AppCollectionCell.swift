@@ -74,13 +74,11 @@ class AppCollectionCell: TouchResponsiveCollectionCell {
             self.iconView?.image = UIImage(named: "icon_template")
         } else {
             self.model?.loadIcon(completion: { (icon: UIImage?) in
-                let iconImage: UIImage? = icon ?? UIImage(named: "icon_template")
-                
                 DispatchQueue.main.async {
                     guard let iconView = self.iconView else { return }
                     UIView.transition(with: iconView, duration: 0.2, options: .transitionCrossDissolve, animations: {
-                        iconView.image = iconImage
-                    }, completion: nil)
+                        iconView.image = icon
+                    })
                 }
             })
         }

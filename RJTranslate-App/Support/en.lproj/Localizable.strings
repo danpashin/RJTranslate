@@ -28,6 +28,7 @@
 
 // Детальная инфа о локализации
 "Translation.Install" = "Install";
+"Translation.Detail.Updated" = "Updated: %@";
 
 
 // Настройки

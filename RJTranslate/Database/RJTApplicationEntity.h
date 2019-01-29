@@ -30,6 +30,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nullable, nonatomic, retain) NSString *iconPath;
 
+@property (assign, nonatomic) double remoteUpdated;
+
 - (void)copyPropertiesFrom:(RJTApplicationModel *)appModel;
 
 @end

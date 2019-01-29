@@ -33,7 +33,7 @@ struct ColorScheme {
     public private(set) var textWhiteDetail = UIColor(white: 0.8, alpha: 1.0)
     
     /// Цвет детальных подписей.
-    public private(set) var textDetail = UIColor(white: 0.83, alpha: 1.0)
+    public private(set) var textDetail = UIColor(white: 0.75, alpha: 1.0)
     
     /// Цвет текста заголовков.
     public private(set) var switchOnTint = UIColor(r: 95.0, g: 111.0, b: 237.0)

@@ -14,6 +14,8 @@ class TranslationDetailView: UIView, GradientImageRendererDelegate {
     /// Лейбл с названием перевода.
     public let titleLabel = UILabel()
     
+    public let subtitleLabel = UILabel()
+    
     /// Вид с иконкой приложения.
     public let iconView = UIImageView()
     
@@ -32,6 +34,10 @@ class TranslationDetailView: UIView, GradientImageRendererDelegate {
         self.commonInit()
     }
     
+    deinit {
+        self.installButton.removeObserver(self, forKeyPath: "bounds")
+    }
+    
     private func commonInit() {
         self.iconView.layer.shadowRadius = 26.0
         self.iconView.layer.shadowOpacity = 0.1
@@ -41,27 +47,23 @@ class TranslationDetailView: UIView, GradientImageRendererDelegate {
         self.titleLabel.font = UIFont.systemFont(ofSize: UIFont.labelFontSize * 1.75, weight: .bold)
         self.addSubview(self.titleLabel)
         
-//        self.installButton.backgroundColor = .red
-//        self.installButton.layer.cor
+        self.subtitleLabel.font = UIFont.preferredFont(forTextStyle: .title3)
+        self.subtitleLabel.textColor = ColorScheme.default.textDetail
+        self.addSubview(self.subtitleLabel)
         
+        self.installButton.addObserver(self, forKeyPath: "bounds", options: .new, context: nil)
         self.installButton.setTitleColor(ColorScheme.default.textWhitePrimary, for: .normal)
         self.installButton.setTitleColor(ColorScheme.default.textWhiteDetail, for: .selected)
         self.installButton.setTitle(NSLocalizedString("Translation.Install", comment: ""), for: .normal)
-        
         self.addSubview(self.installButton)
         
         self.setupConstraints()
-        
-        DispatchQueue.main.async {
-            self.gradientRenderer = GradientImageRenderer(size: CGSize(width: 320.0, height: 64.0))
-            self.gradientRenderer?.delegate = self
-            self.gradientRenderer?.renderAllImages()
-        }
     }
     
     private func setupConstraints() {  
         self.iconView.translatesAutoresizingMaskIntoConstraints = false
         self.titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        self.subtitleLabel.translatesAutoresizingMaskIntoConstraints = false
         self.installButton.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
@@ -75,6 +77,11 @@ class TranslationDetailView: UIView, GradientImageRendererDelegate {
             self.titleLabel.widthAnchor.constraint(greaterThanOrEqualToConstant: 0.0),
             self.titleLabel.heightAnchor.constraint(greaterThanOrEqualToConstant: 0.0),
             
+            self.subtitleLabel.topAnchor.constraint(equalTo: self.titleLabel.bottomAnchor, constant: 16.0),
+            self.subtitleLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+            self.subtitleLabel.widthAnchor.constraint(greaterThanOrEqualToConstant: 0.0),
+            self.subtitleLabel.heightAnchor.constraint(greaterThanOrEqualToConstant: 0.0),
+            
             self.installButton.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -36.0),
             self.installButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16.0),
             self.installButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16.0),
@@ -82,8 +89,22 @@ class TranslationDetailView: UIView, GradientImageRendererDelegate {
             ])
     }
     
+    private func renderButtonBackground() {
+        DispatchQueue.main.async {
+            self.gradientRenderer = GradientImageRenderer(size: self.installButton.bounds.size)
+            self.gradientRenderer?.delegate = self
+            self.gradientRenderer?.renderAllImages()
+        }
+    }
+    
     func renderer(_ renderer: GradientImageRenderer, didEndRenderingNormalImage normalImage: UIImage?, selectedImage: UIImage?) {
         self.installButton.setBackgroundImage(normalImage, for: .normal)
         self.installButton.setBackgroundImage(selectedImage, for: .selected)
+    }
+    
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        if let button = object as? UIButton, button == self.installButton, keyPath == "bounds" {
+            self.renderButtonBackground()
+        }
     }
 }

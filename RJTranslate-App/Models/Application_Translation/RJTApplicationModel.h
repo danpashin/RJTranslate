@@ -77,6 +77,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (assign, nonatomic, readonly) BOOL lightweightModel;
 
+@property (strong, nonatomic, readonly) NSDate *updateDate;
+
 @end
 
 NS_ASSUME_NONNULL_END

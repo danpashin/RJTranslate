@@ -7,6 +7,7 @@
 //
 
 #import <CaptainHook/CaptainHook.h>
+#import <UIKit/UIKit.h>
 
 @interface _UINavigationControllerManagedSearchPalette : UIView
 - (void)_setShadowAlpha:(double)alpha;
