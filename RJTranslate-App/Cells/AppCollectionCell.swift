@@ -32,12 +32,12 @@ class AppCollectionCell: TouchResponsiveCollectionCell {
     
     public override func awakeFromNib() {
         super.awakeFromNib()
-        self.nameLabel?.textColor = ColorScheme.default.textPrimary
+        self.nameLabel?.textColor = ColorScheme.default.titleLabel
         
         self.layer.cornerRadius = 10.0
         self.iconView?.layer.masksToBounds = true
         self.iconView?.layer.cornerRadius = 11.0
-        self.iconView?.tintColor = ColorScheme.default.textDetail
+        self.iconView?.tintColor = ColorScheme.default.subtitleLabel
         
         self.updateSelection(false, animated: false)
         

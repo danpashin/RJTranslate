@@ -14,8 +14,8 @@ public class NavigationBar: UINavigationBar {
     override public func awakeFromNib() {
         super.awakeFromNib()
         
-        self.barTintColor = .white
         self.tintColor = ColorScheme.default.navTint
+        self.barTintColor = ColorScheme.default.navBackground
         self.showShadow()
     }
     

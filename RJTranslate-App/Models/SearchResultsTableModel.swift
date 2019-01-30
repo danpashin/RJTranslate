@@ -49,8 +49,7 @@ public class SearchResultsTableModel: NSObject, UITableViewDelegate, UITableView
         self.syncOperationQueue.cancelAllOperations()
         self.searchResults.removeAll()
         
-        self.tableView?.reloadData()
-        self.tableView?.startRefreshing()
+        self.tableView?.isRefreshing = true
         
         let operation = LiveSearchOperation(searchText: text)
         operation.completionBlock = {
@@ -67,8 +66,7 @@ public class SearchResultsTableModel: NSObject, UITableViewDelegate, UITableView
             self.searchResults.append(contentsOf: data)
         }
         
-        self.tableView?.stopRefreshing()
-        self.tableView?.reloadData()
+        self.tableView?.isRefreshing = false
     }
     
     private func detailController(for indexPath: IndexPath) -> TranslationDetailController? {

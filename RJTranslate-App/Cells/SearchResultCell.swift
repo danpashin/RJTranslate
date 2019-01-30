@@ -51,7 +51,7 @@ public class SearchResultCell: UITableViewCell {
             
             if let range = result!.name.lowercased().range(of: result!.searchText.lowercased()) {
                 attributedText.addAttribute(NSAttributedString.Key.foregroundColor, 
-                                            value: ColorScheme.default.textPrimary, 
+                                            value: ColorScheme.default.titleLabel, 
                                             range: NSRange(range, in: result!.name))
             }
             self.textLabel?.attributedText = attributedText

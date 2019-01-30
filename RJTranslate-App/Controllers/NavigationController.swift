@@ -20,6 +20,10 @@ public class NavigationController: UINavigationController, UINavigationBarDelega
         self.navigationBar.delegate = self
     }
     
+    override public var preferredStatusBarStyle: UIStatusBarStyle {
+        return ColorScheme.default.statusBarStyle
+    }
+    
     
     public func navigationBar(_ navigationBar: UINavigationBar, shouldPop item: UINavigationItem) -> Bool {
         if self.viewControllers.count < (navigationBar.items?.count ?? 0) {

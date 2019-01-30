@@ -14,7 +14,6 @@ class FeaturedController: LiveSearchResultsController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.view.backgroundColor = ColorScheme.default.background
         self.title = NSLocalizedString("Translations.Featured.Title", comment: "")
     }
 }

@@ -15,8 +15,8 @@ public class Tabbar: UITabBar {
         super.awakeFromNib()
         
         self.itemPositioning = .fill
-        self.barTintColor = .white
-        self.tintColor = ColorScheme.default.navTint
+        self.tintColor = ColorScheme.default.tabbarTint
+        self.barTintColor = ColorScheme.default.tabbarBackground
         self.clipsToBounds = true
         self.isTranslucent = false
         
@@ -24,7 +24,7 @@ public class Tabbar: UITabBar {
     }
     
     private func addShadow() {
-        self.shadowView.backgroundColor = UIColor(white: 0.0, alpha: 0.1)
+        self.shadowView.backgroundColor = ColorScheme.default.tabbarShadow
         self.shadowView.translatesAutoresizingMaskIntoConstraints = false
         
         self.addSubview(self.shadowView)

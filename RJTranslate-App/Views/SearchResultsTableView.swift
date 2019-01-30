@@ -11,8 +11,13 @@ import Foundation
 public class SearchResultsTableView: UITableView {
     
     public let model = SearchResultsTableModel()
+    private let emptySource = SearchResultsEmptySource()
     
-    private let refreshHeader = UIActivityIndicatorView()
+    public var isRefreshing = false {
+        didSet {
+            self.reloadData()
+        }
+    }
     
     override init(frame: CGRect, style: UITableView.Style) {
         super.init(frame: frame, style: style)
@@ -26,28 +31,11 @@ public class SearchResultsTableView: UITableView {
     
     private func commonInit() {
         self.model.tableView = self
-        
-        self.refreshHeader.frame = self.refreshHeader.frame.insetBy(dx: 0.0, dy: -20.0)
-        self.refreshHeader.style = .gray
-        
+        self.emptySource.tableView = self
         self.tableFooterView = UIView()
         
         self.keyboardDismissMode = .onDrag
         self.backgroundColor = ColorScheme.default.background
-    }
-    
-    public func startRefreshing() {
-        DispatchQueue.main.async {
-            self.tableHeaderView = self.refreshHeader
-            self.refreshHeader.startAnimating()
-        }
-    }
-    
-    public func stopRefreshing() {
-        DispatchQueue.main.async {
-            self.refreshHeader.stopAnimating()
-            self.tableHeaderView = nil
-        }
     }
     
     override public func reloadData() {

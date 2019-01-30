@@ -25,7 +25,7 @@ class CollectionHeaderLabel : UICollectionReusableView {
         super.init(frame: frame)
         
         self.addSubview(self.label)
-        self.label.textColor = ColorScheme.default.headerLabel
+        self.label.textColor = ColorScheme.default.titleLabel
         self.label.font = UIFont.systemFont(ofSize: UIFont.labelFontSize + 4.0,
                                             weight: .bold)
         

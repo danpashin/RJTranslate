@@ -8,10 +8,10 @@
 
 import Foundation
 
-public class LiveSearchResultsController : UIViewController, SearchControllerDelegate {
+public class LiveSearchResultsController : SimpleViewController, SearchControllerDelegate {
     
-    private var hiddenStateBottomConstraint: NSLayoutConstraint!
-    private var openedStateBottomConstraint: NSLayoutConstraint!
+    private var resultsHiddenBottomConstraint: NSLayoutConstraint!
+    private var resultsOpenedBottomConstraint: NSLayoutConstraint!
     
     private var resultsPresented = false
     
@@ -29,9 +29,9 @@ public class LiveSearchResultsController : UIViewController, SearchControllerDel
         self.resultsTableView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
         self.resultsTableView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
         
-        self.openedStateBottomConstraint = self.resultsTableView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor)
-        self.hiddenStateBottomConstraint = self.resultsTableView.bottomAnchor.constraint(equalTo: self.view.topAnchor)
-        self.hiddenStateBottomConstraint.isActive = true
+        self.resultsOpenedBottomConstraint = self.resultsTableView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor)
+        self.resultsHiddenBottomConstraint = self.resultsTableView.bottomAnchor.constraint(equalTo: self.view.topAnchor)
+        self.resultsHiddenBottomConstraint.isActive = true
         
         if #available(iOS 11.0, *) {
             let modernSearch = ModernSearchController(delegate: self)
@@ -60,8 +60,8 @@ public class LiveSearchResultsController : UIViewController, SearchControllerDel
             self.resultsPresented = true
             self.view.bringSubviewToFront(self.resultsTableView)
             
-            self.hiddenStateBottomConstraint.isActive = false
-            self.openedStateBottomConstraint.isActive = true
+            self.resultsHiddenBottomConstraint.isActive = false
+            self.resultsOpenedBottomConstraint.isActive = true
             
             self.animateResultsTableChange()
         }
@@ -72,8 +72,8 @@ public class LiveSearchResultsController : UIViewController, SearchControllerDel
         if self.resultsPresented {
             self.resultsPresented = false
             
-            self.openedStateBottomConstraint.isActive = false
-            self.hiddenStateBottomConstraint.isActive = true
+            self.resultsOpenedBottomConstraint.isActive = false
+            self.resultsHiddenBottomConstraint.isActive = true
             
             self.animateResultsTableChange()
         }

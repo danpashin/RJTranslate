@@ -48,12 +48,12 @@ class TranslationDetailView: UIView, GradientImageRendererDelegate {
         self.addSubview(self.titleLabel)
         
         self.subtitleLabel.font = UIFont.preferredFont(forTextStyle: .title3)
-        self.subtitleLabel.textColor = ColorScheme.default.textDetail
+        self.subtitleLabel.textColor = ColorScheme.default.subtitleLabel
         self.addSubview(self.subtitleLabel)
         
         self.installButton.addObserver(self, forKeyPath: "bounds", options: .new, context: nil)
-        self.installButton.setTitleColor(ColorScheme.default.textWhitePrimary, for: .normal)
-        self.installButton.setTitleColor(ColorScheme.default.textWhiteDetail, for: .selected)
+        self.installButton.setTitleColor(ColorScheme.default.gradientButtonTitleNormal, for: .normal)
+        self.installButton.setTitleColor(ColorScheme.default.gradientButtonTitleSelected, for: .selected)
         self.installButton.setTitle(NSLocalizedString("Translation.Install", comment: ""), for: .normal)
         self.addSubview(self.installButton)
         

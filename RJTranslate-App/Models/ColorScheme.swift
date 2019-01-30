@@ -12,32 +12,47 @@ struct ColorScheme {
     
     public static let `default`: ColorScheme = ColorScheme()
     
+    /// Стиль статус бара
+    public let statusBarStyle = UIStatusBarStyle.default
     
     /// Основной цвет приложения.
-    public private(set) var accentMain = UIColor(r: 95.0, g: 111.0, b: 237.0)
+    public let accentMain = UIColor(r: 95.0, g: 111.0, b: 237.0)
     
     /// Дополнительный цвет приложения.
-    public private(set) var accentSecondary = UIColor(r: 117.0, g: 133.0, b: 220.0)
+    public let accentSecondary = UIColor(r: 117.0, g: 133.0, b: 220.0)
     
     /// Оттенок бара навигации.
-    public private(set) var headerLabel = UIColor(white: 0.0, alpha: 1.0)
+    public let navTint = UIColor(r: 95.0, g: 111.0, b: 237.0)
+    
+    /// Фон бара навигации.
+    public let navBackground = UIColor(r: 255.0, g: 255.0, b: 255.0)
+    
+    /// Оттенок таббара.
+    public let tabbarTint = UIColor(r: 95.0, g: 111.0, b: 237.0)
+    
+    /// Фон таббара.
+    public let tabbarBackground = UIColor(r: 255.0, g: 255.0, b: 255.0)
+    
+    /// Цвет тени таббара.
+    public let tabbarShadow = UIColor(r: 0.0, g: 0.0, b: 0.0, a: 25.5)
+    
+    
     
     /// Цвет текста заголовков.
-    public private(set) var navTint = UIColor(r: 95.0, g: 111.0, b: 237.0)
+    public let titleLabel = UIColor(r: 0.0, g: 0.0, b: 0.0)
     
-    /// Цвет основных подписей.
-    public private(set) var textPrimary = UIColor(white: 0.05, alpha: 1.0)
+    /// Цвет текста подзаголовков.
+    public let subtitleLabel = UIColor(r: 180.0, g: 180.0, b: 180.0)
     
-    public private(set) var textWhitePrimary = UIColor(white: 1.0, alpha: 1.0)
+    /// Цвет градиентных кнопок в обычном состоянии.
+    public let gradientButtonTitleNormal = UIColor(r: 255.0, g: 255.0, b: 255.0)
     
-    public private(set) var textWhiteDetail = UIColor(white: 0.8, alpha: 1.0)
-    
-    /// Цвет детальных подписей.
-    public private(set) var textDetail = UIColor(white: 0.75, alpha: 1.0)
+    /// Цвет градиентных кнопок в нажатом состоянии.
+    public let gradientButtonTitleSelected = UIColor(r: 230.0, g: 230.0, b: 230.0)
     
     /// Цвет текста заголовков.
-    public private(set) var switchOnTint = UIColor(r: 95.0, g: 111.0, b: 237.0)
+    public let switchOnTint = UIColor(r: 95.0, g: 111.0, b: 237.0)
     
     /// Цвет фона.
-    public private(set) var background = UIColor(r: 240.0, g: 241.0, b: 244.0)
+    public let background = UIColor(r: 240.0, g: 241.0, b: 244.0)
 }

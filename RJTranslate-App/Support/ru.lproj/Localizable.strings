@@ -17,8 +17,8 @@
 "failed_to_update" = "Не удалось выполнить обновление";
 
 // Поиск
-"cannot_find_any_results" = "К сожалению, по вашему запросу ничего не найдено";
-"change_search_request_and_try_again" = "Измените поисковой запрос и попробуйте снова";
+"Search.Noresults.Title" = "По вашему запросу ничего не найдено";
+"Search.Noresults.Subtitle" = "Измените поисковой запрос и попробуйте снова";
 "cancel" = "Отменить";
 "search" = "Поиск";
 

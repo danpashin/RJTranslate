@@ -17,8 +17,8 @@
 "failed_to_update" = "Update failed.";
 
 // Поиск
-"cannot_find_any_results" = "Unfortunately, we can't find anything";
-"change_search_request_and_try_again" = "Change your search and try again";
+"Search.Noresults.Title" = "Unfortunately, we can't find anything";
+"Search.Noresults.Subtitle" = "Change your search and try again";
 "cancel" = "Cancel";
 "search" = "Search";
 

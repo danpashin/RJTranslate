@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class TranslationDetailController: SimpleController {
+public class TranslationDetailController: SimpleViewController {
     
     public private(set) var translationModel: RJTApplicationModel? {
         didSet {

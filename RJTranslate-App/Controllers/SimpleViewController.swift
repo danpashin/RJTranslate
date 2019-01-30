@@ -1,5 +1,5 @@
 //
-//  SimpleController.swift
+//  SimpleViewController.swift
 //  RJTranslate-App
 //
 //  Created by Даниил on 29/01/2019.
@@ -8,10 +8,14 @@
 
 import Foundation
 
-public class SimpleController: UIViewController {
+public class SimpleViewController: UIViewController {
     
     override public func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = ColorScheme.default.background
+    }
+    
+    override public var preferredStatusBarStyle: UIStatusBarStyle {
+        return ColorScheme.default.statusBarStyle
     }
 }

@@ -77,7 +77,7 @@ class AppCollectionEmptySource: NSObject, DZNEmptyDataSetSource, DZNEmptyDataSet
         
         switch self.type {
         case .noSearchResults:
-            titleString = NSLocalizedString("cannot_find_any_results", comment: "")
+            titleString = NSLocalizedString("Search.Noresults.Title", comment: "This label shows when there are no results for the search")
             break
         case .noData:
             titleString = NSLocalizedString("no_translations_downloaded", comment: "")
@@ -86,8 +86,8 @@ class AppCollectionEmptySource: NSObject, DZNEmptyDataSetSource, DZNEmptyDataSet
         }
         
         let attributes = [
-            NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: CGFloat(UIFont.labelFontSize * 1.5)),
-            NSAttributedString.Key.foregroundColor: ColorScheme.default.headerLabel
+            NSAttributedString.Key.font: UIFont.systemFont(ofSize: UIFont.labelFontSize * 1.5, weight: .heavy),
+            NSAttributedString.Key.foregroundColor: ColorScheme.default.titleLabel
         ]
         
         return NSAttributedString(string: titleString, attributes: attributes)
@@ -98,7 +98,7 @@ class AppCollectionEmptySource: NSObject, DZNEmptyDataSetSource, DZNEmptyDataSet
         
         switch self.type {
         case .noSearchResults:
-            descriptionString = NSLocalizedString("change_search_request_and_try_again", comment: "")
+            descriptionString = NSLocalizedString("Search.Noresults.Subtitle", comment: "This sublabel shows when there are no results for the search.")
             break
         case .noData:
             descriptionString = NSLocalizedString("tap_button_to_download_available", comment: "")
@@ -109,8 +109,8 @@ class AppCollectionEmptySource: NSObject, DZNEmptyDataSetSource, DZNEmptyDataSet
         }
         
         let attributes = [
-            NSAttributedString.Key.font: UIFont.systemFont(ofSize: UIFont.labelFontSize),
-            NSAttributedString.Key.foregroundColor: UIColor.gray
+            NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .title3),
+            NSAttributedString.Key.foregroundColor: ColorScheme.default.subtitleLabel
         ]
         
         return NSAttributedString(string: descriptionString, attributes: attributes)
@@ -123,7 +123,7 @@ class AppCollectionEmptySource: NSObject, DZNEmptyDataSetSource, DZNEmptyDataSet
         
         let attributes = [
             NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .title3),
-            NSAttributedString.Key.foregroundColor: UIColor.white
+            NSAttributedString.Key.foregroundColor: ColorScheme.default.gradientButtonTitleNormal
         ]
         
         let title = NSLocalizedString("download", comment: "")
