@@ -12,7 +12,7 @@ protocol AppCollectionDataSourceChange : class {
     func dataSourceChanged(from oldDataSource: AppCollectionDataSource?, to newDatasource: AppCollectionDataSource?)
 }
 
-class AppCollectionDataSource : CustomStringConvertible {
+public class AppCollectionDataSource : CustomStringConvertible {
     
     /// Массив содержит все модели переводов
     public private(set) var rawModels: [RJTApplicationModel]

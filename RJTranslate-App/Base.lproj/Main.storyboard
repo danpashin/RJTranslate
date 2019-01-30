@@ -88,7 +88,7 @@
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="24" id="n8x-sj-0lc"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>

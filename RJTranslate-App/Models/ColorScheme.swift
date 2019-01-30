@@ -38,11 +38,19 @@ struct ColorScheme {
     
     
     
+    /// Цвет разделителя.
+    public let separator = UIColor(r: 0.0, g: 0.0, b: 0.0, a: 25.5)
+    
+    
+    
     /// Цвет текста заголовков.
     public let titleLabel = UIColor(r: 0.0, g: 0.0, b: 0.0)
     
     /// Цвет текста подзаголовков.
     public let subtitleLabel = UIColor(r: 180.0, g: 180.0, b: 180.0)
+    
+    /// Цвет кнопок в обычном состоянии.
+    public let buttonTitle = UIColor(r: 95.0, g: 111.0, b: 237.0)
     
     /// Цвет градиентных кнопок в обычном состоянии.
     public let gradientButtonTitleNormal = UIColor(r: 255.0, g: 255.0, b: 255.0)

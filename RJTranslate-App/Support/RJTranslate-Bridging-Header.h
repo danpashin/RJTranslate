@@ -9,5 +9,6 @@
 #import "RJTDatabaseFacade.h"
 #import "RJTPosixWrapper.h"
 #import "UIImage+Private.h"
+#import "RJTDynamicInvoke.h"
 
 #import "RJTHud.h"

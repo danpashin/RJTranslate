@@ -8,7 +8,8 @@
 
 import Foundation
 
-public class TranslationDetailController: SimpleViewController {
+public class TranslationDetailController: SimpleViewController, TranslationDetailViewDelegate {
+    
     
     public private(set) var translationModel: RJTApplicationModel? {
         didSet {
@@ -57,6 +58,7 @@ public class TranslationDetailController: SimpleViewController {
     
     private func setupViews() {
         self.translationView = TranslationDetailView()
+        self.translationView?.delegate = self
         self.view.addSubview(self.translationView!)
         
         self.translationView!.translatesAutoresizingMaskIntoConstraints = false
@@ -150,5 +152,21 @@ public class TranslationDetailController: SimpleViewController {
 //                }
 //            }
         })
+    }
+    
+    
+    // MARK: -
+    // MARK: TranslationDetailViewDelegate
+    
+    public func detailViewRequestedDownloadingTranslation(_ detailView: TranslationDetailView) {
+        let database = UIApplication.applicationDelegate.defaultDatabase!
+        database.addAppModels([self.translationModel!]) {
+            database.forceSaveContext()
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: { 
+                let mainController = UIApplication.applicationDelegate.tabbarController.mainController
+                mainController.reloadTranslations()
+            })
+        }
     }
 }

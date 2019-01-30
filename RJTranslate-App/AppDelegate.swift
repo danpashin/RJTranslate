@@ -55,6 +55,16 @@ public class AppDelegate: UIResponder, UIApplicationDelegate, CrashlyticsDelegat
         AnalyticsConfiguration.shared().setAnalyticsCollectionEnabled(enable)
     }
     
+    @objc public func purgeDatabase() {
+        let database = UIApplication.applicationDelegate.defaultDatabase!
+        database.purge { 
+            database.forceSaveContext()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: { 
+                self.tabbarController.mainController.reloadTranslations()
+            })
+        }
+    }
+    
     // MARK: -
     // MARK: CrashlyticsDelegate
     // MARK: -

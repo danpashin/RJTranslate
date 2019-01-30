@@ -17,14 +17,14 @@ class PreferenceGroup: CustomStringConvertible {
     public private(set) var footerText: String?
     
     ///  Массив настроек в группе.
-    public private(set) var preferences: Array <Preference>
+    public private(set) var preferences: [Preference]
     
     var description: String {
-        return String(format: "<%@; title: '%@'; footerText: '%@'; prefs: %@>",
-                      NSStringFromClass(type(of: self)), title ?? "", footerText ?? "", preferences)
+        return String(format: "<%@; title: '%@'; footerText: '%@'; prefs: %@>", classInfo(of: self),
+                      self.title ?? "", self.footerText ?? "", self.preferences)
     }
     
-    public init(title: String?, footerText: String?,  preferences: Array <Preference> ) {
+    public init(title: String?, footerText: String?,  preferences: [Preference] ) {
         self.title = title
         self.footerText = footerText
         self.preferences = preferences

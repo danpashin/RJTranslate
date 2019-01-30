@@ -8,12 +8,7 @@
 
 import Foundation
 
-@objc protocol AppCollectionViewDelegateProtocol {
-
-    /// Вызывается, когда пользователь нажимает на кнопку загрузки переводов.
-    ///
-    /// - Parameter collectionView: Экземпляр коллекции.
-    func collectionViewRequestedDownloadingTranslations(_ collectionView: AppCollectionView)
+@objc public protocol AppCollectionViewDelegateProtocol {
     
     /// Вызывается, когда пользователь тапнул по ячейке с переводом.
     ///
@@ -21,17 +16,10 @@ import Foundation
     ///   - collectionView: Экземпляр коллекции.
     ///   - model: Экземпляр модели перевода в ячейке.
     func collectionView(_ collectionView: AppCollectionView, didUpdateModel model: RJTApplicationModel)
-    
-    /// Вызывается, когда ячейка с новым обновлением переводом появилась на экране.
-    ///
-    /// - Parameters:
-    ///   - collectionView: Экземпляр коллекции.
-    ///   - didLoadUpdateCell: Экземпляр ячейки с переводом.
-    @objc optional func collectionView(_ collectionView: AppCollectionView, didLoadUpdateCell: CollectionUpdateCell)
 }
 
 
-class AppCollectionView : UICollectionView {
+public class AppCollectionView : UICollectionView {
     
     /// Устанавливает кастомный делегат для объекта.
     weak public var customDelegate: AppCollectionViewDelegateProtocol?
@@ -63,7 +51,7 @@ class AppCollectionView : UICollectionView {
         self.emptyDataSourceObject = AppCollectionEmptySource(collectionView: self)
     }
     
-    override func awakeFromNib() {
+    override public func awakeFromNib() {
         super.awakeFromNib()
         self.updateLayoutToSize(UIScreen.main.bounds.size)
         self.backgroundColor = ColorScheme.default.background
@@ -79,17 +67,6 @@ class AppCollectionView : UICollectionView {
                 self.reloadSections(NSIndexSet(indexesIn: NSRange(location: 0, length: self.numberOfSections)) as IndexSet)
             }
             self.reloadEmptyDataSet()
-        }
-    }
-
-    
-    /// Показывает/скрывает ячейку с обновлением.
-    ///
-    /// - Parameter show: YES - показывает, NO - скрывает.
-    public func showUpdateCell(_ show: Bool) {
-        if (self.delegateObject?.showUpdateHeader != show) {
-            self.delegateObject?.showUpdateHeader = show;
-            self.reload()
         }
     }
     
@@ -117,7 +94,7 @@ class AppCollectionView : UICollectionView {
     
     
     @available(*, unavailable)
-    override func reloadData() {
+    override public func reloadData() {
         super.reloadData()
     }
     

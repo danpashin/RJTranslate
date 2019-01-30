@@ -85,7 +85,7 @@ static NSString *const kRJTForceLocalizeKey = @"Force";
     
     model.forceLocalize = [dictionary[kRJTForceLocalizeKey] boolValue];
     
-    NSMutableDictionary *translation = [NSMutableDictionary dictionary];
+    NSMutableDictionary <NSString *, NSString *> *translation = [NSMutableDictionary dictionary];
     if ([dictionary[kRJTTranslationsKey] isKindOfClass:[NSArray class]]) {
         for (NSDictionary *translatedLine in dictionary[kRJTTranslationsKey]) {
             NSString *original = translatedLine[@"key"];
@@ -95,8 +95,6 @@ static NSString *const kRJTForceLocalizeKey = @"Force";
             
             translation[original] = translated;
         }
-    } else {
-        translation = dictionary[kRJTTranslationsKey];
     }
     model.translation = translation;
     

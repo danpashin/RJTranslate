@@ -8,7 +8,7 @@
 
 import Foundation
 
-class AppCollectionModel {
+public class AppCollectionModel {
     
     /// Модел датасорс коллекции.
     public private(set) var currentDataSource: AppCollectionDataSource?

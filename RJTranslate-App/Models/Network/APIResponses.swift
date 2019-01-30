@@ -102,28 +102,3 @@ public extension API.TranslationSummary {
     }
 }
 
-
-extension API {
-    public struct TranslationServerResponse {
-        
-        public private(set) var translation: TranslationsUpdate?
-        public private(set) var error: API.SimpleError?
-        
-        init(json: [String : AnyHashable]?) {
-            
-            let errorDict = json!["error"] as? [String : AnyHashable]
-            if errorDict != nil {
-                let errorCode = errorDict!["code"] as? NSNumber
-                let errorDescription = errorDict!["description"] as? String ?? ""
-                self.error = API.SimpleError(code: errorCode?.intValue ?? 0, description: errorDescription)
-            } else {
-                if let translationDict = json!["translation"] as? [String : AnyHashable] {
-                    self.translation = TranslationsUpdate(dictionary: translationDict)
-                } else {
-                    self.error = API.SimpleError(code: -5, description: "Json parsing failed.")
-                }
-            }
-            
-        }
-    }
-}

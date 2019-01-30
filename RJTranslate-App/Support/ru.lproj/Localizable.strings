@@ -6,15 +6,9 @@
   Copyright © 2018 Даниил. All rights reserved.
 */
 
-"Translations.Installed.Title" = "Установленные";
-"available_translations" = "Доступные переводы";
-"translations_update_is_available" = "Доступно обновление переводов";
-"tap_to_download" = "Нажмите, чтобы загрузить";
-
-"please_wait" = "Пожалуйста, подождите";
-"updating_database..." = "Выполняем обновление базы данных...";
-"downloating_localization..." = "Загружаем файлы локализаций...";
-"failed_to_update" = "Не удалось выполнить обновление";
+"Translations.Tab.Installed.Title" = "Установленные";
+"Translations.NoInstalled.Title" = "Нет установленных переводов";
+"Translations.NoInstalled.Subtitle" = "Вы можете установить интересующие во вкладке Поиск";
 
 // Поиск
 "Search.Noresults.Title" = "По вашему запросу ничего не найдено";
@@ -22,18 +16,15 @@
 "cancel" = "Отменить";
 "search" = "Поиск";
 
-"no_translations_downloaded" = "Нет установленных переводов";
-"tap_button_to_download_available" = "Нажмите на кнопку ниже, чтобы выполнить установку доступных";
-"download" = "Загрузить";
-
 // Детальная инфа о локализации
 "Translation.Install" = "Установить";
 "Translation.Detail.Updated" = "Обновлено: %@";
 
 
-
 // Настройки
 "Preferences.Title" = "Настройки";
+
+"Settings.Database.Purge" = "Очистить базу данных (ОПАСНО)";
 
 "statistics" = "Статистика";
 "send_statistics" = "Отправлять статистику";

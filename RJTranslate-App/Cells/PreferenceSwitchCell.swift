@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class SwitchCell : UITableViewCell {
+class PreferenceSwitchCell : UITableViewCell {
     
     private var switchView = UISwitch()
     

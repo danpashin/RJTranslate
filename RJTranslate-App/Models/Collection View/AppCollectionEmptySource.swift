@@ -9,68 +9,31 @@
 import Foundation
 import DZNEmptyDataSet
 
-enum EmptyViewType : Int {
+public enum EmptyViewType : Int {
     case loading
     case noSearchResults
     case noData
 }
 
 
-class AppCollectionEmptySource: NSObject, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate, GradientImageRendererDelegate {
+class AppCollectionEmptySource: NSObject, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
     
     public private(set) weak var collectionView: AppCollectionView?
     
     public var type: EmptyViewType = .loading
     
-    private var imageRenderer: GradientImageRenderer!
-    
-    private var shouldReloadAfterRendering = false {
-        didSet {
-            if shouldReloadAfterRendering && !self.imageRenderer.isRendering {
-                self.imageRenderer.renderAllImages()
-            }
-        }
-    }
-    
     public init(collectionView: AppCollectionView) {
         super.init()
-        
-        let buttonSize = CGSize(width: UIScreen.main.bounds.width, height: CGFloat(44.0))
-        self.imageRenderer = GradientImageRenderer(size: buttonSize);
-        self.imageRenderer.delegate = self
         
         self.collectionView = collectionView
         collectionView.emptyDataSetSource = self
         collectionView.emptyDataSetDelegate = self
     }
     
-    
-    // MARK: -
-    // MARK: GradientImageRendererDelegate
-    
-    public func renderer(_ renderer: GradientImageRenderer, didEndRenderingNormalImage normalImage: UIImage?, selectedImage: UIImage?) {
-        
-        if self.shouldReloadAfterRendering {
-            if normalImage == nil || selectedImage == nil {
-                return
-            }
-            
-            self.collectionView?.reloadEmptyDataSet()
-        }
-    }
-    
     // MARK: -
     
     
     // MARK: DZNEmptyDataSetSource
-    
-    public func image(forEmptyDataSet scrollView: UIScrollView!) -> UIImage! {
-        if self.type == .noData {
-            return UIImage(named: "translationIcon")
-        }
-        
-        return nil
-    }
     
     public func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
         var titleString = ""
@@ -80,7 +43,7 @@ class AppCollectionEmptySource: NSObject, DZNEmptyDataSetSource, DZNEmptyDataSet
             titleString = NSLocalizedString("Search.Noresults.Title", comment: "This label shows when there are no results for the search")
             break
         case .noData:
-            titleString = NSLocalizedString("no_translations_downloaded", comment: "")
+            titleString = NSLocalizedString("Translations.NoInstalled.Title", comment: "")
             break
         default: break
         }
@@ -101,7 +64,7 @@ class AppCollectionEmptySource: NSObject, DZNEmptyDataSetSource, DZNEmptyDataSet
             descriptionString = NSLocalizedString("Search.Noresults.Subtitle", comment: "This sublabel shows when there are no results for the search.")
             break
         case .noData:
-            descriptionString = NSLocalizedString("tap_button_to_download_available", comment: "")
+            descriptionString = NSLocalizedString("Translations.NoInstalled.Subtitle", comment: "")
             break
         case .loading:
             descriptionString = NSLocalizedString("loading_data...", comment: "")
@@ -116,40 +79,11 @@ class AppCollectionEmptySource: NSObject, DZNEmptyDataSetSource, DZNEmptyDataSet
         return NSAttributedString(string: descriptionString, attributes: attributes)
     }
     
-    public func buttonTitle(forEmptyDataSet scrollView: UIScrollView!, for state: UIControl.State) -> NSAttributedString! {
-        if self.type != .noData {
-            return nil
-        }
-        
-        let attributes = [
-            NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .title3),
-            NSAttributedString.Key.foregroundColor: ColorScheme.default.gradientButtonTitleNormal
-        ]
-        
-        let title = NSLocalizedString("download", comment: "")
-        return NSAttributedString(string: title, attributes: attributes)
-    }
-    
-    public func buttonBackgroundImage(forEmptyDataSet scrollView: UIScrollView!, for state: UIControl.State) -> UIImage! {
-        let image = (state == .normal) ? self.imageRenderer.normalImage : self.imageRenderer.selectedImage
-        if image == nil {
-            self.shouldReloadAfterRendering = true
-        }
-        
-        return image
-    }
-    
     public func spaceHeight(forEmptyDataSet scrollView: UIScrollView!) -> CGFloat {
-        return CGFloat(16.0)
+        return 16.0
     }
     
-    
-    // MARK: -
-    // MARK: DZNEmptyDataSetDelegate
-    
-    public func emptyDataSet(_ scrollView: UIScrollView!, didTap button: UIButton!) {
-        if self.type == .noData {
-            self.collectionView?.customDelegate?.collectionViewRequestedDownloadingTranslations(self.collectionView!)
-        }
+    public func backgroundColor(forEmptyDataSet scrollView: UIScrollView!) -> UIColor! {
+        return UIColor.white
     }
 }

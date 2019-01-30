@@ -8,7 +8,7 @@
 
 import Foundation
 
-class AppCollectionLayout : UICollectionViewFlowLayout, AppCollectionDataSourceChange {
+public class AppCollectionLayout : UICollectionViewFlowLayout, AppCollectionDataSourceChange {
     
     private var oldDataSource: AppCollectionDataSource?
     private weak var currentDataSource: AppCollectionDataSource?
@@ -46,9 +46,9 @@ class AppCollectionLayout : UICollectionViewFlowLayout, AppCollectionDataSourceC
         let attributes = super.initialLayoutAttributesForAppearingItem(at: itemIndexPath)
         
         var oldItemsCount = 0
-        if itemIndexPath.section == 1 {
+        if itemIndexPath.section == 0 {
             oldItemsCount = self.oldDataSource?.installed.count ?? 0
-        } else if itemIndexPath.section == 2 {
+        } else if itemIndexPath.section == 1 {
             oldItemsCount = self.oldDataSource?.uninstalled.count ?? 0
         }
         
@@ -63,9 +63,9 @@ class AppCollectionLayout : UICollectionViewFlowLayout, AppCollectionDataSourceC
         let attributes = super.finalLayoutAttributesForDisappearingItem(at: itemIndexPath)
         
         var newItemsCount = 0
-        if itemIndexPath.section == 1 {
+        if itemIndexPath.section == 0 {
             newItemsCount = self.oldDataSource?.installed.count ?? 0
-        } else if itemIndexPath.section == 2 {
+        } else if itemIndexPath.section == 1 {
             newItemsCount = self.oldDataSource?.uninstalled.count ?? 0
         }
         

@@ -11,7 +11,6 @@ import Foundation
 class HTTPClient {
     
     public static let shared: HTTPClient = HTTPClient()
-    public static let apiURL: URLTransformable = URL(string: "https://api.rejail.ru/translation.php")!
     
     public private(set) var session: URLSession!
     private let configuration = URLSessionConfiguration.ephemeral

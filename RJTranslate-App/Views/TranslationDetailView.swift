@@ -8,8 +8,12 @@
 
 import Foundation
 
+public protocol TranslationDetailViewDelegate: class {
+    func detailViewRequestedDownloadingTranslation(_ detailView: TranslationDetailView)
+}
+
 /// Используется для отображения детальной информации о переводе.
-class TranslationDetailView: UIView, GradientImageRendererDelegate {
+public class TranslationDetailView: UIView, GradientImageRendererDelegate {
     
     /// Лейбл с названием перевода.
     public let titleLabel = UILabel()
@@ -23,6 +27,8 @@ class TranslationDetailView: UIView, GradientImageRendererDelegate {
     public let installButton = UIButton()
     
     private var gradientRenderer: GradientImageRenderer?
+    
+    public weak var delegate: TranslationDetailViewDelegate?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -55,9 +61,14 @@ class TranslationDetailView: UIView, GradientImageRendererDelegate {
         self.installButton.setTitleColor(ColorScheme.default.gradientButtonTitleNormal, for: .normal)
         self.installButton.setTitleColor(ColorScheme.default.gradientButtonTitleSelected, for: .selected)
         self.installButton.setTitle(NSLocalizedString("Translation.Install", comment: ""), for: .normal)
+        self.installButton.addTarget(self, action: #selector(self.installButtonTappped), for: .touchUpInside)
         self.addSubview(self.installButton)
         
         self.setupConstraints()
+    }
+    
+    @objc public func installButtonTappped() {
+        self.delegate?.detailViewRequestedDownloadingTranslation(self)
     }
     
     private func setupConstraints() {  
@@ -102,7 +113,7 @@ class TranslationDetailView: UIView, GradientImageRendererDelegate {
         self.installButton.setBackgroundImage(selectedImage, for: .selected)
     }
     
-    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+    override public func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         if let button = object as? UIButton, button == self.installButton, keyPath == "bounds" {
             self.renderButtonBackground()
         }

@@ -26,16 +26,15 @@ class CollectionHeaderLabel : UICollectionReusableView {
         
         self.addSubview(self.label)
         self.label.textColor = ColorScheme.default.titleLabel
-        self.label.font = UIFont.systemFont(ofSize: UIFont.labelFontSize + 4.0,
-                                            weight: .bold)
+        self.label.font = UIFont.systemFont(ofSize: UIFont.labelFontSize,
+                                            weight: .semibold)
         
         self.addSubview(self.separatorView)
-        self.separatorView.layer.cornerRadius = 1.5
-        self.separatorView.backgroundColor = UIColor(red: 228/255.0, green: 228/255.0, blue: 230/255.0, alpha: 1.0)
+        self.separatorView.backgroundColor = ColorScheme.default.separator
         
         self.separatorView.translatesAutoresizingMaskIntoConstraints = false
-        self.separatorView.heightAnchor.constraint(equalToConstant: 3.0).isActive = true
-        self.separatorView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -3.0).isActive = true
+        self.separatorView.heightAnchor.constraint(equalToConstant: 1.0).isActive = true
+        self.separatorView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -1.0).isActive = true
         self.separatorView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 8.0).isActive = true
         self.separatorView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -8.0).isActive = true
         

@@ -26,6 +26,7 @@ class PreferencesTableModel: NSObject, UITableViewDelegate, UITableViewDataSourc
         
         self.createPreferences()
         
+        tableView.allowsSelection = true
         tableView.delegate = self
         tableView.dataSource = self
     }
@@ -37,12 +38,20 @@ class PreferencesTableModel: NSObject, UITableViewDelegate, UITableViewDataSourc
         let sendCrashPrefs = SwitchPreference(key: "send_crashlogs", defaultValue: NSNumber(value: true),
                                               title: NSLocalizedString("send_crashlogs", comment: ""))
         
+        
+        let purgeDatabase = ButtonPreference(title:NSLocalizedString("Settings.Database.Purge", comment: ""),
+                                             target: UIApplication.applicationDelegate, 
+                                             action: #selector(UIApplication.applicationDelegate.purgeDatabase), 
+                                             style: .destructive)
+        
         self.groups = [
             createGroup(title: "statistics", footer: "send_statistics_footer",
                         preference: sendStatsPrefs as Preference),
             
             createGroup(title: nil, footer: "send_crashlogs_footer",
-                        preference: sendCrashPrefs as Preference)
+                        preference: sendCrashPrefs as Preference),
+            
+            createGroup(title: nil, footer: nil, preference: purgeDatabase)
         ]
     }
     
@@ -60,37 +69,58 @@ class PreferencesTableModel: NSObject, UITableViewDelegate, UITableViewDataSourc
     // MARK: delegates
     // MARK: -
     
-    func numberOfSections(in tableView: UITableView) -> Int {
+    public func numberOfSections(in tableView: UITableView) -> Int {
         return self.groups.count
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.groups[section].preferences.count
     }
 
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let preference = self.groups[indexPath.section].preferences[indexPath.row]
         
         var cell: UITableViewCell? = nil
+        
         if preference.category == .text {
-            cell = UITableViewCell(style: .value1, reuseIdentifier: "staticTextCell")
+            cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
         } else if preference.category == .switch {
-            cell = SwitchCell.init(model: preference as! SwitchPreference, reuseIdentifier: "switchCell")
+            cell = PreferenceSwitchCell(model: preference as! SwitchPreference, reuseIdentifier: nil)
+        } else if preference.category == .button {
+            cell = PreferenceButttonCell(model: preference as! ButtonPreference, reuseIdentifier: nil)
         }
         
-        cell?.textLabel?.text = preference.title
-        return cell ?? UITableViewCell.init()
+        if cell == nil { cell = UITableViewCell() }
+        cell!.textLabel?.text = preference.title
+        
+        return cell!
     }
     
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    public func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return self.groups[section].title
     }
     
-    func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
+    public func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
         return groups[section].footerText
     }
     
-    func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
+    public func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
+        let preference = self.groups[indexPath.section].preferences[indexPath.row]
+        if preference is ButtonPreference {
+            return true
+        }
+        
         return false
+    }
+    
+    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        let preference = self.groups[indexPath.section].preferences[indexPath.row]
+        
+        if preference is ButtonPreference {
+            let buttonPreference = preference as! ButtonPreference
+            buttonPreference.invokeAction()
+        }
     }
 }

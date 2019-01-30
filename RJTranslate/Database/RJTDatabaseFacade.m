@@ -29,6 +29,11 @@
     return self;
 }
 
+- (void)forceSaveContext
+{
+    [self.database saveContext];
+}
+
 
 - (NSSortDescriptor *)caseInsensetiveSortDescriptorWithKey:(NSString *)key ascending:(BOOL)ascending
 {
@@ -103,6 +108,46 @@
     }];
 }
 
+- (void)addAppModels:(NSArray <RJTApplicationModel *> *)appModels completion:(void(^_Nullable)(void))completion
+{
+    [self.database performBackgroundTask:^(NSManagedObjectContext * _Nonnull context) {
+        if (self.database.readOnly) {
+            RJTErrorLog(nil, @"Persistent store is read-only. Skipping inserting.");
+            
+            if (completion)
+                completion();
+            
+            return;
+        }
+        
+        for (RJTApplicationModel *appModel in appModels) {
+            NSFetchRequest *fetchRequest = [RJTApplicationEntity fetchRequest];
+            fetchRequest.predicate = [NSPredicate predicateWithFormat:@"displayedName == %@", appModel.displayedName];
+            NSUInteger count = [context countForFetchRequest:fetchRequest error:nil];
+            if (count == 0) {
+                RJTApplicationEntity *appObject = [RJTApplicationEntity insertIntoContext:context];
+                [appObject copyPropertiesFrom:appModel];
+            }
+        }
+        
+        if (completion)
+            completion();
+    }];
+}
+
+
+- (void)purgeWithCompletion:( void(^_Nullable)(void))completion
+{
+    [self.database performBackgroundTask:^(NSManagedObjectContext * _Nonnull context) {
+        NSFetchRequest *fetchRequest = [RJTApplicationEntity fetchRequest];
+        NSBatchDeleteRequest *deleteRequest = [[NSBatchDeleteRequest alloc] initWithFetchRequest:fetchRequest];
+        [context executeRequest:deleteRequest error:nil];
+        
+        if (completion)
+            completion();
+    }];
+}
+
 
 - (void)updateModel:(RJTApplicationModel *)appModel
 {
@@ -163,44 +208,6 @@
 {
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"bundleIdentifier BEGINSWITH[cd] %@ OR displayedName BEGINSWITH[cd] %@", text, text];
     [self fetchAppModelsWithPredicate:predicate completion:completion];
-}
-
-- (void)performFullDatabaseUpdateWithModels:(NSArray <RJTApplicationModel *> *)models
-                                 completion:(void(^ _Nullable)(void))completion
-{
-    [self fetchAllAppModelsWithCompletion:^(NSArray<RJTApplicationModel *> * _Nonnull allModels) {
-        for (RJTApplicationModel *model in models) {
-            dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
-            if ([allModels containsObject:model]) {
-                NSUInteger index = [allModels indexOfObject:model];
-                if (index >= 0)
-                    model.enableTranslation = allModels[index].enableTranslation;
-                
-                [self updateModel:model saveContext:NO];
-                dispatch_semaphore_signal(semaphore);
-            } else {
-                [self insertAppModels:@[model] completion:^{
-                    dispatch_semaphore_signal(semaphore);
-                }];
-            }
-            dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
-        }
-        
-        for (RJTApplicationModel *model in allModels) {
-            if (![models containsObject:model]) {
-                dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
-                [self removeModel:model completion:^(NSError * _Nullable error) {
-                    dispatch_semaphore_signal(semaphore);
-                }];
-                dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
-            }
-        }
-        
-        [self.database saveContext];
-        
-        if (completion)
-            completion();
-    }];
 }
 
 @end

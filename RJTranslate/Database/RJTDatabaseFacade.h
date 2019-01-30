@@ -63,6 +63,10 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (void)removeModel:(RJTApplicationModel *)appModel completion:(void(^ _Nullable)(NSError * _Nullable error))completion;
 
+- (void)addAppModels:(NSArray <RJTApplicationModel *> *)appModels completion:(void(^_Nullable)(void))completion;
+
+- (void)purgeWithCompletion:( void(^_Nullable)(void))completion;
+
 
 
 /**
@@ -74,14 +78,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)performModelsSearchWithText:(NSString *)text
                          completion:(void(^)(NSArray<RJTApplicationModel *> * _Nonnull models))completion;
 
-/**
- Выполняет полное обновление моделей в базе.
- 
- @param models Массив актуальных моделей. Если модель есть в базе, но нет в массиве, выполняет удаление модели из базы.
- @param completion Блок, который вызывается по завершении операции.
- */
-- (void)performFullDatabaseUpdateWithModels:(NSArray <RJTApplicationModel *> *)models
-                                 completion:(void(^ _Nullable)(void))completion;
+- (void)forceSaveContext;
 
 
 @end
