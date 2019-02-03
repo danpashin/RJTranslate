@@ -8,10 +8,10 @@
 
 import Foundation
 
-public class Tabbar: UITabBar {
-    public let shadowView = UIView()
+class Tabbar: UITabBar {
+     let shadowView = UIView()
     
-    override public func awakeFromNib() {
+    override func awakeFromNib() {
         super.awakeFromNib()
         
         self.itemPositioning = .fill
@@ -23,7 +23,7 @@ public class Tabbar: UITabBar {
         self.addShadow()
     }
     
-    private func addShadow() {
+   private func addShadow() {
         self.shadowView.backgroundColor = ColorScheme.default.tabbarShadow
         self.shadowView.translatesAutoresizingMaskIntoConstraints = false
         
@@ -35,7 +35,7 @@ public class Tabbar: UITabBar {
         self.shadowView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
     }
     
-    public func hideShadow(animated: Bool) {
+    func hideShadow(animated: Bool) {
         if animated {
             UIView.animate(withDuration: 0.2, delay: 0.0, options: [.allowAnimatedContent, .allowUserInteraction], animations: { 
                 self.shadowView.alpha = 0.0
@@ -45,7 +45,7 @@ public class Tabbar: UITabBar {
         }
     }
     
-    public func showShadow(animated: Bool) {
+    func showShadow(animated: Bool) {
         if animated {
             UIView.animate(withDuration: 0.2, delay: 0.0, options: [.allowAnimatedContent, .allowUserInteraction], animations: { 
                 self.shadowView.alpha = 1.0

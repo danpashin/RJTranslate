@@ -11,12 +11,12 @@ import Foundation
 class CollectionUpdateCell: UICollectionViewCell {
     
     /// Основной лейбл хэдера.
-    public private(set) var textLabel = UILabel()
+    private(set) var textLabel = UILabel()
     
     /// Дополнительный лейбл.
-    public private(set) var detailedTextLabel = UILabel()
+    private(set) var detailedTextLabel = UILabel()
     
-    override public func awakeFromNib() {
+    override func awakeFromNib() {
         super.awakeFromNib()
         
         self.layer.cornerRadius = 8.0

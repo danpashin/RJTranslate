@@ -8,10 +8,10 @@
 
 import Foundation
 
-public class SearchResultCell: UITableViewCell {
+class SearchResultCell: UITableViewCell {
     
     /// Результат поиска локализации.
-    public var result: API.TranslationSummary? {
+     var result: API.TranslationSummary? {
         didSet {
             self.updateName()
         }
@@ -21,30 +21,30 @@ public class SearchResultCell: UITableViewCell {
         super.init(coder: aDecoder)
     }
     
-    public override func awakeFromNib() {
+     override func awakeFromNib() {
         super.awakeFromNib()
         self.commonInit()
     }
     
-    public override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.commonInit()
     }
     
-    private func commonInit() {
+   private func commonInit() {
         self.imageView?.image = UIImage(named: "search_normal_20")?.withRenderingMode(.alwaysTemplate)
         self.imageView?.tintColor = .lightGray
         
         self.textLabel?.font = UIFont.preferredFont(forTextStyle: .headline)
     }
     
-    public override func prepareForReuse() {
+     override func prepareForReuse() {
         super.prepareForReuse()
         
         self.textLabel?.text = nil
     }
     
-    private func updateName() {
+   private func updateName() {
         if self.result != nil {
             let defaultAttributes = [NSAttributedString.Key.foregroundColor: UIColor.lightGray]
             let attributedText = NSMutableAttributedString(string: result!.name, attributes: defaultAttributes)

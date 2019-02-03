@@ -22,17 +22,17 @@ enum ImageCacheType {
 
 class ImageCache {
     
-    public static let shared = ImageCache()
+     static let shared = ImageCache()
     
     /// Тип кэша. В памяти, дисковый или комбинированный.
-    public private(set) var type: ImageCacheType
+    private(set) var type: ImageCacheType
     
-    private let memoryCache = NSCache<NSString, UIImage>()
+   private let memoryCache = NSCache<NSString, UIImage>()
     
     /// Директория для кэшировния объектов на диск
-    private var cacheDirectory: String
+   private var cacheDirectory: String
     
-    public init(type: ImageCacheType = .disk) {
+     init(type: ImageCacheType = .disk) {
         self.type = type
         
         let cacheDirectory = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true).first
@@ -43,7 +43,7 @@ class ImageCache {
 
     }
     
-    private func createCacheDirectory() {
+   private func createCacheDirectory() {
         if !FileManager.default.fileExists(atPath: self.cacheDirectory) {
             try? FileManager.default.createDirectory(atPath: self.cacheDirectory, 
                                                      withIntermediateDirectories: true, attributes: nil)
@@ -55,7 +55,7 @@ class ImageCache {
     /// - Parameters:
     ///   - image: Изображение для сохранения.
     ///   - key: Уникальный ключ, идентифицирующий данное изображение.
-    public func save(image: UIImage?, forKey key: String) {
+    func save(image: UIImage?, forKey key: String) {
         if self.type == .memory || self.type == .memoryDisk {
             if image != nil {
                 self.memoryCache.setObject(image!, forKey: key as NSString)
@@ -81,7 +81,7 @@ class ImageCache {
     ///
     /// - Parameter key: Уникальный ключ, идентифицирующий данное изображение.
     /// - Returns: Полученное изображение. Может быть nil.
-    public func image(key: String) -> UIImage? {
+    func image(key: String) -> UIImage? {
         if type == .disk {
             if let image = self.memoryCache.object(forKey: key as NSString) {
                 return image
@@ -108,7 +108,7 @@ class ImageCache {
     /// Подсчитывает размер кэша на диске.
     ///
     /// - Parameter completion: Вызывается в конце подсчета и передает размер кэша в байтах.
-    public func countSize(completion: @escaping (_ cacheSize: UInt) -> Void) {
+    func countSize(completion: @escaping (_ cacheSize: UInt) -> Void) {
         DispatchQueue.global(qos: .default).async {
             let fileManager = FileManager.default
             
@@ -149,7 +149,7 @@ class ImageCache {
     }
     
     /// Выполняет полную очистку кэша в памяти и на диске.
-    public func flush() {
+    func flush() {
         DispatchQueue.global(qos: .default).async {
             self.memoryCache.removeAllObjects()
             try? FileManager.default.removeItem(atPath: self.cacheDirectory)

@@ -11,7 +11,7 @@ import Foundation
 class TickView : UIView {
    
     @IBInspectable
-    public var isEnabled: Bool {
+     var isEnabled: Bool {
         get { return self._isEnabled }
         
         set {
@@ -19,13 +19,13 @@ class TickView : UIView {
         }
     }
     
-    private var _isEnabled = false
+   private var _isEnabled = false
     
-    override public static var layerClass: AnyClass {
+    override static var layerClass: AnyClass {
         return CAShapeLayer.self
     }
     
-    override public var layer: CAShapeLayer {
+    override var layer: CAShapeLayer {
         return super.layer as! CAShapeLayer
     }
     
@@ -43,12 +43,12 @@ class TickView : UIView {
         super.init(coder: aDecoder)
     }
     
-    override public func awakeFromNib() {
+    override func awakeFromNib() {
         super.awakeFromNib()
         self.commonInit()
     }
     
-    private func commonInit() {
+   private func commonInit() {
         self.layer.strokeColor = ColorScheme.default.accentSecondary.cgColor
         self.layer.fillColor = UIColor.clear.cgColor
         self.layer.strokeEnd = 0.0
@@ -64,7 +64,7 @@ class TickView : UIView {
         self.layer.path = mutableTickPath
     }
     
-    public func setEnabled(_ enabled: Bool, animated: Bool) {
+    func setEnabled(_ enabled: Bool, animated: Bool) {
         if animated {
             let tickAnimation = CABasicAnimation(keyPath: "strokeEnd")
             tickAnimation.fromValue = self._isEnabled ? 1.0 : 0.0

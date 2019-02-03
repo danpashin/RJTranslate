@@ -10,11 +10,11 @@ import Foundation
 
 class GradientView: UIView {
     
-    override public static var layerClass: AnyClass {
+    override static var layerClass: AnyClass {
         return GradientLayer.self
     }
     
-    override public var layer: GradientLayer {
+    override var layer: GradientLayer {
         return super.layer as! GradientLayer
     }
 }

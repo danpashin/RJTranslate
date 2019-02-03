@@ -10,13 +10,13 @@ import Foundation
 
 class ButtonedSearchBar: UIView {
     
-    public weak var delegate: UISearchBarDelegate? {
+     weak var delegate: UISearchBarDelegate? {
         didSet {
             self.searchBar.delegate = self.delegate
         }
     }
     
-    public var showCancelButton = false {
+     var showCancelButton = false {
         didSet {
             UIView.animate(withDuration: 0.50, delay: 0.0, usingSpringWithDamping: 0.7, initialSpringVelocity: 1, options: [], animations: {
                 self.cancelButton.isHidden = !self.showCancelButton
@@ -24,11 +24,11 @@ class ButtonedSearchBar: UIView {
         }
     }
     
-    private let stackView = UIStackView()
-    private let searchBar = UISearchBar()
-    private let cancelButton = UIButton()
+   private let stackView = UIStackView()
+   private let searchBar = UISearchBar()
+   private let cancelButton = UIButton()
     
-    public override init(frame: CGRect) {
+     override init(frame: CGRect) {
         super.init(frame: frame)
         self.commonInit()
     }
@@ -38,7 +38,7 @@ class ButtonedSearchBar: UIView {
         self.commonInit()
     }
     
-    private func commonInit() {
+   private func commonInit() {
         self.stackView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.stackView.axis = .horizontal
         self.stackView.spacing = 8.0
@@ -57,13 +57,13 @@ class ButtonedSearchBar: UIView {
         self.stackView.addArrangedSubview(self.cancelButton)
     }
     
-    override public func tintColorDidChange() {
+    override func tintColorDidChange() {
         super.tintColorDidChange()
         
         self.cancelButton.setTitleColor(self.tintColor, for: .normal)
     }
     
-    @objc public func endSearch() {
+    @objc  func endSearch() {
         self.searchBar.text = ""
         self.searchBar.resignFirstResponder()
         self.delegate?.searchBarCancelButtonClicked?(self.searchBar)

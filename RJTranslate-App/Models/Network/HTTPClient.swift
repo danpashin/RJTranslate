@@ -10,15 +10,15 @@ import Foundation
 
 class HTTPClient {
     
-    public static let shared: HTTPClient = HTTPClient()
+    static let shared: HTTPClient = HTTPClient()
     
-    public private(set) var session: URLSession!
-    private let configuration = URLSessionConfiguration.ephemeral
-    private var delegateObject: HTTPClientDelegateObject?
+   private(set) var session: URLSession!
+   private let configuration = URLSessionConfiguration.ephemeral
+   private var delegateObject: HTTPClientDelegateObject?
     
-    public private(set) var activeTasks : [Int: HTTPTask] = [:]
+    private(set) var activeTasks : [Int: HTTPTask] = [:]
     
-    private var defaultUserAgent: String {
+   private var defaultUserAgent: String {
         let device = UIDevice.current
         let systemName = device.systemName
         let systemVersion = device.systemVersion
@@ -33,7 +33,7 @@ class HTTPClient {
                       appVersion, deviceIdentifier, systemName, systemVersion, UIScreen.main.scale)
     }
     
-    public init() {
+     init() {
         self.configuration.allowsCellularAccess = true
         self.configuration.httpAdditionalHeaders = ["User-Agent": self.defaultUserAgent]
         
@@ -45,11 +45,11 @@ class HTTPClient {
     /// Выполняет удаление задания с указанным идентификатором
     ///
     /// - Parameter identifier: Идентификатор задания для удаления
-    public func removeTask(identifier: Int) {
+    func removeTask(identifier: Int) {
         self.activeTasks.removeValue(forKey: identifier)
     }
     
-    public func addTask(_ task: HTTPTask) {
+    func addTask(_ task: HTTPTask) {
         if task.sessionTask != nil {
             self.activeTasks[task.sessionTask!.taskIdentifier] = task
             task.sessionTask!.resume()
@@ -63,7 +63,7 @@ class HTTPClient {
     ///   - httpMethod: Метод запроса. По умолчанию, GET.
     ///   - arguments: Аргументы запроса. По умолчанию, пустой массив.
     /// - Returns: Возвращает объект запроса для дальнейшей работы.
-    public func download(_ url: URLTransformable,
+    func download(_ url: URLTransformable,
                          httpMethod: HTTPMethod = .get,
                          arguments:[String: AnyHashable] = [:]
         ) -> HTTPDownloadTask {
@@ -86,7 +86,7 @@ class HTTPClient {
     ///   - httpMethod: Метод запроса. По умолчанию, GET.
     ///   - arguments: Аргументы запроса. По умолчанию, пустой массив.
     /// - Returns: Возвращает объект запроса для дальнейшей работы.
-    public func json(_ url: URLTransformable,
+    func json(_ url: URLTransformable,
                      httpMethod: HTTPMethod = .get,
                      arguments:[String: AnyHashable] = [:]
         ) -> HTTPJSONTask {

@@ -10,7 +10,7 @@ import Foundation
 
 class GradientLayer: CAGradientLayer {
     
-    public override init() {
+     override init() {
         super.init()
         
         self.colors = [

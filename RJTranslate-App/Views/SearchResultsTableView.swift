@@ -8,12 +8,12 @@
 
 import Foundation
 
-public class SearchResultsTableView: UITableView {
+class SearchResultsTableView: UITableView {
     
-    public let model = SearchResultsTableModel()
-    private let emptySource = SearchResultsEmptySource()
+     let model = SearchResultsTableModel()
+   private let emptySource = SearchResultsEmptySource()
     
-    public var isRefreshing = false {
+     var isRefreshing = false {
         didSet {
             self.reloadData()
         }
@@ -29,7 +29,7 @@ public class SearchResultsTableView: UITableView {
         self.commonInit()
     }
     
-    private func commonInit() {
+   private func commonInit() {
         self.model.tableView = self
         self.emptySource.tableView = self
         self.tableFooterView = UIView()
@@ -38,7 +38,7 @@ public class SearchResultsTableView: UITableView {
         self.backgroundColor = ColorScheme.default.background
     }
     
-    override public func reloadData() {
+    override func reloadData() {
         DispatchQueue.main.async {
             super.reloadData()
         }

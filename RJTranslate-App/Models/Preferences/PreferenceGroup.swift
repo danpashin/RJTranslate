@@ -11,20 +11,20 @@ import Foundation
 class PreferenceGroup: CustomStringConvertible {
     
     /// Имя группы.
-    public private(set) var title: String?
+    private(set) var title: String?
     
     /// Нижний текст (подпись).
-    public private(set) var footerText: String?
+    private(set) var footerText: String?
     
     ///  Массив настроек в группе.
-    public private(set) var preferences: [Preference]
+    private(set) var preferences: [Preference]
     
     var description: String {
         return String(format: "<%@; title: '%@'; footerText: '%@'; prefs: %@>", classInfo(of: self),
                       self.title ?? "", self.footerText ?? "", self.preferences)
     }
     
-    public init(title: String?, footerText: String?,  preferences: [Preference] ) {
+     init(title: String?, footerText: String?,  preferences: [Preference] ) {
         self.title = title
         self.footerText = footerText
         self.preferences = preferences

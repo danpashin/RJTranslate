@@ -10,18 +10,18 @@ import Foundation
 
 
 class ObsoleteSearchController: UIViewController, SearchControllerRequired, UISearchBarDelegate {
-    public var dimBackground: Bool = true
+     var dimBackground: Bool = true
     
-    public private(set) var searchText: String = ""
+    private(set) var searchText: String = ""
     
-    public private(set) weak var searchDelegate: SearchControllerDelegate!
+    private(set) weak var searchDelegate: SearchControllerDelegate!
     
-    public private(set) var searchBar: ButtonedSearchBar?
+    private(set) var searchBar: ButtonedSearchBar?
     
-    private var dimmed: Bool = true
+   private var dimmed: Bool = true
     
     /// Определет, выполняется ли, поиск в данный момент.
-    public private(set) var performingSearch: Bool = false {
+    private(set) var performingSearch: Bool = false {
         didSet {
             self.searchBar?.showCancelButton = self.performingSearch
         }
@@ -39,13 +39,13 @@ class ObsoleteSearchController: UIViewController, SearchControllerRequired, UISe
         self.modalPresentationStyle = .overFullScreen
     }
     
-    public func createSearchBarForView(_ view: UIView) -> ButtonedSearchBar {
+    func createSearchBarForView(_ view: UIView) -> ButtonedSearchBar {
         self.searchBar = ButtonedSearchBar(frame: view.bounds)
         self.searchBar?.delegate = self
         return self.searchBar!
     }
     
-    override public func viewDidLoad() {
+    override func viewDidLoad() {
         super.viewDidLoad()
         
         let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(dimmingViewTapped))
@@ -53,7 +53,7 @@ class ObsoleteSearchController: UIViewController, SearchControllerRequired, UISe
     }
     
     /// Выполняет презентацию контроллера на экране
-    private func present() {
+   private func present() {
         self.searchDelegate?.willPresentSearchController?(self)
         if self.performingSearch {
             self.dismiss()
@@ -68,7 +68,7 @@ class ObsoleteSearchController: UIViewController, SearchControllerRequired, UISe
     }
     
     /// Удаляет контроллер с экрана
-    private func dismiss(_ notifyDelegate: Bool = true) {
+   private func dismiss(_ notifyDelegate: Bool = true) {
         if self.performingSearch {
             if notifyDelegate {
                 self.searchDelegate?.willDismissSearchController?(self)
@@ -86,7 +86,7 @@ class ObsoleteSearchController: UIViewController, SearchControllerRequired, UISe
         }
     }
     
-    private func updateDimming(_ shouldDim: Bool) {
+   private func updateDimming(_ shouldDim: Bool) {
         if !self.dimBackground { return }
         
         self.dimmed = shouldDim
@@ -114,7 +114,7 @@ class ObsoleteSearchController: UIViewController, SearchControllerRequired, UISe
     // MARK: UISearchBarDelegate
     // MARK: -
     
-    public func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         if !self.performingSearch {
             self.present()
         }
@@ -124,7 +124,7 @@ class ObsoleteSearchController: UIViewController, SearchControllerRequired, UISe
         }
     }
     
-    public func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
         if self.searchText.count > 0 {
             UIApplication.applicationDelegate.tracker?.trackSearchEvent(self.searchText)
         } else {
@@ -132,19 +132,19 @@ class ObsoleteSearchController: UIViewController, SearchControllerRequired, UISe
         }
     }
     
-    public func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         self.searchText = searchText
         
         self.updateDimming((searchText.count == 0))
         self.searchDelegate?.searchController?(self, didUpdateSearchText: searchText)
     }
     
-    public func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         self.searchText = ""
         self.dismiss()
     }
     
-    public func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
     }
     

@@ -8,7 +8,7 @@
 
 import Foundation
 
-public extension UIImage {
+extension UIImage {
     
     /// Создает изображение с нужным цветом и размером.
     ///

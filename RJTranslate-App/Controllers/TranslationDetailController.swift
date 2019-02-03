@@ -8,10 +8,10 @@
 
 import Foundation
 
-public class TranslationDetailController: SimpleViewController, TranslationDetailViewDelegate {
+class TranslationDetailController: SimpleViewController, TranslationDetailViewDelegate {
     
     
-    public private(set) var translationModel: RJTApplicationModel? {
+    private(set) var translationModel: RJTApplicationModel? {
         didSet {
             self.performUIUpdate()
         }
@@ -22,7 +22,7 @@ public class TranslationDetailController: SimpleViewController, TranslationDetai
     
     
     
-    public init(translation: RJTApplicationModel) {
+    init(translation: RJTApplicationModel) {
         defer {
             self.translationModel = translation
         }
@@ -30,7 +30,7 @@ public class TranslationDetailController: SimpleViewController, TranslationDetai
         super.init(nibName: nil, bundle: nil)
     }
     
-    public init(translationSummary: API.TranslationSummary) {
+    init(translationSummary: API.TranslationSummary) {
         self.translationSummary = translationSummary
         
         super.init(nibName: nil, bundle: nil)
@@ -41,7 +41,7 @@ public class TranslationDetailController: SimpleViewController, TranslationDetai
         return nil
     }
     
-    override public func viewDidLoad() {
+    override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.white
         
@@ -102,21 +102,21 @@ public class TranslationDetailController: SimpleViewController, TranslationDetai
         }
     }
     
-    override public func viewWillAppear(_ animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         let tabbar = UIApplication.applicationDelegate.tabbarController.tabBar
         tabbar.hideShadow(animated: animated)
     }
     
-    override public func viewWillDisappear(_ animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
         let tabbar = UIApplication.applicationDelegate.tabbarController.tabBar
         tabbar.showShadow(animated: animated)
     }
     
-    override public var controllerShouldPop: Bool {
+    override var controllerShouldPop: Bool {
         let navigationBar = UIApplication.applicationDelegate.currentNavigationController.navigationBar
         navigationBar.showShadow()
         
@@ -158,15 +158,13 @@ public class TranslationDetailController: SimpleViewController, TranslationDetai
     // MARK: -
     // MARK: TranslationDetailViewDelegate
     
-    public func detailViewRequestedDownloadingTranslation(_ detailView: TranslationDetailView) {
+    func detailViewRequestedDownloadingTranslation(_ detailView: TranslationDetailView) {
+        guard let model = self.translationModel else { return }
+        
         let database = UIApplication.applicationDelegate.defaultDatabase!
-        database.addAppModels([self.translationModel!]) {
+        database.addAppModels([model]) {
             database.forceSaveContext()
-            
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: { 
-                let mainController = UIApplication.applicationDelegate.tabbarController.mainController
-                mainController.reloadTranslations()
-            })
+            NotificationCenter.default.post(name: Notification.mainControllerReloadData, object: nil)
         }
     }
 }

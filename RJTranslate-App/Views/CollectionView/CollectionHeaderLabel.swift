@@ -11,15 +11,15 @@ import Foundation
 class CollectionHeaderLabel : UICollectionReusableView {
     
     /// Текст лейбла.
-    public var text: String? {
+     var text: String? {
         didSet {
             self.label.text = text
             self.separatorView.isHidden = (text?.count ?? 0 > 0)
         }
     }
     
-    private var separatorView: UIView = UIView()
-    private var label: UILabel = UILabel()
+   private var separatorView: UIView = UIView()
+   private var label: UILabel = UILabel()
     
     override init(frame: CGRect) {
         super.init(frame: frame)

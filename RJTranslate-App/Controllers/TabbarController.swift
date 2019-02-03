@@ -8,13 +8,14 @@
 
 import Foundation
 
-public class TabbarController: UITabBarController {
+class TabbarController: UITabBarController {
     
-    override public var tabBar: Tabbar {
+    override var tabBar: Tabbar {
         return super.tabBar as! Tabbar
     }
     
-    public var mainController: TranslateMainController {
+    @available(*, deprecated)
+    var mainController: TranslateMainController {
         let navigationController = self.viewControllers![0] as! UINavigationController
         return navigationController.viewControllers.first as! TranslateMainController
     }

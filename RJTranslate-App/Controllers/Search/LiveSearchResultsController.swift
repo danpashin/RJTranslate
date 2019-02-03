@@ -8,18 +8,18 @@
 
 import Foundation
 
-public class LiveSearchResultsController : SimpleViewController, SearchControllerDelegate {
+class LiveSearchResultsController : SimpleViewController, SearchControllerDelegate {
     
-    private var resultsHiddenBottomConstraint: NSLayoutConstraint!
-    private var resultsOpenedBottomConstraint: NSLayoutConstraint!
+   private var resultsHiddenBottomConstraint: NSLayoutConstraint!
+   private var resultsOpenedBottomConstraint: NSLayoutConstraint!
     
-    private var resultsPresented = false
+   private var resultsPresented = false
     
     /// Таблица, используемая для показа результатов поиска.
-    public let resultsTableView = SearchResultsTableView()
-    public private(set) var searchController: SearchControllerRequired?
+     let resultsTableView = SearchResultsTableView()
+    private(set) var searchController: SearchControllerRequired?
     
-    override public func viewDidLoad() {
+    override func viewDidLoad() {
         super.viewDidLoad()
         
         self.view.addSubview(self.resultsTableView)
@@ -55,7 +55,7 @@ public class LiveSearchResultsController : SimpleViewController, SearchControlle
     }
     
     /// Показывает таблицу с результатами поиска.
-    public func showResults() {
+    func showResults() {
         if !self.resultsPresented {
             self.resultsPresented = true
             self.view.bringSubviewToFront(self.resultsTableView)
@@ -68,7 +68,7 @@ public class LiveSearchResultsController : SimpleViewController, SearchControlle
     }
     
     /// Скрывает таблицу с результатами поиска.
-    public func hideResults() {
+    func hideResults() {
         if self.resultsPresented {
             self.resultsPresented = false
             
@@ -79,13 +79,13 @@ public class LiveSearchResultsController : SimpleViewController, SearchControlle
         }
     }
     
-    private func animateResultsTableChange() {
+   private func animateResultsTableChange() {
         UIView.animate(withDuration: 0.35) { 
             self.view.layoutIfNeeded()
         }
     }
     
-    public func searchController(_ searchController: SearchControllerRequired, didUpdateSearchText searchText: String) {
+    func searchController(_ searchController: SearchControllerRequired, didUpdateSearchText searchText: String) {
         if searchText.count > 0 {
             self.showResults()
             self.resultsTableView.model.performSearch(text: searchText)
@@ -94,7 +94,7 @@ public class LiveSearchResultsController : SimpleViewController, SearchControlle
         }
     }
     
-    public func willDismissSearchController(_ searchController: SearchControllerRequired) {
+    func willDismissSearchController(_ searchController: SearchControllerRequired) {
         self.hideResults()
     }
 }

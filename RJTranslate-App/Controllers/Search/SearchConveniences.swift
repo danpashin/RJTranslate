@@ -13,7 +13,7 @@ import Foundation
 // MARK: Protocols
 // MARK: -
 
-@objc public protocol SearchControllerRequired {
+@objc  protocol SearchControllerRequired {
     var dimBackground: Bool { get set }
     
     var searchText: String { get }
@@ -23,7 +23,7 @@ import Foundation
     init(delegate: SearchControllerDelegate)
 }
 
-@objc public protocol SearchControllerDelegate {
+@objc  protocol SearchControllerDelegate {
     
     /// Вызывается перед показом контроллера поиска.
     ///
@@ -59,7 +59,7 @@ import Foundation
 // MARK: Extensions
 // MARK: -
 
-public extension UINavigationBar {
+extension UINavigationBar {
     static func getFirstBar() -> UINavigationBar? {
         guard let window = UIApplication.shared.keyWindow else { return nil }
         
@@ -67,7 +67,7 @@ public extension UINavigationBar {
     }
 }
 
-public extension UIView {
+extension UIView {
    static func recursiveSearch(in view: UIView, viewType: AnyClass) -> UIView? {
         for subview in view.subviews {
             if subview.isKind(of: viewType) {

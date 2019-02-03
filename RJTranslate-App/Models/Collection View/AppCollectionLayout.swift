@@ -8,10 +8,10 @@
 
 import Foundation
 
-public class AppCollectionLayout : UICollectionViewFlowLayout, AppCollectionDataSourceChange {
+class AppCollectionLayout : UICollectionViewFlowLayout, AppCollectionDataSourceChange {
     
-    private var oldDataSource: AppCollectionDataSource?
-    private weak var currentDataSource: AppCollectionDataSource?
+   private var oldDataSource: AppCollectionDataSource?
+   private weak var currentDataSource: AppCollectionDataSource?
     
     override init() {
         super.init()
@@ -24,17 +24,17 @@ public class AppCollectionLayout : UICollectionViewFlowLayout, AppCollectionData
         self.commonInit()
     }
     
-    private func commonInit() {
+   private func commonInit() {
         self.sectionInset = UIEdgeInsets(top: 0.0, left: 0.0, bottom: 20.0, right: 0.0)
     }
     
-    override public func finalizeCollectionViewUpdates() {
+    override func finalizeCollectionViewUpdates() {
         super.finalizeCollectionViewUpdates()
         
         self.oldDataSource = nil
     }
     
-    public func dataSourceChanged(from oldDataSource: AppCollectionDataSource?, to newDatasource: AppCollectionDataSource?) {
+    func dataSourceChanged(from oldDataSource: AppCollectionDataSource?, to newDatasource: AppCollectionDataSource?) {
         self.oldDataSource = oldDataSource
         self.currentDataSource = newDatasource
     }
@@ -42,7 +42,7 @@ public class AppCollectionLayout : UICollectionViewFlowLayout, AppCollectionData
     
     //  MARK: -
     
-    override public func initialLayoutAttributesForAppearingItem(at itemIndexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
+    override func initialLayoutAttributesForAppearingItem(at itemIndexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
         let attributes = super.initialLayoutAttributesForAppearingItem(at: itemIndexPath)
         
         var oldItemsCount = 0
@@ -59,7 +59,7 @@ public class AppCollectionLayout : UICollectionViewFlowLayout, AppCollectionData
         return attributes;
     }
     
-    override public func finalLayoutAttributesForDisappearingItem(at itemIndexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
+    override func finalLayoutAttributesForDisappearingItem(at itemIndexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
         let attributes = super.finalLayoutAttributesForDisappearingItem(at: itemIndexPath)
         
         var newItemsCount = 0

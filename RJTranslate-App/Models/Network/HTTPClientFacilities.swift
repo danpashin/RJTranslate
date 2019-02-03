@@ -8,7 +8,7 @@
 
 import Foundation
 
-public protocol URLTransformable {
+ protocol URLTransformable {
     
     /// Преобразует данный класс в URL, если возможно
     ///
@@ -22,27 +22,27 @@ public protocol URLTransformable {
 }
 
 extension String : URLTransformable {
-    public func asURL() -> URL? {
+    func asURL() -> URL? {
         return URL(string: self)
     }
     
-    public func asString() -> String {
+    func asString() -> String {
         return self
     }
 }
 
 extension URL : URLTransformable {
-    public func asURL() -> URL? {
+    func asURL() -> URL? {
         return self
     }
     
-    public func asString() -> String {
+    func asString() -> String {
         return self.absoluteString
     }
 }
 
 extension UIDevice {
-    public var identifier: String {
+     var identifier: String {
         var systemInfo = utsname()
         uname(&systemInfo)
         

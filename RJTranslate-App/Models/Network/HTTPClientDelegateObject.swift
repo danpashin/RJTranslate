@@ -11,17 +11,17 @@ import Foundation
 
 class HTTPClientDelegateObject: NSObject, URLSessionDownloadDelegate, URLSessionDataDelegate {
     
-    weak public private(set) var client: HTTPClient?
-    public private(set) var utilityQueue = OperationQueue()
+    weak private(set) var client: HTTPClient?
+    private(set) var utilityQueue = OperationQueue()
     
-    public init(client: HTTPClient) {
+     init(client: HTTPClient) {
         self.client = client
         
         self.utilityQueue.name = "ru.danpashin.rjtranslate.network"
         self.utilityQueue.qualityOfService = .utility
     }
     
-    public func urlSession(_ session: URLSession, didReceive challenge: URLAuthenticationChallenge, 
+    func urlSession(_ session: URLSession, didReceive challenge: URLAuthenticationChallenge, 
                            completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) {
         
         if challenge.protectionSpace.authenticationMethod == NSURLAuthenticationMethodServerTrust {
@@ -40,7 +40,7 @@ class HTTPClientDelegateObject: NSObject, URLSessionDownloadDelegate, URLSession
     // MARK: -
     // MARK: URLSessionTaskDelegate
     
-    public func urlSession(_ session: URLSession, task sessionTask: URLSessionTask, didCompleteWithError error: Error?) {
+    func urlSession(_ session: URLSession, task sessionTask: URLSessionTask, didCompleteWithError error: Error?) {
         guard let task = self.client?.activeTasks[sessionTask.taskIdentifier] else { return }
         self.client?.removeTask(identifier: sessionTask.taskIdentifier)
         
@@ -66,7 +66,7 @@ class HTTPClientDelegateObject: NSObject, URLSessionDownloadDelegate, URLSession
     // MARK: -
     // MARK: URLSessionDataDelegate
     
-    public func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, 
+    func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, 
                            didReceive response: URLResponse, 
                            completionHandler: @escaping (URLSession.ResponseDisposition) -> Void) {
         let httpResponse = response as! HTTPURLResponse
@@ -97,7 +97,7 @@ class HTTPClientDelegateObject: NSObject, URLSessionDownloadDelegate, URLSession
         }
     }
     
-    public func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive data: Data) {
+    func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive data: Data) {
         guard let task = self.client?.activeTasks[dataTask.taskIdentifier] else { return }
         
         if let jsonTask = task as? HTTPJSONTask {
@@ -105,7 +105,7 @@ class HTTPClientDelegateObject: NSObject, URLSessionDownloadDelegate, URLSession
         }
     }
     
-    public func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didBecome downloadTask: URLSessionDownloadTask) {
+    func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didBecome downloadTask: URLSessionDownloadTask) {
         downloadTask.resume()
     }
     
@@ -113,7 +113,7 @@ class HTTPClientDelegateObject: NSObject, URLSessionDownloadDelegate, URLSession
     // MARK: -
     // MARK: URLSessionDownloadDelegate
     
-    public func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didFinishDownloadingTo location: URL) {
+    func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didFinishDownloadingTo location: URL) {
         guard let task = self.client?.activeTasks[downloadTask.taskIdentifier] as? HTTPDownloadTask else { return }
         
         let fileName = task.request?.url?.lastPathComponent
@@ -139,7 +139,7 @@ class HTTPClientDelegateObject: NSObject, URLSessionDownloadDelegate, URLSession
         task.completionClosure?(destination, nil)
     }
     
-    public func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, 
+    func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, 
                            didWriteData bytesWritten: Int64, 
                            totalBytesWritten: Int64, totalBytesExpectedToWrite: Int64) {
         guard let task = self.client?.activeTasks[downloadTask.taskIdentifier] as? HTTPDownloadTask else { return }

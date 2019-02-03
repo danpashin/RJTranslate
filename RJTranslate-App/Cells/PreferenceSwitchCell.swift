@@ -11,9 +11,9 @@ import UIKit
 
 class PreferenceSwitchCell : UITableViewCell {
     
-    private var switchView = UISwitch()
+   private var switchView = UISwitch()
     
-    private var preferenceModel: SwitchPreference! {
+   private var preferenceModel: SwitchPreference! {
         didSet {
             DispatchQueue.global().async {
                 let switchEnabled: Bool = (self.preferenceModel?.value as! NSNumber).boolValue
@@ -25,7 +25,7 @@ class PreferenceSwitchCell : UITableViewCell {
         }
     }
     
-    public init(model: SwitchPreference, reuseIdentifier: String?) {
+     init(model: SwitchPreference, reuseIdentifier: String?) {
         super.init(style: .default, reuseIdentifier: reuseIdentifier)
         
         self.switchView.addTarget(self, action: #selector(self.switchTrigerred), for: .valueChanged)
@@ -42,7 +42,7 @@ class PreferenceSwitchCell : UITableViewCell {
         self.preferenceModel.save(value: enabled)
     }
     
-    required public init?(coder aDecoder: NSCoder) {
+    required  init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) is not supported. Use init(model: reuseIdentifier:)")
     }
 }

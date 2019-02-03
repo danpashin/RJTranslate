@@ -8,25 +8,25 @@
 
 import Foundation
 
-protocol AppCollectionDataSourceChange : class {
+protocol AppCollectionDataSourceChange :class {
     func dataSourceChanged(from oldDataSource: AppCollectionDataSource?, to newDatasource: AppCollectionDataSource?)
 }
 
-public class AppCollectionDataSource : CustomStringConvertible {
+class AppCollectionDataSource : CustomStringConvertible {
     
     /// Массив содержит все модели переводов
-    public private(set) var rawModels: [RJTApplicationModel]
+    private(set) var rawModels: [RJTApplicationModel]
     
     /// Массив содержит модели переводов, приложения которых установлены на устройстве.
-    public private(set) var installed : [RJTApplicationModel] = []
+    private(set) var installed : [RJTApplicationModel] = []
     
     /// Массив содержит модели переводов, приложения которых НЕ установлены на устройстве.
-    public private(set) var uninstalled : [RJTApplicationModel] = []
+    private(set) var uninstalled : [RJTApplicationModel] = []
     
     /// Выполняет инициализацию и разделение моделей в датасорсе.
     ///
     /// - Parameter models:  Модели для датасорса.
-    public init(models: [RJTApplicationModel]) {
+     init(models: [RJTApplicationModel]) {
         self.rawModels = models
         
         for model in models {
@@ -39,7 +39,7 @@ public class AppCollectionDataSource : CustomStringConvertible {
         
     }
     
-    public var description: String {
+     var description: String {
         return String(format: "<%@; installed %@; uninstalled %@>",
                       classInfo(of: self), self.installed, self.uninstalled)
     }

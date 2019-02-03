@@ -8,24 +8,24 @@
 
 import Foundation
 
-public class NavigationController: UINavigationController, UINavigationBarDelegate {
+class NavigationController: UINavigationController, UINavigationBarDelegate {
     
-    override public var navigationBar: NavigationBar {
+    override var navigationBar: NavigationBar {
         return super.navigationBar as! NavigationBar
     }
     
-    override public func viewDidLoad() {
+    override func viewDidLoad() {
         super.viewDidLoad()
         
         self.navigationBar.delegate = self
     }
     
-    override public var preferredStatusBarStyle: UIStatusBarStyle {
+    override var preferredStatusBarStyle: UIStatusBarStyle {
         return ColorScheme.default.statusBarStyle
     }
     
     
-    public func navigationBar(_ navigationBar: UINavigationBar, shouldPop item: UINavigationItem) -> Bool {
+    func navigationBar(_ navigationBar: UINavigationBar, shouldPop item: UINavigationItem) -> Bool {
         if self.viewControllers.count < (navigationBar.items?.count ?? 0) {
             return true
         }
@@ -41,7 +41,7 @@ public class NavigationController: UINavigationController, UINavigationBarDelega
 
 }
 
-public extension UIViewController {
+extension UIViewController {
     @objc var controllerShouldPop: Bool {
         return true
     }

@@ -9,7 +9,7 @@
 import Foundation
 
 class Preference {
-    public enum Category {
+     enum Category {
         case text
         case `switch`
         case button
@@ -17,16 +17,16 @@ class Preference {
 
     
     /// Тип настройки. По умолчанию - текст.
-    public var category: Preference.Category {
+     var category: Preference.Category {
         return .text
     }
     
     /// Название настройки.
-    public private(set) var title: String?
+    private(set) var title: String?
     
-    public weak var prefsTableModel: PreferencesTableModel?
+     weak var prefsTableModel: PreferencesTableModel?
     
-    public init(title: String?) {
+     init(title: String?) {
         self.title = title
     }
 }

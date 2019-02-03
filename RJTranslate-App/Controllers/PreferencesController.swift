@@ -11,7 +11,7 @@ import Foundation
 class PreferencesController: UITableViewController, PrefsTableModelDelegate {
     
     /// Модель таблицы
-    private var model: PreferencesTableModel?
+   private var model: PreferencesTableModel?
     
     override init(style: UITableView.Style) {
         super.init(style: .grouped)

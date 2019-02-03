@@ -8,17 +8,17 @@
 
 import Foundation
 
-public protocol CustomErrorProtocol {
+ protocol CustomErrorProtocol {
     var code: Int { get set }
     var description: String { get set }
 }
 
-public struct API {
-    public static let apiURL = URL(string: "https://translations.rejail.ru/index.php")!
+struct API {
+     static let apiURL = URL(string: "https://translations.rejail.ru/index.php")!
     
-    public struct SimpleError: CustomErrorProtocol {
-        public var code: Int
-        public var description: String
+    struct SimpleError: CustomErrorProtocol {
+         var code: Int
+         var description: String
         
         var nserror: NSError {
             let localizedDescription = NSLocalizedString(self.description, comment: "Server description error")
@@ -28,26 +28,26 @@ public struct API {
         }
     }
     
-    public struct ResponseResult <T> {
-        public var data: T?
-        public var error: API.SimpleError?
+    struct ResponseResult <T> {
+         var data: T?
+         var error: API.SimpleError?
     }
     
     /// Основная информация о переводе.
-    public struct TranslationSummary {
+    struct TranslationSummary {
         
         /// Имя локализации
-        public private(set) var name: String
+        private(set) var name: String
         
         /// Текст, который использовался для поиска локализации
-        public private(set) var searchText: String
+        private(set) var searchText: String
         
         /// Ссылка на загрузку полной локализации
-        public private(set) var url: URL
+        private(set) var url: URL
     }
 }
 
-public extension API.TranslationSummary {
+extension API.TranslationSummary {
     
     /// Выполняет живой поиск перевода.
     ///
@@ -78,7 +78,7 @@ public extension API.TranslationSummary {
             return task
     }
     
-    private static func parseSearchResponse(json: [String : AnyHashable], searchText: String)
+   private static func parseSearchResponse(json: [String : AnyHashable], searchText: String)
         -> API.ResponseResult<[API.TranslationSummary]> {
             var parsedSummaries = [API.TranslationSummary]()
             

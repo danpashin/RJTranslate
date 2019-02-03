@@ -9,19 +9,19 @@
 import Foundation
 
 class LiveSearchOperation: AsynchronousOperation {
-    private var jsonTask: HTTPJSONTask?
+   private var jsonTask: HTTPJSONTask?
     
-    private var searchText: String
+   private var searchText: String
     
     /// Результат выполненного запроса.
-    public private(set) var result: API.ResponseResult<[API.TranslationSummary]>?
+    private(set) var result: API.ResponseResult<[API.TranslationSummary]>?
     
-    public init(searchText: String) {
+     init(searchText: String) {
         self.searchText = searchText
     }
     
     /// Выполняет асинхронный запрос на сервер и возвращает ответ в распарсенном виде.
-    override public func main() {
+    override func main() {
         super.main()
         
         if self.isCancelled {
@@ -38,7 +38,7 @@ class LiveSearchOperation: AsynchronousOperation {
     }
     
     /// Отменяет запрос и асинхронную операцию.
-    override public func cancel() {
+    override func cancel() {
         super.cancel()
         
         if let task = self.jsonTask?.sessionTask {

@@ -90,6 +90,7 @@
 		A5D2D4BD21F46CC5003F0D4F /* UIImageConveniences.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D2D4BC21F46CC5003F0D4F /* UIImageConveniences.swift */; };
 		A5D2D4C521F4776A003F0D4F /* Swizzlng.m in Sources */ = {isa = PBXBuildFile; fileRef = A5D2D4C321F476C9003F0D4F /* Swizzlng.m */; };
 		A5D2D4C721F48B7F003F0D4F /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D2D4C621F48B7F003F0D4F /* GradientView.swift */; };
+		A5D54CE122074FD200F32C88 /* ShadowedImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D54CE022074FD200F32C88 /* ShadowedImageView.swift */; };
 		A5DB00AF21EB238F0009AB0E /* AppCollectionDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DB00AE21EB238F0009AB0E /* AppCollectionDataSource.swift */; };
 		A5E0BBB2218646A10094ECBC /* RJTHudProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = A5E0BBB0218646A10094ECBC /* RJTHudProgressView.m */; };
 		A5E0BBB3218646A10094ECBC /* RJTHud.m in Sources */ = {isa = PBXBuildFile; fileRef = A5E0BBB1218646A10094ECBC /* RJTHud.m */; };
@@ -208,6 +209,7 @@
 		A5D2D4BC21F46CC5003F0D4F /* UIImageConveniences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageConveniences.swift; sourceTree = "<group>"; };
 		A5D2D4C321F476C9003F0D4F /* Swizzlng.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Swizzlng.m; sourceTree = "<group>"; };
 		A5D2D4C621F48B7F003F0D4F /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
+		A5D54CE022074FD200F32C88 /* ShadowedImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowedImageView.swift; sourceTree = "<group>"; };
 		A5DB00AE21EB238F0009AB0E /* AppCollectionDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCollectionDataSource.swift; sourceTree = "<group>"; };
 		A5E0BBAE218646A10094ECBC /* RJTHud.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RJTHud.h; sourceTree = "<group>"; };
 		A5E0BBAF218646A10094ECBC /* RJTHudProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RJTHudProgressView.h; sourceTree = "<group>"; };
@@ -542,6 +544,7 @@
 				A5E0BBB0218646A10094ECBC /* RJTHudProgressView.m */,
 				A5B74C2921E4D0390058C71A /* ButtonedSearchBar.swift */,
 				A56856C321FDE821007D1B08 /* TranslationDetailView.swift */,
+				A5D54CE022074FD200F32C88 /* ShadowedImageView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -863,6 +866,7 @@
 				A5B74C2C21E4D14A0058C71A /* NavigationBar.swift in Sources */,
 				A5B74C2521E4CD6E0058C71A /* ObsoleteSearchController.swift in Sources */,
 				A511A67821B185E7003D4244 /* PreferenceGroup.swift in Sources */,
+				A5D54CE122074FD200F32C88 /* ShadowedImageView.swift in Sources */,
 				A5196B7A21D0BB3200201DEF /* CollectionHeaderLabel.swift in Sources */,
 				A57104D121F320C000C829DD /* TranslateMainController.swift in Sources */,
 				A5E0BBB2218646A10094ECBC /* RJTHudProgressView.m in Sources */,

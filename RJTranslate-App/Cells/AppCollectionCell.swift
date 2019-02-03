@@ -11,15 +11,15 @@ import UIKit
 
 class AppCollectionCell: TouchResponsiveCollectionCell {
     
-    public static let defaultHeight: CGFloat = 76.0
+     static let defaultHeight: CGFloat = 76.0
     
-    public var model: RJTApplicationModel? {
+     var model: RJTApplicationModel? {
         didSet {
             updateForNewModel()
         }
     }
     
-    override public var bounds: CGRect {
+    override var bounds: CGRect {
         didSet {
             self.layer.shadowPath = UIBezierPath(roundedRect: self.bounds, cornerRadius: self.layer.cornerRadius).cgPath
         }
@@ -30,7 +30,7 @@ class AppCollectionCell: TouchResponsiveCollectionCell {
     @IBOutlet private weak var identifierLabel: UILabel?
     @IBOutlet private weak var tickView: TickView?
     
-    public override func awakeFromNib() {
+     override func awakeFromNib() {
         super.awakeFromNib()
         self.nameLabel?.textColor = ColorScheme.default.titleLabel
         
@@ -48,18 +48,18 @@ class AppCollectionCell: TouchResponsiveCollectionCell {
         self.layer.masksToBounds = false
     }
     
-    public func updateSelection(_ selected: Bool, animated: Bool) {
+    func updateSelection(_ selected: Bool, animated: Bool) {
         self.tickView?.setEnabled(selected, animated: animated)
     }
     
-    public override func prepareForReuse() {
+     override func prepareForReuse() {
         super.prepareForReuse()
         
         self.model = nil
         self.updateSelection(false, animated: false)
     }
     
-    private func updateForNewModel() {
+   private func updateForNewModel() {
         self.nameLabel?.text = model?.displayedName
         
         if self.model?.bundleIdentifier?.count ?? 0 > 0 && model?.executableName?.count ?? 0 > 0 {
@@ -71,7 +71,7 @@ class AppCollectionCell: TouchResponsiveCollectionCell {
         }
         
         if self.model == nil {
-            self.iconView?.image = UIImage(named: "icon_template")
+            self.iconView?.image = UIImage(named: "app_default_icon")
         } else {
             self.model?.loadIcon(completion: { (icon: UIImage?) in
                 DispatchQueue.main.async {

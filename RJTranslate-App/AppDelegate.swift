@@ -10,25 +10,25 @@ import Foundation
 import Firebase
 
 @UIApplicationMain
-public class AppDelegate: UIResponder, UIApplicationDelegate, CrashlyticsDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, CrashlyticsDelegate {
     
-    public var window: UIWindow?
+var window: UIWindow?
     
     /// Трекер событий приложения.
-    public private(set) var tracker: Tracker?
+   private(set) var tracker: Tracker?
     
     /// Дефолтная база данных.
-    public private(set) var defaultDatabase: RJTDatabaseFacade?
+   private(set) var defaultDatabase: RJTDatabaseFacade?
     
-    public var tabbarController: TabbarController {
+    var tabbarController: TabbarController {
         return self.window!.rootViewController as! TabbarController
     }
     
-    public var currentNavigationController: NavigationController {
+    var currentNavigationController: NavigationController {
         return self.tabbarController.selectedViewController as! NavigationController
     }
     
-    public func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         self.defaultDatabase = RJTDatabaseFacade()
         
         self.setupAnalytics()
@@ -40,7 +40,7 @@ public class AppDelegate: UIResponder, UIApplicationDelegate, CrashlyticsDelegat
         return true
     }
     
-    private func setupAnalytics() {
+   private func setupAnalytics() {
         FirebaseConfiguration.shared.setLoggerLevel(.min)
         Crashlytics.sharedInstance().delegate = self
         FirebaseApp.configure()
@@ -50,18 +50,16 @@ public class AppDelegate: UIResponder, UIApplicationDelegate, CrashlyticsDelegat
         self.enableTracker(enableStats)
     }
     
-    public func enableTracker(_ enable: Bool) {
+    func enableTracker(_ enable: Bool) {
         self.tracker = enable ? Tracker() : nil
         AnalyticsConfiguration.shared().setAnalyticsCollectionEnabled(enable)
     }
     
-    @objc public func purgeDatabase() {
+    @objc func purgeDatabase() {
         let database = UIApplication.applicationDelegate.defaultDatabase!
         database.purge { 
             database.forceSaveContext()
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: { 
-                self.tabbarController.mainController.reloadTranslations()
-            })
+            NotificationCenter.default.post(name: Notification.mainControllerReloadData, object: nil)
         }
     }
     
@@ -69,7 +67,7 @@ public class AppDelegate: UIResponder, UIApplicationDelegate, CrashlyticsDelegat
     // MARK: CrashlyticsDelegate
     // MARK: -
     
-    public func crashlyticsDidDetectReport(forLastExecution report: CLSReport, completionHandler: @escaping (Bool) -> Void) {
+    func crashlyticsDidDetectReport(forLastExecution report: CLSReport, completionHandler: @escaping (Bool) -> Void) {
         let sendReportsPrefs = UserDefaults.standard.object(forKey: "send_crashlogs") as? NSNumber
         let sendReports = (sendReportsPrefs?.boolValue) ?? true
         

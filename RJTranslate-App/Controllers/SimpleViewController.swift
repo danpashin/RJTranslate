@@ -8,14 +8,14 @@
 
 import Foundation
 
-public class SimpleViewController: UIViewController {
+class SimpleViewController: UIViewController {
     
-    override public func viewDidLoad() {
+    override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = ColorScheme.default.background
     }
     
-    override public var preferredStatusBarStyle: UIStatusBarStyle {
+    override var preferredStatusBarStyle: UIStatusBarStyle {
         return ColorScheme.default.statusBarStyle
     }
 }

@@ -10,7 +10,7 @@ import Foundation
 
 class AsynchronousOperation: Operation {
     
-    public enum State: String {
+     enum State: String {
         case ready
         case executing
         case finished
@@ -20,7 +20,7 @@ class AsynchronousOperation: Operation {
         }
     }
     
-    public var state: State = .ready {
+     var state: State = .ready {
         willSet {
             willChangeValue(forKey: newValue.kvcKeyPath)
             willChangeValue(forKey: self.state.kvcKeyPath)
@@ -31,28 +31,28 @@ class AsynchronousOperation: Operation {
         }
     }
     
-    override public var isReady: Bool {
+    override var isReady: Bool {
         return super.isReady && self.state == .ready
     }
     
-    override public var isExecuting: Bool {
+    override var isExecuting: Bool {
         return self.state == .executing
     }
     
-    override public var isFinished: Bool {
+    override var isFinished: Bool {
         return self.state == .finished
     }
     
-    override public var isAsynchronous: Bool {
+    override var isAsynchronous: Bool {
         return true
     }
     
-    override public func main() {
+    override func main() {
         super.main()
         self.state = .executing
     }
     
-    override public func cancel() {
+    override func cancel() {
         super.cancel()
         self.state = .finished
     }

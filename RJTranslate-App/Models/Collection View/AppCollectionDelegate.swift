@@ -10,9 +10,9 @@ import Foundation
 
 class AppCollectionDelegate : NSObject, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     
-    public private(set) var collectionView: AppCollectionView?
+    private(set) var collectionView: AppCollectionView?
     
-    public init(collectionView: AppCollectionView) {
+     init(collectionView: AppCollectionView) {
         self.collectionView = collectionView
         
         super.init()
@@ -25,7 +25,7 @@ class AppCollectionDelegate : NSObject, UICollectionViewDelegateFlowLayout, UICo
         
     }
     
-    private func update(appCell: AppCollectionCell, selected: Bool) {
+   private func update(appCell: AppCollectionCell, selected: Bool) {
         appCell.updateSelection(selected, animated: true)
         if appCell.model != nil {
             appCell.model!.enableTranslation = selected
@@ -43,11 +43,11 @@ class AppCollectionDelegate : NSObject, UICollectionViewDelegateFlowLayout, UICo
     // MARK: -
     // MARK: UICollectionViewDataSource
     
-    public func numberOfSections(in collectionView: UICollectionView) -> Int {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 2
     }
     
-    public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         let model = self.collectionView?.model
         
         switch section {
@@ -60,7 +60,7 @@ class AppCollectionDelegate : NSObject, UICollectionViewDelegateFlowLayout, UICo
         }
     }
     
-    public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "appCell", for: indexPath) as! AppCollectionCell
         
         let collectionModel = self.collectionView?.model
@@ -73,7 +73,7 @@ class AppCollectionDelegate : NSObject, UICollectionViewDelegateFlowLayout, UICo
         return cell
     }
     
-    public func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, 
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, 
                                at indexPath: IndexPath) -> UICollectionReusableView {
         let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader,
                                                                          withReuseIdentifier: "header", 
@@ -90,7 +90,7 @@ class AppCollectionDelegate : NSObject, UICollectionViewDelegateFlowLayout, UICo
     // MARK: -
     // MARK: UICollectionViewDelegate
     
-    public func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, 
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, 
                                forItemAt indexPath: IndexPath) {
         guard let appCell = cell as? AppCollectionCell else { return }
         if appCell.model?.enableTranslation ?? false {
@@ -100,7 +100,7 @@ class AppCollectionDelegate : NSObject, UICollectionViewDelegateFlowLayout, UICo
         }
     }
     
-    public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath)
         
         if let appCell = cell as? AppCollectionCell {
@@ -108,7 +108,7 @@ class AppCollectionDelegate : NSObject, UICollectionViewDelegateFlowLayout, UICo
         }
     }
     
-    public func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath)
         
         if let appCell = cell as? AppCollectionCell {
@@ -120,7 +120,7 @@ class AppCollectionDelegate : NSObject, UICollectionViewDelegateFlowLayout, UICo
     // MARK: -
     // MARK: UICollectionViewDelegateFlowLayout
     
-    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, 
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, 
                                referenceSizeForHeaderInSection section: Int) -> CGSize {
         let dataSource = self.collectionView?.model?.currentDataSource
         
@@ -135,7 +135,7 @@ class AppCollectionDelegate : NSObject, UICollectionViewDelegateFlowLayout, UICo
         return .zero
     }
     
-    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, 
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, 
                                insetForSectionAt section: Int) -> UIEdgeInsets {
         
         let dataSource = self.collectionView?.model?.currentDataSource
@@ -148,7 +148,7 @@ class AppCollectionDelegate : NSObject, UICollectionViewDelegateFlowLayout, UICo
         return .zero
     }
     
-    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, 
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, 
                                sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         let size = CGSize(width: collectionView.frame.width - 24.0, height: AppCollectionCell.defaultHeight)

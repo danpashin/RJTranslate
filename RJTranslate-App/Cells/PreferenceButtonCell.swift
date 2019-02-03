@@ -10,7 +10,7 @@ import Foundation
 
 class PreferenceButttonCell: UITableViewCell {
     
-    public private(set) var model: ButtonPreference!
+    private(set) var model: ButtonPreference!
     
     init(model: ButtonPreference, reuseIdentifier: String?) {
         defer { self.model = model }
@@ -20,7 +20,7 @@ class PreferenceButttonCell: UITableViewCell {
         case .default:
             self.textLabel!.textColor = ColorScheme.default.buttonTitle
         case .destructive:
-            self.textLabel!.textColor = UIColor.red
+            self.textLabel!.textColor = ColorScheme.default.buttonDestructiveTitle
         }
     }
     

@@ -8,7 +8,7 @@
 
 import Foundation
 
-public enum AppCellState {
+ enum AppCellState {
     case normal
     case pressed
     
@@ -23,17 +23,17 @@ public enum AppCellState {
     }
 }
 
-public class TouchResponsiveCollectionCell: UICollectionViewCell {
+class TouchResponsiveCollectionCell: UICollectionViewCell {
     
-    public private(set) var state: AppCellState = .normal
+    private(set) var state: AppCellState = .normal
     
-    public override func prepareForReuse() {
+     override func prepareForReuse() {
         super.prepareForReuse()
         
         self.updateState(.normal, animated: false)
     }
     
-    private func updateState(_ state: AppCellState, animated: Bool = true) {
+   private func updateState(_ state: AppCellState, animated: Bool = true) {
         if self.state != state {
             self.state = state
             
@@ -47,12 +47,12 @@ public class TouchResponsiveCollectionCell: UICollectionViewCell {
         }
     }
     
-    override public func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
         self.updateState(.pressed)
     }
     
-    override public func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesEnded(touches, with: event)
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
@@ -60,7 +60,7 @@ public class TouchResponsiveCollectionCell: UICollectionViewCell {
         }
     }
     
-    override public func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
+    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesCancelled(touches, with: event)
         self.updateState(.normal)
     }

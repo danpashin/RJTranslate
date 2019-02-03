@@ -17,13 +17,13 @@ enum HTTPMethod {
 class HTTPRequestBuilder {
     
     /// Адрес сервера, на который делается запрос.
-    public private(set) var url: URLTransformable
+    private(set) var url: URLTransformable
     
     ///  Метод запроса. GET или POST.
-    public private(set) var httpMethod: HTTPMethod
+    private(set) var httpMethod: HTTPMethod
     
     /// Аргументы для запроса.
-    public private(set) var arguments: [String: AnyHashable]
+    private(set) var arguments: [String: AnyHashable]
     
     init(url: URLTransformable, httpMethod: HTTPMethod, arguments: [String: AnyHashable]) {
         self.url = url
@@ -34,7 +34,7 @@ class HTTPRequestBuilder {
     /// Выполняет построение запроса из предоставленных данных.
     ///
     /// - Returns: Возвращает класс запроса либо nil
-    public func buildRequest() -> URLRequest  {
+    func buildRequest() -> URLRequest  {
         var urlComponents = URLComponents(string: self.url.asString())
         
         let stringParameters = NSMutableString()
@@ -69,7 +69,7 @@ class HTTPRequestBuilder {
         return request
     }
     
-    private func stringFromMethod(_ method : HTTPMethod) -> String {
+   private func stringFromMethod(_ method : HTTPMethod) -> String {
         switch method {
         case .get:
             return "GET"

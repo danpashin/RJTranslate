@@ -8,17 +8,17 @@
 
 import Foundation
 
-protocol PrefsTableModelDelegate: class {
+protocol PrefsTableModelDelegate:class {
     func userDidSetPreferenceValue(_ value: AnyHashable?, forKey key: String)
 }
 
 class PreferencesTableModel: NSObject, UITableViewDelegate, UITableViewDataSource {
-    private weak var tableView: UITableView?
-    public private(set) weak var delegate: PrefsTableModelDelegate?
+   private weak var tableView: UITableView?
+    private(set) weak var delegate: PrefsTableModelDelegate?
     
-    private var groups: [PreferenceGroup] = []
+   private var groups: [PreferenceGroup] = []
     
-    public init(tableView: UITableView, delegate: PrefsTableModelDelegate) {
+     init(tableView: UITableView, delegate: PrefsTableModelDelegate) {
         self.tableView = tableView
         self.delegate = delegate
         
@@ -31,17 +31,17 @@ class PreferencesTableModel: NSObject, UITableViewDelegate, UITableViewDataSourc
         tableView.dataSource = self
     }
     
-    private func createPreferences() {
+   private func createPreferences() {
         let sendStatsPrefs = SwitchPreference(key: "send_statistics", defaultValue: NSNumber(value: true),
                                               title: NSLocalizedString("send_statistics", comment: ""))
         
         let sendCrashPrefs = SwitchPreference(key: "send_crashlogs", defaultValue: NSNumber(value: true),
                                               title: NSLocalizedString("send_crashlogs", comment: ""))
         
-        
+        let appDelegate = UIApplication.applicationDelegate
         let purgeDatabase = ButtonPreference(title:NSLocalizedString("Settings.Database.Purge", comment: ""),
-                                             target: UIApplication.applicationDelegate, 
-                                             action: #selector(UIApplication.applicationDelegate.purgeDatabase), 
+                                             target: appDelegate, 
+                                             action: #selector(appDelegate.purgeDatabase), 
                                              style: .destructive)
         
         self.groups = [
@@ -55,7 +55,7 @@ class PreferencesTableModel: NSObject, UITableViewDelegate, UITableViewDataSourc
         ]
     }
     
-    private func createGroup(title: String?, footer: String?, preference: Preference) -> PreferenceGroup {
+   private func createGroup(title: String?, footer: String?, preference: Preference) -> PreferenceGroup {
         preference.prefsTableModel = self
         
         let localizedTitle = NSLocalizedString(title ?? "", comment: "")
@@ -69,15 +69,15 @@ class PreferencesTableModel: NSObject, UITableViewDelegate, UITableViewDataSourc
     // MARK: delegates
     // MARK: -
     
-    public func numberOfSections(in tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return self.groups.count
     }
     
-    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.groups[section].preferences.count
     }
 
-    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let preference = self.groups[indexPath.section].preferences[indexPath.row]
         
         var cell: UITableViewCell? = nil
@@ -96,15 +96,15 @@ class PreferencesTableModel: NSObject, UITableViewDelegate, UITableViewDataSourc
         return cell!
     }
     
-    public func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return self.groups[section].title
     }
     
-    public func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
+    func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
         return groups[section].footerText
     }
     
-    public func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
+    func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
         let preference = self.groups[indexPath.section].preferences[indexPath.row]
         if preference is ButtonPreference {
             return true
@@ -113,7 +113,7 @@ class PreferencesTableModel: NSObject, UITableViewDelegate, UITableViewDataSourc
         return false
     }
     
-    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
         let preference = self.groups[indexPath.section].preferences[indexPath.row]

@@ -8,13 +8,13 @@
 
 import Foundation
 
-public class SearchResultsTableModel: NSObject, UITableViewDelegate, UITableViewDataSource, UIViewControllerPreviewingDelegate {
+class SearchResultsTableModel: NSObject, UITableViewDelegate, UITableViewDataSource, UIViewControllerPreviewingDelegate {
     
     
-    public private(set) var searchResults = [API.TranslationSummary]()
+    private(set) var searchResults = [API.TranslationSummary]()
     
-    private var forceTouchPreviewContext: UIViewControllerPreviewing?
-    public weak var searchController: UIViewController? {
+   private var forceTouchPreviewContext: UIViewControllerPreviewing?
+     weak var searchController: UIViewController? {
         didSet {
             if UIApplication.shared.keyWindow?.traitCollection.forceTouchCapability == .available {
                 if self.forceTouchPreviewContext != nil {
@@ -27,16 +27,16 @@ public class SearchResultsTableModel: NSObject, UITableViewDelegate, UITableView
         }
     }
     
-    public weak var tableView: SearchResultsTableView? {
+     weak var tableView: SearchResultsTableView? {
         didSet {
             self.tableView?.delegate = self
             self.tableView?.dataSource = self
         }
     }
     
-    private let syncOperationQueue = OperationQueue()
+   private let syncOperationQueue = OperationQueue()
     
-    public override init() {
+     override init() {
         self.syncOperationQueue.name = "ru.danpashin.rjtranslate.livesearch"
         self.syncOperationQueue.maxConcurrentOperationCount = 1
         self.syncOperationQueue.qualityOfService = .userInitiated
@@ -45,7 +45,7 @@ public class SearchResultsTableModel: NSObject, UITableViewDelegate, UITableView
     /// Выполняет асинхронный поиск на сервере.
     ///
     /// - Parameter text: Текст для поиска.
-    public func performSearch(text: String) {
+    func performSearch(text: String) {
         self.syncOperationQueue.cancelAllOperations()
         self.searchResults.removeAll()
         
@@ -59,7 +59,7 @@ public class SearchResultsTableModel: NSObject, UITableViewDelegate, UITableView
         self.syncOperationQueue.addOperation(operation)
     }
     
-    private func updateForResult(_ result: API.ResponseResult<[API.TranslationSummary]>?) {
+   private func updateForResult(_ result: API.ResponseResult<[API.TranslationSummary]>?) {
         self.searchResults.removeAll()
         
         if let data = result?.data {
@@ -69,7 +69,7 @@ public class SearchResultsTableModel: NSObject, UITableViewDelegate, UITableView
         self.tableView?.isRefreshing = false
     }
     
-    private func detailController(for indexPath: IndexPath) -> TranslationDetailController? {
+   private func detailController(for indexPath: IndexPath) -> TranslationDetailController? {
         if indexPath.row > self.searchResults.count - 1 { return nil }
         
         let result = self.searchResults[indexPath.row]
@@ -80,11 +80,11 @@ public class SearchResultsTableModel: NSObject, UITableViewDelegate, UITableView
     // MARK: -
     // MARK: UITableViewDataSource
     
-    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.searchResults.count
     }
     
-    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = SearchResultCell(style: .default, reuseIdentifier: "resultCell")
         cell.result = self.searchResults[indexPath.row]
         
@@ -95,11 +95,11 @@ public class SearchResultsTableModel: NSObject, UITableViewDelegate, UITableView
     // MARK: -
     // MARK: UITableViewDelegate
     
-    public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 48.0
     }
     
-    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         UIApplication.hideKeyboard()
         tableView.deselectRow(at: indexPath, animated: true)
         
@@ -113,14 +113,14 @@ public class SearchResultsTableModel: NSObject, UITableViewDelegate, UITableView
     // MARK: -
     // MARK: UIViewControllerPreviewingDelegate
     
-    public func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
+    func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
         guard let indexPath = self.tableView?.indexPathForRow(at: location) else { return nil }
         previewingContext.sourceRect = self.tableView!.rectForRow(at: indexPath)
         
         return self.detailController(for: indexPath)
     }
     
-    public func previewingContext(_ previewingContext: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
+    func previewingContext(_ previewingContext: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
         let navController = UIApplication.applicationDelegate.currentNavigationController
         navController.pushViewController(viewControllerToCommit, animated: true)
     }

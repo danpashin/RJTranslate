@@ -15,11 +15,11 @@ import UIKit
 ///   - a: первое число
 ///   - b: второе число
 /// - Returns: Возвращает большее число из двух
-public func MAX(a: CGFloat, b: CGFloat) -> CGFloat {
+ func MAX(a: CGFloat, b: CGFloat) -> CGFloat {
     return (a > b) ? a : b
 }
 
-public extension UIColor {
+extension UIColor {
     
     /// Выполняет изменение цвета на более темный.
     var darker: UIColor {

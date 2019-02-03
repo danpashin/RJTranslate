@@ -8,13 +8,13 @@
 
 import Foundation
 
-public class TranslateMainController: SimpleViewController, SearchControllerDelegate, AppCollectionViewDelegateProtocol  {
+class TranslateMainController: SimpleViewController, SearchControllerDelegate, AppCollectionViewDelegateProtocol  {
     
-    private weak var hud: RJTHud?
-    private var searchController: SearchControllerRequired!
+   private weak var hud: RJTHud?
+   private var searchController: SearchControllerRequired!
     
     @IBOutlet
-    private var collectionView: AppCollectionView! {
+   private var collectionView: AppCollectionView! {
         didSet {
             self.collectionView.customDelegate = self
             self.collectionView.model.loadDatabaseModels()
@@ -31,11 +31,18 @@ public class TranslateMainController: SimpleViewController, SearchControllerDele
         self.commonInit()
     }
     
-    private func commonInit() {
-        
+   private func commonInit() {
+        NotificationCenter.default.addObserver(self, selector: #selector(self.downloadTranslationNotification),
+                                               name: Notification.mainControllerReloadData, object: nil)
     }
     
-    override public func viewDidLoad() {
+    @objc  func downloadTranslationNotification() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1, execute: { 
+            self.reloadTranslations()
+        })
+    }
+    
+    override func viewDidLoad() {
         super.viewDidLoad()
         self.title = NSLocalizedString("Translations.Tab.Installed.Title", comment: "")
         
@@ -50,7 +57,7 @@ public class TranslateMainController: SimpleViewController, SearchControllerDele
         }
     }
     
-    public override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
         self.collectionView.updateLayoutToSize(size)
     }
@@ -59,15 +66,15 @@ public class TranslateMainController: SimpleViewController, SearchControllerDele
     // MARK: -
     // MARK: SearchControllerRequired
     
-    public func willPresentSearchController(_ searchController: SearchControllerRequired) {
+    func willPresentSearchController(_ searchController: SearchControllerRequired) {
         self.collectionView.model.beginSearch()
     }
     
-    public func searchController(_ searchController: SearchControllerRequired, didUpdateSearchText searchText: String) {
+    func searchController(_ searchController: SearchControllerRequired, didUpdateSearchText searchText: String) {
         self.collectionView.model.performSearch(text: searchText)
     }
     
-    public func willDismissSearchController(_ searchController: SearchControllerRequired) {
+    func willDismissSearchController(_ searchController: SearchControllerRequired) {
         self.collectionView.model.endSearch()
     }
     
@@ -75,12 +82,12 @@ public class TranslateMainController: SimpleViewController, SearchControllerDele
     // MARK: -
     // MARK: RJTAppCollectionViewDelegate
     
-    public func collectionView(_ collectionView: AppCollectionView, didUpdateModel appModel: RJTApplicationModel) {
+    func collectionView(_ collectionView: AppCollectionView, didUpdateModel appModel: RJTApplicationModel) {
         self.collectionView.model.updateModel(appModel)
     }
     
     
-    public func reloadTranslations() {
+    func reloadTranslations() {
         self.collectionView.model.loadDatabaseModels()
     }
 

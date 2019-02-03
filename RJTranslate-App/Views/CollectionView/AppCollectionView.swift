@@ -8,7 +8,7 @@
 
 import Foundation
 
-@objc public protocol AppCollectionViewDelegateProtocol {
+@objc  protocol AppCollectionViewDelegateProtocol {
     
     /// Вызывается, когда пользователь тапнул по ячейке с переводом.
     ///
@@ -19,21 +19,21 @@ import Foundation
 }
 
 
-public class AppCollectionView : UICollectionView {
+class AppCollectionView : UICollectionView {
     
     /// Устанавливает кастомный делегат для объекта.
-    weak public var customDelegate: AppCollectionViewDelegateProtocol?
+    weak  var customDelegate: AppCollectionViewDelegateProtocol?
     
     /// Модель, используемая для коллекции.
-    public var model: AppCollectionModel!
+     var model: AppCollectionModel!
     
     
-    public var layout: AppCollectionLayout? {
+     var layout: AppCollectionLayout? {
         return self.collectionViewLayout as? AppCollectionLayout
     }
     
-    private var delegateObject: AppCollectionDelegate!
-    private var emptyDataSourceObject: AppCollectionEmptySource!
+   private var delegateObject: AppCollectionDelegate!
+   private var emptyDataSourceObject: AppCollectionEmptySource!
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -45,13 +45,13 @@ public class AppCollectionView : UICollectionView {
         self.commonInit()
     }
     
-    private func commonInit() {
+   private func commonInit() {
         self.model = AppCollectionModel(collectionView: self)
         self.delegateObject = AppCollectionDelegate(collectionView: self)
         self.emptyDataSourceObject = AppCollectionEmptySource(collectionView: self)
     }
     
-    override public func awakeFromNib() {
+    override func awakeFromNib() {
         super.awakeFromNib()
         self.updateLayoutToSize(UIScreen.main.bounds.size)
         self.backgroundColor = ColorScheme.default.background
@@ -61,7 +61,7 @@ public class AppCollectionView : UICollectionView {
     }
     
     /// Выполняет анимированную перезагрузку ячеек коллекции.
-    public func reload() {
+    func reload() {
         DispatchQueue.main.async {
             if self.numberOfSections > 0 {
                 self.reloadSections(NSIndexSet(indexesIn: NSRange(location: 0, length: self.numberOfSections)) as IndexSet)
@@ -70,11 +70,11 @@ public class AppCollectionView : UICollectionView {
         }
     }
     
-    public func updateLayoutToSize(_ size: CGSize) {
+    func updateLayoutToSize(_ size: CGSize) {
         self.layout?.invalidateLayout()
     }
     
-    public func updateEmptyView(to type: EmptyViewType, animated: Bool = false) {
+    func updateEmptyView(to type: EmptyViewType, animated: Bool = false) {
         if self.emptyDataSourceObject?.type == type {
             return
         }
@@ -94,7 +94,7 @@ public class AppCollectionView : UICollectionView {
     
     
     @available(*, unavailable)
-    override public func reloadData() {
+    override func reloadData() {
         super.reloadData()
     }
     

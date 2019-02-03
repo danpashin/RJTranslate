@@ -9,7 +9,7 @@
 import Foundation
 import DZNEmptyDataSet
 
-public enum EmptyViewType : Int {
+ enum EmptyViewType : Int {
     case loading
     case noSearchResults
     case noData
@@ -18,11 +18,11 @@ public enum EmptyViewType : Int {
 
 class AppCollectionEmptySource: NSObject, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
     
-    public private(set) weak var collectionView: AppCollectionView?
+    private(set) weak var collectionView: AppCollectionView?
     
-    public var type: EmptyViewType = .loading
+     var type: EmptyViewType = .loading
     
-    public init(collectionView: AppCollectionView) {
+     init(collectionView: AppCollectionView) {
         super.init()
         
         self.collectionView = collectionView
@@ -35,7 +35,7 @@ class AppCollectionEmptySource: NSObject, DZNEmptyDataSetSource, DZNEmptyDataSet
     
     // MARK: DZNEmptyDataSetSource
     
-    public func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
+    func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
         var titleString = ""
         
         switch self.type {
@@ -56,7 +56,7 @@ class AppCollectionEmptySource: NSObject, DZNEmptyDataSetSource, DZNEmptyDataSet
         return NSAttributedString(string: titleString, attributes: attributes)
     }
     
-    public func description(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
+    func description(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
         var descriptionString = ""
         
         switch self.type {
@@ -79,11 +79,11 @@ class AppCollectionEmptySource: NSObject, DZNEmptyDataSetSource, DZNEmptyDataSet
         return NSAttributedString(string: descriptionString, attributes: attributes)
     }
     
-    public func spaceHeight(forEmptyDataSet scrollView: UIScrollView!) -> CGFloat {
+    func spaceHeight(forEmptyDataSet scrollView: UIScrollView!) -> CGFloat {
         return 16.0
     }
     
-    public func backgroundColor(forEmptyDataSet scrollView: UIScrollView!) -> UIColor! {
+    func backgroundColor(forEmptyDataSet scrollView: UIScrollView!) -> UIColor! {
         return UIColor.white
     }
 }

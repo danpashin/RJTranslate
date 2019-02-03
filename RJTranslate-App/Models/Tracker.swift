@@ -9,9 +9,9 @@
 import Foundation
 import Firebase
 
-public class Tracker {
+class Tracker {
     
-    public func trackSearchEvent(_ event: String) {
+    func trackSearchEvent(_ event: String) {
         if event.count == 0 {
             return
         }
@@ -21,7 +21,7 @@ public class Tracker {
         }
     }
     
-    public func trackSelectTranslation(name: String) {
+    func trackSelectTranslation(name: String) {
         if name.count == 0 {
             return
         }

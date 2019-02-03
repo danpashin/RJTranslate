@@ -8,10 +8,10 @@
 
 import Foundation
 
-public class NavigationBar: UINavigationBar {
-    private let defaultShadowImage = UIImage(color: UIColor(white: 0.0, alpha: 0.15))
+class NavigationBar: UINavigationBar {
+   private let defaultShadowImage = UIImage(color: UIColor(white: 0.0, alpha: 0.15))
     
-    override public func awakeFromNib() {
+    override func awakeFromNib() {
         super.awakeFromNib()
         
         self.tintColor = ColorScheme.default.navTint
@@ -19,11 +19,11 @@ public class NavigationBar: UINavigationBar {
         self.showShadow()
     }
     
-    public func hideShadow() {
+    func hideShadow() {
         self.shadowImage = UIImage()
     }
     
-    public func showShadow() {
+    func showShadow() {
         self.shadowImage = self.defaultShadowImage
     }
 }

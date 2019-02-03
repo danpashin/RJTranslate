@@ -9,11 +9,11 @@
 import Foundation
 
 
-public class HTTPTask {
+class HTTPTask {
     
-    public private(set) var sessionTask: URLSessionTask?
+    private(set) var sessionTask: URLSessionTask?
     
-    public private(set) var request: URLRequest?
+    private(set) var request: URLRequest?
     
     init(request: URLRequest?, sessionTask: URLSessionTask?) {
         self.request = request
@@ -22,46 +22,46 @@ public class HTTPTask {
 }
 
 
-public class HTTPDownloadTask: HTTPTask {
-    public typealias downloadProgressClosure = (_ progress: Double) -> Void
-    public typealias downloadCompletionClosure = (_ downloadedDataURL : URL?, _ error: NSError?) -> Void
+class HTTPDownloadTask: HTTPTask {
+     typealias downloadProgressClosure = (_ progress: Double) -> Void
+     typealias downloadCompletionClosure = (_ downloadedDataURL : URL?, _ error: NSError?) -> Void
     
     /// Прогресс загрузки файла.
-    public private(set) var progressClosure : downloadProgressClosure?
+    private(set) var progressClosure : downloadProgressClosure?
     
     /// Вызывается по окончании загрузки файла.
-    public private(set) var completionClosure : downloadCompletionClosure?
+    private(set) var completionClosure : downloadCompletionClosure?
     
     @discardableResult
-    public func progress(_ progressClosure : @escaping downloadProgressClosure) -> HTTPDownloadTask {
+    func progress(_ progressClosure : @escaping downloadProgressClosure) -> HTTPDownloadTask {
         self.progressClosure = progressClosure
         return self
     }
     
     @discardableResult
-    public func completion(_ completionClosure : @escaping downloadCompletionClosure) -> HTTPDownloadTask {
+    func completion(_ completionClosure : @escaping downloadCompletionClosure) -> HTTPDownloadTask {
         self.completionClosure = completionClosure
         return self
     }
 }
 
 
-public class HTTPJSONTask: HTTPTask {
-    public typealias jsonCompletionClosure = (_ json : [String: AnyHashable]?, _ error: NSError?) -> Void
+class HTTPJSONTask: HTTPTask {
+     typealias jsonCompletionClosure = (_ json : [String: AnyHashable]?, _ error: NSError?) -> Void
     
-    public let responseData: NSMutableData = NSMutableData()
+     let responseData: NSMutableData = NSMutableData()
     
     /// Вызывается по окончании сериализации ответа.
-    public private(set) var completionClosure : jsonCompletionClosure?
+    private(set) var completionClosure : jsonCompletionClosure?
     
     @discardableResult
-    public func completion(_ completionClosure : @escaping jsonCompletionClosure) -> HTTPJSONTask {
+    func completion(_ completionClosure : @escaping jsonCompletionClosure) -> HTTPJSONTask {
         self.completionClosure = completionClosure
         return self
     }
     
     /// Выполняет сериализацию полученных данных и вызывает completionClosure.
-    public func serialize() {
+    func serialize() {
         DispatchQueue.global(qos: .default).async {
             var json: [String: AnyHashable]?
             

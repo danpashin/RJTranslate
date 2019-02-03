@@ -8,27 +8,27 @@
 
 import Foundation
 
-public protocol TranslationDetailViewDelegate: class {
+protocol TranslationDetailViewDelegate:class {
     func detailViewRequestedDownloadingTranslation(_ detailView: TranslationDetailView)
 }
 
 /// Используется для отображения детальной информации о переводе.
-public class TranslationDetailView: UIView, GradientImageRendererDelegate {
+class TranslationDetailView: UIView, GradientImageRendererDelegate {
     
     /// Лейбл с названием перевода.
-    public let titleLabel = UILabel()
+    let titleLabel = UILabel()
     
-    public let subtitleLabel = UILabel()
+    let subtitleLabel = UILabel()
     
     /// Вид с иконкой приложения.
-    public let iconView = UIImageView()
+    let iconView = ShadowedImageView()
     
     /// Кнопка для установки перевода.
-    public let installButton = UIButton()
+    let installButton = UIButton()
     
     private var gradientRenderer: GradientImageRenderer?
     
-    public weak var delegate: TranslationDetailViewDelegate?
+    weak var delegate: TranslationDetailViewDelegate?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -67,7 +67,7 @@ public class TranslationDetailView: UIView, GradientImageRendererDelegate {
         self.setupConstraints()
     }
     
-    @objc public func installButtonTappped() {
+    @objc  func installButtonTappped() {
         self.delegate?.detailViewRequestedDownloadingTranslation(self)
     }
     
@@ -113,7 +113,7 @@ public class TranslationDetailView: UIView, GradientImageRendererDelegate {
         self.installButton.setBackgroundImage(selectedImage, for: .selected)
     }
     
-    override public func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         if let button = object as? UIButton, button == self.installButton, keyPath == "bounds" {
             self.renderButtonBackground()
         }

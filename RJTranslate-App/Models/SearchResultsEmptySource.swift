@@ -11,14 +11,14 @@ import DZNEmptyDataSet
 
 class SearchResultsEmptySource: NSObject, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
     
-    public weak var tableView: SearchResultsTableView? {
+     weak var tableView: SearchResultsTableView? {
         didSet {
             self.tableView?.emptyDataSetSource = self
             self.tableView?.emptyDataSetDelegate = self
         }
     }
     
-    public func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
+    func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
         let titleString = NSLocalizedString("Search.Noresults.Title", comment: "This label shows when there are no results for the search")
         
         let attributes = [
@@ -29,7 +29,7 @@ class SearchResultsEmptySource: NSObject, DZNEmptyDataSetSource, DZNEmptyDataSet
         return NSAttributedString(string: titleString, attributes: attributes)
     }
     
-    public func description(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
+    func description(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
         let descriptionString = NSLocalizedString("Search.Noresults.Subtitle", comment: "This sublabel shows when there are no results for the search.")
         
         let attributes = [
@@ -40,7 +40,7 @@ class SearchResultsEmptySource: NSObject, DZNEmptyDataSetSource, DZNEmptyDataSet
         return NSAttributedString(string: descriptionString, attributes: attributes)
     }
     
-    public func customView(forEmptyDataSet scrollView: UIScrollView!) -> UIView! {
+    func customView(forEmptyDataSet scrollView: UIScrollView!) -> UIView! {
         if self.tableView?.isRefreshing ?? false {
             let activityIndicator = UIActivityIndicatorView(style: .gray)
             activityIndicator.startAnimating()

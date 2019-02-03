@@ -11,13 +11,13 @@ import Foundation
 class StorablePreference: Preference, CustomStringConvertible {
     
     /// Ключ сохраняемой настройки.
-    public private(set) var key: String
+    private(set) var key: String
     
     /// Значение настройки по умолчанию.
-    public private(set) var defaultValue: Any?
+    private(set) var defaultValue: Any?
     
     /// Возвращает сохраненное значение из настроек или значение по умолчанию.
-    public var value: Any? {
+     var value: Any? {
         let value = UserDefaults.standard.object(forKey: key)
         return value ?? self.defaultValue
     }
@@ -29,14 +29,14 @@ class StorablePreference: Preference, CustomStringConvertible {
     }
     
     
-    public init(key: String, defaultValue: Any?, title: String?) {
+     init(key: String, defaultValue: Any?, title: String?) {
         self.key = key
         self.defaultValue = defaultValue
         
         super.init(title: title)
     }
     
-    public func save(value: AnyHashable?) {
+    func save(value: AnyHashable?) {
         DispatchQueue.global().async {
             UserDefaults.standard.set(value, forKey: self.key)
             self.prefsTableModel?.delegate?.userDidSetPreferenceValue(value, forKey: self.key)

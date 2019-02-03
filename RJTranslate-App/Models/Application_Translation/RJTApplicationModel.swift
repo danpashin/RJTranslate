@@ -8,7 +8,7 @@
 
 import Foundation
 
-public extension RJTApplicationModel {
+extension RJTApplicationModel {
     static func loadFullModel(from translationSummary: API.TranslationSummary,
                                      completion: @escaping (RJTApplicationModel?, NSError?) -> Void) {
         DispatchQueue.global(qos: .default).async {
@@ -41,12 +41,12 @@ public extension RJTApplicationModel {
                 return
             }
             
-            if self.bundleIdentifier?.count ?? 0 > 0 {
+            if let localIcon = self.loadLocalIcon() {
+                completion(localIcon)
+            } else if self.bundleIdentifier?.count ?? 0 > 0 {
                 let image = UIImage._applicationIconImage(forBundleIdentifier: self.bundleIdentifier!,
                                                           format: .default, scale: UIScreen.main.scale)
                 completion(image)
-            } else if let localIcon = self.loadLocalIcon() {
-                completion(localIcon)
             } else {
                 let iconName = big ? "app_default_icon_big" : "app_default_icon"
                 completion(UIImage(named: iconName))

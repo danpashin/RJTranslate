@@ -8,20 +8,20 @@
 
 import Foundation
 
-public class AppCollectionModel {
+class AppCollectionModel {
     
     /// Модел датасорс коллекции.
-    public private(set) var currentDataSource: AppCollectionDataSource?
+    private(set) var currentDataSource: AppCollectionDataSource?
     
-    private weak var database: RJTDatabaseFacade?
-    private weak var collectionView: AppCollectionView?
+   private weak var database: RJTDatabaseFacade?
+   private weak var collectionView: AppCollectionView?
     
-    private var allModelsDataSource: AppCollectionDataSource?
+   private var allModelsDataSource: AppCollectionDataSource?
     
     /// Выполняет инициализацию модели для конкретной коллекции.
     ///
     /// - Parameter collectionView: Коллекция, для которой выполняется инициализация модели.
-    public init(collectionView: AppCollectionView) {
+     init(collectionView: AppCollectionView) {
         self.database = UIApplication.applicationDelegate.defaultDatabase
         
         self.collectionView = collectionView
@@ -32,7 +32,7 @@ public class AppCollectionModel {
     // MARK: Search
     
     /// Подготавливает коллекцию к выполнению поиска. Метод должен вызываться всегда перед началом поиска.
-    public func beginSearch() {
+    func beginSearch() {
         self.collectionView?.updateEmptyView(to: .noSearchResults)
         self.allModelsDataSource = self.currentDataSource
     }
@@ -40,7 +40,7 @@ public class AppCollectionModel {
     /// Выполняет поиск в базе данных по заданному тексту и перезагружает коллекцию.
     ///
     /// - Parameter text: Текст, по которому выполняется поиск.
-    public func performSearch(text: String) {
+    func performSearch(text: String) {
         if text.count == 0 {
             self.restoreDatasource()
             return
@@ -53,18 +53,18 @@ public class AppCollectionModel {
         UIApplication.applicationDelegate.tracker?.trackSearchEvent(text)
     }
     
-    private func restoreDatasource() {
+   private func restoreDatasource() {
         self.updateDataSourceObject(self.allModelsDataSource)
     }
     
     /// Заканчивает выполнение поиска и сбрасывает коллекцию к тому состоянию, в котором она была перед началом поиска.
-    public func endSearch() {
+    func endSearch() {
         self.restoreDatasource()
         self.allModelsDataSource = nil
     }
     
     /// Выполняет полную перезагрузку коллекции из базы данных
-    public func loadDatabaseModels() {
+    func loadDatabaseModels() {
         self.collectionView?.updateEmptyView(to: .loading)
         self.database?.fetchAllAppModels { allModels in
             if allModels.count == 0 {
@@ -75,14 +75,14 @@ public class AppCollectionModel {
         }
     }
     
-    private func updateCollection(models: [RJTApplicationModel]) {
+   private func updateCollection(models: [RJTApplicationModel]) {
         DispatchQueue(label: "self").sync {
             let modelsSourceObject = AppCollectionDataSource(models: models)
             updateDataSourceObject(modelsSourceObject)
         }
     }
     
-    private func updateDataSourceObject(_ dataSourceObject: AppCollectionDataSource?) {
+   private func updateDataSourceObject(_ dataSourceObject: AppCollectionDataSource?) {
         DispatchQueue.main.async {
             self.collectionView?.layout?.dataSourceChanged(from: self.currentDataSource, to: dataSourceObject)
             self.currentDataSource = dataSourceObject

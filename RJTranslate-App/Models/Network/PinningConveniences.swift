@@ -9,12 +9,12 @@
 import Foundation
 
 fileprivate struct ASN1Headers {
-    private static let rsa2048: [UInt8] = [
+   private static let rsa2048: [UInt8] = [
         0x30, 0x82, 0x01, 0x22, 0x30, 0x0d, 0x06, 0x09, 0x2a, 0x86, 0x48, 0x86,
         0xf7, 0x0d, 0x01, 0x01, 0x01, 0x05, 0x00, 0x03, 0x82, 0x01, 0x0f, 0x00
     ]
     
-    private static let rsa4096: [UInt8] = [
+   private static let rsa4096: [UInt8] = [
         0x30, 0x82, 0x02, 0x22, 0x30, 0x0d, 0x06, 0x09, 0x2a, 0x86, 0x48, 0x86,
         0xf7, 0x0d, 0x01, 0x01, 0x01, 0x05, 0x00, 0x03, 0x82, 0x02, 0x0f, 0x00
     ]
@@ -28,7 +28,7 @@ fileprivate struct ASN1Headers {
     }
 }
 
-public func SHA256(data : Data) -> String {
+ func SHA256(data : Data) -> String {
     var hash = [UInt8](repeating: 0,  count: Int(CC_SHA256_DIGEST_LENGTH))
     data.withUnsafeBytes {
         _ = CC_SHA256($0, CC_LONG(data.count), &hash)
@@ -37,8 +37,8 @@ public func SHA256(data : Data) -> String {
 }
 
 
-public extension SecCertificate {
-    var publicKey: SecKey? {
+extension SecCertificate {
+    var Key: SecKey? {
         var trust: SecTrust?
         let policy = SecPolicyCreateBasicX509()
         SecTrustCreateWithCertificates(self, policy, &trust)
@@ -54,7 +54,7 @@ public extension SecCertificate {
     }
 }
 
-public extension SecKey {
+extension SecKey {
     var keyHash: String {
         var keySize = 2048
         

@@ -11,15 +11,15 @@ import Foundation
 class ModernSearchController: UISearchController, UISearchBarDelegate, SearchControllerRequired, UISearchControllerDelegate {
     
     /// Определяет, должен ли затемняться фон при начале поиска. По умолчанию, true.
-    public var dimBackground = true
+     var dimBackground = true
     
     ///  Возвращает текст поиска, который набирается пользователем.
-    public private(set) var searchText: String = ""
+    private(set) var searchText: String = ""
     
     /// Определет, выполняется ли поиск в данный момент.
-    public private(set) var performingSearch: Bool = false
+    private(set) var performingSearch: Bool = false
     
-    public weak var searchDelegate: SearchControllerDelegate!
+     weak var searchDelegate: SearchControllerDelegate!
     
     
     @available(*, unavailable)
@@ -28,14 +28,14 @@ class ModernSearchController: UISearchController, UISearchBarDelegate, SearchCon
     }
     
     @available(*, unavailable)
-    public override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     }
     
     /// Выполняет инициализацию контроллера поиска.
     ///
     /// - Parameter delegate: Устанавливает делегат для объекта.
-    required public init(delegate: SearchControllerDelegate) {
+    required  init(delegate: SearchControllerDelegate) {
         super.init(searchResultsController: nil)
         
         self.searchDelegate = delegate
@@ -46,7 +46,7 @@ class ModernSearchController: UISearchController, UISearchBarDelegate, SearchCon
         self.searchBar.tintColor = ColorScheme.default.navTint
     }
     
-    private func showDimmingView(_ show: Bool) {
+   private func showDimmingView(_ show: Bool) {
         if !self.dimBackground {
             return
         }
@@ -62,23 +62,23 @@ class ModernSearchController: UISearchController, UISearchBarDelegate, SearchCon
     // MARK: UISearchBarDelegate
     // MARK: -
     
-    public func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         self.performingSearch = true
         self.showDimmingView(true)
     }
     
-    public func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
         UIApplication.applicationDelegate.tracker?.trackSearchEvent(self.searchText)
     }
     
-    public func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         self.searchText = searchText
         
         self.showDimmingView((searchText.count == 0))
         self.searchDelegate?.searchController?(self, didUpdateSearchText: searchText)
     }
     
-    public func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         self.searchText = ""
         self.performingSearch = false
         self.showDimmingView(false)
@@ -88,19 +88,19 @@ class ModernSearchController: UISearchController, UISearchBarDelegate, SearchCon
     // MARK: -
     // MARK: UISearchControllerDelegate
     
-    public func willPresentSearchController(_ searchController: UISearchController) {
+    func willPresentSearchController(_ searchController: UISearchController) {
         self.searchDelegate?.willPresentSearchController?(self)
     }
     
-    public func didPresentSearchController(_ searchController: UISearchController) {
+    func didPresentSearchController(_ searchController: UISearchController) {
         self.searchDelegate?.didPresentSearchController?(self)
     }
     
-    public func willDismissSearchController(_ searchController: UISearchController) {
+    func willDismissSearchController(_ searchController: UISearchController) {
         self.searchDelegate?.willDismissSearchController?(self)
     }
     
-    public func didDismissSearchController(_ searchController: UISearchController) {
+    func didDismissSearchController(_ searchController: UISearchController) {
         self.searchDelegate?.didDismissSearchController?(self)
     }
 }

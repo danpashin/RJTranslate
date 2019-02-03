@@ -15,27 +15,27 @@ protocol GradientImageRendererDelegate : AnyObject {
 class GradientImageRenderer {
     
     /// Скругление углов отрендеренного изображения. По умолчанию, 10.
-    public let cornerRadius: CGFloat = 10.0
+     let cornerRadius: CGFloat = 10.0
     
     /// Изображение для нормального состояния.
-    public private(set) var normalImage: UIImage?
+    private(set) var normalImage: UIImage?
     
     /// Изображение для выбранного состояния.
-    public private(set) var selectedImage: UIImage?
+    private(set) var selectedImage: UIImage?
     
-    public weak var delegate: GradientImageRendererDelegate?
+     weak var delegate: GradientImageRendererDelegate?
     
-    private var gradient: GradientLayer
-    private var selectedGradient: GradientLayer
+   private var gradient: GradientLayer
+   private var selectedGradient: GradientLayer
     
     /// Размеры изображения для рендеринга.
-    private var size: CGSize
+   private var size: CGSize
     
-    public private(set) var isRendering = false
+    private(set) var isRendering = false
     
-    private let renderingQueue = DispatchQueue(label: "ru.danpashin.rjtranslate.image.rendering", qos: .utility)
+   private let renderingQueue = DispatchQueue(label: "ru.danpashin.rjtranslate.image.rendering", qos: .utility)
     
-    public init(size: CGSize) {
+     init(size: CGSize) {
         self.size = size
         
         let frame = CGRect(origin: CGPoint.zero, size: size)
@@ -64,7 +64,7 @@ class GradientImageRenderer {
     }
     
     /// Выполняет рендеринг всех типов изображений в фоновом режиме. Вызывает делегат по окончании.
-    public func renderAllImages() {
+    func renderAllImages() {
         self.isRendering = true
         
         let group = DispatchGroup()
@@ -88,7 +88,7 @@ class GradientImageRenderer {
     ///
     /// - Parameter gradient: Градиент для рендеринга.
     /// - Returns: Возвращает изображение либо nil, если рендеринг не удался.
-    private func renderImage(from gradient: GradientLayer) -> UIImage? {
+   private func renderImage(from gradient: GradientLayer) -> UIImage? {
         UIGraphicsBeginImageContextWithOptions(self.size, false, UIScreen.main.scale)
         guard let context = UIGraphicsGetCurrentContext() else { return nil }
         
