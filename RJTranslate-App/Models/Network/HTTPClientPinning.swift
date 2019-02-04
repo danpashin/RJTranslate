@@ -10,10 +10,10 @@ import Foundation
 
 class HTTPClientPinning {
     
-     static var enablePinning = true
-   private static var hashes: [String: String] = [:]
+    static var enablePinning = true
+    private static var hashes: [String: String] = [:]
     
-     static func validateServerTrust(_ serverTrust: SecTrust, domain: String) -> Bool {
+    static func validateServerTrust(_ serverTrust: SecTrust, domain: String) -> Bool {
         if !self.enablePinning {
             return true
         }
@@ -37,7 +37,7 @@ class HTTPClientPinning {
         return false
     }
     
-     static func addTrustFor(domain: String, keyHash: String) {
+    static func addTrustFor(domain: String, keyHash: String) {
         self.hashes[domain] = keyHash
     }
 }

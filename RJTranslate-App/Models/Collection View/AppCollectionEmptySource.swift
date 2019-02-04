@@ -9,7 +9,7 @@
 import Foundation
 import DZNEmptyDataSet
 
- enum EmptyViewType : Int {
+enum EmptyViewType : Int {
     case loading
     case noSearchResults
     case noData
@@ -20,9 +20,9 @@ class AppCollectionEmptySource: NSObject, DZNEmptyDataSetSource, DZNEmptyDataSet
     
     private(set) weak var collectionView: AppCollectionView?
     
-     var type: EmptyViewType = .loading
+    var type: EmptyViewType = .loading
     
-     init(collectionView: AppCollectionView) {
+    init(collectionView: AppCollectionView) {
         super.init()
         
         self.collectionView = collectionView

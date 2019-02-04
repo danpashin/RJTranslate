@@ -6,6 +6,8 @@
 //  Copyright © 2018 Даниил. All rights reserved.
 //
 
+#import <UIKit/UIKit.h>
+
 @class UIImage, NSString;
 
 typedef NS_ENUM(NSUInteger, MIIconVariant) {

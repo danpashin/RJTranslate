@@ -15,7 +15,7 @@ protocol GradientImageRendererDelegate : AnyObject {
 class GradientImageRenderer {
     
     /// Скругление углов отрендеренного изображения. По умолчанию, 10.
-     let cornerRadius: CGFloat = 10.0
+    let cornerRadius: CGFloat = 10.0
     
     /// Изображение для нормального состояния.
     private(set) var normalImage: UIImage?
@@ -23,17 +23,17 @@ class GradientImageRenderer {
     /// Изображение для выбранного состояния.
     private(set) var selectedImage: UIImage?
     
-     weak var delegate: GradientImageRendererDelegate?
+    weak var delegate: GradientImageRendererDelegate?
     
-   private var gradient: GradientLayer
-   private var selectedGradient: GradientLayer
+    private var gradient: GradientLayer
+    private var selectedGradient: GradientLayer
     
     /// Размеры изображения для рендеринга.
-   private var size: CGSize
+    private var size: CGSize
     
     private(set) var isRendering = false
     
-   private let renderingQueue = DispatchQueue(label: "ru.danpashin.rjtranslate.image.rendering", qos: .utility)
+    private let renderingQueue = DispatchQueue(label: "ru.danpashin.rjtranslate.image.rendering", qos: .utility)
     
      init(size: CGSize) {
         self.size = size

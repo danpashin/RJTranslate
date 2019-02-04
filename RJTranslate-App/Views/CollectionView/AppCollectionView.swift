@@ -15,7 +15,7 @@ import Foundation
     /// - Parameters:
     ///   - collectionView: Экземпляр коллекции.
     ///   - model: Экземпляр модели перевода в ячейке.
-    func collectionView(_ collectionView: AppCollectionView, didUpdateModel model: RJTApplicationModel)
+    func collectionView(_ collectionView: AppCollectionView, didUpdateModel model: TranslationModel)
 }
 
 
@@ -25,15 +25,15 @@ class AppCollectionView : UICollectionView {
     weak  var customDelegate: AppCollectionViewDelegateProtocol?
     
     /// Модель, используемая для коллекции.
-     var model: AppCollectionModel!
+    var model: AppCollectionModel!
     
     
-     var layout: AppCollectionLayout? {
+    var layout: AppCollectionLayout? {
         return self.collectionViewLayout as? AppCollectionLayout
     }
     
-   private var delegateObject: AppCollectionDelegate!
-   private var emptyDataSourceObject: AppCollectionEmptySource!
+    private var delegateObject: AppCollectionDelegate!
+    private var emptyDataSourceObject: AppCollectionEmptySource!
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -45,7 +45,7 @@ class AppCollectionView : UICollectionView {
         self.commonInit()
     }
     
-   private func commonInit() {
+    private func commonInit() {
         self.model = AppCollectionModel(collectionView: self)
         self.delegateObject = AppCollectionDelegate(collectionView: self)
         self.emptyDataSourceObject = AppCollectionEmptySource(collectionView: self)

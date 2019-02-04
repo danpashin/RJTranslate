@@ -12,7 +12,7 @@ class AppCollectionDelegate : NSObject, UICollectionViewDelegateFlowLayout, UICo
     
     private(set) var collectionView: AppCollectionView?
     
-     init(collectionView: AppCollectionView) {
+    init(collectionView: AppCollectionView) {
         self.collectionView = collectionView
         
         super.init()
@@ -25,7 +25,7 @@ class AppCollectionDelegate : NSObject, UICollectionViewDelegateFlowLayout, UICo
         
     }
     
-   private func update(appCell: AppCollectionCell, selected: Bool) {
+    private func update(appCell: AppCollectionCell, selected: Bool) {
         appCell.updateSelection(selected, animated: true)
         if appCell.model != nil {
             appCell.model!.enableTranslation = selected
@@ -74,7 +74,7 @@ class AppCollectionDelegate : NSObject, UICollectionViewDelegateFlowLayout, UICo
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, 
-                               at indexPath: IndexPath) -> UICollectionReusableView {
+                        at indexPath: IndexPath) -> UICollectionReusableView {
         let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader,
                                                                          withReuseIdentifier: "header", 
                                                                          for: indexPath) as! CollectionHeaderLabel
@@ -91,7 +91,7 @@ class AppCollectionDelegate : NSObject, UICollectionViewDelegateFlowLayout, UICo
     // MARK: UICollectionViewDelegate
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, 
-                               forItemAt indexPath: IndexPath) {
+                        forItemAt indexPath: IndexPath) {
         guard let appCell = cell as? AppCollectionCell else { return }
         if appCell.model?.enableTranslation ?? false {
             collectionView.selectItem(at: indexPath, animated: false, scrollPosition: [])
@@ -121,7 +121,7 @@ class AppCollectionDelegate : NSObject, UICollectionViewDelegateFlowLayout, UICo
     // MARK: UICollectionViewDelegateFlowLayout
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, 
-                               referenceSizeForHeaderInSection section: Int) -> CGSize {
+                        referenceSizeForHeaderInSection section: Int) -> CGSize {
         let dataSource = self.collectionView?.model?.currentDataSource
         
         if section == 0 && dataSource?.installed.count ?? 0 > 0 {
@@ -136,7 +136,7 @@ class AppCollectionDelegate : NSObject, UICollectionViewDelegateFlowLayout, UICo
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, 
-                               insetForSectionAt section: Int) -> UIEdgeInsets {
+                        insetForSectionAt section: Int) -> UIEdgeInsets {
         
         let dataSource = self.collectionView?.model?.currentDataSource
         if (section == 0 && dataSource?.installed.count ?? 0 > 0) || section == 1 {
@@ -149,7 +149,7 @@ class AppCollectionDelegate : NSObject, UICollectionViewDelegateFlowLayout, UICo
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, 
-                               sizeForItemAt indexPath: IndexPath) -> CGSize {
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         let size = CGSize(width: collectionView.frame.width - 24.0, height: AppCollectionCell.defaultHeight)
         

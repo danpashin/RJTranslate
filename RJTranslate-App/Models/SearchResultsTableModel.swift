@@ -13,8 +13,8 @@ class SearchResultsTableModel: NSObject, UITableViewDelegate, UITableViewDataSou
     
     private(set) var searchResults = [API.TranslationSummary]()
     
-   private var forceTouchPreviewContext: UIViewControllerPreviewing?
-     weak var searchController: UIViewController? {
+    private var forceTouchPreviewContext: UIViewControllerPreviewing?
+    weak var searchController: UIViewController? {
         didSet {
             if UIApplication.shared.keyWindow?.traitCollection.forceTouchCapability == .available {
                 if self.forceTouchPreviewContext != nil {
@@ -34,7 +34,7 @@ class SearchResultsTableModel: NSObject, UITableViewDelegate, UITableViewDataSou
         }
     }
     
-   private let syncOperationQueue = OperationQueue()
+    private let syncOperationQueue = OperationQueue()
     
      override init() {
         self.syncOperationQueue.name = "ru.danpashin.rjtranslate.livesearch"
@@ -59,7 +59,7 @@ class SearchResultsTableModel: NSObject, UITableViewDelegate, UITableViewDataSou
         self.syncOperationQueue.addOperation(operation)
     }
     
-   private func updateForResult(_ result: API.ResponseResult<[API.TranslationSummary]>?) {
+    private func updateForResult(_ result: API.ResponseResult<[API.TranslationSummary]>?) {
         self.searchResults.removeAll()
         
         if let data = result?.data {
@@ -69,7 +69,7 @@ class SearchResultsTableModel: NSObject, UITableViewDelegate, UITableViewDataSou
         self.tableView?.isRefreshing = false
     }
     
-   private func detailController(for indexPath: IndexPath) -> TranslationDetailController? {
+    private func detailController(for indexPath: IndexPath) -> TranslationDetailController? {
         if indexPath.row > self.searchResults.count - 1 { return nil }
         
         let result = self.searchResults[indexPath.row]

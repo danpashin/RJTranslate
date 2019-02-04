@@ -10,7 +10,7 @@ import Foundation
 
 class AsynchronousOperation: Operation {
     
-     enum State: String {
+    enum State: String {
         case ready
         case executing
         case finished
@@ -20,7 +20,7 @@ class AsynchronousOperation: Operation {
         }
     }
     
-     var state: State = .ready {
+    var state: State = .ready {
         willSet {
             willChangeValue(forKey: newValue.kvcKeyPath)
             willChangeValue(forKey: self.state.kvcKeyPath)

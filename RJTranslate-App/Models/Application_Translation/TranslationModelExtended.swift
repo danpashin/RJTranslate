@@ -1,5 +1,5 @@
 //
-//  RJTApplicationModel.swift
+//  TranslationModelExtended.swift
 //  RJTranslate-App
 //
 //  Created by Даниил on 24/01/2019.
@@ -8,9 +8,9 @@
 
 import Foundation
 
-extension RJTApplicationModel {
+extension TranslationModel {
     static func loadFullModel(from translationSummary: API.TranslationSummary,
-                                     completion: @escaping (RJTApplicationModel?, NSError?) -> Void) {
+                              completion: @escaping (TranslationModel?, NSError?) -> Void) {
         DispatchQueue.global(qos: .default).async {
             HTTPClient.shared.json(translationSummary.url)
                 .completion { (response: [String : AnyHashable]?, error: NSError?) in
@@ -21,7 +21,7 @@ extension RJTApplicationModel {
                     
                     if let responseDict = response?["response"] as? [[String: AnyHashable]] {
                         if let translationDict = responseDict.first {
-                            let model = RJTApplicationModel.from(translationDict)
+                            let model = TranslationModel(dictionary: translationDict)
                             completion(model, nil)
                             return
                         }

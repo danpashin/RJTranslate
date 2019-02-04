@@ -23,8 +23,8 @@ class HTTPTask {
 
 
 class HTTPDownloadTask: HTTPTask {
-     typealias downloadProgressClosure = (_ progress: Double) -> Void
-     typealias downloadCompletionClosure = (_ downloadedDataURL : URL?, _ error: NSError?) -> Void
+    typealias downloadProgressClosure = (_ progress: Double) -> Void
+    typealias downloadCompletionClosure = (_ downloadedDataURL : URL?, _ error: NSError?) -> Void
     
     /// Прогресс загрузки файла.
     private(set) var progressClosure : downloadProgressClosure?
@@ -47,9 +47,9 @@ class HTTPDownloadTask: HTTPTask {
 
 
 class HTTPJSONTask: HTTPTask {
-     typealias jsonCompletionClosure = (_ json : [String: AnyHashable]?, _ error: NSError?) -> Void
+    typealias jsonCompletionClosure = (_ json : [String: AnyHashable]?, _ error: NSError?) -> Void
     
-     let responseData: NSMutableData = NSMutableData()
+    let responseData: NSMutableData = NSMutableData()
     
     /// Вызывается по окончании сериализации ответа.
     private(set) var completionClosure : jsonCompletionClosure?

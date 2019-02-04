@@ -17,7 +17,7 @@ class StorablePreference: Preference, CustomStringConvertible {
     private(set) var defaultValue: Any?
     
     /// Возвращает сохраненное значение из настроек или значение по умолчанию.
-     var value: Any? {
+    var value: Any? {
         let value = UserDefaults.standard.object(forKey: key)
         return value ?? self.defaultValue
     }
@@ -29,7 +29,7 @@ class StorablePreference: Preference, CustomStringConvertible {
     }
     
     
-     init(key: String, defaultValue: Any?, title: String?) {
+    init(key: String, defaultValue: Any?, title: String?) {
         self.key = key
         self.defaultValue = defaultValue
         

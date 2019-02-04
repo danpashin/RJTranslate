@@ -7,8 +7,6 @@
 //
 
 #import "RJTDatabase.h"
-#import <CoreData/CoreData.h>
-
 #import "RJTOperationQueue.h"
 
 @interface RJTDatabase ()

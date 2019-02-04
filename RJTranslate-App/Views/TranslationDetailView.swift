@@ -45,8 +45,8 @@ class TranslationDetailView: UIView, GradientImageRendererDelegate {
     }
     
     private func commonInit() {
-        self.iconView.layer.shadowRadius = 26.0
-        self.iconView.layer.shadowOpacity = 0.1
+        self.iconView.layer.shadowRadius = 24.0
+        self.iconView.layer.shadowOpacity = 0.0
         self.iconView.layer.shadowOffset = .zero
         self.addSubview(self.iconView)
         
@@ -67,7 +67,7 @@ class TranslationDetailView: UIView, GradientImageRendererDelegate {
         self.setupConstraints()
     }
     
-    @objc  func installButtonTappped() {
+    @objc func installButtonTappped() {
         self.delegate?.detailViewRequestedDownloadingTranslation(self)
     }
     
@@ -78,7 +78,7 @@ class TranslationDetailView: UIView, GradientImageRendererDelegate {
         self.installButton.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            self.iconView.topAnchor.constraint(equalTo: self.topAnchor, constant: 26.0),
+            self.iconView.topAnchor.constraint(equalTo: self.topAnchor, constant: 30.0),
             self.iconView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
             self.iconView.widthAnchor.constraint(equalToConstant: 76.0),
             self.iconView.heightAnchor.constraint(equalToConstant: 76.0),

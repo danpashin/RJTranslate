@@ -14,7 +14,7 @@ class HTTPClientDelegateObject: NSObject, URLSessionDownloadDelegate, URLSession
     weak private(set) var client: HTTPClient?
     private(set) var utilityQueue = OperationQueue()
     
-     init(client: HTTPClient) {
+    init(client: HTTPClient) {
         self.client = client
         
         self.utilityQueue.name = "ru.danpashin.rjtranslate.network"
@@ -22,7 +22,7 @@ class HTTPClientDelegateObject: NSObject, URLSessionDownloadDelegate, URLSession
     }
     
     func urlSession(_ session: URLSession, didReceive challenge: URLAuthenticationChallenge, 
-                           completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) {
+                    completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) {
         
         if challenge.protectionSpace.authenticationMethod == NSURLAuthenticationMethodServerTrust {
             if let serverTrust = challenge.protectionSpace.serverTrust {
@@ -67,8 +67,8 @@ class HTTPClientDelegateObject: NSObject, URLSessionDownloadDelegate, URLSession
     // MARK: URLSessionDataDelegate
     
     func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, 
-                           didReceive response: URLResponse, 
-                           completionHandler: @escaping (URLSession.ResponseDisposition) -> Void) {
+                    didReceive response: URLResponse, 
+                    completionHandler: @escaping (URLSession.ResponseDisposition) -> Void) {
         let httpResponse = response as! HTTPURLResponse
         
         guard let task = self.client?.activeTasks[dataTask.taskIdentifier] else {
@@ -140,8 +140,8 @@ class HTTPClientDelegateObject: NSObject, URLSessionDownloadDelegate, URLSession
     }
     
     func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, 
-                           didWriteData bytesWritten: Int64, 
-                           totalBytesWritten: Int64, totalBytesExpectedToWrite: Int64) {
+                    didWriteData bytesWritten: Int64, 
+                    totalBytesWritten: Int64, totalBytesExpectedToWrite: Int64) {
         guard let task = self.client?.activeTasks[downloadTask.taskIdentifier] as? HTTPDownloadTask else { return }
         task.progressClosure?(Double(totalBytesWritten / totalBytesExpectedToWrite))
     }

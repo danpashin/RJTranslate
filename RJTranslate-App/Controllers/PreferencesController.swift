@@ -11,15 +11,22 @@ import Foundation
 class PreferencesController: UITableViewController, PrefsTableModelDelegate {
     
     /// Модель таблицы
-   private var model: PreferencesTableModel?
+    private var model: PreferencesTableModel?
     
     override init(style: UITableView.Style) {
         super.init(style: .grouped)
+        self.commonInit()
     }
     
     @available(*, unavailable)
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+        self.commonInit()
+    }
+    
+    private func commonInit() {
+        self.title = NSLocalizedString("Settings.Title", comment: "")
+        self.navigationController?.tabBarItem.title = self.title
     }
     
     override func loadView() {
@@ -32,7 +39,6 @@ class PreferencesController: UITableViewController, PrefsTableModelDelegate {
         super.viewDidLoad()
         
         self.tableView.backgroundColor = ColorScheme.default.background
-        self.title = NSLocalizedString("Preferences.Title", comment: "")
     }
     
     

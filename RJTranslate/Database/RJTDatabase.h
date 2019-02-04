@@ -7,8 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
-@class NSManagedObjectContext;
+#import <CoreData/CoreData.h>
 
 NS_ASSUME_NONNULL_BEGIN
 

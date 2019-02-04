@@ -10,8 +10,8 @@ import Foundation
 
 class AppCollectionLayout : UICollectionViewFlowLayout, AppCollectionDataSourceChange {
     
-   private var oldDataSource: AppCollectionDataSource?
-   private weak var currentDataSource: AppCollectionDataSource?
+    private var oldDataSource: AppCollectionDataSource?
+    private weak var currentDataSource: AppCollectionDataSource?
     
     override init() {
         super.init()
@@ -24,7 +24,7 @@ class AppCollectionLayout : UICollectionViewFlowLayout, AppCollectionDataSourceC
         self.commonInit()
     }
     
-   private func commonInit() {
+    private func commonInit() {
         self.sectionInset = UIEdgeInsets(top: 0.0, left: 0.0, bottom: 20.0, right: 0.0)
     }
     

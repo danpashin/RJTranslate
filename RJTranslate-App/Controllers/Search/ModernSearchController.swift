@@ -11,7 +11,7 @@ import Foundation
 class ModernSearchController: UISearchController, UISearchBarDelegate, SearchControllerRequired, UISearchControllerDelegate {
     
     /// Определяет, должен ли затемняться фон при начале поиска. По умолчанию, true.
-     var dimBackground = true
+    var dimBackground = true
     
     ///  Возвращает текст поиска, который набирается пользователем.
     private(set) var searchText: String = ""
@@ -19,7 +19,7 @@ class ModernSearchController: UISearchController, UISearchBarDelegate, SearchCon
     /// Определет, выполняется ли поиск в данный момент.
     private(set) var performingSearch: Bool = false
     
-     weak var searchDelegate: SearchControllerDelegate!
+    weak var searchDelegate: SearchControllerDelegate!
     
     
     @available(*, unavailable)
@@ -28,7 +28,7 @@ class ModernSearchController: UISearchController, UISearchBarDelegate, SearchCon
     }
     
     @available(*, unavailable)
-     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     }
     
@@ -46,14 +46,14 @@ class ModernSearchController: UISearchController, UISearchBarDelegate, SearchCon
         self.searchBar.tintColor = ColorScheme.default.navTint
     }
     
-   private func showDimmingView(_ show: Bool) {
+    private func showDimmingView(_ show: Bool) {
         if !self.dimBackground {
             return
         }
         
         UIView.animate(withDuration: 0.3, delay: 0.0,
                        options: [.allowUserInteraction, .allowAnimatedContent], animations: {
-            self.view.backgroundColor = UIColor(white: 0.0, alpha: show ? 0.3 : 0.0)
+                        self.view.backgroundColor = UIColor(white: 0.0, alpha: show ? 0.3 : 0.0)
         }, completion: nil)
     }
     

@@ -15,18 +15,18 @@ protocol AppCollectionDataSourceChange :class {
 class AppCollectionDataSource : CustomStringConvertible {
     
     /// Массив содержит все модели переводов
-    private(set) var rawModels: [RJTApplicationModel]
+    private(set) var rawModels: [TranslationModel]
     
     /// Массив содержит модели переводов, приложения которых установлены на устройстве.
-    private(set) var installed : [RJTApplicationModel] = []
+    private(set) var installed : [TranslationModel] = []
     
     /// Массив содержит модели переводов, приложения которых НЕ установлены на устройстве.
-    private(set) var uninstalled : [RJTApplicationModel] = []
+    private(set) var uninstalled : [TranslationModel] = []
     
     /// Выполняет инициализацию и разделение моделей в датасорсе.
     ///
     /// - Parameter models:  Модели для датасорса.
-     init(models: [RJTApplicationModel]) {
+    init(models: [TranslationModel]) {
         self.rawModels = models
         
         for model in models {
@@ -39,7 +39,7 @@ class AppCollectionDataSource : CustomStringConvertible {
         
     }
     
-     var description: String {
+    var description: String {
         return String(format: "<%@; installed %@; uninstalled %@>",
                       classInfo(of: self), self.installed, self.uninstalled)
     }

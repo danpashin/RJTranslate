@@ -8,7 +8,7 @@
 
 import Foundation
 
- protocol URLTransformable {
+protocol URLTransformable {
     
     /// Преобразует данный класс в URL, если возможно
     ///
@@ -42,7 +42,7 @@ extension URL : URLTransformable {
 }
 
 extension UIDevice {
-     var identifier: String {
+    var identifier: String {
         var systemInfo = utsname()
         uname(&systemInfo)
         

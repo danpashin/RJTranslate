@@ -13,15 +13,15 @@ class AppCollectionModel {
     /// Модел датасорс коллекции.
     private(set) var currentDataSource: AppCollectionDataSource?
     
-   private weak var database: RJTDatabaseFacade?
-   private weak var collectionView: AppCollectionView?
+    private weak var database: RJTDatabaseAppFacade?
+    private weak var collectionView: AppCollectionView?
     
-   private var allModelsDataSource: AppCollectionDataSource?
+    private var allModelsDataSource: AppCollectionDataSource?
     
     /// Выполняет инициализацию модели для конкретной коллекции.
     ///
     /// - Parameter collectionView: Коллекция, для которой выполняется инициализация модели.
-     init(collectionView: AppCollectionView) {
+    init(collectionView: AppCollectionView) {
         self.database = UIApplication.applicationDelegate.defaultDatabase
         
         self.collectionView = collectionView
@@ -53,7 +53,7 @@ class AppCollectionModel {
         UIApplication.applicationDelegate.tracker?.trackSearchEvent(text)
     }
     
-   private func restoreDatasource() {
+    private func restoreDatasource() {
         self.updateDataSourceObject(self.allModelsDataSource)
     }
     
@@ -75,33 +75,33 @@ class AppCollectionModel {
         }
     }
     
-   private func updateCollection(models: [RJTApplicationModel]) {
+    private func updateCollection(models: [TranslationModel]) {
         DispatchQueue(label: "self").sync {
             let modelsSourceObject = AppCollectionDataSource(models: models)
             updateDataSourceObject(modelsSourceObject)
         }
     }
     
-   private func updateDataSourceObject(_ dataSourceObject: AppCollectionDataSource?) {
+    private func updateDataSourceObject(_ dataSourceObject: AppCollectionDataSource?) {
         DispatchQueue.main.async {
             self.collectionView?.layout?.dataSourceChanged(from: self.currentDataSource, to: dataSourceObject)
             self.currentDataSource = dataSourceObject
             self.collectionView?.reload()
         }
     }
-
+    
     
     // MARK: -
     
     /// Выполняет обновление модели в базе данных.
     ///
     /// - Parameter model: Модель для обновления.
-    func updateModel(_ appModel: RJTApplicationModel) {
+    func updateModel(_ appModel: TranslationModel) {
         self.database?.update(appModel)
         
         let executableName = appModel.executableName
         if (executableName?.count ?? 0) > 0 {
-            RJTPosixWrapper.executeCommand(["/usr/bin/killall", "-9", executableName!])
+            RJTUtilities.executeSystemCommand(["/usr/bin/killall", "-9", executableName!])
         }
         
         UIApplication.applicationDelegate.tracker?.trackSelectTranslation(name: appModel.displayedName)

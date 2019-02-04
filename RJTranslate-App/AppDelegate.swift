@@ -12,13 +12,13 @@ import Firebase
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, CrashlyticsDelegate {
     
-var window: UIWindow?
+    var window: UIWindow?
     
     /// Трекер событий приложения.
-   private(set) var tracker: Tracker?
+    private(set) var tracker: Tracker?
     
     /// Дефолтная база данных.
-   private(set) var defaultDatabase: RJTDatabaseFacade?
+    private(set) var defaultDatabase: RJTDatabaseAppFacade?
     
     var tabbarController: TabbarController {
         return self.window!.rootViewController as! TabbarController
@@ -29,7 +29,7 @@ var window: UIWindow?
     }
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        self.defaultDatabase = RJTDatabaseFacade()
+        self.defaultDatabase = RJTDatabaseAppFacade()
         
         self.setupAnalytics()
         
@@ -40,7 +40,7 @@ var window: UIWindow?
         return true
     }
     
-   private func setupAnalytics() {
+    private func setupAnalytics() {
         FirebaseConfiguration.shared.setLoggerLevel(.min)
         Crashlytics.sharedInstance().delegate = self
         FirebaseApp.configure()

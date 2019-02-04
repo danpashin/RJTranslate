@@ -9,7 +9,10 @@
 
 #import "RJTApplicationEntity.h"
 #import <CoreData/NSEntityDescription.h>
-#import "RJTApplicationModel.h"
+
+#ifdef BUILD_APP
+#import <RJTranslate-Swift.h>
+#endif
 
 @implementation RJTApplicationEntity
 @dynamic bundleIdentifier;
@@ -21,6 +24,7 @@
 @dynamic executablePath;
 @dynamic forceLocalize;
 @dynamic remoteUpdated;
+@dynamic installDate;
 
 + (NSFetchRequest<RJTApplicationEntity *> *)fetchRequest
 {
@@ -33,7 +37,8 @@
                                          inManagedObjectContext:context];
 }
 
-- (void)copyPropertiesFrom:(RJTApplicationModel *)appModel
+#ifdef BUILD_APP
+- (void)copyPropertiesFrom:(TranslationModel *)appModel
 {
     self.bundleIdentifier = [appModel.bundleIdentifier copy];
     self.displayedName = [appModel.displayedName copy];
@@ -48,5 +53,6 @@
     self.enableTranslation = appModel.enableTranslation;
     self.forceLocalize = appModel.forceLocalize;
 }
+#endif
 
 @end

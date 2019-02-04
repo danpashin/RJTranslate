@@ -12,13 +12,13 @@ class HTTPClient {
     
     static let shared: HTTPClient = HTTPClient()
     
-   private(set) var session: URLSession!
-   private let configuration = URLSessionConfiguration.ephemeral
-   private var delegateObject: HTTPClientDelegateObject?
+    private(set) var session: URLSession!
+    private let configuration = URLSessionConfiguration.ephemeral
+    private var delegateObject: HTTPClientDelegateObject?
     
     private(set) var activeTasks : [Int: HTTPTask] = [:]
     
-   private var defaultUserAgent: String {
+    private var defaultUserAgent: String {
         let device = UIDevice.current
         let systemName = device.systemName
         let systemVersion = device.systemVersion
@@ -33,7 +33,7 @@ class HTTPClient {
                       appVersion, deviceIdentifier, systemName, systemVersion, UIScreen.main.scale)
     }
     
-     init() {
+    init() {
         self.configuration.allowsCellularAccess = true
         self.configuration.httpAdditionalHeaders = ["User-Agent": self.defaultUserAgent]
         
@@ -64,8 +64,8 @@ class HTTPClient {
     ///   - arguments: Аргументы запроса. По умолчанию, пустой массив.
     /// - Returns: Возвращает объект запроса для дальнейшей работы.
     func download(_ url: URLTransformable,
-                         httpMethod: HTTPMethod = .get,
-                         arguments:[String: AnyHashable] = [:]
+                  httpMethod: HTTPMethod = .get,
+                  arguments:[String: AnyHashable] = [:]
         ) -> HTTPDownloadTask {
         
         let requestBuilder = HTTPRequestBuilder(url: url, httpMethod: httpMethod, arguments: arguments)
@@ -87,8 +87,8 @@ class HTTPClient {
     ///   - arguments: Аргументы запроса. По умолчанию, пустой массив.
     /// - Returns: Возвращает объект запроса для дальнейшей работы.
     func json(_ url: URLTransformable,
-                     httpMethod: HTTPMethod = .get,
-                     arguments:[String: AnyHashable] = [:]
+              httpMethod: HTTPMethod = .get,
+              arguments:[String: AnyHashable] = [:]
         ) -> HTTPJSONTask {
         
         let requestBuilder = HTTPRequestBuilder(url: url, httpMethod: httpMethod, arguments: arguments)

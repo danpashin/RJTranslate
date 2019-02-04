@@ -68,7 +68,7 @@ extension UINavigationBar {
 }
 
 extension UIView {
-   static func recursiveSearch(in view: UIView, viewType: AnyClass) -> UIView? {
+    static func recursiveSearch(in view: UIView, viewType: AnyClass) -> UIView? {
         for subview in view.subviews {
             if subview.isKind(of: viewType) {
                 return subview

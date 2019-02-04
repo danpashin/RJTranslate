@@ -10,11 +10,11 @@ import Foundation
 
 class TranslateMainController: SimpleViewController, SearchControllerDelegate, AppCollectionViewDelegateProtocol  {
     
-   private weak var hud: RJTHud?
-   private var searchController: SearchControllerRequired!
+    private weak var hud: RJTHud?
+    private var searchController: SearchControllerRequired!
     
     @IBOutlet
-   private var collectionView: AppCollectionView! {
+    private var collectionView: AppCollectionView! {
         didSet {
             self.collectionView.customDelegate = self
             self.collectionView.model.loadDatabaseModels()
@@ -31,7 +31,7 @@ class TranslateMainController: SimpleViewController, SearchControllerDelegate, A
         self.commonInit()
     }
     
-   private func commonInit() {
+    private func commonInit() {
         NotificationCenter.default.addObserver(self, selector: #selector(self.downloadTranslationNotification),
                                                name: Notification.mainControllerReloadData, object: nil)
     }
@@ -57,7 +57,7 @@ class TranslateMainController: SimpleViewController, SearchControllerDelegate, A
         }
     }
     
-     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
         self.collectionView.updateLayoutToSize(size)
     }
@@ -82,7 +82,7 @@ class TranslateMainController: SimpleViewController, SearchControllerDelegate, A
     // MARK: -
     // MARK: RJTAppCollectionViewDelegate
     
-    func collectionView(_ collectionView: AppCollectionView, didUpdateModel appModel: RJTApplicationModel) {
+    func collectionView(_ collectionView: AppCollectionView, didUpdateModel appModel: TranslationModel) {
         self.collectionView.model.updateModel(appModel)
     }
     
@@ -90,5 +90,5 @@ class TranslateMainController: SimpleViewController, SearchControllerDelegate, A
     func reloadTranslations() {
         self.collectionView.model.loadDatabaseModels()
     }
-
+    
 }

@@ -10,10 +10,10 @@ import Foundation
 
 class SearchResultsTableView: UITableView {
     
-     let model = SearchResultsTableModel()
-   private let emptySource = SearchResultsEmptySource()
+    let model = SearchResultsTableModel()
+    private let emptySource = SearchResultsEmptySource()
     
-     var isRefreshing = false {
+    var isRefreshing = false {
         didSet {
             self.reloadData()
         }
@@ -29,7 +29,7 @@ class SearchResultsTableView: UITableView {
         self.commonInit()
     }
     
-   private func commonInit() {
+    private func commonInit() {
         self.model.tableView = self
         self.emptySource.tableView = self
         self.tableFooterView = UIView()

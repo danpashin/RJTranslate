@@ -9,7 +9,7 @@
 import Foundation
 
 class Tabbar: UITabBar {
-     let shadowView = UIView()
+    let shadowView = UIView()
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -23,7 +23,7 @@ class Tabbar: UITabBar {
         self.addShadow()
     }
     
-   private func addShadow() {
+    private func addShadow() {
         self.shadowView.backgroundColor = ColorScheme.default.tabbarShadow
         self.shadowView.translatesAutoresizingMaskIntoConstraints = false
         

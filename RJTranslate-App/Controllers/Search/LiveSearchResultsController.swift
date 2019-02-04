@@ -10,13 +10,13 @@ import Foundation
 
 class LiveSearchResultsController : SimpleViewController, SearchControllerDelegate {
     
-   private var resultsHiddenBottomConstraint: NSLayoutConstraint!
-   private var resultsOpenedBottomConstraint: NSLayoutConstraint!
+    private var resultsHiddenBottomConstraint: NSLayoutConstraint!
+    private var resultsOpenedBottomConstraint: NSLayoutConstraint!
     
-   private var resultsPresented = false
+    private var resultsPresented = false
     
     /// Таблица, используемая для показа результатов поиска.
-     let resultsTableView = SearchResultsTableView()
+    let resultsTableView = SearchResultsTableView()
     private(set) var searchController: SearchControllerRequired?
     
     override func viewDidLoad() {
@@ -79,7 +79,7 @@ class LiveSearchResultsController : SimpleViewController, SearchControllerDelega
         }
     }
     
-   private func animateResultsTableChange() {
+    private func animateResultsTableChange() {
         UIView.animate(withDuration: 0.35) { 
             self.view.layoutIfNeeded()
         }

@@ -14,7 +14,7 @@
         <scene sceneID="hgR-IW-sFI">
             <objects>
                 <navigationController id="DN6-oA-nK2" customClass="NavigationController" customModule="RJTranslate" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="tabbar/list_normal_24" id="jYD-YX-Pbw"/>
+                    <tabBarItem key="tabBarItem" title="" image="tabbar/translation_list_24" id="jYD-YX-Pbw"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="LgB-Qj-ZQY" customClass="NavigationBar" customModule="RJTranslate" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="20" width="375" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -168,7 +168,7 @@
         <scene sceneID="80C-O2-Eeh">
             <objects>
                 <navigationController id="bkX-ai-phv" customClass="NavigationController" customModule="RJTranslate" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" systemItem="search" id="HFE-dm-X97"/>
+                    <tabBarItem key="tabBarItem" title="" image="tabbar/search_24" id="HFE-dm-X97"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="9Oj-PR-roX" customClass="NavigationBar" customModule="RJTranslate" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="20" width="375" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -205,11 +205,11 @@
             </objects>
             <point key="canvasLocation" x="87" y="337"/>
         </scene>
-        <!--Tabbar.Settings-->
+        <!--Navigation Controller-->
         <scene sceneID="BGZ-2W-b8e">
             <objects>
                 <navigationController id="81n-zD-F22" customClass="NavigationController" customModule="RJTranslate" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Tabbar.Settings" image="tabbar/settings_normal_24" id="wcW-cR-ggr"/>
+                    <tabBarItem key="tabBarItem" title="" image="tabbar/settings_24" id="wcW-cR-ggr"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="gDm-Lc-efr" customClass="NavigationBar" customModule="RJTranslate" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="20" width="375" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -252,7 +252,8 @@
     </scenes>
     <resources>
         <image name="app_default_icon" width="60" height="60"/>
-        <image name="tabbar/list_normal_24" width="24" height="24"/>
-        <image name="tabbar/settings_normal_24" width="24" height="24"/>
+        <image name="tabbar/search_24" width="24" height="25"/>
+        <image name="tabbar/settings_24" width="24" height="24"/>
+        <image name="tabbar/translation_list_24" width="24" height="18"/>
     </resources>
 </document>

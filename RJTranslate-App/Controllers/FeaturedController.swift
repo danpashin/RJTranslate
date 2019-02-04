@@ -11,9 +11,23 @@ import UIKit
 
 class FeaturedController: LiveSearchResultsController {
     
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+        self.commonInit()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        self.commonInit()
+    }
+    
+    private func commonInit() {
+        self.title = NSLocalizedString("Translations.Featured.Title", comment: "")
+        self.navigationController?.tabBarItem.title = self.title
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.title = NSLocalizedString("Translations.Featured.Title", comment: "")
     }
 }

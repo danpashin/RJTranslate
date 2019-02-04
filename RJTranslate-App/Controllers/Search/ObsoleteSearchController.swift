@@ -10,7 +10,7 @@ import Foundation
 
 
 class ObsoleteSearchController: UIViewController, SearchControllerRequired, UISearchBarDelegate {
-     var dimBackground: Bool = true
+    var dimBackground: Bool = true
     
     private(set) var searchText: String = ""
     
@@ -18,7 +18,7 @@ class ObsoleteSearchController: UIViewController, SearchControllerRequired, UISe
     
     private(set) var searchBar: ButtonedSearchBar?
     
-   private var dimmed: Bool = true
+    private var dimmed: Bool = true
     
     /// Определет, выполняется ли, поиск в данный момент.
     private(set) var performingSearch: Bool = false {
@@ -53,7 +53,7 @@ class ObsoleteSearchController: UIViewController, SearchControllerRequired, UISe
     }
     
     /// Выполняет презентацию контроллера на экране
-   private func present() {
+    private func present() {
         self.searchDelegate?.willPresentSearchController?(self)
         if self.performingSearch {
             self.dismiss()
@@ -68,7 +68,7 @@ class ObsoleteSearchController: UIViewController, SearchControllerRequired, UISe
     }
     
     /// Удаляет контроллер с экрана
-   private func dismiss(_ notifyDelegate: Bool = true) {
+    private func dismiss(_ notifyDelegate: Bool = true) {
         if self.performingSearch {
             if notifyDelegate {
                 self.searchDelegate?.willDismissSearchController?(self)
@@ -86,7 +86,7 @@ class ObsoleteSearchController: UIViewController, SearchControllerRequired, UISe
         }
     }
     
-   private func updateDimming(_ shouldDim: Bool) {
+    private func updateDimming(_ shouldDim: Bool) {
         if !self.dimBackground { return }
         
         self.dimmed = shouldDim

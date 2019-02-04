@@ -6,15 +6,11 @@
   Copyright © 2018 Даниил. All rights reserved.
 */
 
-"Translations.Installed.Title" = "Installed";
-"available_translations" = "Available translations";
-"translations_update_is_available" = "Translation update is now available";
-"tap_to_download" = "Tap here to download";
+"Translations.Tab.Installed.Title" = "Installed";
+"Translations.NoInstalled.Title" = "No translations installed";
+"Translations.NoInstalled.Subtitle" = "You can download interesting in the Search tab";
 
-"please_wait" = "Please, wait";
-"downloating_localization..." = "Downloading localization files...";
-"updating_database..." = "Updating database...";
-"failed_to_update" = "Update failed.";
+"Translations.Featured.Title" = "Search";
 
 // Поиск
 "Search.Noresults.Title" = "Unfortunately, we can't find anything";
@@ -22,23 +18,20 @@
 "cancel" = "Cancel";
 "search" = "Search";
 
-"no_translations_downloaded" = "No translations installed";
-"tap_button_to_download_available" = "Tap the button below to install available";
-"download" = "Download";
-
 // Детальная инфа о локализации
 "Translation.Install" = "Install";
 "Translation.Detail.Updated" = "Updated: %@";
 
 
 // Настройки
-"Preferences.Title" = "Settings";
+"Settings.Title" = "Settings";
 
-"Settings.Database.Purge" = "Purge database (DANGEROUS)";
+"Settings.Stats" = "Statistics";
+"Settings.Stats.Send" = "Send statistics";
+"Settings.Stats.Send.Footer" = "Statistics helps us to have better understanding of your preferences and quickly implement new features. But if you do not want to send it, you can disable it.";
 
-"statistics" = "Statistics";
-"send_statistics" = "Send statistics";
-"send_statistics_footer" = "Statistics helps us to have better understanding of your preferences and quickly implement new features. But if you do not want to send it, you can disable it.";
+"Settings.Crashlogs.Send" = "Report craches";
+"Settings.Crashlogs.Send.Footer" = "Crash messages help up to quicker fix critical errors and give you a stable product. You can also disable it if you want.";
 
-"send_crashlogs" = "Send crash messages";
-"send_crashlogs_footer" = "Crash messages help up to quicker fix critical errors and give you a stable product. You can also disable it if you want.";
+"Settings.Database" = "Database";
+"Settings.Database.Purge" = "Purge database";

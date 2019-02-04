@@ -22,15 +22,15 @@ enum ImageCacheType {
 
 class ImageCache {
     
-     static let shared = ImageCache()
+    static let shared = ImageCache()
     
     /// Тип кэша. В памяти, дисковый или комбинированный.
     private(set) var type: ImageCacheType
     
-   private let memoryCache = NSCache<NSString, UIImage>()
+    private let memoryCache = NSCache<NSString, UIImage>()
     
     /// Директория для кэшировния объектов на диск
-   private var cacheDirectory: String
+    private var cacheDirectory: String
     
      init(type: ImageCacheType = .disk) {
         self.type = type
@@ -43,7 +43,7 @@ class ImageCache {
 
     }
     
-   private func createCacheDirectory() {
+    private func createCacheDirectory() {
         if !FileManager.default.fileExists(atPath: self.cacheDirectory) {
             try? FileManager.default.createDirectory(atPath: self.cacheDirectory, 
                                                      withIntermediateDirectories: true, attributes: nil)

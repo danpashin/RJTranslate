@@ -8,17 +8,17 @@
 
 import Foundation
 
- protocol CustomErrorProtocol {
+protocol CustomErrorProtocol {
     var code: Int { get set }
     var description: String { get set }
 }
 
 struct API {
-     static let apiURL = URL(string: "https://translations.rejail.ru/index.php")!
+    static let apiURL = URL(string: "https://translations.rejail.ru/index.php")!
     
     struct SimpleError: CustomErrorProtocol {
-         var code: Int
-         var description: String
+        var code: Int
+        var description: String
         
         var nserror: NSError {
             let localizedDescription = NSLocalizedString(self.description, comment: "Server description error")
@@ -29,8 +29,8 @@ struct API {
     }
     
     struct ResponseResult <T> {
-         var data: T?
-         var error: API.SimpleError?
+        var data: T?
+        var error: API.SimpleError?
     }
     
     /// Основная информация о переводе.
@@ -57,7 +57,7 @@ extension API.TranslationSummary {
     /// - Returns: Возвращает таск запроса.
     @discardableResult
     static func search(text searchText: String,
-                                     completion: @escaping (API.ResponseResult <[API.TranslationSummary]>) -> Void)
+                       completion: @escaping (API.ResponseResult <[API.TranslationSummary]>) -> Void)
         -> HTTPJSONTask {
             let task = HTTPClient.shared.json(API.apiURL, arguments: ["action": "search", "name": searchText])
                 .completion({ (response: [String : AnyHashable]?, error: NSError?) in
@@ -78,7 +78,7 @@ extension API.TranslationSummary {
             return task
     }
     
-   private static func parseSearchResponse(json: [String : AnyHashable], searchText: String)
+    private static func parseSearchResponse(json: [String : AnyHashable], searchText: String)
         -> API.ResponseResult<[API.TranslationSummary]> {
             var parsedSummaries = [API.TranslationSummary]()
             

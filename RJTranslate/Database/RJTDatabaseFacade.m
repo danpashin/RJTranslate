@@ -8,15 +8,9 @@
 
 #import "RJTDatabaseFacade.h"
 #import "RJTDatabase.h"
-#import <CoreData/CoreData.h>
 
 #import "RJTApplicationEntity.h"
-#import "RJTApplicationModel.h"
-
-@interface RJTDatabaseFacade ()
-@property (strong, nonatomic) RJTDatabase *database;
-
-@end
+#import "NSSortDescriptor+RJTExtended.h"
 
 @implementation RJTDatabaseFacade
 
@@ -24,7 +18,7 @@
 {
     self = [super init];
     if (self) {
-        self.database = [RJTDatabase defaultDatabase];
+        _database = [RJTDatabase defaultDatabase];
     }
     return self;
 }
@@ -34,51 +28,12 @@
     [self.database saveContext];
 }
 
-
-- (NSSortDescriptor *)caseInsensetiveSortDescriptorWithKey:(NSString *)key ascending:(BOOL)ascending
-{
-    return [[NSSortDescriptor alloc] initWithKey:key ascending:ascending
-                                        selector:@selector(localizedCaseInsensitiveCompare:)];
-}
-
-- (void)fetchAllAppModelsWithCompletion:(void(^)(NSArray <RJTApplicationModel *>  * _Nonnull allModels))completion
-{
-    [self.database performBackgroundTask:^(NSManagedObjectContext * _Nonnull context) {
-        NSFetchRequest *fetchRequest = [RJTApplicationEntity fetchRequest];
-        fetchRequest.sortDescriptors = @[[self caseInsensetiveSortDescriptorWithKey:@"displayedName" ascending:YES]];
-        NSArray <RJTApplicationEntity *> *result = [context executeFetchRequest:fetchRequest error:nil];
-        
-        NSMutableArray <RJTApplicationModel *> *allModels = [NSMutableArray array];
-        for (RJTApplicationEntity *entity in result) {
-            RJTApplicationModel *model = [RJTApplicationModel copyFromEntity:entity lightweight:YES];
-            [allModels addObject:model];
-        }
-        
-        completion(allModels);
-    }];
-}
-
-
-- (void)fetchAppModelsWithPredicate:(NSPredicate * _Nullable)predicate
-                         completion:(void(^)(NSArray <RJTApplicationModel *>  * _Nonnull models))completion
-{
-    [self fetchAppEntitiesWithPredicate:predicate completion:^(NSArray<RJTApplicationEntity *> * _Nonnull appEntities) {
-        NSMutableArray <RJTApplicationModel *> *models = [NSMutableArray array];
-        for (RJTApplicationEntity *entity in appEntities) {
-            RJTApplicationModel *model = [RJTApplicationModel copyFromEntity:entity lightweight:YES];
-            [models addObject:model];
-        }
-        
-        completion(models);
-    }];
-}
-
 - (void)fetchAppEntitiesWithPredicate:(NSPredicate * _Nullable)predicate
                            completion:(void (^)(NSArray<RJTApplicationEntity *> * _Nonnull entities))completion
 {
     [self.database performBackgroundTask:^(NSManagedObjectContext * _Nonnull context) {
         NSFetchRequest *fetchRequest = [RJTApplicationEntity fetchRequest];
-        fetchRequest.sortDescriptors = @[[self caseInsensetiveSortDescriptorWithKey:@"displayedName" ascending:YES]];
+        fetchRequest.sortDescriptors = @[[NSSortDescriptor rjt_caseInsWithKey:@"displayedName" ascending:YES]];
         fetchRequest.predicate = predicate;
         
         NSArray <RJTApplicationEntity *> *result = [context executeFetchRequest:fetchRequest error:nil];
@@ -86,57 +41,7 @@
     }];
 }
 
-- (void)insertAppModels:(NSArray <RJTApplicationModel *> *)appModels completion:(void(^_Nullable)(void))completion
-{
-    [self.database performBackgroundTask:^(NSManagedObjectContext * _Nonnull context) {
-        if (self.database.readOnly) {
-            RJTErrorLog(nil, @"Persistent store is read-only. Skipping inserting.");
-            
-            if (completion)
-                completion();
-            
-            return;
-        }
-        
-        for (RJTApplicationModel *appModel in appModels) {
-            RJTApplicationEntity *appObject = [RJTApplicationEntity insertIntoContext:context];
-            [appObject copyPropertiesFrom:appModel];
-        }
-        
-        if (completion)
-            completion();
-    }];
-}
-
-- (void)addAppModels:(NSArray <RJTApplicationModel *> *)appModels completion:(void(^_Nullable)(void))completion
-{
-    [self.database performBackgroundTask:^(NSManagedObjectContext * _Nonnull context) {
-        if (self.database.readOnly) {
-            RJTErrorLog(nil, @"Persistent store is read-only. Skipping inserting.");
-            
-            if (completion)
-                completion();
-            
-            return;
-        }
-        
-        for (RJTApplicationModel *appModel in appModels) {
-            NSFetchRequest *fetchRequest = [RJTApplicationEntity fetchRequest];
-            fetchRequest.predicate = [NSPredicate predicateWithFormat:@"displayedName == %@", appModel.displayedName];
-            NSUInteger count = [context countForFetchRequest:fetchRequest error:nil];
-            if (count == 0) {
-                RJTApplicationEntity *appObject = [RJTApplicationEntity insertIntoContext:context];
-                [appObject copyPropertiesFrom:appModel];
-            }
-        }
-        
-        if (completion)
-            completion();
-    }];
-}
-
-
-- (void)purgeWithCompletion:( void(^_Nullable)(void))completion
+- (void)purgeWithCompletion:(void(^_Nullable)(void))completion
 {
     [self.database performBackgroundTask:^(NSManagedObjectContext * _Nonnull context) {
         NSFetchRequest *fetchRequest = [RJTApplicationEntity fetchRequest];
@@ -146,68 +51,6 @@
         if (completion)
             completion();
     }];
-}
-
-
-- (void)updateModel:(RJTApplicationModel *)appModel
-{
-    [self updateModel:appModel saveContext:YES];
-}
-
-- (void)updateModel:(RJTApplicationModel *)appModel saveContext:(BOOL)saveContext
-{
-    if (self.database.readOnly) {
-        RJTErrorLog(nil, @"Persistent store is read-only. Skipping updating.");
-        return;
-    }
-    
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"displayedName == %@", appModel.displayedName];
-    [self fetchAppEntitiesWithPredicate:predicate completion:^(NSArray<RJTApplicationEntity *> * _Nonnull appEntities) {
-        if (appEntities.count != 1)
-            return;
-        
-        RJTApplicationEntity *entity = appEntities.firstObject;
-        [entity copyPropertiesFrom:appModel];
-        
-        if (saveContext)
-            [self.database saveContext];
-    }];
-}
-
-- (void)removeModel:(RJTApplicationModel *)appModel completion:(void(^_Nullable)(NSError * _Nullable error))completion
-{
-    [self.database performBackgroundTask:^(NSManagedObjectContext * _Nonnull context) {
-        if (self.database.readOnly) {
-            RJTErrorLog(nil, @"Persistent store is read-only. Skipping removing.");
-            
-            NSError *error = [NSError errorWithDomain:NSCocoaErrorDomain code:0
-                                             userInfo:@{NSLocalizedDescriptionKey:@"Persistent store is read-only"}];
-            
-            if (completion)
-                completion(error);
-            
-            return;
-        }
-        
-        NSFetchRequest *fetchRequest = [RJTApplicationEntity fetchRequest];
-        fetchRequest.predicate = [NSPredicate predicateWithFormat:@"displayedName == %@", appModel.displayedName];
-        
-        NSBatchDeleteRequest *deleteRequest = [[NSBatchDeleteRequest alloc] initWithFetchRequest:fetchRequest];
-        
-        NSError *error = nil;
-        [context executeRequest:deleteRequest error:&error];
-        
-        if (completion)
-            completion(error);
-    }];
-}
-
-
-- (void)performModelsSearchWithText:(NSString *)text
-                         completion:(void(^)(NSArray <RJTApplicationModel *> * _Nonnull models))completion
-{
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"bundleIdentifier BEGINSWITH[cd] %@ OR displayedName BEGINSWITH[cd] %@", text, text];
-    [self fetchAppModelsWithPredicate:predicate completion:completion];
 }
 
 @end

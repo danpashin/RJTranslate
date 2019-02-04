@@ -38,7 +38,7 @@ class NavigationController: UINavigationController, UINavigationBarDelegate {
         
         return false
     }
-
+    
 }
 
 extension UIViewController {

@@ -9,9 +9,9 @@
 import Foundation
 
 class LiveSearchOperation: AsynchronousOperation {
-   private var jsonTask: HTTPJSONTask?
+    private var jsonTask: HTTPJSONTask?
     
-   private var searchText: String
+    private var searchText: String
     
     /// Результат выполненного запроса.
     private(set) var result: API.ResponseResult<[API.TranslationSummary]>?

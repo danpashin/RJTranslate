@@ -69,7 +69,7 @@ class HTTPRequestBuilder {
         return request
     }
     
-   private func stringFromMethod(_ method : HTTPMethod) -> String {
+    private func stringFromMethod(_ method : HTTPMethod) -> String {
         switch method {
         case .get:
             return "GET"
@@ -77,8 +77,8 @@ class HTTPRequestBuilder {
         case .post:
             return "POST"
             
-//        default:
-//            return ""
+            //        default:
+            //            return ""
         }
     }
 }

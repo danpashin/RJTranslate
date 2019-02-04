@@ -11,7 +11,7 @@ import Foundation
 class TranslationDetailController: SimpleViewController, TranslationDetailViewDelegate {
     
     
-    private(set) var translationModel: RJTApplicationModel? {
+    private(set) var translationModel: TranslationModel? {
         didSet {
             self.performUIUpdate()
         }
@@ -22,7 +22,7 @@ class TranslationDetailController: SimpleViewController, TranslationDetailViewDe
     
     
     
-    init(translation: RJTApplicationModel) {
+    init(translation: TranslationModel) {
         defer {
             self.translationModel = translation
         }
@@ -46,7 +46,7 @@ class TranslationDetailController: SimpleViewController, TranslationDetailViewDe
         self.view.backgroundColor = UIColor.white
         
         let navigationBar = UIApplication.applicationDelegate.currentNavigationController.navigationBar
-        navigationBar.hideShadow()
+        navigationBar.hideShadow(animated: true)
         
         if #available(iOS 11.0, *) {
             self.navigationItem.largeTitleDisplayMode = .never
@@ -90,8 +90,8 @@ class TranslationDetailController: SimpleViewController, TranslationDetailViewDe
             activityView.startAnimating()
             self.view.addSubview(activityView)
             
-            RJTApplicationModel.loadFullModel(from: self.translationSummary!) {
-                (model: RJTApplicationModel?, error: NSError?) in
+            TranslationModel.loadFullModel(from: self.translationSummary!) {
+                (model: TranslationModel?, error: NSError?) in
                 DispatchQueue.main.async {
                     activityView.stopAnimating()
                     activityView.removeFromSuperview()
@@ -118,7 +118,7 @@ class TranslationDetailController: SimpleViewController, TranslationDetailViewDe
     
     override var controllerShouldPop: Bool {
         let navigationBar = UIApplication.applicationDelegate.currentNavigationController.navigationBar
-        navigationBar.showShadow()
+        navigationBar.showShadow(animated: true)
         
         return true
     }
@@ -126,7 +126,7 @@ class TranslationDetailController: SimpleViewController, TranslationDetailViewDe
     private func performUIUpdate() {
         guard let translationModel = self.translationModel else { return }
         guard let translationView = self.translationView else { return }
-         
+        
         translationView.titleLabel.text = translationModel.displayedName
         
         let updateStringDate = DateFormatter.localizedString(from: translationModel.updateDate, 
@@ -140,17 +140,6 @@ class TranslationDetailController: SimpleViewController, TranslationDetailViewDe
                     self.translationView?.iconView.image = icon
                 })
             }
-            
-//            if let averageColor = icon?.averageColor {
-//                var red: CGFloat = 0.0
-//                var green: CGFloat = 0.0
-//                var blue: CGFloat = 0.0
-//                averageColor.getRed(&red, green: &green, blue: &blue, alpha: nil)
-//                
-//                if red < 0.8 && green < 0.8 && blue < 0.8 {
-//                    self.translationView?.iconView.layer.shadowColor = averageColor.withAlphaComponent(0.15).cgColor
-//                }
-//            }
         })
     }
     
@@ -160,11 +149,14 @@ class TranslationDetailController: SimpleViewController, TranslationDetailViewDe
     
     func detailViewRequestedDownloadingTranslation(_ detailView: TranslationDetailView) {
         guard let model = self.translationModel else { return }
+        let hud = RJTHud.show()
         
         let database = UIApplication.applicationDelegate.defaultDatabase!
         database.addAppModels([model]) {
             database.forceSaveContext()
             NotificationCenter.default.post(name: Notification.mainControllerReloadData, object: nil)
+            
+            hud.hide(afterDelay: 1.0)
         }
     }
 }

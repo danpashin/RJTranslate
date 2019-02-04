@@ -14,7 +14,7 @@ class ButtonPreference: Preference {
         return .button
     }
     
-     enum Style {
+    enum Style {
         
         /// Стандартный стиль кнопки.
         case `default`
@@ -34,7 +34,7 @@ class ButtonPreference: Preference {
     /// Стиль кнопки.
     private(set) var style: ButtonPreference.Style
     
-     init(title: String?, target: Any, action: Selector, style: ButtonPreference.Style = ButtonPreference.Style.default) {
+    init(title: String?, target: Any, action: Selector, style: ButtonPreference.Style = ButtonPreference.Style.default) {
         self.target = target
         self.action = action
         self.style = style
@@ -43,6 +43,6 @@ class ButtonPreference: Preference {
     }
     
     func invokeAction() {
-        RJTDynamicInvoke.invokeSelector(self.action, onTarget: self.target)
+        RJTUtilities.invokeSelector(self.action, onTarget: self.target)
     }
 }

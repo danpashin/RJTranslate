@@ -9,24 +9,24 @@
 import Foundation
 
 class Preference {
-     enum Category {
+    enum Category {
         case text
         case `switch`
         case button
     }
-
+    
     
     /// Тип настройки. По умолчанию - текст.
-     var category: Preference.Category {
+    var category: Preference.Category {
         return .text
     }
     
     /// Название настройки.
     private(set) var title: String?
     
-     weak var prefsTableModel: PreferencesTableModel?
+    weak var prefsTableModel: PreferencesTableModel?
     
-     init(title: String?) {
+    init(title: String?) {
         self.title = title
     }
 }

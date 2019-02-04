@@ -8,7 +8,7 @@
 
 import Foundation
 
- enum AppCellState {
+enum AppCellState {
     case normal
     case pressed
     
@@ -27,13 +27,13 @@ class TouchResponsiveCollectionCell: UICollectionViewCell {
     
     private(set) var state: AppCellState = .normal
     
-     override func prepareForReuse() {
+    override func prepareForReuse() {
         super.prepareForReuse()
         
         self.updateState(.normal, animated: false)
     }
     
-   private func updateState(_ state: AppCellState, animated: Bool = true) {
+    private func updateState(_ state: AppCellState, animated: Bool = true) {
         if self.state != state {
             self.state = state
             

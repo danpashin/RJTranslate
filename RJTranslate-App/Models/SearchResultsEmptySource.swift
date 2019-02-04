@@ -11,7 +11,7 @@ import DZNEmptyDataSet
 
 class SearchResultsEmptySource: NSObject, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
     
-     weak var tableView: SearchResultsTableView? {
+    weak var tableView: SearchResultsTableView? {
         didSet {
             self.tableView?.emptyDataSetSource = self
             self.tableView?.emptyDataSetDelegate = self

@@ -8,27 +8,17 @@
 
 #import <Foundation/Foundation.h>
 
-@class RJTApplicationModel, RJTApplicationEntity;
+@class RJTApplicationEntity;
+@class RJTDatabase;
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface RJTDatabaseFacade : NSObject
 
 /**
- Выполняет асинхронную загрузку из базы данных все доступные модели приложений.
- 
- @param completion Блок, который вызывается по завершении операции.
+ База данных.
  */
-- (void)fetchAllAppModelsWithCompletion:(void(^)(NSArray <RJTApplicationModel *> *allModels))completion;
-
-/**
- Выполняет асинхронную загрузку моделей из базы данных.
- 
- @param predicate Предикат, по которому осуществляется выборка. Может быть nil.
- @param completion Блок, который вызывается по завершении операции. Содержит массив доступных моделей.
- */
-- (void)fetchAppModelsWithPredicate:(NSPredicate * _Nullable)predicate
-                         completion:(void(^)(NSArray <RJTApplicationModel *> *models))completion;
+@property (strong, nonatomic, readonly) RJTDatabase *database;
 
 /**
  Выполняет асинхронную загрузку сущностей из базы данных.
@@ -39,47 +29,17 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)fetchAppEntitiesWithPredicate:(NSPredicate * _Nullable)predicate
                            completion:(void (^)(NSArray <RJTApplicationEntity *> *entities))completion;
 
-
 /**
- Осуществляет добавление моделей в базу.
- 
- @param appModels Массив моделей для добавления.
+ Выполняет полное обнуление базы данных.
+
  @param completion Блок, который вызывается по завершении операции.
  */
-- (void)insertAppModels:(NSArray <RJTApplicationModel *> *)appModels completion:(void(^ _Nullable)(void))completion;
+- (void)purgeWithCompletion:(void(^_Nullable)(void))completion;
 
 /**
- Обновляет параметры модели в базе данных.
- 
- @param appModel Модель, которую необходимо обновить.
+ Принудительно выполняет сохранение базы в постоянное хранилище.
  */
-- (void)updateModel:(RJTApplicationModel *)appModel;
-
-/**
- Выполняет удаление модели из базы.
- 
- @param appModel Модель, которую необходимо удалить.
- @param completion Блок, который вызывается по завершении операции. Если операция неудачна, содержит ошибку с детальной информацией.
- */
-- (void)removeModel:(RJTApplicationModel *)appModel completion:(void(^ _Nullable)(NSError * _Nullable error))completion;
-
-- (void)addAppModels:(NSArray <RJTApplicationModel *> *)appModels completion:(void(^_Nullable)(void))completion;
-
-- (void)purgeWithCompletion:( void(^_Nullable)(void))completion;
-
-
-
-/**
- Выполняет поиск модел(и/ей) по базе.
- 
- @param text Текст, по которому необходимо искать
- @param completion  Блок, который вызывается по завершении операции. Содержит массив найденных моделей.
- */
-- (void)performModelsSearchWithText:(NSString *)text
-                         completion:(void(^)(NSArray<RJTApplicationModel *> * _Nonnull models))completion;
-
 - (void)forceSaveContext;
-
 
 @end
 

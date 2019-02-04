@@ -9,9 +9,9 @@
 import Foundation
 
 class TickView : UIView {
-   
+    
     @IBInspectable
-     var isEnabled: Bool {
+    var isEnabled: Bool {
         get { return self._isEnabled }
         
         set {
@@ -19,7 +19,7 @@ class TickView : UIView {
         }
     }
     
-   private var _isEnabled = false
+    private var _isEnabled = false
     
     override static var layerClass: AnyClass {
         return CAShapeLayer.self
@@ -48,7 +48,7 @@ class TickView : UIView {
         self.commonInit()
     }
     
-   private func commonInit() {
+    private func commonInit() {
         self.layer.strokeColor = ColorScheme.default.accentSecondary.cgColor
         self.layer.fillColor = UIColor.clear.cgColor
         self.layer.strokeEnd = 0.0

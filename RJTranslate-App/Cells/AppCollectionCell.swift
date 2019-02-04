@@ -11,9 +11,9 @@ import UIKit
 
 class AppCollectionCell: TouchResponsiveCollectionCell {
     
-     static let defaultHeight: CGFloat = 76.0
+    static let defaultHeight: CGFloat = 76.0
     
-     var model: RJTApplicationModel? {
+    var model: TranslationModel? {
         didSet {
             updateForNewModel()
         }
@@ -30,7 +30,7 @@ class AppCollectionCell: TouchResponsiveCollectionCell {
     @IBOutlet private weak var identifierLabel: UILabel?
     @IBOutlet private weak var tickView: TickView?
     
-     override func awakeFromNib() {
+    override func awakeFromNib() {
         super.awakeFromNib()
         self.nameLabel?.textColor = ColorScheme.default.titleLabel
         
@@ -52,14 +52,14 @@ class AppCollectionCell: TouchResponsiveCollectionCell {
         self.tickView?.setEnabled(selected, animated: animated)
     }
     
-     override func prepareForReuse() {
+    override func prepareForReuse() {
         super.prepareForReuse()
         
         self.model = nil
         self.updateSelection(false, animated: false)
     }
     
-   private func updateForNewModel() {
+    private func updateForNewModel() {
         self.nameLabel?.text = model?.displayedName
         
         if self.model?.bundleIdentifier?.count ?? 0 > 0 && model?.executableName?.count ?? 0 > 0 {

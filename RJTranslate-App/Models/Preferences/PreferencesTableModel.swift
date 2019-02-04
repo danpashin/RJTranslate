@@ -33,26 +33,29 @@ class PreferencesTableModel: NSObject, UITableViewDelegate, UITableViewDataSourc
     
    private func createPreferences() {
         let sendStatsPrefs = SwitchPreference(key: "send_statistics", defaultValue: NSNumber(value: true),
-                                              title: NSLocalizedString("send_statistics", comment: ""))
+                                              title: NSLocalizedString("Settings.Stats.Send", comment: ""))
         
         let sendCrashPrefs = SwitchPreference(key: "send_crashlogs", defaultValue: NSNumber(value: true),
-                                              title: NSLocalizedString("send_crashlogs", comment: ""))
-        
-        let appDelegate = UIApplication.applicationDelegate
-        let purgeDatabase = ButtonPreference(title:NSLocalizedString("Settings.Database.Purge", comment: ""),
-                                             target: appDelegate, 
-                                             action: #selector(appDelegate.purgeDatabase), 
-                                             style: .destructive)
+                                              title: NSLocalizedString("Settings.Crashlogs.Send", comment: ""))
         
         self.groups = [
-            createGroup(title: "statistics", footer: "send_statistics_footer",
+            createGroup(title: "Settings.Stats", footer: "Settings.Stats.Send.Footer",
                         preference: sendStatsPrefs as Preference),
             
-            createGroup(title: nil, footer: "send_crashlogs_footer",
+            createGroup(title: nil, footer: "Settings.Crashlogs.Send.Footer",
                         preference: sendCrashPrefs as Preference),
-            
-            createGroup(title: nil, footer: nil, preference: purgeDatabase)
         ]
+    
+    #if DEBUG
+    let appDelegate = UIApplication.applicationDelegate
+    let purgeDatabase = ButtonPreference(title:NSLocalizedString("Settings.Database.Purge", comment: ""),
+                                         target: appDelegate, 
+                                         action: #selector(appDelegate.purgeDatabase), 
+                                         style: .destructive)
+    let databaseGroup = createGroup(title: "Settings.Database", footer: nil, preference: purgeDatabase)
+    self.groups.append(databaseGroup)
+    #endif
+    
     }
     
    private func createGroup(title: String?, footer: String?, preference: Preference) -> PreferenceGroup {

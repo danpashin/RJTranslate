@@ -9,7 +9,7 @@
 
 #import <CoreData/NSManagedObject.h>
 #import <CoreData/NSFetchRequest.h>
-@class NSObject, RJTApplicationModel;
+@class NSObject, TranslationModel;
 
 
 NS_ASSUME_NONNULL_BEGIN
@@ -19,20 +19,23 @@ NS_ASSUME_NONNULL_BEGIN
 + (NSFetchRequest<RJTApplicationEntity *> *)fetchRequest;
 + (RJTApplicationEntity *)insertIntoContext:(NSManagedObjectContext *)context;
 
-@property (nullable, nonatomic, copy) NSString *displayedName;
+@property (nonatomic, copy) NSString *displayedName;
 @property (nullable, nonatomic, copy) NSString *bundleIdentifier;
 @property (nullable, nonatomic, copy) NSString *executableName;
 @property (nullable, nonatomic, copy) NSString *executablePath;
 
-@property (nullable, nonatomic, retain) NSDictionary *translation;
+@property (nullable, nonatomic, retain) NSDictionary <NSString *, NSString *> *translation;
 @property (assign, nonatomic) BOOL enableTranslation;
 @property (assign, nonatomic) BOOL forceLocalize;
 
 @property (nullable, nonatomic, retain) NSString *iconPath;
 
 @property (assign, nonatomic) double remoteUpdated;
+@property (assign, nonatomic) double installDate;
 
-- (void)copyPropertiesFrom:(RJTApplicationModel *)appModel;
+#ifdef BUILD_APP
+- (void)copyPropertiesFrom:(TranslationModel *)appModel;
+#endif
 
 @end
 

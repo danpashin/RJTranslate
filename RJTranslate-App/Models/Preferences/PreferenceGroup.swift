@@ -24,7 +24,7 @@ class PreferenceGroup: CustomStringConvertible {
                       self.title ?? "", self.footerText ?? "", self.preferences)
     }
     
-     init(title: String?, footerText: String?,  preferences: [Preference] ) {
+    init(title: String?, footerText: String?,  preferences: [Preference] ) {
         self.title = title
         self.footerText = footerText
         self.preferences = preferences
