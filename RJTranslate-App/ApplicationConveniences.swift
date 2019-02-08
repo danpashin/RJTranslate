@@ -51,18 +51,16 @@ extension UIApplication {
     }
 }
 
-func heapAddress(of object: AnyObject) -> String {
+func heapAddress(_ object: AnyObject) -> String {
     return String(format: "%p", unsafeBitCast(object, to: Int.self))
 }
 
-func className(of object: AnyObject) -> String {
+func className(_ object: AnyObject) -> String {
     return String(describing: type(of: object))
 }
 
-func classInfo(of object: AnyObject) -> String {
-    let clsName = className(of: object)
-    let address = heapAddress(of: object)
-    return "\(clsName): \(address)"
+func classInfo(_ object: AnyObject) -> String {
+    return "\(className(object)): \(heapAddress(object))"
 }
 
 extension DispatchQueue {

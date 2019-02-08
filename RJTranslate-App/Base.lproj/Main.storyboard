@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.55" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Y4e-bJ-pqe">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.59" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Y4e-bJ-pqe">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.43"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.45"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -66,83 +66,7 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <inset key="scrollIndicatorInsets" minX="0.0" minY="-1" maxX="0.0" maxY="0.0"/>
                                 <collectionViewLayout key="collectionViewLayout" id="8oa-3I-5eX" customClass="AppCollectionLayout" customModule="RJTranslate" customModuleProvider="target"/>
-                                <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="appCell" id="RgZ-da-Q3a" userLabel="appCell" customClass="AppCollectionCell" customModule="RJTranslate" customModuleProvider="target">
-                                        <rect key="frame" x="31.5" y="0.0" width="312" height="72"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                                            <rect key="frame" x="0.0" y="0.0" width="312" height="72"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="app_default_icon" translatesAutoresizingMaskIntoConstraints="NO" id="Jad-Kf-djK">
-                                                    <rect key="frame" x="12" y="11" width="50" height="50"/>
-                                                    <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                                                    <color key="tintColor" white="0.82645726312785384" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" secondItem="Jad-Kf-djK" secondAttribute="height" multiplier="1:1" id="jSi-xY-0LT"/>
-                                                        <constraint firstAttribute="height" constant="50" id="piZ-WY-Xrf"/>
-                                                    </constraints>
-                                                </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yEu-8f-E3T">
-                                                    <rect key="frame" x="74" y="11" width="238" height="24"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="24" id="n8x-sj-0lc"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="identifier" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="APX-LU-3EC">
-                                                    <rect key="frame" x="74" y="35" width="230" height="16"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="16" id="Muz-nR-eaZ"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                                                    <color key="textColor" white="0.5" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2d6-Kj-Mgb" customClass="TickView" customModule="RJTranslate" customModuleProvider="target">
-                                                    <rect key="frame" x="264" y="26" width="40" height="20"/>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="40" id="MNg-hB-tdB"/>
-                                                        <constraint firstAttribute="height" constant="20" id="We9-Cv-K9G"/>
-                                                    </constraints>
-                                                </view>
-                                            </subviews>
-                                        </view>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <constraints>
-                                            <constraint firstItem="Jad-Kf-djK" firstAttribute="centerY" secondItem="RgZ-da-Q3a" secondAttribute="centerY" id="69X-wT-t5w"/>
-                                            <constraint firstItem="2d6-Kj-Mgb" firstAttribute="centerY" secondItem="RgZ-da-Q3a" secondAttribute="centerY" id="8lq-8F-0Tb"/>
-                                            <constraint firstItem="Jad-Kf-djK" firstAttribute="leading" secondItem="RgZ-da-Q3a" secondAttribute="leading" constant="12" id="W2w-va-JGC"/>
-                                            <constraint firstItem="APX-LU-3EC" firstAttribute="top" secondItem="yEu-8f-E3T" secondAttribute="bottom" id="XJH-e0-7Ml"/>
-                                            <constraint firstAttribute="trailingMargin" secondItem="APX-LU-3EC" secondAttribute="trailing" id="de5-Fl-K9r"/>
-                                            <constraint firstAttribute="trailing" secondItem="yEu-8f-E3T" secondAttribute="trailing" id="i1E-V1-Thp"/>
-                                            <constraint firstItem="yEu-8f-E3T" firstAttribute="top" secondItem="Jad-Kf-djK" secondAttribute="top" id="rrb-9o-wQC"/>
-                                            <constraint firstItem="yEu-8f-E3T" firstAttribute="leading" secondItem="Jad-Kf-djK" secondAttribute="trailing" constant="12" id="vDu-iY-EXd"/>
-                                            <constraint firstAttribute="trailing" secondItem="2d6-Kj-Mgb" secondAttribute="trailing" constant="8" id="vjE-cF-Xfd"/>
-                                            <constraint firstItem="APX-LU-3EC" firstAttribute="leading" secondItem="Jad-Kf-djK" secondAttribute="trailing" constant="12" id="z2I-Oy-OLq"/>
-                                        </constraints>
-                                        <size key="customSize" width="312" height="72"/>
-                                        <connections>
-                                            <outlet property="iconView" destination="Jad-Kf-djK" id="2Ow-7T-e9H"/>
-                                            <outlet property="identifierLabel" destination="APX-LU-3EC" id="70Z-NA-EPe"/>
-                                            <outlet property="nameLabel" destination="yEu-8f-E3T" id="AfR-RM-Pdv"/>
-                                            <outlet property="tickView" destination="2d6-Kj-Mgb" id="v3k-tH-I1l"/>
-                                        </connections>
-                                    </collectionViewCell>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="updateCell" id="nyI-rq-Wn1" customClass="RJTCollectionViewUpdateCell">
-                                        <rect key="frame" x="31.5" y="82" width="312" height="72"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                                            <rect key="frame" x="0.0" y="0.0" width="312" height="72"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </view>
-                                        <color key="backgroundColor" red="1" green="0.57637232540000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <size key="customSize" width="312" height="72"/>
-                                    </collectionViewCell>
-                                </cells>
+                                <cells/>
                             </collectionView>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
@@ -251,9 +175,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="app_default_icon" width="60" height="60"/>
         <image name="tabbar/search_24" width="24" height="25"/>
         <image name="tabbar/settings_24" width="24" height="24"/>
-        <image name="tabbar/translation_list_24" width="24" height="18"/>
+        <image name="tabbar/translation_list_24" width="24" height="19.5"/>
     </resources>
 </document>

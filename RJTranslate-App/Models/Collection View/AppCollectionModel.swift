@@ -98,10 +98,14 @@ class AppCollectionModel {
     /// - Parameter model: Модель для обновления.
     func updateModel(_ appModel: TranslationModel) {
         self.database?.update(appModel)
+        if let index = self.allModelsDataSource?.allModels.firstIndex(of: appModel) {
+            let model = self.allModelsDataSource!.allModels[index]
+            model.enable = appModel.enable
+        }
         
         let executableName = appModel.executableName
         if (executableName?.count ?? 0) > 0 {
-            RJTUtilities.executeSystemCommand(["/usr/bin/killall", "-9", executableName!])
+            RJTUtilities.executeSystemCommand(["/usr/bin/killall", "-9", executableName!, "2>/dev/null"])
         }
         
         UIApplication.applicationDelegate.tracker?.trackSelectTranslation(name: appModel.displayedName)

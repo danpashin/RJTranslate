@@ -17,7 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface RJTApplicationEntity : NSManagedObject
 
 + (NSFetchRequest<RJTApplicationEntity *> *)fetchRequest;
-+ (RJTApplicationEntity *)insertIntoContext:(NSManagedObjectContext *)context;
++ (instancetype)insertIntoContext:(NSManagedObjectContext *)context;
 
 @property (nonatomic, copy) NSString *displayedName;
 @property (nullable, nonatomic, copy) NSString *bundleIdentifier;
@@ -25,12 +25,12 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, copy) NSString *executablePath;
 
 @property (nullable, nonatomic, retain) NSDictionary <NSString *, NSString *> *translation;
-@property (assign, nonatomic) BOOL enableTranslation;
+@property (assign, nonatomic) BOOL enable;
 @property (assign, nonatomic) BOOL forceLocalize;
 
 @property (nullable, nonatomic, retain) NSString *iconPath;
 
-@property (assign, nonatomic) double remoteUpdated;
+@property (assign, nonatomic) double remoteUpdateDate;
 @property (assign, nonatomic) double installDate;
 
 #ifdef BUILD_APP

@@ -20,7 +20,7 @@ class PreferenceGroup: CustomStringConvertible {
     private(set) var preferences: [Preference]
     
     var description: String {
-        return String(format: "<%@; title: '%@'; footerText: '%@'; prefs: %@>", classInfo(of: self),
+        return String(format: "<%@; title: '%@'; footerText: '%@'; prefs: %@>", classInfo(self),
                       self.title ?? "", self.footerText ?? "", self.preferences)
     }
     

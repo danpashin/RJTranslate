@@ -43,7 +43,7 @@ class TranslationDetailController: SimpleViewController, TranslationDetailViewDe
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = UIColor.white
+        self.view.backgroundColor = ColorScheme.default.backgroundWhite
         
         let navigationBar = UIApplication.applicationDelegate.currentNavigationController.navigationBar
         navigationBar.hideShadow(animated: true)
@@ -129,7 +129,7 @@ class TranslationDetailController: SimpleViewController, TranslationDetailViewDe
         
         translationView.titleLabel.text = translationModel.displayedName
         
-        let updateStringDate = DateFormatter.localizedString(from: translationModel.updateDate, 
+        let updateStringDate = DateFormatter.localizedString(from: translationModel.remoteUpdateDate, 
                                                              dateStyle: .medium, timeStyle: .none)
         let subtitleText = String(format: NSLocalizedString("Translation.Detail.Updated", comment: ""), updateStringDate)
         translationView.subtitleLabel.text = subtitleText

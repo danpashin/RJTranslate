@@ -8,40 +8,31 @@
 
 import Foundation
 
-enum AppCellState {
-    case normal
-    case pressed
-    
-    var asString: String {
-        switch self {
-        case .pressed:
-            return "Pressed"
-            
-        case .normal:
-            return "Normal"
-        }
-    }
-}
-
 class TouchResponsiveCollectionCell: UICollectionViewCell {
     
-    private(set) var state: AppCellState = .normal
+    enum State {
+        case normal
+        case pressed
+    }
+    
+    
+    private(set) var currentState: State = .normal
     
     override func prepareForReuse() {
         super.prepareForReuse()
         
-        self.updateState(.normal, animated: false)
+        self.setState(.normal, animated: false)
     }
     
-    private func updateState(_ state: AppCellState, animated: Bool = true) {
-        if self.state != state {
-            self.state = state
+    private func setState(_ state: State, animated: Bool = true) {
+        if self.currentState != state {
+            self.currentState = state
             
-            let scaleTransformCoefficient = CGFloat((state == .pressed) ? 0.95 : 1.0)
+            let scaleRatio: CGFloat = (state == .pressed) ? 0.95 : 1.0
             
             DispatchQueue.main.async {
                 UIView.animate(withDuration: 0.15, delay: 0.0, options: [.allowAnimatedContent, .allowAnimatedContent], animations: {
-                    self.transform = CGAffineTransform(scaleX: scaleTransformCoefficient, y: scaleTransformCoefficient)
+                    self.transform = CGAffineTransform(scaleX: scaleRatio, y: scaleRatio)
                 })
             }
         }
@@ -49,19 +40,19 @@ class TouchResponsiveCollectionCell: UICollectionViewCell {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
-        self.updateState(.pressed)
+        self.setState(.pressed)
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesEnded(touches, with: event)
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
-            self.updateState(.normal)
+            self.setState(.normal)
         }
     }
     
     override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesCancelled(touches, with: event)
-        self.updateState(.normal)
+        self.setState(.normal)
     }
 }

@@ -6,11 +6,11 @@
   Copyright © 2018 Даниил. All rights reserved.
 */
 
-"Translations.Tab.Installed.Title" = "Installed";
+"Translations.Title" = "Translations";
 "Translations.NoInstalled.Title" = "No translations installed";
-"Translations.NoInstalled.Subtitle" = "You can download interesting in the Search tab";
+"Translations.NoInstalled.Subtitle" = "You can download interesting in the Featured tab";
 
-"Translations.Featured.Title" = "Search";
+"Translations.Featured.Title" = "Featured";
 
 // Поиск
 "Search.Noresults.Title" = "Unfortunately, we can't find anything";

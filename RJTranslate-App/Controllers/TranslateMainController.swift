@@ -36,7 +36,7 @@ class TranslateMainController: SimpleViewController, SearchControllerDelegate, A
                                                name: Notification.mainControllerReloadData, object: nil)
     }
     
-    @objc  func downloadTranslationNotification() {
+    @objc func downloadTranslationNotification() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1, execute: { 
             self.reloadTranslations()
         })
@@ -44,7 +44,7 @@ class TranslateMainController: SimpleViewController, SearchControllerDelegate, A
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = NSLocalizedString("Translations.Tab.Installed.Title", comment: "")
+        self.title = NSLocalizedString("Translations.Title", comment: "")
         
         if #available(iOS 11.0, *) {
             self.searchController = ModernSearchController(delegate: self)
@@ -59,7 +59,7 @@ class TranslateMainController: SimpleViewController, SearchControllerDelegate, A
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
-        self.collectionView.updateLayoutToSize(size)
+        self.collectionView.layout.invalidateLayout()
     }
     
     
@@ -80,7 +80,7 @@ class TranslateMainController: SimpleViewController, SearchControllerDelegate, A
     
     
     // MARK: -
-    // MARK: RJTAppCollectionViewDelegate
+    // MARK: AppCollectionViewDelegate
     
     func collectionView(_ collectionView: AppCollectionView, didUpdateModel appModel: TranslationModel) {
         self.collectionView.model.updateModel(appModel)

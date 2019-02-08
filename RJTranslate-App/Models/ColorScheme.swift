@@ -71,4 +71,10 @@ struct ColorScheme {
     
     /// Цвет фона.
     let background = UIColor(r: 240.0, g: 241.0, b: 244.0)
+    
+    /// Цвет белого фона.
+    let backgroundWhite = UIColor(r: 255.0, g: 255.0, b: 255.0)
+    
+    /// Цвет ячеек коллекции
+    let collectionCellBackground = UIColor(r: 255.0, g: 255.0, b: 255.0)
 }

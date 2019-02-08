@@ -40,13 +40,13 @@ import Foundation
     @objc private(set) var iconPath: String?
     
     /// Флаг определяет, должен ли перевод быть включен. Определяется самим пользователем.
-    @objc var enableTranslation: Bool
+    @objc var enable: Bool
     
     /// Флаг определяет, должен ли выполняться принудительный перевод приложения.
     @objc var forceLocalize: Bool
     
     /// Определяет, существует ли приложение в файлововй системе.
-    @objc var appInstalled: Bool {
+    @objc lazy var appInstalled: Bool = {
         if self.executablePath?.count ?? 0 > 0 {
             return FileManager.default.fileExists(atPath: self.executablePath!)
         } else if self.bundleIdentifier?.count ?? 0 > 0 {
@@ -54,13 +54,13 @@ import Foundation
         }
         
         return false
-    }
+    }()
     
     /// Определяет, является ли модель легковесной (без локализации)
     @objc private(set) var lightweightModel: Bool
     
     /// Дата обновления перевода на сервере.
-    @objc private(set) var updateDate: Date
+    @objc private(set) var remoteUpdateDate: Date
     
     /// Выполняет инициализацию модели из сущности базы данных.
     ///
@@ -71,14 +71,14 @@ import Foundation
         self.bundleIdentifier = entity.bundleIdentifier
         self.executablePath = entity.executablePath
         self.executableName = entity.executableName
-        self.updateDate = Date(timeIntervalSince1970: entity.remoteUpdated)
+        self.remoteUpdateDate = Date(timeIntervalSince1970: entity.remoteUpdateDate)
         
         self.lightweightModel = lightweight
         if !lightweight {
             self.translation = entity.translation
         }
         
-        self.enableTranslation = entity.enableTranslation
+        self.enable = entity.enable
         self.forceLocalize = entity.forceLocalize
     }
     
@@ -91,11 +91,11 @@ import Foundation
         self.executablePath = dictionary[DictionaryKey.executablePath.rawValue] as? String
         
         let timeInterval = (dictionary[DictionaryKey.updateDate.rawValue] as? TimeInterval) ?? 0
-        self.updateDate = Date(timeIntervalSince1970: timeInterval)
+        self.remoteUpdateDate = Date(timeIntervalSince1970: timeInterval)
         
         self.iconPath = dictionary[DictionaryKey.iconPath.rawValue] as? String
         self.forceLocalize = (dictionary[DictionaryKey.forceLocalize.rawValue] as? Bool) ?? false
-        self.enableTranslation = false
+        self.enable = false
         self.lightweightModel = false
         
         var translation: [String : String] = [:]
@@ -116,5 +116,12 @@ import Foundation
         guard let model = object as? TranslationModel else { return false }
         
         return self.displayedName == model.displayedName
+    }
+}
+
+extension TranslationModel {
+    override var description: String {
+        return String(format: "<%@; name: %@ (%@ - %@), enable: \(self.enable); server updated: \(self.remoteUpdateDate)>",
+        classInfo(self), self.displayedName, self.executableName ?? "", self.bundleIdentifier ?? "")
     }
 }

@@ -17,13 +17,13 @@
 @implementation RJTApplicationEntity
 @dynamic bundleIdentifier;
 @dynamic translation;
-@dynamic enableTranslation;
+@dynamic enable;
 @dynamic displayedName;
 @dynamic executableName;
 @dynamic iconPath;
 @dynamic executablePath;
 @dynamic forceLocalize;
-@dynamic remoteUpdated;
+@dynamic remoteUpdateDate;
 @dynamic installDate;
 
 + (NSFetchRequest<RJTApplicationEntity *> *)fetchRequest
@@ -31,7 +31,7 @@
     return [NSFetchRequest fetchRequestWithEntityName:NSStringFromClass([self class])];
 }
 
-+ (RJTApplicationEntity *)insertIntoContext:(NSManagedObjectContext *)context
++ (instancetype)insertIntoContext:(NSManagedObjectContext *)context
 {
     return [NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass([self class])
                                          inManagedObjectContext:context];
@@ -50,8 +50,10 @@
         self.translation = [appModel.translation copy];
     }
     
-    self.enableTranslation = appModel.enableTranslation;
+    self.enable = appModel.enable;
     self.forceLocalize = appModel.forceLocalize;
+    
+    self.remoteUpdateDate = appModel.remoteUpdateDate.timeIntervalSince1970;
 }
 #endif
 

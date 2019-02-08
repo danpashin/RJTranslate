@@ -33,7 +33,7 @@ func SHA256(data : Data) -> String {
     data.withUnsafeBytes {
         _ = CC_SHA256($0, CC_LONG(data.count), &hash)
     }
-    return Data(bytes: hash).base64EncodedString()
+    return Data(hash).base64EncodedString()
 }
 
 
@@ -64,7 +64,7 @@ extension SecKey {
             }
         }
         
-        var hashData = Data(bytes: ASN1Headers.headerFor(size: keySize))
+        var hashData = Data(ASN1Headers.headerFor(size: keySize))
         hashData.append(SecKeyCopyExternalRepresentation(self, nil)! as Data)
         
         return SHA256(data: hashData)

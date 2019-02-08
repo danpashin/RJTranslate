@@ -24,7 +24,7 @@ class StorablePreference: Preference, CustomStringConvertible {
     
     var description: String {
         return String(format: "<%@; title: '%@'; key: '%@'; value: %@; default: %@>",
-                      classInfo(of: self), self.title ?? "",
+                      classInfo(self), self.title ?? "",
                       self.key, String(describing: self.value), String(describing: self.defaultValue))
     }
     

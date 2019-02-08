@@ -84,6 +84,6 @@ class AppCollectionEmptySource: NSObject, DZNEmptyDataSetSource, DZNEmptyDataSet
     }
     
     func backgroundColor(forEmptyDataSet scrollView: UIScrollView!) -> UIColor! {
-        return UIColor.white
+        return ColorScheme.default.backgroundWhite
     }
 }
