@@ -8,7 +8,8 @@
 
 import Foundation
 
-class CollectionHeaderLabel : UICollectionReusableView {
+// TODO: Обновить стиль надписи в заголовке.
+class CollectionHeaderLabel: UICollectionReusableView {
     
     /// Текст лейбла.
     var text: String? {

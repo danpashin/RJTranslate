@@ -16,7 +16,7 @@ class HTTPClient {
     private let configuration = URLSessionConfiguration.ephemeral
     private var delegateObject: HTTPClientDelegateObject?
     
-    private(set) var activeTasks : [Int: HTTPTask] = [:]
+    private(set) var activeTasks: [Int: HTTPTask] = [:]
     
     private var defaultUserAgent: String {
         let device = UIDevice.current

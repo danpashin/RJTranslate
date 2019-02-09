@@ -8,26 +8,25 @@
 
 import Foundation
 
-protocol AppCollectionDataSourceChange :class {
-    func dataSourceChanged(from oldDataSource: AppCollectionDataSource?, to newDatasource: AppCollectionDataSource?)
-}
-
-class AppCollectionDataSource : CustomStringConvertible {
+class AppCollectionDataSource: CustomStringConvertible {
     
     /// Массив содержит все модели переводов
-    private(set) var rawModels: [TranslationModel]
+    private(set) var allModels = [TranslationModel]()
+    
+    /// Массив содержит модели переводов, которые могут быть обновлены.
+    private(set) var updatableModels = [TranslationModel]()
     
     /// Массив содержит модели переводов, приложения которых установлены на устройстве.
-    private(set) var installed : [TranslationModel] = []
+    private(set) var installed = [TranslationModel]()
     
     /// Массив содержит модели переводов, приложения которых НЕ установлены на устройстве.
-    private(set) var uninstalled : [TranslationModel] = []
+    private(set) var uninstalled = [TranslationModel]()
     
     /// Выполняет инициализацию и разделение моделей в датасорсе.
     ///
     /// - Parameter models:  Модели для датасорса.
     init(models: [TranslationModel]) {
-        self.rawModels = models
+        self.allModels = models
         
         for model in models {
             if model.appInstalled {
@@ -36,11 +35,45 @@ class AppCollectionDataSource : CustomStringConvertible {
                 self.uninstalled.append(model)
             }
         }
+    }
+    
+    func modelFor(indexPath: IndexPath) -> TranslationModel? {
+        var modelsArray: [TranslationModel]?
         
+        switch indexPath.section {
+        case 0: modelsArray = self.updatableModels
+        case 1: modelsArray = self.installed
+        case 2: modelsArray = self.uninstalled
+        default: break
+        }
+        
+        if indexPath.row > modelsArray?.count ?? 0 { return nil }
+        return modelsArray![indexPath.row]
+    }
+    
+    func numberOfModelsFor(section: Int) -> Int {
+        switch section {
+        case 0: return self.updatableModels.count
+        case 1: return self.installed.count
+        case 2: return self.uninstalled.count
+        default: return 0
+        }
+    }
+    
+    func moveModelsToUpdatable(_ models: [TranslationModel]) {
+        self.updatableModels = models
+        
+        for model in models {
+            if let index = self.installed.firstIndex(of: model) {
+                self.installed.remove(at: index)
+            } else if let index = self.uninstalled.firstIndex(of: model) {
+                self.uninstalled.remove(at: index)
+            }
+        }
     }
     
     var description: String {
         return String(format: "<%@; installed %@; uninstalled %@>",
-                      classInfo(of: self), self.installed, self.uninstalled)
+                      classInfo(self), self.installed, self.uninstalled)
     }
 }

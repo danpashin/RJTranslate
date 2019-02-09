@@ -10,23 +10,30 @@ import Foundation
 
 class TickView : UIView {
     
-    @IBInspectable
-    var isEnabled: Bool {
-        get { return self._isEnabled }
-        
-        set {
-            self.setEnabled(newValue, animated: false)
-        }
-    }
-    
-    private var _isEnabled = false
-    
     override static var layerClass: AnyClass {
         return CAShapeLayer.self
     }
     
     override var layer: CAShapeLayer {
         return super.layer as! CAShapeLayer
+    }
+    
+    
+    /// Флаг определяет, включена ли галочка
+    @IBInspectable
+    var isEnabled: Bool {
+        get { return self._isEnabled }
+        set {
+            self.setEnabled(newValue, animated: false)
+        }
+    }
+    private var _isEnabled = false
+    
+    
+    override var bounds: CGRect {
+        didSet {
+            self.updatePath()
+        }
     }
     
     override init(frame: CGRect) {
@@ -55,6 +62,11 @@ class TickView : UIView {
         self.layer.lineWidth = 2.0
         self.layer.lineCap = .round
         
+        self.updatePath()
+    }
+    
+    /// Выполняет обновление пути галочки. Вызывается при инициализации и изменении размеров.
+    private func updatePath() {
         let selfRect = self.bounds
         let mutableTickPath = CGMutablePath()
         mutableTickPath.move(to: CGPoint(x: selfRect.maxX / 4.0, y: selfRect.midY))
@@ -64,6 +76,11 @@ class TickView : UIView {
         self.layer.path = mutableTickPath
     }
     
+    /// Выполняет перевод галочки в разные состояния.
+    ///
+    /// - Parameters:
+    ///   - enabled: Флаг определяет, включена ли галочка.
+    ///   - animated: Флаг определяет, должна ли выполняться анимация.
     func setEnabled(_ enabled: Bool, animated: Bool) {
         if animated {
             let tickAnimation = CABasicAnimation(keyPath: "strokeEnd")

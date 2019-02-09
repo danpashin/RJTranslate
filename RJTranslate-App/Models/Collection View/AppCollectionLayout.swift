@@ -8,71 +8,46 @@
 
 import Foundation
 
-class AppCollectionLayout : UICollectionViewFlowLayout, AppCollectionDataSourceChange {
+class AppCollectionLayout: UICollectionViewFlowLayout {
     
-    private var oldDataSource: AppCollectionDataSource?
-    private weak var currentDataSource: AppCollectionDataSource?
+    private var itemsToAnimate = [IndexPath]()
     
-    override init() {
-        super.init()
-        self.commonInit()
-    }
-    
-    @available(*, unavailable)
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        self.commonInit()
-    }
-    
-    private func commonInit() {
-        self.sectionInset = UIEdgeInsets(top: 0.0, left: 0.0, bottom: 20.0, right: 0.0)
-    }
-    
-    override func finalizeCollectionViewUpdates() {
-        super.finalizeCollectionViewUpdates()
+    override func prepare(forCollectionViewUpdates updateItems: [UICollectionViewUpdateItem]) {
+        super.prepare(forCollectionViewUpdates: updateItems)
         
-        self.oldDataSource = nil
-    }
-    
-    func dataSourceChanged(from oldDataSource: AppCollectionDataSource?, to newDatasource: AppCollectionDataSource?) {
-        self.oldDataSource = oldDataSource
-        self.currentDataSource = newDatasource
-    }
-    
-    
-    //  MARK: -
-    
-    override func initialLayoutAttributesForAppearingItem(at itemIndexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
-        let attributes = super.initialLayoutAttributesForAppearingItem(at: itemIndexPath)
-        
-        var oldItemsCount = 0
-        if itemIndexPath.section == 0 {
-            oldItemsCount = self.oldDataSource?.installed.count ?? 0
-        } else if itemIndexPath.section == 1 {
-            oldItemsCount = self.oldDataSource?.uninstalled.count ?? 0
+        for item in updateItems {
+            switch item.updateAction {
+            case .insert:
+                self.itemsToAnimate.append(item.indexPathAfterUpdate!)
+            case .delete:
+                self.itemsToAnimate.append(item.indexPathBeforeUpdate!)
+                
+            default: break
+            }
         }
-        
-        if self.oldDataSource != nil && itemIndexPath.item > oldItemsCount - 1 {
-            attributes?.transform = CGAffineTransform(scaleX: 0.2, y: 0.2)
-        }
-        
-        return attributes;
     }
     
-    override func finalLayoutAttributesForDisappearingItem(at itemIndexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
-        let attributes = super.finalLayoutAttributesForDisappearingItem(at: itemIndexPath)
-        
-        var newItemsCount = 0
-        if itemIndexPath.section == 0 {
-            newItemsCount = self.oldDataSource?.installed.count ?? 0
-        } else if itemIndexPath.section == 1 {
-            newItemsCount = self.oldDataSource?.uninstalled.count ?? 0
-        }
-        
-        if itemIndexPath.item > newItemsCount - 1 {
-            attributes?.transform = CGAffineTransform(scaleX: 0.2, y: 0.2)
-        }
-        
-        return attributes;
+    override func initialLayoutAttributesForAppearingItem(at itemIndexPath: IndexPath)
+        -> UICollectionViewLayoutAttributes? {
+            let attributes = super.initialLayoutAttributesForAppearingItem(at: itemIndexPath)
+            
+            if self.itemsToAnimate.contains(itemIndexPath) {
+                self.itemsToAnimate.remove(at: self.itemsToAnimate.firstIndex(of: itemIndexPath)!)
+                attributes?.transform = CGAffineTransform(scaleX: 0.2, y: 0.2)
+            }
+            
+            return attributes
+    }
+    
+    override func finalLayoutAttributesForDisappearingItem(at itemIndexPath: IndexPath)
+        -> UICollectionViewLayoutAttributes? {
+            let attributes = super.finalLayoutAttributesForDisappearingItem(at: itemIndexPath)
+            
+            if self.itemsToAnimate.contains(itemIndexPath) {
+                self.itemsToAnimate.remove(at: self.itemsToAnimate.firstIndex(of: itemIndexPath)!)
+                attributes?.transform = CGAffineTransform(scaleX: 0.2, y: 0.2)
+            }
+            
+            return attributes
     }
 }

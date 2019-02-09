@@ -8,7 +8,7 @@
 
 import Foundation
 
-class LiveSearchResultsController : SimpleViewController, SearchControllerDelegate {
+class LiveSearchResultsController: SimpleViewController, SearchControllerDelegate {
     
     private var resultsHiddenBottomConstraint: NSLayoutConstraint!
     private var resultsOpenedBottomConstraint: NSLayoutConstraint!

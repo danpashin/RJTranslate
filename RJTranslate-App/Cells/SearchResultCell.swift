@@ -49,8 +49,8 @@ class SearchResultCell: UITableViewCell {
             let attributedText = NSMutableAttributedString(string: result!.name, attributes: defaultAttributes)
             
             if let range = result!.name.lowercased().range(of: result!.searchText.lowercased()) {
-                attributedText.addAttribute(NSAttributedString.Key.foregroundColor, 
-                                            value: ColorScheme.default.titleLabel, 
+                attributedText.addAttribute(NSAttributedString.Key.foregroundColor,
+                                            value: ColorScheme.default.titleLabel,
                                             range: NSRange(range, in: result!.name))
             }
             self.textLabel?.attributedText = attributedText

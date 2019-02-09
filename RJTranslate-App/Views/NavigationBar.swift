@@ -41,6 +41,9 @@ class NavigationBar: UINavigationBar {
             ])
     }
     
+    /// Скрывает тень с бара.
+    ///
+    /// - Parameter animated: Флаг определяет, должна ли выполняться анимация.
     func hideShadow(animated: Bool) {
         if #available(iOS 11.0, *) {
             self.shadowImage = UIImage()
@@ -55,6 +58,9 @@ class NavigationBar: UINavigationBar {
         }
     }
     
+    /// Показывает тень на баре.
+    ///
+    /// - Parameter animated: Флаг определяет, должна ли выполняться анимация.
     func showShadow(animated: Bool) {
         if #available(iOS 11.0, *) {
             self.shadowImage = self.defaultShadowImage

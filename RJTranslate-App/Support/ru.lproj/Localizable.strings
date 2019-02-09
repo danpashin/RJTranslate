@@ -9,6 +9,7 @@
 "Translations.Title" = "Переводы";
 "Translations.NoInstalled.Title" = "Нет установленных переводов";
 "Translations.NoInstalled.Subtitle" = "Вы можете скачать интересующие во вкладке Популярные";
+"Translations.Updates.Title" = "Обновления";
 
 "Translations.Featured.Title" = "Популярные";
 

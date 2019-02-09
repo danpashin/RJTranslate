@@ -27,19 +27,19 @@ class HTTPDownloadTask: HTTPTask {
     typealias downloadCompletionClosure = (_ downloadedDataURL : URL?, _ error: NSError?) -> Void
     
     /// Прогресс загрузки файла.
-    private(set) var progressClosure : downloadProgressClosure?
+    private(set) var progressClosure: downloadProgressClosure?
     
     /// Вызывается по окончании загрузки файла.
-    private(set) var completionClosure : downloadCompletionClosure?
+    private(set) var completionClosure: downloadCompletionClosure?
     
     @discardableResult
-    func progress(_ progressClosure : @escaping downloadProgressClosure) -> HTTPDownloadTask {
+    func progress(_ progressClosure: @escaping downloadProgressClosure) -> HTTPDownloadTask {
         self.progressClosure = progressClosure
         return self
     }
     
     @discardableResult
-    func completion(_ completionClosure : @escaping downloadCompletionClosure) -> HTTPDownloadTask {
+    func completion(_ completionClosure: @escaping downloadCompletionClosure) -> HTTPDownloadTask {
         self.completionClosure = completionClosure
         return self
     }
@@ -52,10 +52,10 @@ class HTTPJSONTask: HTTPTask {
     let responseData: NSMutableData = NSMutableData()
     
     /// Вызывается по окончании сериализации ответа.
-    private(set) var completionClosure : jsonCompletionClosure?
+    private(set) var completionClosure: jsonCompletionClosure?
     
     @discardableResult
-    func completion(_ completionClosure : @escaping jsonCompletionClosure) -> HTTPJSONTask {
+    func completion(_ completionClosure: @escaping jsonCompletionClosure) -> HTTPJSONTask {
         self.completionClosure = completionClosure
         return self
     }

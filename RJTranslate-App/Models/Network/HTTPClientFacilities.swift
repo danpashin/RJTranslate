@@ -21,7 +21,7 @@ protocol URLTransformable {
     func asString() -> String
 }
 
-extension String : URLTransformable {
+extension String: URLTransformable {
     func asURL() -> URL? {
         return URL(string: self)
     }
@@ -31,7 +31,7 @@ extension String : URLTransformable {
     }
 }
 
-extension URL : URLTransformable {
+extension URL: URLTransformable {
     func asURL() -> URL? {
         return self
     }

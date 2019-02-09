@@ -49,7 +49,6 @@ class AppCollectionCell: TouchResponsiveCollectionCell {
         self.iconView.tintColor = ColorScheme.default.subtitleLabel
         self.addSubview(self.iconView)
         
-        
         self.addSubview(self.tickView)
         self.updateSelection(false, animated: false)
         
@@ -72,7 +71,6 @@ class AppCollectionCell: TouchResponsiveCollectionCell {
         self.identifierLabel.translatesAutoresizingMaskIntoConstraints = false
         self.tickView.translatesAutoresizingMaskIntoConstraints = false
         
-        
         NSLayoutConstraint.activate([
             self.iconView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 12.0),
             self.iconView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
@@ -92,7 +90,7 @@ class AppCollectionCell: TouchResponsiveCollectionCell {
             self.tickView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
             self.tickView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -8.0),
             self.tickView.widthAnchor.constraint(equalToConstant: 40.0),
-            self.tickView.heightAnchor.constraint(equalToConstant: 20.0),
+            self.tickView.heightAnchor.constraint(equalToConstant: 20.0)
             ])
     }
     
@@ -111,11 +109,12 @@ class AppCollectionCell: TouchResponsiveCollectionCell {
         self.nameLabel.text = model?.displayedName
         
         if self.model?.bundleIdentifier?.count ?? 0 > 0 && model?.executableName?.count ?? 0 > 0 {
-            self.identifierLabel.text = String(format: "%@ - %@", self.model?.executableName ?? "", self.model?.bundleIdentifier ?? "");
+            self.identifierLabel.text = String(format: "%@ - %@", self.model?.executableName ?? "",
+                                               self.model?.bundleIdentifier ?? "")
         } else if model?.bundleIdentifier?.count ?? 0 > 0 {
-            self.identifierLabel.text = self.model?.bundleIdentifier;
+            self.identifierLabel.text = self.model?.bundleIdentifier
         } else {
-            self.identifierLabel.text = model?.executableName;
+            self.identifierLabel.text = model?.executableName
         }
         
         if self.model == nil {

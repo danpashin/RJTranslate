@@ -11,12 +11,16 @@ import Foundation
 class AppCollectionModel {
     
     /// Модел датасорс коллекции.
-    private(set) var currentDataSource: AppCollectionDataSource?
+    private(set) var currentDataSource = AppCollectionDataSource(models: []) {
+        didSet {
+            self.collectionView?.reload()
+        }
+    }
     
     private weak var database: RJTDatabaseAppFacade?
     private weak var collectionView: AppCollectionView?
     
-    private var allModelsDataSource: AppCollectionDataSource?
+    private var allModelsDataSource: AppCollectionDataSource
     
     /// Выполняет инициализацию модели для конкретной коллекции.
     ///
@@ -25,7 +29,7 @@ class AppCollectionModel {
         self.database = UIApplication.applicationDelegate.defaultDatabase
         
         self.collectionView = collectionView
-        self.collectionView?.model = self
+        self.allModelsDataSource = self.currentDataSource
     }
     
     // MARK: -
@@ -47,20 +51,19 @@ class AppCollectionModel {
         }
         
         self.database?.performModelsSearch(withText: text) { models in
-            self.updateCollection(models: models)
+            self.currentDataSource = AppCollectionDataSource(models: models)
         }
         
         UIApplication.applicationDelegate.tracker?.trackSearchEvent(text)
     }
     
     private func restoreDatasource() {
-        self.updateDataSourceObject(self.allModelsDataSource)
+        self.currentDataSource = self.allModelsDataSource
     }
     
     /// Заканчивает выполнение поиска и сбрасывает коллекцию к тому состоянию, в котором она была перед началом поиска.
     func endSearch() {
         self.restoreDatasource()
-        self.allModelsDataSource = nil
     }
     
     /// Выполняет полную перезагрузку коллекции из базы данных
@@ -71,25 +74,28 @@ class AppCollectionModel {
                 self.collectionView?.updateEmptyView(to: .noData)
             }
             
-            self.updateCollection(models: allModels)
+            self.allModelsDataSource = AppCollectionDataSource(models: allModels)
+            self.currentDataSource = self.allModelsDataSource
+            self.checkUpdates(for: allModels)
         }
     }
     
-    private func updateCollection(models: [TranslationModel]) {
-        DispatchQueue(label: "self").sync {
-            let modelsSourceObject = AppCollectionDataSource(models: models)
-            updateDataSourceObject(modelsSourceObject)
+    private func checkUpdates(for models: [TranslationModel]) {
+        DispatchQueue.once(token: "ru.danpashin.rjtranslate.updates.check") {
+            DispatchQueue.global(qos: .background).async {
+//                API.TranslationUpdates.check(for: models, completion: { (toUpdate: [TranslationModel]) in
+//
+//                })
+            }
+            
+            DispatchQueue.global(qos: .background).asyncAfter(deadline: .now() + 5.0, execute: {
+                self.allModelsDataSource.moveModelsToUpdatable(models)
+                if self.currentDataSource === self.allModelsDataSource {
+                    self.collectionView?.reload()
+                }
+            })
         }
     }
-    
-    private func updateDataSourceObject(_ dataSourceObject: AppCollectionDataSource?) {
-        DispatchQueue.main.async {
-            self.collectionView?.layout?.dataSourceChanged(from: self.currentDataSource, to: dataSourceObject)
-            self.currentDataSource = dataSourceObject
-            self.collectionView?.reload()
-        }
-    }
-    
     
     // MARK: -
     
@@ -98,8 +104,8 @@ class AppCollectionModel {
     /// - Parameter model: Модель для обновления.
     func updateModel(_ appModel: TranslationModel) {
         self.database?.update(appModel)
-        if let index = self.allModelsDataSource?.allModels.firstIndex(of: appModel) {
-            let model = self.allModelsDataSource!.allModels[index]
+        if let index = self.allModelsDataSource.allModels.firstIndex(of: appModel) {
+            let model = self.allModelsDataSource.allModels[index]
             model.enable = appModel.enable
         }
         

@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class PreferenceSwitchCell : UITableViewCell {
+class PreferenceSwitchCell: UITableViewCell {
     
     private var switchView = UISwitch()
     
@@ -27,14 +27,11 @@ class PreferenceSwitchCell : UITableViewCell {
     
     init(model: SwitchPreference, reuseIdentifier: String?) {
         super.init(style: .default, reuseIdentifier: reuseIdentifier)
+        defer { self.preferenceModel = model }
         
         self.switchView.addTarget(self, action: #selector(self.switchTrigerred), for: .valueChanged)
         self.switchView.onTintColor = ColorScheme.default.switchOnTint
         self.accessoryView = self.switchView
-        
-        defer {
-            self.preferenceModel = model
-        }
     }
     
     @objc private func switchTrigerred(_ switchView: UISwitch) {

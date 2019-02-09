@@ -32,7 +32,7 @@ class ImageCache {
     /// Директория для кэшировния объектов на диск
     private var cacheDirectory: String
     
-     init(type: ImageCacheType = .disk) {
+    init(type: ImageCacheType = .disk) {
         self.type = type
         
         let cacheDirectory = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true).first
@@ -40,7 +40,6 @@ class ImageCache {
         let bundleIdentifier = Bundle.main.bundleIdentifier
         self.cacheDirectory = "\(cacheDirectory ?? "")/\(bundleIdentifier ?? "")/images/"
         self.createCacheDirectory()
-
     }
     
     private func createCacheDirectory() {
@@ -91,7 +90,7 @@ class ImageCache {
         if type != .memory {
             let fullPath = self.cacheDirectory + key
             if FileManager.default.fileExists(atPath: fullPath) {
-                var image: UIImage? = nil
+                var image: UIImage?
                 if let data = NSData(contentsOfFile: fullPath) {
                     image = UIImage(data: data as Data)
                     
@@ -156,5 +155,4 @@ class ImageCache {
             self.createCacheDirectory()
         }
     }
-
 }

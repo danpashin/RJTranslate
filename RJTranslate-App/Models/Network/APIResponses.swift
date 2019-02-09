@@ -102,3 +102,38 @@ extension API.TranslationSummary {
     }
 }
 
+extension API {
+    struct TranslationUpdates {
+        
+        static func check(for translations: [TranslationModel], completion: @escaping (_ toUpdate: [TranslationModel]) -> Void) {
+            let translationNames = translations.map({ (translation) -> String in
+                return translation.displayedName
+            }).joined(separator: ",")
+            
+            HTTPClient.shared.json(API.apiURL, arguments:["action":"check_update", "name":translationNames])
+                .completion { (json: [String : AnyHashable]?, error: NSError?) in
+                    if json == nil || error != nil { return }
+                    
+                    print("\(json!)")
+                    
+                    guard let response = json!["response"] as? [[String:AnyHashable]] else { return }
+                    
+                    var toUpdate = [TranslationModel]()
+                    for serverTranslation in response {
+                        let translationName = serverTranslation["Name"] as? String
+                        let updateTime = serverTranslation["Date"] as? TimeInterval
+                        if translationName == nil || updateTime == nil { continue }
+                        
+                        guard let translation = translations.first(where: 
+                            { $0.displayedName == translationName! }) else { continue }
+                        
+                        if updateTime! > translation.remoteUpdateDate.timeIntervalSince1970 {
+                            toUpdate.append(translation)
+                        }
+                    }
+                    
+                    completion(toUpdate)
+            }
+        }
+    }
+}

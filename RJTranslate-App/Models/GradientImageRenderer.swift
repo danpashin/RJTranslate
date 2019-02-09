@@ -9,7 +9,8 @@
 import Foundation
 
 protocol GradientImageRendererDelegate : AnyObject {
-    func renderer(_ renderer: GradientImageRenderer, didEndRenderingNormalImage normalImage: UIImage?, selectedImage: UIImage?)
+    func renderer(_ renderer: GradientImageRenderer,
+                  didEndRenderingNormalImage normalImage: UIImage?, selectedImage: UIImage?)
 }
 
 class GradientImageRenderer {
@@ -35,7 +36,7 @@ class GradientImageRenderer {
     
     private let renderingQueue = DispatchQueue(label: "ru.danpashin.rjtranslate.image.rendering", qos: .utility)
     
-     init(size: CGSize) {
+    init(size: CGSize) {
         self.size = size
         
         let frame = CGRect(origin: CGPoint.zero, size: size)
@@ -50,7 +51,7 @@ class GradientImageRenderer {
             ColorScheme.default.accentMain.darker.cgColor
         ]
         
-        NotificationCenter.default.addObserver(self, selector: #selector(self.didReceiveMemoryWarning), 
+        NotificationCenter.default.addObserver(self, selector: #selector(self.didReceiveMemoryWarning),
                                                name: UIApplication.didReceiveMemoryWarningNotification, object: nil)
     }
     
@@ -88,7 +89,7 @@ class GradientImageRenderer {
     ///
     /// - Parameter gradient: Градиент для рендеринга.
     /// - Returns: Возвращает изображение либо nil, если рендеринг не удался.
-   private func renderImage(from gradient: GradientLayer) -> UIImage? {
+    private func renderImage(from gradient: GradientLayer) -> UIImage? {
         UIGraphicsBeginImageContextWithOptions(self.size, false, UIScreen.main.scale)
         guard let context = UIGraphicsGetCurrentContext() else { return nil }
         

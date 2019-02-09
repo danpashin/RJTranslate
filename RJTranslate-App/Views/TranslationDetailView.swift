@@ -114,7 +114,7 @@ class TranslationDetailView: UIView, GradientImageRendererDelegate {
     }
     
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-        if let button = object as? UIButton, button == self.installButton, keyPath == "bounds" {
+        if let button = object as? UIButton, button === self.installButton, keyPath == "bounds" {
             self.renderButtonBackground()
         }
     }

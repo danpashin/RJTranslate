@@ -9,12 +9,11 @@
 import Foundation
 import DZNEmptyDataSet
 
-enum EmptyViewType : Int {
+enum EmptyViewType: Int {
     case loading
     case noSearchResults
     case noData
 }
-
 
 class AppCollectionEmptySource: NSObject, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
     
@@ -31,8 +30,6 @@ class AppCollectionEmptySource: NSObject, DZNEmptyDataSetSource, DZNEmptyDataSet
     }
     
     // MARK: -
-    
-    
     // MARK: DZNEmptyDataSetSource
     
     func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
@@ -40,11 +37,10 @@ class AppCollectionEmptySource: NSObject, DZNEmptyDataSetSource, DZNEmptyDataSet
         
         switch self.type {
         case .noSearchResults:
-            titleString = NSLocalizedString("Search.Noresults.Title", comment: "This label shows when there are no results for the search")
-            break
+            titleString = NSLocalizedString("Search.Noresults.Title",
+                                            comment: "This label shows when there are no results for the search")
         case .noData:
             titleString = NSLocalizedString("Translations.NoInstalled.Title", comment: "")
-            break
         default: break
         }
         
@@ -61,14 +57,12 @@ class AppCollectionEmptySource: NSObject, DZNEmptyDataSetSource, DZNEmptyDataSet
         
         switch self.type {
         case .noSearchResults:
-            descriptionString = NSLocalizedString("Search.Noresults.Subtitle", comment: "This sublabel shows when there are no results for the search.")
-            break
+            descriptionString = NSLocalizedString("Search.Noresults.Subtitle",
+                                                  comment: "This shows when there're no results for the search.")
         case .noData:
             descriptionString = NSLocalizedString("Translations.NoInstalled.Subtitle", comment: "")
-            break
         case .loading:
             descriptionString = NSLocalizedString("loading_data...", comment: "")
-            break
         }
         
         let attributes = [

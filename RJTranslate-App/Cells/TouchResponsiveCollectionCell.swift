@@ -15,7 +15,6 @@ class TouchResponsiveCollectionCell: UICollectionViewCell {
         case pressed
     }
     
-    
     private(set) var currentState: State = .normal
     
     override func prepareForReuse() {
@@ -31,8 +30,9 @@ class TouchResponsiveCollectionCell: UICollectionViewCell {
             let scaleRatio: CGFloat = (state == .pressed) ? 0.95 : 1.0
             
             DispatchQueue.main.async {
-                UIView.animate(withDuration: 0.15, delay: 0.0, options: [.allowAnimatedContent, .allowAnimatedContent], animations: {
-                    self.transform = CGAffineTransform(scaleX: scaleRatio, y: scaleRatio)
+                UIView.animate(withDuration: 0.15, delay: 0.0,
+                               options: [.allowAnimatedContent, .allowAnimatedContent], animations: {
+                                self.transform = CGAffineTransform(scaleX: scaleRatio, y: scaleRatio)
                 })
             }
         }

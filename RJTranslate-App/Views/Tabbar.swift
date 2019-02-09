@@ -23,6 +23,7 @@ class Tabbar: UITabBar {
         self.addShadow()
     }
     
+    /// Выполняет добавление тени на таббар.
     private func addShadow() {
         self.shadowView.backgroundColor = ColorScheme.default.tabbarShadow
         self.shadowView.translatesAutoresizingMaskIntoConstraints = false
@@ -35,6 +36,9 @@ class Tabbar: UITabBar {
         self.shadowView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
     }
     
+    /// Показывает тень на таббаре.
+    ///
+    /// - Parameter animated: Флаг определяет, должна ли выполняться анимация.
     func hideShadow(animated: Bool) {
         if animated {
             UIView.animate(withDuration: 0.2, delay: 0.0, options: [.allowAnimatedContent, .allowUserInteraction], animations: { 
@@ -45,6 +49,9 @@ class Tabbar: UITabBar {
         }
     }
     
+    /// Скрывает тень с таббара.
+    ///
+    /// - Parameter animated: Флаг определяет, должна ли выполняться анимация.
     func showShadow(animated: Bool) {
         if animated {
             UIView.animate(withDuration: 0.2, delay: 0.0, options: [.allowAnimatedContent, .allowUserInteraction], animations: { 

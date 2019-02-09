@@ -13,12 +13,12 @@ protocol PrefsTableModelDelegate:class {
 }
 
 class PreferencesTableModel: NSObject, UITableViewDelegate, UITableViewDataSource {
-   private weak var tableView: UITableView?
+    private weak var tableView: UITableView?
     private(set) weak var delegate: PrefsTableModelDelegate?
     
-   private var groups: [PreferenceGroup] = []
+    private var groups: [PreferenceGroup] = []
     
-     init(tableView: UITableView, delegate: PrefsTableModelDelegate) {
+    init(tableView: UITableView, delegate: PrefsTableModelDelegate) {
         self.tableView = tableView
         self.delegate = delegate
         
@@ -31,7 +31,7 @@ class PreferencesTableModel: NSObject, UITableViewDelegate, UITableViewDataSourc
         tableView.dataSource = self
     }
     
-   private func createPreferences() {
+    private func createPreferences() {
         let sendStatsPrefs = SwitchPreference(key: "send_statistics", defaultValue: NSNumber(value: true),
                                               title: NSLocalizedString("Settings.Stats.Send", comment: ""))
         
@@ -43,22 +43,22 @@ class PreferencesTableModel: NSObject, UITableViewDelegate, UITableViewDataSourc
                         preference: sendStatsPrefs as Preference),
             
             createGroup(title: nil, footer: "Settings.Crashlogs.Send.Footer",
-                        preference: sendCrashPrefs as Preference),
+                        preference: sendCrashPrefs as Preference)
         ]
-    
-    #if DEBUG
-    let appDelegate = UIApplication.applicationDelegate
-    let purgeDatabase = ButtonPreference(title:NSLocalizedString("Settings.Database.Purge", comment: ""),
-                                         target: appDelegate, 
-                                         action: #selector(appDelegate.purgeDatabase), 
-                                         style: .destructive)
-    let databaseGroup = createGroup(title: "Settings.Database", footer: nil, preference: purgeDatabase)
-    self.groups.append(databaseGroup)
-    #endif
-    
+        
+        #if DEBUG
+        let appDelegate = UIApplication.applicationDelegate
+        let purgeDatabase = ButtonPreference(title:NSLocalizedString("Settings.Database.Purge", comment: ""),
+                                             target: appDelegate,
+                                             action: #selector(appDelegate.purgeDatabase),
+                                             style: .destructive)
+        let databaseGroup = createGroup(title: "Settings.Database", footer: nil, preference: purgeDatabase)
+        self.groups.append(databaseGroup)
+        #endif
+        
     }
     
-   private func createGroup(title: String?, footer: String?, preference: Preference) -> PreferenceGroup {
+    private func createGroup(title: String?, footer: String?, preference: Preference) -> PreferenceGroup {
         preference.prefsTableModel = self
         
         let localizedTitle = NSLocalizedString(title ?? "", comment: "")
@@ -66,7 +66,6 @@ class PreferencesTableModel: NSObject, UITableViewDelegate, UITableViewDataSourc
         
         return PreferenceGroup(title: localizedTitle, footerText: localizedFooter, preferences: [preference])
     }
-    
     
     // MARK: -
     // MARK: delegates
@@ -79,11 +78,11 @@ class PreferencesTableModel: NSObject, UITableViewDelegate, UITableViewDataSourc
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.groups[section].preferences.count
     }
-
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let preference = self.groups[indexPath.section].preferences[indexPath.row]
         
-        var cell: UITableViewCell? = nil
+        var cell: UITableViewCell?
         
         if preference.category == .text {
             cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
