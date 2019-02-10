@@ -24,7 +24,6 @@ class ButtonPreference: Preference {
     }
     
     
-    
     /// Цель для кнопки при нажатии.
     private(set) var target: Any
     
@@ -34,7 +33,7 @@ class ButtonPreference: Preference {
     /// Стиль кнопки.
     private(set) var style: ButtonPreference.Style
     
-    init(title: String?, target: Any, action: Selector, style: ButtonPreference.Style = ButtonPreference.Style.default) {
+    init(title: String?, target: Any, action: Selector, style: ButtonPreference.Style = .default) {
         self.target = target
         self.action = action
         self.style = style

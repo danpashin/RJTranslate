@@ -55,14 +55,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CrashlyticsDelegate {
         AnalyticsConfiguration.shared().setAnalyticsCollectionEnabled(enable)
     }
     
-    @objc func purgeDatabase() {
-        let database = UIApplication.applicationDelegate.defaultDatabase!
-        database.purge { 
-            database.forceSaveContext()
-            NotificationCenter.default.post(name: Notification.mainControllerReloadData, object: nil)
-        }
-    }
-    
     // MARK: -
     // MARK: CrashlyticsDelegate
     // MARK: -

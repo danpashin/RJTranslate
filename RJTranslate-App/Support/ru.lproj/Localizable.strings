@@ -34,5 +34,6 @@
 "Settings.Crashlogs.Send" = "Сообщать о вылетах";
 "Settings.Crashlogs.Send.Footer" = "Сообщения о вылетах помогают нам быстрее исправлять критические ошибки и предоставлять Вам более стабильный продукт. Вы также можете отключить отправку этих вылетов, если хотите.";
 
-"Settings.Database" = "База данных";
-"Settings.Database.Purge" = "Очистить базу данных";
+"Settings.AppInfo.Title" = "Информация о приложении";
+"Settings.AppInfo.Version" = "Версия";
+"Settings.AppInfo.Build" = "Собрано";

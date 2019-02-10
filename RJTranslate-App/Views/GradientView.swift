@@ -10,7 +10,7 @@ import Foundation
 
 class GradientView: UIView {
     
-    override static var layerClass: AnyClass {
+    override class var layerClass: AnyClass {
         return GradientLayer.self
     }
     

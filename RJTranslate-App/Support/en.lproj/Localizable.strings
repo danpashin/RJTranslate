@@ -9,6 +9,7 @@
 "Translations.Title" = "Translations";
 "Translations.NoInstalled.Title" = "No translations installed";
 "Translations.NoInstalled.Subtitle" = "You can download interesting in the Featured tab";
+"Translations.Updates.Title" = "Updates";
 
 "Translations.Featured.Title" = "Featured";
 
@@ -33,5 +34,6 @@
 "Settings.Crashlogs.Send" = "Report craches";
 "Settings.Crashlogs.Send.Footer" = "Crash messages help up to quicker fix critical errors and give you a stable product. You can also disable it if you want.";
 
-"Settings.Database" = "Database";
-"Settings.Database.Purge" = "Purge database";
+"Settings.AppInfo.Title" = "Application information";
+"Settings.AppInfo.Version" = "Version";
+"Settings.AppInfo.Build" = "Builded";

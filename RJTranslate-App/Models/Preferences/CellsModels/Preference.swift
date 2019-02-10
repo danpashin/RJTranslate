@@ -9,16 +9,28 @@
 import Foundation
 
 class Preference {
+    
     enum Category {
-        case text
+        
+        case none
+        
+        /// Текст с переключателем
         case `switch`
+        
+        /// Кнопка с действием.
         case button
+        
+        /// Детальный контроллер
+        case detailLink
+        
+        /// Текст с одписью на правой стороне.
+        case titleValue
     }
     
     
-    /// Тип настройки. По умолчанию - текст.
+    /// Тип настройки. По умолчанию - ничего.
     var category: Preference.Category {
-        return .text
+        return .none
     }
     
     /// Название настройки.

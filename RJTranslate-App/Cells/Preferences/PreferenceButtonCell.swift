@@ -8,23 +8,20 @@
 
 import Foundation
 
-class PreferenceButttonCell: UITableViewCell {
+class PreferenceButttonCell: PreferenceCell {
     
-    private(set) var model: ButtonPreference!
+    override var model: ButtonPreference {
+        return super.model as! ButtonPreference
+    }
     
-    init(model: ButtonPreference, reuseIdentifier: String?) {
-        defer { self.model = model }
-        super.init(style: .default, reuseIdentifier: reuseIdentifier)
+    init(model: Preference, reuseIdentifier: String?) {
+        super.init(model: model, reuseIdentifier: reuseIdentifier)
         
-        switch model.style {
+        switch self.model.style {
         case .default:
             self.textLabel!.textColor = ColorScheme.default.buttonTitle
         case .destructive:
             self.textLabel!.textColor = ColorScheme.default.buttonDestructiveTitle
         }
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
 }

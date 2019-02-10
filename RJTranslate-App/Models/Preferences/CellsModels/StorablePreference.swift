@@ -39,7 +39,7 @@ class StorablePreference: Preference, CustomStringConvertible {
     func save(value: AnyHashable?) {
         DispatchQueue.global().async {
             UserDefaults.standard.set(value, forKey: self.key)
-            self.prefsTableModel?.delegate?.userDidSetPreferenceValue(value, forKey: self.key)
+            self.prefsTableModel?.delegate?.didSetPreferenceValue(value, forKey: self.key)
         }
     }
 }

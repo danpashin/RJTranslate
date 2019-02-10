@@ -9,62 +9,39 @@
 import Foundation
 
 protocol PrefsTableModelDelegate:class {
-    func userDidSetPreferenceValue(_ value: AnyHashable?, forKey key: String)
+    func didSetPreferenceValue(_ value: AnyHashable?, forKey key: String)
 }
 
 class PreferencesTableModel: NSObject, UITableViewDelegate, UITableViewDataSource {
-    private weak var tableView: UITableView?
-    private(set) weak var delegate: PrefsTableModelDelegate?
     
-    private var groups: [PreferenceGroup] = []
+    unowned var parentController: UIViewController?
     
-    init(tableView: UITableView, delegate: PrefsTableModelDelegate) {
-        self.tableView = tableView
-        self.delegate = delegate
-        
+    private(set) unowned var delegate: PrefsTableModelDelegate!
+    
+    private var groups = [PreferenceGroup]()
+    
+    required init(delegate: PrefsTableModelDelegate) {
         super.init()
         
+        self.delegate = delegate
         self.createPreferences()
-        
-        tableView.allowsSelection = true
-        tableView.delegate = self
-        tableView.dataSource = self
     }
     
-    private func createPreferences() {
-        let sendStatsPrefs = SwitchPreference(key: "send_statistics", defaultValue: NSNumber(value: true),
-                                              title: NSLocalizedString("Settings.Stats.Send", comment: ""))
-        
-        let sendCrashPrefs = SwitchPreference(key: "send_crashlogs", defaultValue: NSNumber(value: true),
-                                              title: NSLocalizedString("Settings.Crashlogs.Send", comment: ""))
-        
-        self.groups = [
-            createGroup(title: "Settings.Stats", footer: "Settings.Stats.Send.Footer",
-                        preference: sendStatsPrefs as Preference),
-            
-            createGroup(title: nil, footer: "Settings.Crashlogs.Send.Footer",
-                        preference: sendCrashPrefs as Preference)
-        ]
-        
-        #if DEBUG
-        let appDelegate = UIApplication.applicationDelegate
-        let purgeDatabase = ButtonPreference(title:NSLocalizedString("Settings.Database.Purge", comment: ""),
-                                             target: appDelegate,
-                                             action: #selector(appDelegate.purgeDatabase),
-                                             style: .destructive)
-        let databaseGroup = createGroup(title: "Settings.Database", footer: nil, preference: purgeDatabase)
-        self.groups.append(databaseGroup)
-        #endif
+    func createPreferences() {
         
     }
     
-    private func createGroup(title: String?, footer: String?, preference: Preference) -> PreferenceGroup {
+    func createGroup(title: String?, footer: String?, preference: Preference) -> PreferenceGroup {
         preference.prefsTableModel = self
         
         let localizedTitle = NSLocalizedString(title ?? "", comment: "")
         let localizedFooter = NSLocalizedString(footer ?? "", comment: "")
         
         return PreferenceGroup(title: localizedTitle, footerText: localizedFooter, preferences: [preference])
+    }
+    
+    func setPreferences(_ preferences: [PreferenceGroup]) {
+        self.groups = preferences
     }
     
     // MARK: -
@@ -84,12 +61,14 @@ class PreferencesTableModel: NSObject, UITableViewDelegate, UITableViewDataSourc
         
         var cell: UITableViewCell?
         
-        if preference.category == .text {
-            cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
+        if preference.category == .titleValue {
+            cell = PreferenceTitleValueCell(model: preference, reuseIdentifier: nil)
         } else if preference.category == .switch {
-            cell = PreferenceSwitchCell(model: preference as! SwitchPreference, reuseIdentifier: nil)
+            cell = PreferenceSwitchCell(model: preference, reuseIdentifier: nil)
         } else if preference.category == .button {
-            cell = PreferenceButttonCell(model: preference as! ButtonPreference, reuseIdentifier: nil)
+            cell = PreferenceButttonCell(model: preference, reuseIdentifier: nil)
+        } else if preference.category == .detailLink {
+            cell = PreferenceDetailLinkCell(model: preference, reuseIdentifier: nil)
         }
         
         if cell == nil { cell = UITableViewCell() }
@@ -110,6 +89,8 @@ class PreferencesTableModel: NSObject, UITableViewDelegate, UITableViewDataSourc
         let preference = self.groups[indexPath.section].preferences[indexPath.row]
         if preference is ButtonPreference {
             return true
+        } else if preference is DetailLinkPreference {
+            return true
         }
         
         return false
@@ -123,6 +104,12 @@ class PreferencesTableModel: NSObject, UITableViewDelegate, UITableViewDataSourc
         if preference is ButtonPreference {
             let buttonPreference = preference as! ButtonPreference
             buttonPreference.invokeAction()
+        } else if preference is DetailLinkPreference {
+            let detailPreference = preference as! DetailLinkPreference
+            let detailController = detailPreference.createController()
+            
+            let navigationController = self.parentController?.navigationController
+            navigationController?.pushViewController(detailController, animated: true)
         }
     }
 }

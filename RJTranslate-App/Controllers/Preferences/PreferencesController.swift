@@ -10,8 +10,13 @@ import Foundation
 
 class PreferencesController: UITableViewController, PrefsTableModelDelegate {
     
-    /// Модель таблицы
-    private var model: PreferencesTableModel?
+    /// Класс модели для инициализации.
+    class var modelClass: PreferencesTableModel.Type {
+        return PreferencesTableModel.self
+    }
+    
+    /// Модель настроек
+    private var model: PreferencesTableModel!
     
     override init(style: UITableView.Style) {
         super.init(style: .grouped)
@@ -24,32 +29,25 @@ class PreferencesController: UITableViewController, PrefsTableModelDelegate {
         self.commonInit()
     }
     
-    private func commonInit() {
-        self.title = NSLocalizedString("Settings.Title", comment: "")
-        self.navigationController?.tabBarItem.title = self.title
+    func commonInit() {
+        let cls = type(of: self).modelClass
+        self.model = cls.init(delegate: self)
+        self.model.parentController = self
     }
     
     override func loadView() {
         super.loadView()
         
-        self.model = PreferencesTableModel(tableView: self.tableView, delegate: self)
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
+        self.tableView.delegate = self.model
+        self.tableView.dataSource = self.model
+        self.tableView.allowsSelection = true
         self.tableView.backgroundColor = ColorScheme.default.background
     }
-    
     
     // MARK: -
     // MARK: PrefsTableModelDelegate
     
-    func userDidSetPreferenceValue(_ value: AnyHashable?, forKey key: String) {
+    func didSetPreferenceValue(_ value: AnyHashable?, forKey key: String) {
         
-        if key == "send_statistics" {
-            let enabled: Bool = (value as? NSNumber)?.boolValue ?? true
-            UIApplication.applicationDelegate.enableTracker(enabled)
-        }
     }
 }
