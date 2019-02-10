@@ -601,12 +601,12 @@
 			buildConfigurationList = A522F1DC217AFC310085A5E4 /* Build configuration list for PBXNativeTarget "RJTranslate-App" */;
 			buildPhases = (
 				16DF98F9E8766D8377BBDB56 /* [CP] Check Pods Manifest.lock */,
+				A5057907220EE1A4002CB900 /* Check target syntax */,
 				A522F1C5217AFC300085A5E4 /* Sources */,
 				A522F1C6217AFC300085A5E4 /* Frameworks */,
 				A522F1C7217AFC300085A5E4 /* Resources */,
-				A5CC12EB2184A52F00A607E3 /* Setup Crashlytics */,
 				7D0C6BFFF79AC85C034885E6 /* [CP] Embed Pods Frameworks */,
-				A5057907220EE1A4002CB900 /* Check target syntax */,
+				A5CC12EB2184A52F00A607E3 /* Upload DSYMS to Fabric */,
 			);
 			buildRules = (
 			);
@@ -809,7 +809,7 @@
 			shellScript = "if [[ \"ls -1 ${BUILT_PRODUCTS_DIR}/*.dylib 2>/dev/null | wc -l\" == 0 ]]; then\necho \"${BUILT_PRODUCTS_DIR} does not contain any dylib file.\";\nexit 1;\nfi\n\nPACKAGE_PROJECT_FOLDER=\"${PROJECT_DIR}/${PROJECT_NAME}/Package\";\nif [ ! -d $PACKAGE_PROJECT_FOLDER ]; then\necho \"${PROJECT_DIR}/Package does not exits.\";\nexit 2;\nfi\n\n\nPACKAGE_TEMP_FOLDER=\"${BUILT_PRODUCTS_DIR}/Package\";\nif [ -d $PACKAGE_TEMP_FOLDER ]; then\nrm -rf $PACKAGE_TEMP_FOLDER;\nfi\n\necho \"[->] Copying binaries...\";\ncp -r $PACKAGE_PROJECT_FOLDER $PACKAGE_TEMP_FOLDER;\nfind ${BUILT_PRODUCTS_DIR} -type f -maxdepth 1 -iname '*.dylib' \\( -exec ldid -S\"${PROJECT_DIR}/sign.entitlements\" \"{}\" \\; -exec cp \"{}\" \"$PACKAGE_TEMP_FOLDER/Library/MobileSubstrate/DynamicLibraries/\" 2> /dev/null \\; \\)\n#find ${BUILT_PRODUCTS_DIR} -iname '*.app' -exec cp -R \"{}\" \"$PACKAGE_TEMP_FOLDER/Applications/\" \\;\nfind ${BUILT_PRODUCTS_DIR} -iname '*.momd' -exec cp -R \"{}\" \"$PACKAGE_TEMP_FOLDER/Library/Application Support/RJTranslate.bundle/\" \\;\ncp -R \"${BUILT_PRODUCTS_DIR}/RJTranslate.app\" \"$PACKAGE_TEMP_FOLDER/Applications/RJTranslate.app\";\n\n\nfind \"$PACKAGE_TEMP_FOLDER\" -name '*.framework' -type d | while read -r FRAMEWORK\ndo\nFRAMEWORK_EXECUTABLE_NAME=$(defaults read \"$FRAMEWORK/Info.plist\" CFBundleExecutable)\nFRAMEWORK_EXECUTABLE_PATH=\"$FRAMEWORK/$FRAMEWORK_EXECUTABLE_NAME\"\n\nEXTRACTED_ARCHS=()\nfor ARCH in $ARCHS\ndo\nlipo -extract \"$ARCH\" \"$FRAMEWORK_EXECUTABLE_PATH\" -o \"$FRAMEWORK_EXECUTABLE_PATH-$ARCH\"\nEXTRACTED_ARCHS+=(\"$FRAMEWORK_EXECUTABLE_PATH-$ARCH\")\ndone\n\nlipo -o \"$FRAMEWORK_EXECUTABLE_PATH-merged\" -create \"${EXTRACTED_ARCHS[@]}\"\nrm \"${EXTRACTED_ARCHS[@]}\"\n\nrm \"$FRAMEWORK_EXECUTABLE_PATH\"\nmv \"$FRAMEWORK_EXECUTABLE_PATH-merged\" \"$FRAMEWORK_EXECUTABLE_PATH\"\ndone\n\n\nfind \"$PACKAGE_TEMP_FOLDER\" -name \"*.dylib\" -type f | while read -r LIBRARY\ndo\necho \"Processing library ${LIBRARY%.*}\"\n\nEXTRACTED_ARCHS=()\nfor ARCH in $ARCHS\ndo\nlipo -extract \"$ARCH\" \"$LIBRARY\" -o \"$LIBRARY-$ARCH\"\nEXTRACTED_ARCHS+=(\"$LIBRARY-$ARCH\")\ndone\n\nlipo -o \"$LIBRARY-merged\" -create \"${EXTRACTED_ARCHS[@]}\"\nrm \"${EXTRACTED_ARCHS[@]}\"\n\nrm \"$LIBRARY\"\nmv \"$LIBRARY-merged\" \"$LIBRARY\"\ndone\n\n\n\n\ncodesign --remove-sign \"$PACKAGE_TEMP_FOLDER/Applications/RJTranslate.app\";\nrm -rf \"$PACKAGE_TEMP_FOLDER/Applications/RJTranslate.app/embedded.mobileprovision\";\nldid -S\"${PROJECT_DIR}/sign.entitlements\" \"$PACKAGE_TEMP_FOLDER/Applications/RJTranslate.app/RJTranslate\";\nfind \"$PACKAGE_TEMP_FOLDER\" -type d -exec chmod +rx \"{}\" \\;\n\necho \"[->] Cleaning (stage 1)...\"\n#find $PACKAGE_TEMP_FOLDER -name \".DS_Store\" -exec rm -f \"{}\" \\;\nfind $PACKAGE_TEMP_FOLDER -name \".*\" -exec rm -rf \"{}\" \\;\n\necho \"[->] Updating control...\";\nsed -i '' \"s/CURRENT_PROJECT_VERSION/${CURRENT_PROJECT_VERSION}/g\" \"$PACKAGE_TEMP_FOLDER/DEBIAN/control\";\n\necho \"[->] Counting size...\";\nFOLDER_SIZE=$(du -sk $PACKAGE_TEMP_FOLDER);\nINSTALLED_SIZE=$(echo $FOLDER_SIZE | tr -dc '0-9' );\nsed -i '' \"s/PACKAGE_SIZE/${INSTALLED_SIZE}/g\" \"$PACKAGE_TEMP_FOLDER/DEBIAN/control\";\n\necho \"[->] Packaging...\";\nDEBS_FOLDER=\"${PROJECT_DIR}/debs\";\nif [ ! -d $DEBS_FOLDER ]; then\nmkdir $DEBS_FOLDER\nfi\n\n\nDEB_NAME=\"${PRODUCT_BUNDLE_IDENTIFIER}_${CURRENT_PROJECT_VERSION}_${PLATFORM_NAME}-arm.deb\";\ndpkg-deb -b -Zlzma $PACKAGE_TEMP_FOLDER $DEBS_FOLDER/$DEB_NAME 2> /dev/null;\n\necho \"[->] Cleaning (stage 2)...\";\nrm -rf $PACKAGE_TEMP_FOLDER;\n";
 			showEnvVarsInLog = 0;
 		};
-		A5CC12EB2184A52F00A607E3 /* Setup Crashlytics */ = {
+		A5CC12EB2184A52F00A607E3 /* Upload DSYMS to Fabric */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -819,14 +819,14 @@
 			inputPaths = (
 				"$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)",
 			);
-			name = "Setup Crashlytics";
+			name = "Upload DSYMS to Fabric";
 			outputFileListPaths = (
 			);
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Fabric/run\"\n";
+			shellScript = "\nuploadDSYM() {\necho \"READY TO UPLOAD FABRIC\"\n#\"${PODS_ROOT}/Fabric/run\"\n}\n\necho \"${CONFIGURATION}\"\ncase ${CONFIGURATION} in\n\"Release\")\nuploadDSYM\n;;\n\"Debug\")\nuploadDSYM\n;;\nesac\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
