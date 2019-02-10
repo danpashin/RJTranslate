@@ -644,7 +644,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = RJT;
-				LastUpgradeCheck = 1010;
+				LastUpgradeCheck = 1020;
 				ORGANIZATIONNAME = "Даниил";
 				TargetAttributes = {
 					A522F1C8217AFC300085A5E4 = {
@@ -806,7 +806,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [[ \"ls -1 ${BUILT_PRODUCTS_DIR}/*.dylib 2>/dev/null | wc -l\" == 0 ]]; then\necho \"${BUILT_PRODUCTS_DIR} does not contain any dylib file.\";\nexit 1;\nfi\n\nPACKAGE_PROJECT_FOLDER=\"${PROJECT_DIR}/${PROJECT_NAME}/Package\";\nif [ ! -d $PACKAGE_PROJECT_FOLDER ]; then\necho \"${PROJECT_DIR}/Package does not exits.\";\nexit 2;\nfi\n\n\nPACKAGE_TEMP_FOLDER=\"${BUILT_PRODUCTS_DIR}/Package\";\nif [ -d $PACKAGE_TEMP_FOLDER ]; then\nrm -rf $PACKAGE_TEMP_FOLDER;\nfi\n\necho \"[->] Copying binaries...\";\ncp -r $PACKAGE_PROJECT_FOLDER $PACKAGE_TEMP_FOLDER;\nfind ${BUILT_PRODUCTS_DIR} -type f -maxdepth 1 -iname '*.dylib' \\( -exec ldid -S\"${PROJECT_DIR}/sign.entitlements\" \"{}\" \\; -exec cp \"{}\" \"$PACKAGE_TEMP_FOLDER/Library/MobileSubstrate/DynamicLibraries/\" 2> /dev/null \\; \\)\n#find ${BUILT_PRODUCTS_DIR} -iname '*.app' -exec cp -R \"{}\" \"$PACKAGE_TEMP_FOLDER/Applications/\" \\;\nfind ${BUILT_PRODUCTS_DIR} -iname '*.momd' -exec cp -R \"{}\" \"$PACKAGE_TEMP_FOLDER/Library/Application Support/RJTranslate.bundle/\" \\;\ncp -R \"${BUILT_PRODUCTS_DIR}/RJTranslate.app\" \"$PACKAGE_TEMP_FOLDER/Applications/RJTranslate.app\";\n\n\nfind \"$PACKAGE_TEMP_FOLDER\" -name '*.framework' -type d | while read -r FRAMEWORK\ndo\nFRAMEWORK_EXECUTABLE_NAME=$(defaults read \"$FRAMEWORK/Info.plist\" CFBundleExecutable)\nFRAMEWORK_EXECUTABLE_PATH=\"$FRAMEWORK/$FRAMEWORK_EXECUTABLE_NAME\"\n\nEXTRACTED_ARCHS=()\nfor ARCH in $ARCHS\ndo\nlipo -extract \"$ARCH\" \"$FRAMEWORK_EXECUTABLE_PATH\" -o \"$FRAMEWORK_EXECUTABLE_PATH-$ARCH\"\nEXTRACTED_ARCHS+=(\"$FRAMEWORK_EXECUTABLE_PATH-$ARCH\")\ndone\n\nlipo -o \"$FRAMEWORK_EXECUTABLE_PATH-merged\" -create \"${EXTRACTED_ARCHS[@]}\"\nrm \"${EXTRACTED_ARCHS[@]}\"\n\nrm \"$FRAMEWORK_EXECUTABLE_PATH\"\nmv \"$FRAMEWORK_EXECUTABLE_PATH-merged\" \"$FRAMEWORK_EXECUTABLE_PATH\"\ndone\n\n\nfind \"$PACKAGE_TEMP_FOLDER\" -name \"*.dylib\" -type f | while read -r LIBRARY\ndo\necho \"Processing library ${LIBRARY%.*}\"\n\nEXTRACTED_ARCHS=()\nfor ARCH in $ARCHS\ndo\nlipo -extract \"$ARCH\" \"$LIBRARY\" -o \"$LIBRARY-$ARCH\"\nEXTRACTED_ARCHS+=(\"$LIBRARY-$ARCH\")\ndone\n\nlipo -o \"$LIBRARY-merged\" -create \"${EXTRACTED_ARCHS[@]}\"\nrm \"${EXTRACTED_ARCHS[@]}\"\n\nrm \"$LIBRARY\"\nmv \"$LIBRARY-merged\" \"$LIBRARY\"\ndone\n\n\n\n\ncodesign --remove-sign \"$PACKAGE_TEMP_FOLDER/Applications/RJTranslate.app\";\nrm -rf \"$PACKAGE_TEMP_FOLDER/Applications/RJTranslate.app/embedded.mobileprovision\";\nldid -S\"${PROJECT_DIR}/sign.entitlements\" \"$PACKAGE_TEMP_FOLDER/Applications/RJTranslate.app/RJTranslate\";\nfind \"$PACKAGE_TEMP_FOLDER\" -type d -exec chmod +rx \"{}\" \\;\n\necho \"[->] Cleaning (stage 1)...\"\n#find $PACKAGE_TEMP_FOLDER -name \".DS_Store\" -exec rm -f \"{}\" \\;\nfind $PACKAGE_TEMP_FOLDER -name \".*\" -exec rm -rf \"{}\" \\;\n\necho \"[->] Updating control...\";\nsed -i '' \"s/CURRENT_PROJECT_VERSION/${CURRENT_PROJECT_VERSION}/g\" \"$PACKAGE_TEMP_FOLDER/DEBIAN/control\";\n\necho \"[->] Counting size...\";\nFOLDER_SIZE=$(du -sk $PACKAGE_TEMP_FOLDER);\nINSTALLED_SIZE=$(echo $FOLDER_SIZE | tr -dc '0-9' );\nsed -i '' \"s/PACKAGE_SIZE/${INSTALLED_SIZE}/g\" \"$PACKAGE_TEMP_FOLDER/DEBIAN/control\";\n\necho \"[->] Packaging...\";\nDEBS_FOLDER=\"${PROJECT_DIR}/debs\";\nif [ ! -d $DEBS_FOLDER ]; then\nmkdir $DEBS_FOLDER\nfi\n\n\nDEB_NAME=\"${PRODUCT_BUNDLE_IDENTIFIER}_${CURRENT_PROJECT_VERSION}_${PLATFORM_NAME}-arm.deb\";\ndpkg-deb -b -Zlzma $PACKAGE_TEMP_FOLDER $DEBS_FOLDER/$DEB_NAME 2> /dev/null;\n\necho \"[->] Cleaning (stage 2)...\";\nrm -rf $PACKAGE_TEMP_FOLDER;\n";
+			shellScript = "if [[ \"ls -1 ${BUILT_PRODUCTS_DIR}/*.dylib 2>/dev/null | wc -l\" == 0 ]]; then\necho \"${BUILT_PRODUCTS_DIR} does not contain any dylib file.\";\nexit 1;\nfi\n\nPACKAGE_PROJECT_FOLDER=\"${PROJECT_DIR}/${PROJECT_NAME}/Package\";\nif [ ! -d $PACKAGE_PROJECT_FOLDER ]; then\necho \"${PROJECT_DIR}/Package does not exits.\";\nexit 2;\nfi\n\n\nPACKAGE_TEMP_FOLDER=\"${BUILT_PRODUCTS_DIR}/Package\";\nif [ -d $PACKAGE_TEMP_FOLDER ]; then\nrm -rf $PACKAGE_TEMP_FOLDER;\nfi\n\necho \"[->] Copying binaries...\";\ncp -r $PACKAGE_PROJECT_FOLDER $PACKAGE_TEMP_FOLDER;\nfind ${BUILT_PRODUCTS_DIR} -type f -maxdepth 1 -iname '*.dylib' \\( -exec ldid -S\"${PROJECT_DIR}/sign.entitlements\" \"{}\" \\; -exec cp \"{}\" \"$PACKAGE_TEMP_FOLDER/Library/MobileSubstrate/DynamicLibraries/\" 2> /dev/null \\; \\)\n#find ${BUILT_PRODUCTS_DIR} -iname '*.app' -exec cp -R \"{}\" \"$PACKAGE_TEMP_FOLDER/Applications/\" \\;\nfind ${BUILT_PRODUCTS_DIR} -iname '*.momd' -exec cp -R \"{}\" \"$PACKAGE_TEMP_FOLDER/Library/Application Support/RJTranslate.bundle/\" \\;\ncp -R \"${BUILT_PRODUCTS_DIR}/RJTranslate.app\" \"$PACKAGE_TEMP_FOLDER/Applications/RJTranslate.app\";\n\n\nfind \"$PACKAGE_TEMP_FOLDER\" -name '*.framework' -type d | while read -r FRAMEWORK\ndo\nFRAMEWORK_EXECUTABLE_NAME=$(defaults read \"$FRAMEWORK/Info.plist\" CFBundleExecutable)\nFRAMEWORK_EXECUTABLE_PATH=\"$FRAMEWORK/$FRAMEWORK_EXECUTABLE_NAME\"\n\nEXTRACTED_ARCHS=()\nfor ARCH in $ARCHS\ndo\nlipo -extract \"$ARCH\" \"$FRAMEWORK_EXECUTABLE_PATH\" -o \"$FRAMEWORK_EXECUTABLE_PATH-$ARCH\"\nEXTRACTED_ARCHS+=(\"$FRAMEWORK_EXECUTABLE_PATH-$ARCH\")\ndone\n\nlipo -o \"$FRAMEWORK_EXECUTABLE_PATH-merged\" -create \"${EXTRACTED_ARCHS[@]}\"\nrm \"${EXTRACTED_ARCHS[@]}\"\n\nrm \"$FRAMEWORK_EXECUTABLE_PATH\"\nmv \"$FRAMEWORK_EXECUTABLE_PATH-merged\" \"$FRAMEWORK_EXECUTABLE_PATH\"\ndone\n\n\nfind \"$PACKAGE_TEMP_FOLDER\" -name \"*.dylib\" -type f | while read -r LIBRARY\ndo\necho \"Processing library ${LIBRARY%.*}\"\n\nEXTRACTED_ARCHS=()\nfor ARCH in $ARCHS\ndo\nlipo -extract \"$ARCH\" \"$LIBRARY\" -o \"$LIBRARY-$ARCH\"\nEXTRACTED_ARCHS+=(\"$LIBRARY-$ARCH\")\ndone\n\nlipo -o \"$LIBRARY-merged\" -create \"${EXTRACTED_ARCHS[@]}\"\nrm \"${EXTRACTED_ARCHS[@]}\"\n\nrm \"$LIBRARY\"\nmv \"$LIBRARY-merged\" \"$LIBRARY\"\ndone\n\n\n\n\ncodesign --remove-sign \"$PACKAGE_TEMP_FOLDER/Applications/RJTranslate.app\";\nrm -rf \"$PACKAGE_TEMP_FOLDER/Applications/RJTranslate.app/embedded.mobileprovision\";\nldid -S\"${PROJECT_DIR}/sign.entitlements\" \"$PACKAGE_TEMP_FOLDER/Applications/RJTranslate.app/RJTranslate\";\nfind \"$PACKAGE_TEMP_FOLDER\" -type d -exec chmod +rx \"{}\" \\;\n\necho \"[->] Cleaning (stage 1)...\"\n#find $PACKAGE_TEMP_FOLDER -name \".DS_Store\" -exec rm -f \"{}\" \\;\nfind $PACKAGE_TEMP_FOLDER -name \".*\" -exec rm -rf \"{}\" \\;\n\necho \"[->] Updating control...\";\nBUILD_NUMBER=$(/usr/libexec/PlistBuddy -c \"Print :CFBundleVersion\" \"$PACKAGE_TEMP_FOLDER/Applications/RJTranslate.app/Info.plist\")\nsed -i '' \"s/CURRENT_PROJECT_VERSION/${CURRENT_PROJECT_VERSION}-$BUILD_NUMBER/g\" \"$PACKAGE_TEMP_FOLDER/DEBIAN/control\";\n\necho \"[->] Counting size...\";\nFOLDER_SIZE=$(du -sk $PACKAGE_TEMP_FOLDER);\nINSTALLED_SIZE=$(echo $FOLDER_SIZE | tr -dc '0-9' );\nsed -i '' \"s/PACKAGE_SIZE/${INSTALLED_SIZE}/g\" \"$PACKAGE_TEMP_FOLDER/DEBIAN/control\";\n\necho \"[->] Packaging...\";\nDEBS_FOLDER=\"${PROJECT_DIR}/debs\";\nif [ ! -d $DEBS_FOLDER ]; then\nmkdir $DEBS_FOLDER\nfi\n\n\nDEB_NAME=\"${PRODUCT_BUNDLE_IDENTIFIER}_${CURRENT_PROJECT_VERSION}-${BUILD_NUMBER}_${PLATFORM_NAME}-arm.deb\";\ndpkg-deb -b -Zlzma $PACKAGE_TEMP_FOLDER $DEBS_FOLDER/$DEB_NAME 2> /dev/null;\n\necho \"[->] Cleaning (stage 2)...\";\nrm -rf $PACKAGE_TEMP_FOLDER;\n";
 			showEnvVarsInLog = 0;
 		};
 		A5CC12EB2184A52F00A607E3 /* Upload DSYMS to Fabric */ = {
@@ -826,7 +826,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\nuploadDSYM() {\necho \"READY TO UPLOAD FABRIC\"\n#\"${PODS_ROOT}/Fabric/run\"\n}\n\necho \"${CONFIGURATION}\"\ncase ${CONFIGURATION} in\n\"Release\")\nuploadDSYM\n;;\n\"Debug\")\nuploadDSYM\n;;\nesac\n";
+			shellScript = "formatDate=$(date \"+%y%m%d%H%M\")\nbuildNumber=\"${formatDate}\"\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion ${buildNumber}\" \"${CODESIGNING_FOLDER_PATH}/Info.plist\"\n\nuploadDSYM() {\n    \"${PODS_ROOT}/Fabric/run\"\n}\n\ncase ${CONFIGURATION} in\n\"Release\")\nuploadDSYM\n;;\n\"Debug\")\nuploadDSYM\n;;\nesac\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -982,10 +982,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				ONLY_ACTIVE_ARCH = YES;
 				OTHER_SWIFT_FLAGS = "-DDEBUG";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 				SWIFT_OBJC_BRIDGING_HEADER = "RJTranslate-App/Support/RJTranslate-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -1011,9 +1009,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				ONLY_ACTIVE_ARCH = NO;
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OBJC_BRIDGING_HEADER = "RJTranslate-App/Support/RJTranslate-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
@@ -1055,6 +1051,7 @@
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
 				CLANG_WARN_OBJC_EXPLICIT_OWNERSHIP_TYPE = YES;
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_INTERFACE_IVARS = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -1082,7 +1079,7 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_INLINES_ARE_PRIVATE_EXTERN = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_OPTIMIZATION_LEVEL = fast;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = RJTranslate/PrefixHeader.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -1107,10 +1104,9 @@
 				HEADER_SEARCH_PATHS = "$(iOSOpenDevPath)/include/**";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LIBRARY_SEARCH_PATHS = "$(iOSOpenDevPath)/lib/**";
-				LLVM_LTO = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
-				ONLY_ACTIVE_ARCH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = ru.danpashin.RJTranslate;
 				PRODUCT_NAME = RJTranslate;
 				SDKROOT = iphoneos;
@@ -1154,6 +1150,7 @@
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
 				CLANG_WARN_OBJC_EXPLICIT_OWNERSHIP_TYPE = YES;
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_INTERFACE_IVARS = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -1222,7 +1219,6 @@
 			baseConfigurationReference = F1725EBC7642136E98BE5351 /* Pods-RJTranslate.debug.xcconfig */;
 			buildSettings = {
 				INSTALL_PATH = /Library/MobileSubstrate/DynamicLibraries;
-				STRIP_SWIFT_SYMBOLS = NO;
 			};
 			name = Debug;
 		};
@@ -1231,7 +1227,6 @@
 			baseConfigurationReference = 5463AB4B068FAEC8516D5BB1 /* Pods-RJTranslate.release.xcconfig */;
 			buildSettings = {
 				INSTALL_PATH = /Library/MobileSubstrate/DynamicLibraries;
-				STRIP_SWIFT_SYMBOLS = NO;
 			};
 			name = Release;
 		};
@@ -1269,6 +1264,7 @@
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
 				CLANG_WARN_OBJC_EXPLICIT_OWNERSHIP_TYPE = YES;
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_INTERFACE_IVARS = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -1296,7 +1292,7 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_INLINES_ARE_PRIVATE_EXTERN = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_OPTIMIZATION_LEVEL = fast;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = RJTranslate/PrefixHeader.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -1320,14 +1316,13 @@
 				HEADER_SEARCH_PATHS = "$(iOSOpenDevPath)/include/**";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LIBRARY_SEARCH_PATHS = "$(iOSOpenDevPath)/lib/**";
-				LLVM_LTO = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = ru.danpashin.RJTranslate;
 				PRODUCT_NAME = RJTranslate;
 				SDKROOT = iphoneos;
-				SUPPORTED_PLATFORMS = iphoneos;
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				iOSOpenDevPath = /opt/iOSOpenDev;
 			};
@@ -1338,7 +1333,6 @@
 			baseConfigurationReference = 61994DC3045B29573FC8801E /* Pods-RJTranslate.debug_app.xcconfig */;
 			buildSettings = {
 				INSTALL_PATH = /Library/MobileSubstrate/DynamicLibraries;
-				STRIP_SWIFT_SYMBOLS = NO;
 			};
 			name = Debug_App;
 		};
@@ -1359,10 +1353,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				ONLY_ACTIVE_ARCH = YES;
-				OTHER_SWIFT_FLAGS = "-DDEBUG -Xfrontend -warn-long-function-bodies=1 -Xfrontend -warn-long-expression-type-checking=1";
+				OTHER_SWIFT_FLAGS = "-DDEBUG";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 				SWIFT_OBJC_BRIDGING_HEADER = "RJTranslate-App/Support/RJTranslate-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
