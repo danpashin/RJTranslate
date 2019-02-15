@@ -50,6 +50,19 @@ class AppCollectionView: UICollectionView {
         self.delegateObject = AppCollectionDelegate(collectionView: self, model: self.model)
         self.emptyDataSourceObject = AppCollectionEmptySource(collectionView: self)
         
+        try? PropertyObserver.observe(name: .translationCollectionReloadData) { (observer: PropertyObserver) in
+            self.reload()
+        }
+        
+        let center = NotificationCenter.default
+        center.addObserver(forName: .translationCollectionReloadIndexPaths, object: nil, queue: .main) { (notif) in
+            guard let indexPaths = notif.object else { return }
+        }
+    }
+    
+    deinit {
+        PropertyObserver.removeObserve(name: .translationCollectionReloadData)
+        NotificationCenter.default.removeObserver(self)
     }
     
     override func awakeFromNib() {
@@ -98,6 +111,10 @@ class AppCollectionView: UICollectionView {
                 self.reloadEmptyDataSet()
             })
         }
+    }
+    
+    func reloadIndexPaths(_ indexPaths: [IndexPath]) {
+        
     }
     
     func updateEmptyView(to type: EmptyViewType, animated: Bool = false) {

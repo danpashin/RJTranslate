@@ -10,6 +10,12 @@ import Foundation
 
 class AppCollectionDataSource: CustomStringConvertible {
     
+    enum ModelType {
+        case updatable
+        case installed
+        case uninstalled
+    }
+    
     /// Массив содержит все модели переводов
     private(set) var allModels = [TranslationModel]()
     
@@ -63,13 +69,22 @@ class AppCollectionDataSource: CustomStringConvertible {
     func moveModelsToUpdatable(_ models: [TranslationModel]) {
         self.updatableModels = models
         
+        var indexPaths = [IndexPath]()
+        for i in 0..<models.count {
+            indexPaths.append(IndexPath(row: i, section: 0))
+        }
+        
         for model in models {
             if let index = self.installed.firstIndex(of: model) {
                 self.installed.remove(at: index)
+                indexPaths.append(IndexPath(row: index, section: 1))
             } else if let index = self.uninstalled.firstIndex(of: model) {
                 self.uninstalled.remove(at: index)
+                indexPaths.append(IndexPath(row: index, section: 2))
             }
         }
+        
+        NotificationCenter.post(name: .translationCollectionReloadIndexPaths, object: indexPaths)
     }
     
     var description: String {

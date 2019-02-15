@@ -57,6 +57,7 @@ class TranslationDetailView: UIView, GradientImageRendererDelegate {
         self.subtitleLabel.textColor = ColorScheme.default.subtitleLabel
         self.addSubview(self.subtitleLabel)
         
+        self.installButton.isHidden = true
         self.installButton.addObserver(self, forKeyPath: "bounds", options: .new, context: nil)
         self.installButton.setTitleColor(ColorScheme.default.gradientButtonTitleNormal, for: .normal)
         self.installButton.setTitleColor(ColorScheme.default.gradientButtonTitleSelected, for: .selected)

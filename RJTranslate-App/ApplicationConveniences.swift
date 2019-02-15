@@ -20,10 +20,6 @@ func appRecordError(_ description: String, _ args: CVarArg...) -> NSError {
     return error
 }
 
-extension Notification {
-    static let mainControllerReloadData = NSNotification.Name("ru.danpashin.rjtranslate.translation.didDownload")
-}
-
 
 
 extension UIApplication {

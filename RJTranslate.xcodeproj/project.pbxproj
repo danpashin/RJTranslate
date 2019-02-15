@@ -78,6 +78,7 @@
 		A59521FB21F3A08600E5F130 /* HTTPClientPinning.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59521FA21F3A08600E5F130 /* HTTPClientPinning.swift */; };
 		A5975EB021F72B9D00D25FFA /* SearchResultsTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5975EAF21F72B9D00D25FFA /* SearchResultsTableView.swift */; };
 		A5975EB421F7300300D25FFA /* LiveSearchResultsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5975EB321F7300300D25FFA /* LiveSearchResultsController.swift */; };
+		A59836FB22116B3A00BFF9D5 /* NotificationConveniences.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59836FA22116B3A00BFF9D5 /* NotificationConveniences.swift */; };
 		A5ADC030218508A400C33863 /* Cydia_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = A5ADC02F218508A400C33863 /* Cydia_icon.png */; };
 		A5B74C2021E4A9600058C71A /* RJTDatabaseFacade.h in Headers */ = {isa = PBXBuildFile; fileRef = A5E80C8521E3300500150B5D /* RJTDatabaseFacade.h */; };
 		A5B74C2121E4A9600058C71A /* RJTDatabaseFacade.m in Sources */ = {isa = PBXBuildFile; fileRef = A5E80C8621E3300500150B5D /* RJTDatabaseFacade.m */; };
@@ -203,6 +204,7 @@
 		A59521FA21F3A08600E5F130 /* HTTPClientPinning.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClientPinning.swift; sourceTree = "<group>"; };
 		A5975EAF21F72B9D00D25FFA /* SearchResultsTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsTableView.swift; sourceTree = "<group>"; };
 		A5975EB321F7300300D25FFA /* LiveSearchResultsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveSearchResultsController.swift; sourceTree = "<group>"; };
+		A59836FA22116B3A00BFF9D5 /* NotificationConveniences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationConveniences.swift; sourceTree = "<group>"; };
 		A5ADC02F218508A400C33863 /* Cydia_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Cydia_icon.png; sourceTree = "<group>"; };
 		A5B74C2421E4CD6E0058C71A /* ObsoleteSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObsoleteSearchController.swift; sourceTree = "<group>"; };
 		A5B74C2621E4CDA10058C71A /* SearchConveniences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchConveniences.swift; sourceTree = "<group>"; };
@@ -402,6 +404,7 @@
 				A55DA43C2201ABC2002DAEA3 /* SearchResultsEmptySource.swift */,
 				A53225D121F8D4D600AB7D46 /* AsynchronousOperation.swift */,
 				A53225CF21F8AE9A00AB7D46 /* LiveSearchOperation.swift */,
+				A59836FA22116B3A00BFF9D5 /* NotificationConveniences.swift */,
 				A5370DD821A4019B009A2BA5 /* Preferences */,
 			);
 			path = Models;
@@ -952,6 +955,7 @@
 				A5438B8C22081DB10077D988 /* UINavigationBar+RJTExtended.m in Sources */,
 				A56856C421FDE821007D1B08 /* TranslationDetailView.swift in Sources */,
 				A5D2D4C721F48B7F003F0D4F /* GradientView.swift in Sources */,
+				A59836FB22116B3A00BFF9D5 /* NotificationConveniences.swift in Sources */,
 				A57CF73B217AFFD0004A71F8 /* RJTApplicationEntity.m in Sources */,
 				A5D2D4BD21F46CC5003F0D4F /* UIImageConveniences.swift in Sources */,
 				A5D2D4BB21F4638A003F0D4F /* Tabbar.swift in Sources */,

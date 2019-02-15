@@ -33,7 +33,7 @@ class PreferencesDebugModel: PreferencesTableModel {
         let database = UIApplication.applicationDelegate.defaultDatabase!
         database.purge {
             database.forceSaveContext()
-            NotificationCenter.default.post(name: Notification.mainControllerReloadData, object: nil)
+            NotificationCenter.post(name: .translationCollectionLoadDatabase)
         }
     }
     

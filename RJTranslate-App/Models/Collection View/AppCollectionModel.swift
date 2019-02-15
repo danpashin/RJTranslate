@@ -13,7 +13,8 @@ class AppCollectionModel {
     /// Модел датасорс коллекции.
     private(set) var currentDataSource = AppCollectionDataSource(models: []) {
         didSet {
-            self.collectionView?.reload()
+            PropertyObserver(name: .translationCollectionReloadData,
+                             oldValue: oldValue, newValue: self.currentDataSource).post()
         }
     }
     
@@ -21,6 +22,8 @@ class AppCollectionModel {
     private weak var collectionView: AppCollectionView?
     
     private var allModelsDataSource: AppCollectionDataSource
+    
+    private var loadDatabaseOberver: NSObjectProtocol?
     
     /// Выполняет инициализацию модели для конкретной коллекции.
     ///
@@ -30,6 +33,18 @@ class AppCollectionModel {
         
         self.collectionView = collectionView
         self.allModelsDataSource = self.currentDataSource
+        
+        let notifCenter = NotificationCenter.default
+        self.loadDatabaseOberver = notifCenter.addObserver(forName: .translationCollectionLoadDatabase, object: nil,
+                                                           queue: .main, using: { (notification: Notification) in
+                                                            self.loadDatabaseModels()
+        })
+    }
+    
+    deinit {
+        if self.loadDatabaseOberver != nil {
+            NotificationCenter.default.removeObserver(self.loadDatabaseOberver!)
+        }
     }
     
     // MARK: -
@@ -90,9 +105,6 @@ class AppCollectionModel {
             
             DispatchQueue.global(qos: .background).asyncAfter(deadline: .now() + 5.0, execute: {
                 self.allModelsDataSource.moveModelsToUpdatable(models)
-                if self.currentDataSource === self.allModelsDataSource {
-                    self.collectionView?.reload()
-                }
             })
         }
     }

@@ -127,6 +127,7 @@ class TranslationDetailController: SimpleViewController, TranslationDetailViewDe
         guard let translationModel = self.translationModel else { return }
         guard let translationView = self.translationView else { return }
         
+        translationView.installButton.isHidden = false
         translationView.titleLabel.text = translationModel.displayedName
         
         let updateStringDate = DateFormatter.localizedString(from: translationModel.remoteUpdateDate, 
@@ -154,7 +155,7 @@ class TranslationDetailController: SimpleViewController, TranslationDetailViewDe
         let database = UIApplication.applicationDelegate.defaultDatabase!
         database.addAppModels([model]) {
             database.forceSaveContext()
-            NotificationCenter.default.post(name: Notification.mainControllerReloadData, object: nil)
+            NotificationCenter.post(name: .translationCollectionLoadDatabase)
             
             hud.hide(afterDelay: 1.0)
         }

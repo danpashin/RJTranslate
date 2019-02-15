@@ -14,11 +14,4 @@ class TabbarController: UITabBarController {
         return super.tabBar as! Tabbar
     }
     
-    @available(*, deprecated)
-    var mainController: TranslateMainController {
-        let navigationController = self.viewControllers![0] as! UINavigationController
-        return navigationController.viewControllers.first as! TranslateMainController
-    }
-    
-    
 }

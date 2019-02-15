@@ -32,14 +32,7 @@ class TranslateMainController: SimpleViewController, SearchControllerDelegate, A
     }
     
     private func commonInit() {
-        NotificationCenter.default.addObserver(self, selector: #selector(self.downloadTranslationNotification),
-                                               name: Notification.mainControllerReloadData, object: nil)
-    }
-    
-    @objc func downloadTranslationNotification() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1, execute: { 
-            self.reloadTranslations()
-        })
+        
     }
     
     override func viewDidLoad() {
@@ -84,11 +77,6 @@ class TranslateMainController: SimpleViewController, SearchControllerDelegate, A
     
     func collectionView(_ collectionView: AppCollectionView, didUpdateModel appModel: TranslationModel) {
         self.collectionView.model.updateModel(appModel)
-    }
-    
-    
-    func reloadTranslations() {
-        self.collectionView.model.loadDatabaseModels()
     }
     
 }
