@@ -35,6 +35,8 @@ class AppCollectionView: UICollectionView {
     private var delegateObject: AppCollectionDelegate!
     private var emptyDataSourceObject: AppCollectionEmptySource!
     
+    private var reloadNoAnimObserver: NSObjectProtocol?
+    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         self.commonInit()
@@ -54,15 +56,20 @@ class AppCollectionView: UICollectionView {
             self.reload()
         }
         
-        let center = NotificationCenter.default
-        center.addObserver(forName: .translationCollectionReloadIndexPaths, object: nil, queue: .main) { (notif) in
-            guard let indexPaths = notif.object else { return }
+        self.reloadNoAnimObserver =  NotificationCenter.observe(name: .translationCollectionReloadNoAnim) { (notification) in
+            self.layout.disableAnimations()
+            self.reload(completion: {
+                self.layout.enableAnimations()
+            })
         }
     }
     
     deinit {
         PropertyObserver.removeObserve(name: .translationCollectionReloadData)
-        NotificationCenter.default.removeObserver(self)
+        
+        if self.reloadNoAnimObserver != nil {
+            NotificationCenter.default.removeObserver(self.reloadNoAnimObserver!)
+        }
     }
     
     override func awakeFromNib() {
@@ -75,8 +82,7 @@ class AppCollectionView: UICollectionView {
     }
     
     /// Выполняет анимированную перезагрузку ячеек коллекции.
-    func reload() {
-        // TODO: Добавить анимацию перемещения.
+    func reload(completion: (() -> Void)? = nil) {
         DispatchQueue.main.async {
             var pathsToDelete = [IndexPath]()
             var pathsToInsert = [IndexPath]()
@@ -103,18 +109,21 @@ class AppCollectionView: UICollectionView {
             
             pathsToReload = pathsToReload.filter { !pathsToDelete.contains($0) && !pathsToInsert.contains($0) }
             
+            let oldReversedOffset = self.contentSize.height - self.contentOffset.y
             
             self.performBatchUpdates({
                 self.deleteItems(at: pathsToDelete)
                 self.insertItems(at: pathsToInsert)
                 self.reloadItems(at: pathsToReload)
                 self.reloadEmptyDataSet()
+            }, completion: { (finished: Bool) in
+                self.layoutIfNeeded()
+                self.superview?.layoutIfNeeded()
+                self.contentOffset = CGPoint(x: 0.0, y: self.contentSize.height - oldReversedOffset)
+                
+                completion?()
             })
         }
-    }
-    
-    func reloadIndexPaths(_ indexPaths: [IndexPath]) {
-        
     }
     
     func updateEmptyView(to type: EmptyViewType, animated: Bool = false) {

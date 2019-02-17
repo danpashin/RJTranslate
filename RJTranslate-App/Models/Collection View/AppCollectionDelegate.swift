@@ -136,11 +136,14 @@ class AppCollectionDelegate: NSObject, UICollectionViewDelegateFlowLayout, UICol
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
                         insetForSectionAt section: Int) -> UIEdgeInsets {
-        let prevSectionNumber = self.model.currentDataSource.numberOfModelsFor(section: section - 1)
-        var fromTop: CGFloat = prevSectionNumber > 0 ? 10.0 : 0.0
-        if section == 0 { fromTop = 10.0 }
+        let prevSectionCount = self.model.currentDataSource.numberOfModelsFor(section: section - 1)
+        var top: CGFloat = prevSectionCount > 0 ? 10.0 : 0.0
+        if section == 0 { top = 10.0 }
         
-        return UIEdgeInsets(top: fromTop, left: 0.0, bottom: 0.0, right: 0.0)
+        let nextSectionCount = self.model.currentDataSource.numberOfModelsFor(section: section + 1)
+        let bottom: CGFloat = nextSectionCount == 0 ? 10.0 : 0.0
+        
+        return UIEdgeInsets(top: top, left: 0.0, bottom: bottom, right: 0.0)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,

@@ -10,6 +10,7 @@ import Foundation
 
 class AppCollectionLayout: UICollectionViewFlowLayout {
     
+    private var animationsEnabled = true
     private var itemsToAnimate = [IndexPath]()
     
     override func prepare(forCollectionViewUpdates updateItems: [UICollectionViewUpdateItem]) {
@@ -31,7 +32,9 @@ class AppCollectionLayout: UICollectionViewFlowLayout {
         -> UICollectionViewLayoutAttributes? {
             let attributes = super.initialLayoutAttributesForAppearingItem(at: itemIndexPath)
             
-            if self.itemsToAnimate.contains(itemIndexPath) {
+            if !self.animationsEnabled {
+                attributes?.alpha = 1.0
+            } else if self.itemsToAnimate.contains(itemIndexPath) {
                 self.itemsToAnimate.remove(at: self.itemsToAnimate.firstIndex(of: itemIndexPath)!)
                 attributes?.transform = CGAffineTransform(scaleX: 0.2, y: 0.2)
             }
@@ -43,11 +46,21 @@ class AppCollectionLayout: UICollectionViewFlowLayout {
         -> UICollectionViewLayoutAttributes? {
             let attributes = super.finalLayoutAttributesForDisappearingItem(at: itemIndexPath)
             
-            if self.itemsToAnimate.contains(itemIndexPath) {
+            if !self.animationsEnabled {
+                attributes?.alpha = 1.0
+            } else if self.itemsToAnimate.contains(itemIndexPath) {
                 self.itemsToAnimate.remove(at: self.itemsToAnimate.firstIndex(of: itemIndexPath)!)
                 attributes?.transform = CGAffineTransform(scaleX: 0.2, y: 0.2)
             }
             
             return attributes
+    }
+    
+    func disableAnimations() {
+        self.animationsEnabled = false
+    }
+    
+    func enableAnimations() {
+        self.animationsEnabled = true
     }
 }

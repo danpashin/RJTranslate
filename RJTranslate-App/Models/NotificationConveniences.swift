@@ -8,7 +8,13 @@
 
 import Foundation
 
-struct PropertyObserver {
+
+class PropertyObserver {
+    private static var registeredNotifications = [Notification.Name: NSObjectProtocol]()
+    
+    enum PropertyObserverError: Error {
+        case notificationAlreadyAdded
+    }
     
     /// Имя для нотификации.
     var name: Notification.Name
@@ -19,21 +25,18 @@ struct PropertyObserver {
     /// Новое значение проперти.
     var newValue: Any?
     
+    init(name: Notification.Name, oldValue: Any?, newValue: Any?) {
+        self.name = name
+        self.oldValue = oldValue
+        self.newValue = newValue
+    }
+    
     func post() {
         NotificationCenter.post(name: self.name, object: self)
     }
-}
-
-extension PropertyObserver {
     
-    enum PropertyObserverError: Error {
-        case notificationAlreadyAdded
-    }
-    
-    private static var notifications = [Notification.Name: NSObjectProtocol]()
-    
-    static func observe(name: Notification.Name, handler: @escaping (PropertyObserver) -> Void) throws {
-        if self.notifications.contains(where: { (key, _) -> Bool in return key == name }) {
+    class func observe(name: Notification.Name, handler: @escaping (PropertyObserver) -> Void) throws {
+        if self.registeredNotifications.contains(where: { (key, _) -> Bool in return key == name }) {
             throw PropertyObserverError.notificationAlreadyAdded
         }
         
@@ -44,11 +47,11 @@ extension PropertyObserver {
             }
         }
         
-        self.notifications[name] = observer
+        self.registeredNotifications[name] = observer
     }
     
     static func removeObserve(name: Notification.Name) {
-        self.notifications.removeValue(forKey: name)
+        self.registeredNotifications.removeValue(forKey: name)
     }
 }
 
@@ -64,7 +67,7 @@ extension Notification.Name {
         return .init("rjtranslate.translCollectin.Load.Database")
     }
     
-    static var translationCollectionReloadIndexPaths: NSNotification.Name {
+    static var translationCollectionReloadNoAnim: NSNotification.Name {
         return .init("rjtranslate.translCollectin.ReloadIndexPaths")
     }
 }
@@ -73,5 +76,10 @@ extension NotificationCenter {
     
     static func post(name: Notification.Name, object: Any? = nil) {
         NotificationCenter.default.post(name: name, object: object)
+    }
+    
+    static func observe(name: NSNotification.Name?, object obj: Any? = nil, queue: OperationQueue? = .main, 
+                        using block: @escaping (Notification) -> Void) -> NSObjectProtocol {
+        return NotificationCenter.default.addObserver(forName: name, object: obj, queue: queue, using: block)
     }
 }

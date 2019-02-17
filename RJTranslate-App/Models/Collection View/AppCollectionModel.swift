@@ -104,7 +104,10 @@ class AppCollectionModel {
             }
             
             DispatchQueue.global(qos: .background).asyncAfter(deadline: .now() + 5.0, execute: {
-                self.allModelsDataSource.moveModelsToUpdatable(models)
+                var newModels = models
+                newModels.remove(at: 0)
+                print("\(newModels)")
+                self.allModelsDataSource.moveModelsToUpdatable(newModels)
             })
         }
     }
